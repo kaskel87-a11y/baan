@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.3.0 — 2026-10-08
+
+Collin reported that on his phone Say it was "not giving feedback on how I pronounce words".
+
+**Why it went quiet**
+- Say it was **hidden completely** when the browser had no speech recognition.
+- When recognition ended with no result and no error, the app **reset without a word**. iPhone Safari does this often: you stop too soon, Dictation is off, or Thai isn't available.
+- `network`, `aborted` and `audio-capture` errors gave a generic message or none at all.
+- The only check was speech-to-text, which checks the **words** and not the **tones**. Even when it worked it couldn't tell you how you pronounced something.
+
+**What's new**
+- **Tone check (REVIEW.md Prompt 7).** Say it now records you with the microphone and analyses your pitch on the phone itself. No speech service is needed.
+  - Pitch is estimated with YIN (75–400 Hz, 10 ms steps) and cleaned up. Your voice is split into the target's syllables.
+  - Each syllable is classified as falling, rising or level. Once the app has heard your normal voice three times, it also tells mid, low and high apart. Lines of three or more syllables use their own average as the reference.
+  - Your curve is drawn in green over the grey target tone shapes for each syllable.
+  - Feedback is in English, for example: "Syllable 2 (níi) should stay high, with only a small dip at the very end. Yours rose by about 8 semitones."
+  - Recording uses AudioWorklet, with a ScriptProcessor fallback for older Safari. It stops on its own after a pause, or when you tap Stop.
+  - Your recent pitch medians are saved in `baan.v1` as `pitchMedians`.
+- **Word check (speech recognition) never fails silently.** Every outcome ends in an English message: no recognition in this browser, no result, no speech, not allowed (with the iPhone Dictation setting), network, Thai not supported, mic busy, and timeout.
+  - What was heard is shown as Thai, plus romanization and English when the app knows the word, next to the target.
+  - Microphone problems (blocked, missing, busy, not https) get their own English message, with the iPhone Safari steps.
+- Layout: there is still one fixed-size Say it / Stop button. The status line, word check, chart and tone feedback all have fixed heights, so nothing moves while recording or when results arrive.
+- Tests:
+  - `npm run test:pitch` runs unit tests on synthetic voices.
+  - `npm run test:mic` makes WAVs with numpy and runs headless Chrome with a fake microphone at 360 px. It checks falling, rising and level, mid and low with a baseline, two syllables, the ScriptProcessor fallback, no recognition, network error, iOS-style empty end, mic denied, silence, and wrong words. It also checks that nothing shifts.
+  - The smoke test now runs at 375 px with a fake mic.
+
 ## 0.2.0 — 2026-10-08
 
 Changes Collin asked for after using the Grok version:

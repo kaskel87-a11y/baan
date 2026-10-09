@@ -33,6 +33,8 @@ export interface BaanState {
   toneStats: Record<string, PairStat>;
   /** Best score in a 20-trial minimal-pair session. */
   pairBest: number;
+  /** Median F0 (Hz) of the learner's recent recordings, newest last; used as their normal pitch. */
+  pitchMedians: number[];
 }
 
 const DEFAULTS: BaanState = {
@@ -47,6 +49,7 @@ const DEFAULTS: BaanState = {
   letterBest: 0,
   toneStats: {},
   pairBest: 0,
+  pitchMedians: [],
 };
 
 let state: BaanState = DEFAULTS;
@@ -70,6 +73,7 @@ function load() {
       roman: t.roman ?? true,
       toneStats: t.toneStats ?? {},
       pairBest: t.pairBest ?? 0,
+      pitchMedians: t.pitchMedians ?? [],
     };
   } catch {
     state = DEFAULTS;
@@ -209,4 +213,16 @@ export function dueIds(s: BaanState, now = Date.now()) {
     const c = s.srs[id];
     return !c || c.due <= now;
   });
+}
+
+export function recordPitchMedian(hz: number) {
+  if (!(hz > 50 && hz < 500)) return;
+  update((s) => ({ ...s, pitchMedians: [...s.pitchMedians, Math.round(hz)].slice(-15) }));
+}
+
+/** The learner's normal pitch, once we've heard at least 3 recordings. */
+export function pitchBaseline(s: BaanState): number | undefined {
+  if (s.pitchMedians.length < 3) return undefined;
+  const v = [...s.pitchMedians].sort((a, b) => a - b);
+  return v[v.length >> 1];
 }

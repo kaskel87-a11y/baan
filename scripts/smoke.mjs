@@ -6,10 +6,10 @@ const base = process.argv[2] ?? "http://localhost:4321/";
 const browser = await puppeteer.launch({
   executablePath: process.env.CHROME ?? "/usr/bin/google-chrome",
   headless: true,
-  args: ["--no-sandbox", "--autoplay-policy=no-user-gesture-required"],
+  args: ["--no-sandbox", "--autoplay-policy=no-user-gesture-required", "--use-fake-ui-for-media-stream", "--use-fake-device-for-media-stream"],
 });
 const page = await browser.newPage();
-await page.setViewport({ width: 420, height: 900 });
+await page.setViewport({ width: 375, height: 812, isMobile: true, hasTouch: true }); // iPhone-sized
 const problems = [];
 page.on("pageerror", (e) => problems.push(`pageerror: ${e.message}`));
 page.on("console", (m) => m.type() === "error" && problems.push(`console: ${m.text()}`));
@@ -136,7 +136,7 @@ await step("req1: Say it is one fixed-size button and nothing shifts", async () 
 
 await step("req3: Say it correction is English + Thai + roman + meaning", async () => {
   const t = await page.evaluate(() => document.querySelector("[data-sayit-result]").innerText);
-  for (const want of ["Not quite.", "I heard", "The line is:", "sà-wàt-dii khráp duu à-rai khráp", "Hello. What are you looking for?"])
+  for (const want of ["Not quite.", "I heard", "Target:", "sà-wàt-dii khráp duu à-rai khráp", "Hello. What are you looking for?"])
     if (!t.includes(want)) throw new Error(`missing "${want}" in: ${t}`);
 });
 

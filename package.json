@@ -1,7 +1,7 @@
 {
   "name": "baan-app",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.3.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "check:data": "tsx scripts/check-data.ts",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "test:pitch": "tsx scripts/test-pitch.ts",
+    "test:mic": "python3 scripts/make-wavs.py && node scripts/mic-test.mjs"
   },
   "dependencies": {
     "@fontsource/noto-sans-thai": "^5.3.0",

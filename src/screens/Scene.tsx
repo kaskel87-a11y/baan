@@ -281,7 +281,7 @@ function Talk({
           <HearButton text={r.thai} />
           <HearButton text={r.thai} slow />
         </div>
-        <SayIt target={r.thai} roman={r.roman} en={line.en} />
+        <SayIt target={r.thai} roman={r.roman} en={line.en} skip={name.trim() ? [name.trim()] : []} />
       </article>
       <div className="flex flex-wrap gap-2">
         {index > 0 ? (

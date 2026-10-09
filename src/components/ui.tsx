@@ -1,11 +1,9 @@
-import { useEffect, useRef, useState, type ButtonHTMLAttributes, type ReactNode } from "react";
-import { Mic, Square, Volume2 } from "lucide-react";
+import { useState, type ButtonHTMLAttributes, type ReactNode } from "react";
+import { Volume2 } from "lucide-react";
 import type { Tone } from "../data/types";
-import { speak, stopSpeech, useThaiVoice } from "../lib/audio";
-import { canRecognize, recognitionCtor, type Recognition } from "../lib/speech";
-import { matchSpoken, type Verdict } from "../lib/thai";
+import { speak, useThaiVoice } from "../lib/audio";
 
-const TONE_PATH: Record<Tone, string> = {
+export const TONE_PATH: Record<Tone, string> = {
   mid: "M6 24 H58",
   low: "M6 34 H58",
   falling: "M6 10 C 22 12, 36 30, 58 36",
@@ -132,120 +130,5 @@ export function AnswerLine({ thai, roman, en }: { thai: string; roman?: string; 
   );
 }
 
-/**
- * "Say it": browser speech recognition (th-TH), then the same fuzzy word match as the original.
- * One fixed-size button that toggles Say it ⇄ Stop, and a fixed-height result area below it,
- * so nothing moves when recording starts or the result arrives. Hidden where SpeechRecognition is missing.
- * `hideTarget` keeps the Thai answer out of the feedback until the card is revealed (Review, From English).
- */
-export function SayIt({ target, roman, en, hideTarget = false }: { target: string; roman?: string; en?: string; hideTarget?: boolean }) {
-  const [phase, setPhase] = useState<"idle" | "live">("idle");
-  const [verdict, setVerdict] = useState<Verdict | null>(null);
-  const [heard, setHeard] = useState("");
-  const [error, setError] = useState("");
-  const rec = useRef<Recognition | null>(null);
-  const supported = canRecognize();
 
-  useEffect(() => {
-    setPhase("idle");
-    setVerdict(null);
-    setHeard("");
-    setError("");
-    return () => {
-      rec.current?.abort();
-      rec.current = null;
-    };
-  }, [target]);
-
-  if (!supported) return null;
-
-  function start() {
-    const Ctor = recognitionCtor();
-    if (!Ctor) return;
-    stopSpeech();
-    setVerdict(null);
-    setHeard("");
-    setError("");
-    const r = new Ctor();
-    r.lang = "th-TH";
-    r.interimResults = false;
-    r.maxAlternatives = 5;
-    r.continuous = false;
-    r.onresult = (e) => {
-      const alts = Array.from(e.results[0] ?? []).map((a) => a.transcript);
-      const rank = { yes: 2, close: 1, no: 0 } as const;
-      let best: { v: Verdict; t: string } = { v: "no", t: alts[0] ?? "" };
-      for (const t of alts) {
-        const v = matchSpoken(t, target);
-        if (rank[v] > rank[best.v]) best = { v, t };
-      }
-      setHeard(best.t);
-      setVerdict(best.t ? best.v : "no");
-    };
-    r.onerror = (e) => {
-      setError(
-        e.error === "not-allowed" || e.error === "service-not-allowed"
-          ? "The microphone is blocked. Allow it for this page, then tap Say it again."
-          : e.error === "no-speech"
-            ? "I didn't catch anything. Hold the phone a little closer and try again."
-            : e.error === "language-not-supported"
-              ? "This browser can't recognize Thai speech."
-              : "I couldn't check that. Try once more.",
-      );
-    };
-    r.onend = () => {
-      setPhase("idle");
-      rec.current = null;
-    };
-    rec.current = r;
-    try {
-      r.start();
-      setPhase("live");
-    } catch {
-      setError("I couldn't start the microphone.");
-    }
-  }
-
-  const live = phase === "live";
-  const showAnswer = !hideTarget;
-  return (
-    <div className="grid gap-2" data-sayit>
-      <button
-        type="button"
-        aria-pressed={live}
-        onClick={live ? () => rec.current?.stop() : start}
-        className={`inline-flex h-11 w-40 shrink-0 items-center justify-center gap-2 rounded-xl border text-sm font-medium transition-colors duration-150 ${live ? "border-accent bg-accent text-accent-ink" : "border-line bg-card text-ink"}`}
-      >
-        {live ? <Square aria-hidden="true" size={16} /> : <Mic aria-hidden="true" size={18} />}
-        <span>{live ? "Stop" : "Say it"}</span>
-      </button>
-      {/* Reserved space: same height whether empty, listening, or showing a result. */}
-      <div className="min-h-[13rem] text-sm" aria-live="polite" data-sayit-result>
-        {live ? <p className="text-muted">Listening… say it in Thai, then tap Stop.</p> : null}
-        {!live && error ? <p className="text-miss">{error}</p> : null}
-        {!live && verdict === "yes" ? (
-          <div className="grid gap-1">
-            <p className="font-medium text-accent">Correct. That matched the line.</p>
-            {showAnswer ? <AnswerLine thai={target} roman={roman} en={en} /> : null}
-          </div>
-        ) : null}
-        {!live && verdict && verdict !== "yes" ? (
-          <div className="grid gap-1">
-            <p className={verdict === "close" ? "font-medium" : "font-medium text-miss"}>
-              {verdict === "close" ? "Close, but not exact." : "Not quite."} I heard: <span lang="th" className="thai">{heard || "nothing"}</span>
-            </p>
-            {showAnswer ? (
-              <>
-                <p className="text-muted">The line is:</p>
-                <AnswerLine thai={target} roman={roman} en={en} />
-              </>
-            ) : (
-              <p className="text-muted">Tap Show to see the right answer.</p>
-            )}
-          </div>
-        ) : null}
-        {!live && verdict ? <p className="mt-1 text-xs text-muted">This checks the words. A wrong tone can still match the spelling.</p> : null}
-      </div>
-    </div>
-  );
-}
+export { SayIt } from "./SayIt";
