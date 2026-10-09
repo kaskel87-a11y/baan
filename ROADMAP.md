@@ -16,7 +16,7 @@ Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-08.
 | 7 | Tone production feedback: your pitch curve against the target tone shape (YIN pitch tracking + AudioWorklet) | ✅ Done in 0.3.0. Since 0.3.1 it is a separate "Check my tones" step that never shares the mic with Say it. Tested with synthetic voices only; still needs tuning against real recordings of Collin and a native speaker. |
 | 8 | Reading: sound-out-the-word quiz, vowel quiz, romanization fades once a word is learned. Content: 4 new scenes (7-Eleven, BTS/MRT, Lost, Massage/pharmacy) plus short listening stories | ⏳ Planned |
 | — | Stable public hosting | ✅ GitHub Pages: https://kaskel87-a11y.github.io/baan/ (`./deploy.sh`) |
-| — | Word check without the browser's speech recognition (Firefox, and iPhones with Dictation off): server or WASM speech-to-text. Say it still shows there; the tone check works and the word check explains why it is off. | 💤 Later |
+| — | Word check without the browser's speech recognition | ✅ 0.4.0: on-device Whisper base on iPhone, and as a fallback elsewhere. Thai accuracy on single words is only fair. **Decision pending:** a cloud speech-to-text service (needs an API key and a small proxy, e.g. a Cloudflare Worker, since keys can't ship in a static site) would be much more accurate. |
 | — | Tone check tuning on real voices: high tone often rises in modern Bangkok speech, creaky low tones, and syllable splitting on fast speech | ⏳ Next, needs recordings from a real phone |
 | — | Move progress to IndexedDB and add export/import, so progress isn't tied to one browser | 💤 Later |
 

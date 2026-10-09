@@ -1,5 +1,40 @@
 # Changelog
 
+## 0.4.0 — 2026-10-08
+
+Collin's real iPhone results on 0.3.1 (Chrome for iOS, then Safari):
+- The word check said "didn't hear any words" every time, even with Dictation on and the Thai keyboard added.
+- In Chrome, the tone check drew a perfectly flat high line on syllable 1 and a spike on syllable 2.
+- In Safari, the tone check drew no line and the mic bar stayed empty.
+
+**Causes**
+- **Word check:** the Grok version Collin used first did **not** use the browser's speech recognition. It sent the recording to a server for transcription, which is why Say it "worked before". Our static copy uses iOS WebKit's `webkitSpeechRecognition` for Thai. On his iPhone it ends without ever returning a result, in Safari and in Chrome alike (all iPhone browsers are WebKit). The recognition settings were the same in 0.2.0 and 0.3.1, so no settings change broke it.
+- **Flat line:** the pitch tracker read steady background sound (hum or noise) as a voice, once the recording was normalized and the thresholds loosened. The syllable splitter also put a short noise run in as syllable 1, and the chart stretched whatever few frames it had across the whole syllable. A handful of identical values showed up as a long, perfectly flat line.
+- **No audio in Safari:** 0.3.1 asked for the mic with echo cancellation, noise suppression and auto-gain off. On iPhone that can give very quiet or empty input. It also relied on the Web Audio tap first, with MediaRecorder only as a fallback.
+
+**What changed**
+- **On iPhone, Say it records you once and checks both words and tones from that one recording.** Speech recognition is never used on iPhone or iPad.
+  - The word check is on-device Whisper base (Transformers.js in a Web Worker, single-threaded WASM, ~80 MB). It asks once before the download and is cached afterwards. There is no server and no key, and the audio stays on the phone.
+  - If Whisper answers in Latin letters ("Pang!"), the answer is compared with the romanization and can be judged "Close" at most.
+- **On desktop, Say it still uses the browser's speech recognition.**
+  - `interimResults` is now on, and the last interim result counts if no final one arrives.
+  - After two empty results in a row it switches to the record-and-transcribe path for the session.
+- **Recorder**
+  - The mic is opened with the browser defaults (`audio: true`).
+  - MediaRecorder (audio/mp4 on iOS, recorded as one blob) is the main source. The Web Audio tap is the fallback.
+  - The live meter reads from an AnalyserNode. Diagnostics now show the meter peak, the transcriber and the transcript.
+- **Pitch**
+  - **Voicing gate:** a frame counts only if it is above 12% of the loud part **and** above 3× the noise floor, so hum is no longer read as voice. YIN uses 0.15, or 0.25 on loud frames only.
+  - **Spikes:** values more than 4 semitones from the local median are dropped, and so are jumps over 5 semitones between frames.
+  - **Syllables** are split by energy peaks and voicing gaps, not equal time slices.
+  - **Shape** is judged on the 10–30% vs 75–95% parts of each syllable, so the normal drop at the end of a word isn't read as a falling tone.
+  - **Leniency:** a gentle fall that doesn't start high counts as low on short dead syllables (phàt, phèt), and a rise with no dip counts as high.
+- **Chart:** only voiced frames are drawn, at their real position, with gaps left as gaps. With fewer than 5 voiced frames (50 ms) it says, for example, "I couldn't hear a clear pitch on syllable 1 (phàt). Say it a bit louder and longer." instead of judging.
+- **Tests**
+  - `scripts/fetch-thai-audio.sh` makes real Thai speech for local tests (Google TTS plus pink noise and hum; not committed).
+  - `mic-test.mjs` covers the iPhone record-once flow, the download consent, Latin transcripts, interim-only results, the switch after two empty results, and real "phàt thai" with hum. `REAL_ASR=1` runs the real Whisper model.
+  - `webkit-test.mjs` covers the iPhone flow in WebKit, including real Thai speech.
+
 ## 0.3.1 — 2026-10-08
 
 **Fixes a regression from 0.3.0: Say it stopped hearing Collin on his phone.** In 0.2.0 Say it worked, and his mic is fine.

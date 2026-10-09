@@ -7,7 +7,20 @@ import { recognitionCtor, type Recognition } from "../lib/speech";
 import { matchSpoken, TONE_LABEL, toneFromRoman, type Verdict } from "../lib/thai";
 import { createCapture, micSupported, type Capture, type MicError, type Recording } from "../lib/recorder";
 import { errorName, setDiag, useDiag, type Diag } from "../lib/diag";
-import { analyze, classify, describe, describeMovement, tonesMatch, TONE_ADVICE, type Analysis, type SyllableShape } from "../lib/pitch";
+import { latinMatches, transcribe, transcriberLoaded } from "../lib/transcribe";
+
+const ASR_OK_KEY = "baan.asr.ok";
+const WORD_MODE_KEY = "baan.wordMode";
+/** iPhone/iPad (any browser — all are WebKit): the built-in speech recognition doesn't return Thai reliably. */
+function initialRecordMode(hasRecognizer: boolean) {
+  if (!hasRecognizer || IS_IOS) return true;
+  try {
+    return sessionStorage.getItem(WORD_MODE_KEY) === "record";
+  } catch {
+    return false;
+  }
+}
+import { analyze, classify, describe, describeMovement, isDead, tonesMatch, TONE_ADVICE, type Analysis, type SyllableShape } from "../lib/pitch";
 import { getState, pitchBaseline, recordPitchMedian } from "../lib/store";
 import { AnswerLine, TONE_PATH } from "./ui";
 
@@ -18,7 +31,9 @@ type WordState =
   | { kind: "pending" }
   | { kind: "heard"; verdict: Verdict; heard: string }
   | { kind: "message"; text: string }
-  | { kind: "note"; text: string };
+  | { kind: "note"; text: string }
+  | { kind: "progress"; text: string }
+  | { kind: "consent" };
 
 const IS_IOS = typeof navigator !== "undefined" && /iP(hone|ad|od)/.test(navigator.userAgent + (navigator.maxTouchPoints > 1 && /Mac/.test(navigator.userAgent) ? " iPad" : ""));
 
@@ -173,11 +188,16 @@ export function SayIt({
 
   const syllables = targetSyllables(target, roman, en, skip);
   const recognizer = recognitionCtor();
+  const [recordMode, setRecordMode] = useState(() => initialRecordMode(!!recognizer));
+  const lastRecording = useRef<Recording | null>(null);
+  const emptyEnds = useRef(0);
 
   useEffect(() => {
     setDiag({
       speechRecognition: recognizer ? "available" : "not available",
-      wordCheckMode: recognizer ? "Say it = speech recognition only; tone check is a separate step" : "no speech recognition; Say it runs the tone check",
+      wordCheckMode: recordMode
+        ? "Say it records once: tone check + on-device transcription (Whisper)"
+        : "Say it = browser speech recognition (th-TH); tone check is a separate step",
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -229,24 +249,36 @@ export function SayIt({
     const id = wordRun.current;
     let gotResult = false;
     let gotError = false;
+    let interim = "";
+    const judge = (alts: string[]) => {
+      const rank = { yes: 2, close: 1, no: 0 } as const;
+      let best: { v: Verdict; t: string } = { v: "no", t: alts[0]! };
+      for (const t of alts) {
+        const v = matchSpoken(t, target);
+        if (rank[v] > rank[best.v]) best = { v, t };
+      }
+      setWord({ kind: "heard", verdict: best.v, heard: best.t });
+    };
     try {
       const r = new recognizer();
       r.lang = "th-TH";
-      r.interimResults = false;
+      r.interimResults = true; // iOS often ends without a final result: keep the last interim one
       r.maxAlternatives = 5;
       r.continuous = false;
       r.onresult = (e) => {
         if (id !== wordRun.current) return;
-        const alts = Array.from(e.results[0] ?? []).map((a) => a.transcript).filter((t) => t.trim());
+        const res = Array.from(e.results as ArrayLike<ArrayLike<{ transcript: string }> & { isFinal?: boolean }>);
+        const last = res[res.length - 1];
+        if (!last) return;
+        const alts = Array.from(last).map((a) => a.transcript).filter((t) => t.trim());
         if (!alts.length) return;
-        gotResult = true;
-        const rank = { yes: 2, close: 1, no: 0 } as const;
-        let best: { v: Verdict; t: string } = { v: "no", t: alts[0]! };
-        for (const t of alts) {
-          const v = matchSpoken(t, target);
-          if (rank[v] > rank[best.v]) best = { v, t };
+        if (last.isFinal === false) {
+          interim = alts[0]!;
+          return;
         }
-        setWord({ kind: "heard", verdict: best.v, heard: best.t });
+        gotResult = true;
+        emptyEnds.current = 0;
+        judge(alts);
       };
       r.onerror = (e) => {
         if (id !== wordRun.current || gotResult) return;
@@ -260,10 +292,26 @@ export function SayIt({
         rec.current = null;
         window.clearTimeout(wordTimer.current);
         setWordPhase("idle");
-        // iOS Safari can end with neither a result nor an error: say so instead of going quiet.
+        if (!gotResult && interim) {
+          // ended before a final result: use the last interim transcript
+          gotResult = true;
+          emptyEnds.current = 0;
+          judge([interim]);
+          return;
+        }
+        // Can end with neither a result nor an error: say so, and after two in a row switch to recording.
         if (!gotResult && !gotError) {
           setDiag({ lastWordError: "ended with no result" });
-          setWord({ kind: "message", text: WORD_MSG.noResult });
+          emptyEnds.current++;
+          if (emptyEnds.current >= 2) {
+            try {
+              sessionStorage.setItem(WORD_MODE_KEY, "record");
+            } catch {
+              /* ignore */
+            }
+            setRecordMode(true);
+            setWord({ kind: "message", text: "Your browser's speech recognition isn't returning anything. I've switched Say it to recording you and checking the words on this device. Tap Say it again." });
+          } else setWord({ kind: "message", text: WORD_MSG.noResult });
         }
       };
       rec.current = r;
@@ -287,7 +335,9 @@ export function SayIt({
   }
 
   /** Tone check recording. Runs synchronously inside the tap (iOS unlocks audio only in the gesture). */
-  function startTone() {
+  const withWords = useRef(false);
+  function startTone(words = false) {
+    withWords.current = words;
     stopWords(); // recognition must not be running while we hold the mic
     stopTone();
     const id = run.current;
@@ -343,7 +393,44 @@ export function SayIt({
     if (id !== run.current) return;
     await new Promise((res) => window.setTimeout(res, 0)); // paint "Checking…" first
     setTone(toneCheck(recording));
+    lastRecording.current = recording;
+    if (withWords.current) void wordsFromRecording(recording);
     setPhase("idle");
+  }
+
+  /** Word check from the recording (on-device Whisper). Asks once before the ~80 MB download. */
+  async function wordsFromRecording(r: Recording) {
+    if (r.peak < 0.002) {
+      setWord({ kind: "message", text: "No sound reached the word check either. See the tone check message below." });
+      return;
+    }
+    let ok = false;
+    try {
+      ok = localStorage.getItem(ASR_OK_KEY) === "1" || !!(window as unknown as { __fakeTranscribe?: unknown }).__fakeTranscribe;
+    } catch {
+      /* ignore */
+    }
+    if (!ok) {
+      setWord({ kind: "consent" });
+      return;
+    }
+    const id = run.current;
+    setWord({ kind: "progress", text: transcriberLoaded() ? "Checking your words…" : "Loading the word checker…" });
+    try {
+      const text = await transcribe(r.samples, r.rate, (f) => id === run.current && setWord({ kind: "progress", text: `Downloading the word checker (one time): ${Math.round(f * 100)}%` }));
+      if (id !== run.current) return;
+      setDiag({ transcript: text || "(empty)" });
+      const clean = text.replace(/[!?.,"“”]/g, "").trim();
+      if (!clean) return setWord({ kind: "message", text: "The word check didn't catch any words. Say it a bit louder and closer to the phone." });
+      if (/[\u0E00-\u0E7F]/.test(clean)) return setWord({ kind: "heard", verdict: matchSpoken(clean, target), heard: clean });
+      // Whisper sometimes answers in Latin letters for a single word ("Pang" for แพง)
+      const sim = roman ? latinMatches(clean, roman) : 0;
+      setWord({ kind: "heard", verdict: sim >= 0.7 ? "close" : "no", heard: clean });
+    } catch (e) {
+      setDiag({ lastWordError: `transcribe: ${errorName(e)}` });
+      if (id === run.current)
+        setWord({ kind: "message", text: "The on-device word checker couldn't run here (it needs about 80 MB and an internet connection the first time). The tone check still works." });
+    }
   }
 
   function toneCheck({ samples, rate, peak }: Recording): ToneState {
@@ -372,17 +459,29 @@ export function SayIt({
   const toneBusy = phase === "live" || phase === "starting";
   const listening = wordPhase === "listening";
   // Say it: word check when the browser has recognition, otherwise it runs the tone check.
-  const sayBusy = recognizer ? listening : toneBusy;
-  const sayLabel = recognizer ? (listening ? "Stop" : "Say it") : phase === "starting" ? "Starting…" : toneBusy ? "Stop" : phase === "analyzing" ? "Checking…" : "Say it";
-  const toneLabel = phase === "starting" ? "Starting…" : toneBusy ? "Stop" : phase === "analyzing" ? "Checking…" : "Check my tones";
+  const speechMode = !!recognizer && !recordMode;
+  const sayBusy = speechMode ? listening : toneBusy && withWords.current;
+  const sayLabel = speechMode
+    ? listening
+      ? "Stop"
+      : "Say it"
+    : sayBusy
+      ? phase === "starting"
+        ? "Starting…"
+        : "Stop"
+      : phase === "analyzing" && withWords.current
+        ? "Checking…"
+        : "Say it";
+  const toneOwn = !withWords.current;
+  const toneLabel = !toneOwn ? "Check my tones" : phase === "starting" ? "Starting…" : toneBusy ? "Stop" : phase === "analyzing" ? "Checking…" : "Check my tones";
 
   return (
     <div className="grid gap-2" data-sayit>
       <button
         type="button"
         aria-pressed={sayBusy}
-        disabled={recognizer ? toneBusy || phase === "analyzing" : phase === "analyzing"}
-        onClick={recognizer ? (listening ? () => rec.current?.stop() : startWords) : toneBusy ? () => void finish() : startTone}
+        disabled={speechMode ? toneBusy || phase === "analyzing" : phase === "analyzing" || (toneBusy && !withWords.current)}
+        onClick={speechMode ? (listening ? () => rec.current?.stop() : startWords) : sayBusy ? () => void finish() : () => startTone(true)}
         className={`inline-flex h-11 w-40 shrink-0 items-center justify-center gap-2 rounded-xl border text-sm font-medium transition-colors duration-150 disabled:opacity-60 ${sayBusy ? "border-accent bg-accent text-accent-ink" : "border-line bg-card text-ink"}`}
       >
         {sayBusy ? <Square aria-hidden="true" size={16} /> : <Mic aria-hidden="true" size={18} />}
@@ -400,11 +499,13 @@ export function SayIt({
                   ? "Recording… I can hear you. It stops when you pause, or tap Stop."
                   : "Recording… speak now. The Mic level bar should move when you talk."
                 : phase === "analyzing"
-                  ? "Checking your tones…"
+                  ? withWords.current
+                    ? "Checking your words and tones…"
+                    : "Checking your tones…"
                   : word.kind === "idle" && tone.kind === "idle"
-                    ? recognizer
+                    ? speechMode
                       ? "Tap Say it to check your words. Then tap Check my tones to see your pitch."
-                      : "Tap Say it and speak right away to see your pitch against the target tones."
+                      : "Tap Say it and speak right away. I'll check your words and your tones from one recording."
                     : null}
         </p>
 
@@ -412,7 +513,15 @@ export function SayIt({
         <div className="h-[8.5rem] overflow-y-auto" data-word-check>
           <p className="text-xs font-medium uppercase tracking-wide text-muted">Word check</p>
           <WordResult
-            state={word.kind === "idle" && !recognizer ? { kind: "message", text: WORD_MSG.unsupported } : word}
+            state={word}
+            onConsent={() => {
+              try {
+                localStorage.setItem(ASR_OK_KEY, "1");
+              } catch {
+                /* ignore */
+              }
+              if (lastRecording.current) void wordsFromRecording(lastRecording.current);
+            }}
             toneDown={tone.kind === "message" && /microphone|record audio|secure|no sound/.test(tone.text)}
             target={target}
             roman={roman}
@@ -429,8 +538,8 @@ export function SayIt({
               type="button"
               data-tone-button
               aria-pressed={toneBusy}
-              disabled={listening || phase === "analyzing"}
-              onClick={toneBusy ? () => void finish() : startTone}
+              disabled={listening || phase === "analyzing" || (toneBusy && withWords.current)}
+              onClick={toneBusy ? () => void finish() : () => startTone(false)}
               className={`inline-flex h-9 w-36 shrink-0 items-center justify-center rounded-xl border text-xs font-medium disabled:opacity-60 ${toneBusy ? "border-accent bg-accent text-accent-ink" : "border-line bg-card text-ink"}`}
             >
               {toneLabel}
@@ -512,6 +621,7 @@ function DiagPanel() {
 }
 
 function WordResult({
+  onConsent,
   state,
   toneDown,
   target,
@@ -520,6 +630,7 @@ function WordResult({
   hideTarget,
 }: {
   state: WordState;
+  onConsent: () => void;
   toneDown: boolean;
   target: string;
   roman?: string;
@@ -529,6 +640,18 @@ function WordResult({
   if (state.kind === "idle") return null;
   if (state.kind === "pending") return <p className="text-muted">Listening for words… say it in Thai now.</p>;
   if (state.kind === "note") return <p className="text-muted" data-word-note>{state.text}</p>;
+  if (state.kind === "progress") return <p className="text-muted" data-word-progress>{state.text}</p>;
+  if (state.kind === "consent")
+    return (
+      <div className="grid gap-2" data-word-consent>
+        <p className="text-muted">
+          On iPhone the word check runs on this device. It needs a one-time download of a speech model (about 80 MB, best on Wi-Fi). Your voice never leaves the phone.
+        </p>
+        <button type="button" onClick={onConsent} className="justify-self-start rounded-xl border border-line bg-card px-3 py-1.5 text-xs font-medium" data-word-consent-ok>
+          Download and check my words
+        </button>
+      </div>
+    );
   if (state.kind === "message") {
     // don't promise the tone check when the mic itself failed
     const text = toneDown ? state.text.replace(/,? but the tone check below still works\.?| The tone check still works( offline| if the mic is free)?\./, ".").replace("..", ".") : state.text;
@@ -574,7 +697,14 @@ function ToneChart({ syllables, result, hideTarget }: { syllables: TargetSyllabl
         if (!s || i >= n) return;
         const x0 = i * slot + pad;
         const w = slot - 2 * pad;
-        userPaths.push(s.st.map((v, k) => `${k ? "L" : "M"}${(x0 + (w * k) / Math.max(1, s.st.length - 1)).toFixed(1)} ${ySt(v).toFixed(1)}`).join(" "));
+        // only voiced frames, at their real position in the syllable; a gap of > 30 ms starts a new stroke
+        let d = "";
+        s.st.forEach((v, k) => {
+          const span = Math.max(1, s.st.length / Math.max(0.05, s.voicedFrac) - 1);
+          const gap = k === 0 || s.pos[k]! - s.pos[k - 1]! > 3.5 / span;
+          d += `${gap ? "M" : "L"}${(x0 + w * s.pos[k]!).toFixed(1)} ${ySt(v).toFixed(1)} `;
+        });
+        userPaths.push(d.trim());
       });
     } else {
       // long line: one continuous curve over the whole width
@@ -629,9 +759,18 @@ export function syllableVerdicts(syllables: TargetSyllable[], result: ToneResult
     const s = result.shapes[i] ?? null;
     const name = hideTarget ? (single ? "This word" : `Syllable ${i + 1}`) : single ? `${t.roman}${t.en ? ` (“${t.en}”)` : ""}` : `Syllable ${i + 1} (${t.roman}${t.en ? `, ${t.en}` : ""})`;
     const should = `${name} ${TONE_ADVICE[t.tone]}.`;
-    if (!s) return { i, target: t.tone, heard: null, ok: false, text: `${should} I couldn't hear a clear pitch here. Hold the vowel a bit longer.` };
+    if (!s)
+      return {
+        i,
+        target: t.tone,
+        heard: null,
+        ok: false,
+        text: hideTarget
+          ? `I couldn't hear a clear pitch on ${single ? "this word" : `syllable ${i + 1}`}. Say it a bit louder and longer.`
+          : `I couldn't hear a clear pitch on ${single ? t.roman : `syllable ${i + 1} (${t.roman})`}. Say it a bit louder and longer.`,
+      };
     const heard = classify(s, result.levelKnown);
-    const ok = tonesMatch(heard, t.tone);
+    const ok = tonesMatch(heard, t.tone, s, isDead(t.roman));
     const yours = describeMovement(s, result.levelKnown);
     let text = ok ? `${should} ${yours}. Good.` : `${should} ${yours}.`;
     if (ok && heard === "level") text += " (High, mid or low gets checked once I know your normal voice.)";

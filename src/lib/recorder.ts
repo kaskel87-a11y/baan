@@ -84,6 +84,9 @@ export function createCapture(): Capture {
   let node: AudioNode | null = null;
   let sink: GainNode | null = null;
   let mr: MediaRecorder | null = null;
+  let analyser: AnalyserNode | null = null;
+  let meterBuf: Float32Array | null = null;
+  let meterPeak = 0;
   const mrChunks: Blob[] = [];
   let mrDone: Promise<void> = Promise.resolve();
   let path = "none";
@@ -158,7 +161,7 @@ export function createCapture(): Capture {
       if (!micSupported()) throw (window.isSecureContext ? "unsupported" : "insecure") as MicError;
       try {
         stream = await navigator.mediaDevices.getUserMedia({
-          audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: true },
+          audio: true,
         });
       } catch (e) {
         setDiag({ lastError: `getUserMedia: ${errorName(e)}` });
@@ -190,7 +193,7 @@ export function createCapture(): Capture {
             mr!.onerror = () => res();
           });
           mr.ondataavailable = (ev) => ev.data.size && mrChunks.push(ev.data);
-          mr.start(250);
+          mr.start(); // one blob at stop: fragmented mp4 chunks from iOS decode less reliably
         } catch (e) {
           mr = null;
           setDiag({ lastError: `MediaRecorder: ${errorName(e)}` });
@@ -198,6 +201,15 @@ export function createCapture(): Capture {
       }
 
       src = ctx.createMediaStreamSource(stream);
+      // Meter straight from an AnalyserNode, independent of the sample tap.
+      try {
+        analyser = ctx.createAnalyser();
+        analyser.fftSize = 1024;
+        meterBuf = new Float32Array(analyser.fftSize);
+        src.connect(analyser);
+      } catch {
+        analyser = null;
+      }
       sink = ctx.createGain();
       sink.gain.value = 0;
       let usedWorklet = false;
@@ -241,6 +253,7 @@ export function createCapture(): Capture {
         }
         await withTimeout(mrDone, 1500, undefined);
       }
+      const tapCopy = () => samples0;
       const len = chunks.reduce((s, c) => s + c.length, 0);
       let samples = new Float32Array(len);
       let o = 0;
@@ -248,31 +261,45 @@ export function createCapture(): Capture {
         samples.set(c, o);
         o += c.length;
       }
+      const samples0 = samples;
       let rate = ctx.sampleRate;
       let stats = levelStats(samples);
-      let used = path;
-      // Web Audio gave nothing usable → decode the MediaRecorder file instead.
-      if (stats.peak < 1e-4 && mr) {
+      let used = `${path} (tap)`;
+      // Prefer the MediaRecorder file: it's what reliably carries audio on iPhone (audio/mp4).
+      if (mr) {
         const decoded = await decodeBlob();
         if (decoded && decoded.length) {
-          samples = new Float32Array(decoded);
-          rate = ctx.sampleRate; // decodeAudioData resamples to the context rate
-          stats = levelStats(samples);
-          used = `MediaRecorder fallback (${path} was silent)`;
+          const dstats = levelStats(decoded);
+          if (dstats.peak >= stats.peak * 0.25 || stats.peak < 1e-4) {
+            samples = new Float32Array(decoded);
+            rate = ctx.sampleRate; // decodeAudioData resamples to the context rate
+            stats = dstats;
+            used = `MediaRecorder ${mr.mimeType || ""} (tap peak ${levelStatsText(levelStats(tapCopy()))})`;
+          }
         }
-      } else if (mr) {
-        setDiag({ recordingType: `${mr.mimeType || "default"} (backup, not needed)` });
       }
       teardown();
       setDiag({
         capturePath: used,
         durationMs: String(Math.round(durationMs || (samples.length / rate) * 1000)),
         peakLevel: stats.peak.toFixed(4),
+        meterPeak: `${Math.round(meterPeak * 100)}%`,
         rmsLevel: stats.rms.toFixed(5),
       });
       return { samples, rate, path: used, peak: stats.peak };
     },
-    level: () => lastLevel,
+    level: () => {
+      let l = lastLevel;
+      if (analyser && meterBuf) {
+        analyser.getFloatTimeDomainData(meterBuf as Float32Array<ArrayBuffer>);
+        let e = 0;
+        for (let i = 0; i < meterBuf.length; i++) e += meterBuf[i]! * meterBuf[i]!;
+        const rms = Math.sqrt(e / meterBuf.length);
+        l = Math.max(l, rms > 0 ? Math.max(0, Math.min(1, (20 * Math.log10(rms) + 60) / 50)) : 0);
+      }
+      meterPeak = Math.max(meterPeak, l);
+      return l;
+    },
     cancel() {
       stopped = true;
       try {
@@ -284,3 +311,5 @@ export function createCapture(): Capture {
     },
   };
 }
+
+const levelStatsText = (s: { peak: number }) => s.peak.toFixed(3);

@@ -24,7 +24,7 @@ const STATE = {
  */
 const IPHONE = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1";
 
-async function run({ wav, syllables, rec = "ok", transcript = "", noWorklet = false, pitchMedians = [], ua, silentTap = false, wordStep = false, diag = false, via = "tone" }) {
+async function run({ wav, syllables, rec = "ok", transcript = "", noWorklet = false, pitchMedians = [], ua, silentTap = false, wordStep = false, diag = false, via = "tone", scene = "market", fakeAsr = undefined, asrOk = false, sayTwiceEmpty = false, want }) {
   const browser = await puppeteer.launch({
     executablePath: process.env.CHROME ?? "/usr/bin/google-chrome",
     headless: true,
@@ -43,8 +43,10 @@ async function run({ wav, syllables, rec = "ok", transcript = "", noWorklet = fa
   page.on("pageerror", (e) => errors.push(e.message));
   page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
   await page.evaluateOnNewDocument(
-    (rec, transcript, noWorklet, state, silentTap) => {
+    (rec, transcript, noWorklet, state, silentTap, fakeAsr, asrOk) => {
       localStorage.setItem("baan.v1", JSON.stringify(state));
+      if (asrOk) localStorage.setItem("baan.asr.ok", "1");
+      if (fakeAsr !== undefined && fakeAsr !== null) window.__fakeTranscribe = () => new Promise((r) => setTimeout(() => r(fakeAsr), 300));
       if (silentTap) {
         // Simulate the iOS bug: Web Audio hands us zeros while the mic itself works (MediaRecorder still gets audio).
         const orig = AudioContext.prototype.createMediaStreamSource;
@@ -68,6 +70,11 @@ async function run({ wav, syllables, rec = "ok", transcript = "", noWorklet = fa
             if (rec === "network") this.onerror?.({ error: "network" });
             else if (rec === "denied-mic") this.onerror?.({ error: "not-allowed" });
             else if (rec === "ok") this.onresult?.({ results: [[{ transcript, confidence: 0.9 }]] });
+            else if (rec === "interim-only") {
+              const r = [{ transcript, confidence: 0.5 }];
+              r.isFinal = false;
+              this.onresult?.({ results: [r] });
+            }
             // "silent-end": iOS-style end with neither result nor error
             this.onend?.();
           }, 500);
@@ -77,20 +84,20 @@ async function run({ wav, syllables, rec = "ok", transcript = "", noWorklet = fa
       }
       window.SpeechRecognition = FakeRec;
     },
-    rec, transcript, noWorklet, { ...STATE, pitchMedians }, silentTap,
+    rec, transcript, noWorklet, { ...STATE, pitchMedians }, silentTap, fakeAsr, asrOk,
   );
-  await page.goto(base + "#/scene/market", { waitUntil: "networkidle0" });
+  await page.goto(base + `#/scene/${scene}`, { waitUntil: "networkidle0" });
   await page.reload({ waitUntil: "networkidle0" });
   // walk preview words until one has the wanted syllable count
   let found = null;
   for (let i = 0; i < 15; i++) {
-    found = await page.evaluate((n) => {
+    found = await page.evaluate((n, want) => {
       const art = document.querySelector("article");
       const roman = art.querySelectorAll("p")[2]?.textContent ?? "";
       const thai = art.querySelector(".thai")?.textContent ?? "";
       const count = roman.split(/[\s-]+/).filter(Boolean).length;
-      return count === n ? { thai, roman } : null;
-    }, syllables);
+      return count === n && (!want || thai === want) ? { thai, roman } : null;
+    }, syllables, want);
     if (found) break;
     const more = await page.evaluate(() => {
       const b = [...document.querySelectorAll("button")].find((b) => b.textContent.trim().startsWith("Next word"));
@@ -114,7 +121,15 @@ async function run({ wav, syllables, rec = "ok", transcript = "", noWorklet = fa
     });
   const before = await below();
   const t0 = Date.now();
+  const res0 = {};
   // Tone check: its own button (or Say it, when the browser has no speech recognition)
+  if (sayTwiceEmpty) {
+    for (let k = 0; k < 2; k++) {
+      await page.evaluate(() => document.querySelector("[data-sayit] > button").click());
+      await new Promise((r) => setTimeout(r, 800));
+    }
+    res0.afterTwoEmpty = await page.evaluate(() => document.querySelector("[data-word-check]").innerText);
+  }
   await page.evaluate((via) => document.querySelector(via === "say" ? "[data-sayit] > button" : "[data-tone-button]").click(), via);
   let meterMax = 0;
   for (let i = 0; i < 12; i++) {
@@ -124,9 +139,12 @@ async function run({ wav, syllables, rec = "ok", transcript = "", noWorklet = fa
   const recDuring = await page.evaluate(() => window.__recStarted ?? 0);
   const during = await below();
   // wait for auto-stop + analysis
-  await page.waitForFunction(() => document.querySelector("[data-tone-button]").textContent === "Check my tones" && document.querySelector("[data-tone-feedback]").innerText.trim(), { timeout: 15000 }).catch(() => null);
+  await page.waitForFunction(() => !document.querySelector("[data-tone-button]").disabled && document.querySelector("[data-tone-feedback]").innerText.trim(), { timeout: 15000 }).catch(() => null);
   await new Promise((r) => setTimeout(r, 700)); // let the word check settle too
-  const res0 = {};
+  if (fakeAsr === null) {
+    // real on-device Whisper: wait for the download + transcription
+    await page.waitForFunction(() => !/Downloading|Loading|Checking your words/.test(document.querySelector("[data-word-check]").innerText), { timeout: 300000, polling: 1000 }).catch(() => null);
+  }
   let wordAfterStep = null;
   if (wordStep) {
     // Word check: Say it = speech recognition alone (0.2.0 behaviour)
@@ -155,6 +173,8 @@ async function run({ wav, syllables, rec = "ok", transcript = "", noWorklet = fa
     button: document.querySelector("[data-sayit] button").getBoundingClientRect().toJSON(),
     overflowX: document.documentElement.scrollWidth > innerWidth,
     target: document.querySelector("article .thai")?.textContent,
+    drawnPoints: [...document.querySelectorAll("[data-user-curve]")].map((p) => (p.getAttribute("d").match(/[ML]/g) || []).length),
+    strokes: [...document.querySelectorAll("[data-user-curve]")].map((p) => (p.getAttribute("d").match(/M/g) || []).length),
   }));
   res.ms = Date.now() - t0;
   Object.assign(res, res0, { meterMax, recDuring, wordAfterStep, diagText });
@@ -193,7 +213,7 @@ for (const [wav, want] of [["falling", "falling"], ["rising", "rising"], ["flat"
   ok(r.tones[0] === "falling", `ScriptProcessor fallback (no AudioWorklet) → ${r.tones[0]}`);
 }
 {
-  const r = await run({ wav: "falling", syllables: 1, ...IOS, transcript: "แพง", wordStep: true });
+  const r = await run({ wav: "falling", syllables: 1, transcript: "แพง", wordStep: true });
   show(r);
   ok(r.recStartedBySay === 1 && r.sayLabel === "Stop", `Say it starts speech recognition alone (started ${r.recStartedBySay}×, label "${r.sayLabel}")`);
   ok(r.toneDisabledWhileListening === true, "  Check my tones is disabled while recognition listens (no mic sharing)");
@@ -201,22 +221,56 @@ for (const [wav, want] of [["falling", "falling"], ["rising", "rising"], ["flat"
   ok(r.meterMax > 10, `live mic meter moved while recording (max ${r.meterMax}%)`);
 }
 {
-  const r = await run({ wav: "falling", syllables: 1, ...IOS, transcript: "ไม่รู้", wordStep: true });
+  const r = await run({ wav: "falling", syllables: 1, transcript: "ไม่รู้", wordStep: true });
   ok(/I heard: ไม่รู้/.test(r.wordAfterStep) && /Target:/.test(r.wordAfterStep), "wrong words → shows what was heard next to the target");
 }
 {
-  const r = await run({ wav: "falling", syllables: 1, ...IOS, rec: "network", wordStep: true });
+  const r = await run({ wav: "falling", syllables: 1, rec: "network", wordStep: true });
   ok(r.wordAfterStep.includes("couldn't reach the speech service"), "recognition network error → English message");
 }
 {
-  const r = await run({ wav: "falling", syllables: 1, ...IOS, rec: "silent-end", wordStep: true });
-  ok(/didn't hear any words/.test(r.wordAfterStep) && /Dictation/.test(r.wordAfterStep), "recognition ends with no result (iOS) → English message with Dictation hint");
+  const r = await run({ wav: "falling", syllables: 1, rec: "silent-end", wordStep: true });
+  ok(/didn't hear any words/.test(r.wordAfterStep), "recognition ends with no result → English message");
+}
+{
+  const r = await run({ wav: "falling", syllables: 1, rec: "interim-only", transcript: "แพง", wordStep: true });
+  ok(/Correct\. That matched\./.test(r.wordAfterStep ?? ""), `recognition ends with only an interim result → still judged: ${(r.wordAfterStep ?? "").replace(/\n/g, " | ")}`);
+}
+{
+  const r = await run({ wav: "falling", syllables: 1, rec: "silent-end", sayTwiceEmpty: true });
+  ok(/switched Say it to recording you/.test(r.afterTwoEmpty ?? ""), "two empty recognitions in a row → switches to record + on-device check");
+}
+// ---- iPhone: Say it records once → tone check + on-device word check; no speech recognition at all
+{
+  const r = await run({ wav: "falling", syllables: 1, ...IOS, via: "say", fakeAsr: "แพง" });
+  show(r);
+  ok(r.recDuring === 0, `iPhone: Say it never starts speech recognition (${r.recDuring}×)`);
+  ok(/Correct\. That matched\./.test(r.wordText) && /I heard: แพง · phaaeng/.test(r.wordText), "iPhone: word check from the recording → Correct + Thai/roman/English");
+  ok(r.tones[0] === "falling", `iPhone: same recording gives the tone check → ${r.tones[0]}`);
+  ok(r.meterMax > 10, `iPhone: mic meter moved (max ${r.meterMax}%)`);
+  ok(r.shift < 0.5 && !r.errors.length, `  no layout shift / errors (${r.shift}px ${r.errors.join("; ")})`);
+}
+{
+  const r = await run({ wav: "falling", syllables: 1, ...IOS, via: "say" });
+  ok(/one-time download/.test(r.wordText) && /Download and check my words/.test(r.wordText), "iPhone first use: asks before the ~80 MB model download");
+}
+{
+  const r = await run({ wav: "falling", syllables: 1, ...IOS, via: "say", fakeAsr: "Pang!" });
+  ok(/Close, but not exact/.test(r.wordText), `Latin transcript "Pang!" for แพง → close (${r.wordText.split("\n")[1]})`);
+}
+// ---- real Thai speech (Google TTS) with room noise + hum, through the fake mic
+for (const [wav, label] of [["thai-ผัดไทย", "clean-ish"], ["phone-phatthai", "quiet voice + hum"]]) {
+  const r = await run({ wav, syllables: 2, scene: "meal", want: "ผัดไทย", ...IOS, via: "say", fakeAsr: "ผัดไทย" });
+  show(r);
+  ok(r.target === "ผัดไทย", `  target ${r.target}`);
+  ok(r.tones.length === 2 && r.tones.every((t) => t === "level" || t === "low" || t === "mid"), `real "phàt thai" (${label}) → ${r.tones.join(", ")} (low + mid, no false contour)`);
+  ok(/2 of 2 syllables matched/.test(r.toneText), `  verdict: ${r.toneText.split("\n")[0]}`);
 }
 {
   const r = await run({ wav: "falling", syllables: 1, rec: "none", via: "say" });
   show(r);
-  ok(r.wordText.includes("Your browser can't check Thai words, but the tone check below still works."), "no SpeechRecognition → English message shown");
-  ok(r.tones[0] === "falling", `  …and Say it runs the tone check instead (${r.tones[0]})`);
+  ok(r.recDuring === 0 && /one-time download|Download and check/.test(r.wordText), "no SpeechRecognition → Say it records and offers the on-device word check");
+  ok(r.tones[0] === "falling", `  …and runs the tone check (${r.tones[0]})`);
 }
 {
   const r = await run({ wav: "falling", syllables: 1, ...IOS, rec: "denied-mic" });
@@ -233,7 +287,7 @@ for (const [wav, want] of [["falling", "falling"], ["rising", "rising"], ["flat"
 {
   const r = await run({ wav: "falling", syllables: 1, ...IOS, silentTap: true, diag: true });
   ok(r.tones[0] === "falling", `Web Audio returns zeros → MediaRecorder fallback still classifies → ${r.tones[0]}`);
-  ok(/MediaRecorder fallback/.test(r.diagText?.capturePath ?? ""), `  diagnostics show the path: ${r.diagText?.capturePath}`);
+  ok(/MediaRecorder/.test(r.diagText?.capturePath ?? ""), `  diagnostics show the path: ${r.diagText?.capturePath}`);
   console.log("   diagnostics:", JSON.stringify(r.diagText));
   for (const k of ["userAgent", "speechRecognition", "wordCheckMode", "ctxStateAtTap", "ctxSampleRate", "peakLevel", "durationMs", "lastError"])
     ok(r.diagText && r.diagText[k] && r.diagText[k] !== "—", `  diagnostics ${k} = ${r.diagText?.[k]}`);
@@ -245,6 +299,15 @@ for (const [wav, want] of [["falling", "falling"], ["rising", "rising"], ["flat"
 {
   const r = await run({ wav: "short-rising", syllables: 1, ...IOS });
   ok(r.tones[0] === "rising", `very short word (0.18 s) still gives a verdict → ${r.tones[0]}`);
+}
+
+// Real on-device Whisper (downloads ~80 MB): REAL_ASR=1 node scripts/mic-test.mjs
+if (process.env.REAL_ASR) {
+  for (const [wav, scene, want] of [["thai-ผัดไทย", "meal", "ผัดไทย"], ["thai-แพง", "market", "แพง"]]) {
+    const r = await run({ wav, syllables: want === "แพง" ? 1 : 2, scene, want, ...IOS, via: "say", fakeAsr: null, asrOk: true });
+    show(r);
+    ok(/I heard:/.test(r.wordText), `real Whisper on "${want}" → ${r.wordText.split("\n").filter(Boolean).slice(1, 3).join(" | ")}`);
+  }
 }
 
 console.log(failures ? `${failures} failed` : "mic tests OK");

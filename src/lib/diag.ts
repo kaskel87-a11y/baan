@@ -18,6 +18,9 @@ export interface Diag {
   recordingType: string;
   durationMs: string;
   peakLevel: string;
+  meterPeak: string;
+  transcriber: string;
+  transcript: string;
   rmsLevel: string;
   voicedMs: string;
   pitchMedianHz: string;
@@ -43,6 +46,9 @@ const blank = (): Diag => ({
   recordingType: "—",
   durationMs: "—",
   peakLevel: "—",
+  meterPeak: "—",
+  transcriber: "—",
+  transcript: "—",
   rmsLevel: "—",
   voicedMs: "—",
   pitchMedianHz: "—",
