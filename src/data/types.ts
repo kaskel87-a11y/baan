@@ -53,6 +53,10 @@ export interface ToneWord {
 export interface Consonant {
   letter: string;
   chant: string;
+  /** Romanized letter name, e.g. "gaw gài". */
+  chantRoman?: string;
+  /** English for the name's key word, e.g. "chicken". */
+  chantEn?: string;
   obsolete?: boolean;
   example?: { thai: string; roman: string; en: string };
   note?: string;

@@ -4,7 +4,7 @@ import type { Consonant, ConsonantClass } from "../data/types";
 import { recordBest, useStore } from "../lib/store";
 import { speak } from "../lib/audio";
 import { consonantClass, shuffle } from "../lib/thai";
-import { Button, NoVoiceNotice, PageHeader } from "../components/ui";
+import { AnswerLine, Button, NoVoiceNotice, PageHeader } from "../components/ui";
 
 const LIVE = CONSONANTS.filter((c) => !c.obsolete);
 const CLASSES: ConsonantClass[] = ["mid", "high", "low"];
@@ -127,9 +127,20 @@ export function Letters() {
               })}
             </div>
             {picked ? (
-              <p className="text-sm text-muted">
-                {cur.letter} is {consonantClass(cur.letter)} class. {cur.chant}.
-              </p>
+              <div className="grid gap-1 text-sm" data-feedback>
+                <p className={picked === consonantClass(cur.letter) ? "font-medium text-accent" : "font-medium text-miss"}>
+                  {picked === consonantClass(cur.letter)
+                    ? `Correct. ${cur.letter} is a ${consonantClass(cur.letter)}-class letter.`
+                    : `Not quite. You picked ${label(picked).toLowerCase()}; ${cur.letter} is a ${consonantClass(cur.letter)}-class letter.`}
+                </p>
+                <p className="text-muted">Its name:</p>
+                <AnswerLine thai={cur.chant} roman={cur.chantRoman} en={cur.chantEn ? `${cur.letter} as in “${cur.chantEn}”` : undefined} />
+                {cur.example ? (
+                  <p className="text-muted">
+                    Example: <span lang="th">{cur.example.thai}</span> {cur.example.roman}, “{cur.example.en}”
+                  </p>
+                ) : null}
+              </div>
             ) : null}
             {picked ? (
               <Button
@@ -164,6 +175,11 @@ function LetterCard({ item }: { item: Consonant }) {
       </p>
       <p className="thai text-4xl" lang="th">{item.letter}</p>
       <p className="thai text-xl" lang="th">{item.chant}</p>
+      {item.chantRoman ? (
+        <p className="text-sm text-muted">
+          {item.chantRoman} · “{item.chantEn}”
+        </p>
+      ) : null}
       <div className="flex flex-wrap gap-2">
         <Button onClick={() => sayName(item)}>Hear the name</Button>
         {item.example ? <Button onClick={() => speak(item.example!.thai)}>Hear {item.example.thai}</Button> : null}

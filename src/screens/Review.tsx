@@ -38,7 +38,10 @@ export function Review() {
   return (
     <div className="enter grid gap-6">
       <PageHeader kicker="Review" title="Back before they fade.">
-        <p>Again if it slipped. Good if you had it. Easy if it was instant. The gap grows when you know it.</p>
+        <p>
+          From Thai: read the word, say it, then Show to check the sound. From English: produce the Thai yourself, then Show.
+          Again if it slipped. Good if you had it. Easy if it was instant. The gap grows when you know it.
+        </p>
       </PageHeader>
       {s.introduced.length === 0 ? <p className="text-muted">Nothing is waiting. Walk a conversation and the words land here.</p> : null}
       {s.introduced.length > 0 && queue === null ? (
@@ -73,13 +76,21 @@ export function Review() {
               </button>
             </div>
           </div>
-          {dir === "thai" ? <p className="thai text-4xl" lang="th">{card.thai}</p> : <p className="font-display text-3xl">{card.en}</p>}
+          {dir === "thai" ? (
+            <div className="grid gap-1">
+              <p className="thai text-4xl" lang="th">{card.thai}</p>
+              <p className="text-lg">“{card.en}”</p>
+            </div>
+          ) : (
+            <p className="font-display text-3xl">{card.en}</p>
+          )}
           {hideAnswer ? <p className="text-sm text-muted">Say it in Thai, out loud or in your head, then Show.</p> : <HearButton text={card.thai} />}
-          <SayIt target={card.thai} hideTarget={hideAnswer} />
+          <SayIt target={card.thai} roman={card.roman} en={card.en} hideTarget={hideAnswer} />
           {revealed ? (
             <div className="grid gap-1">
-              {dir === "thai" ? <p>{card.en}</p> : <p className="thai text-3xl" lang="th">{card.thai}</p>}
+              {dir === "thai" ? null : <p className="thai text-3xl" lang="th">{card.thai}</p>}
               <p className="text-muted">{card.roman}</p>
+              {dir === "thai" ? null : <p>“{card.en}”</p>}
               {card.hint ? <p className="text-sm text-muted">{card.hint}</p> : null}
             </div>
           ) : (

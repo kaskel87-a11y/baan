@@ -1,19 +1,23 @@
-// Ported verbatim from the Grok-hosted Baan build (routes-BILTYoNg.js).
+// Ported from the Grok-hosted Baan build (routes-BILTYoNg.js); later content fixes are listed in CHANGELOG.md.
 import type { Consonant, VowelCard } from "./types";
 
 export const CONSONANTS: Consonant[] = [
   {
     "letter": "ก",
     "chant": "กอ ไก่",
+    "chantRoman": "gaw gài",
+    "chantEn": "chicken",
     "example": {
       "thai": "ไก่",
-      "roman": "kài",
+      "roman": "gài",
       "en": "chicken"
     }
   },
   {
     "letter": "ข",
     "chant": "ขอ ไข่",
+    "chantRoman": "khǎw khài",
+    "chantEn": "egg",
     "example": {
       "thai": "ไข่",
       "roman": "khài",
@@ -23,11 +27,15 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ฃ",
     "chant": "ขอ ขวด",
+    "chantRoman": "khǎw khùat",
+    "chantEn": "bottle",
     "obsolete": true
   },
   {
     "letter": "ค",
     "chant": "คอ ควาย",
+    "chantRoman": "khaw khwaai",
+    "chantEn": "water buffalo",
     "example": {
       "thai": "คน",
       "roman": "khon",
@@ -37,15 +45,21 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ฅ",
     "chant": "คอ คน",
+    "chantRoman": "khaw khon",
+    "chantEn": "person",
     "obsolete": true
   },
   {
     "letter": "ฆ",
-    "chant": "คอ ระฆัง"
+    "chant": "คอ ระฆัง",
+    "chantRoman": "khaw rá-khang",
+    "chantEn": "bell"
   },
   {
     "letter": "ง",
     "chant": "งอ งู",
+    "chantRoman": "ngaw nguu",
+    "chantEn": "snake",
     "example": {
       "thai": "งู",
       "roman": "nguu",
@@ -55,6 +69,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "จ",
     "chant": "จอ จาน",
+    "chantRoman": "jaw jaan",
+    "chantEn": "plate",
     "example": {
       "thai": "จาน",
       "roman": "jaan",
@@ -64,6 +80,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ฉ",
     "chant": "ฉอ ฉิ่ง",
+    "chantRoman": "chǎw chìng",
+    "chantEn": "small cymbals",
     "example": {
       "thai": "ฉัน",
       "roman": "chǎn",
@@ -73,6 +91,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ช",
     "chant": "ชอ ช้าง",
+    "chantRoman": "chaw cháang",
+    "chantEn": "elephant",
     "example": {
       "thai": "ช้าง",
       "roman": "cháang",
@@ -82,6 +102,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ซ",
     "chant": "ซอ โซ่",
+    "chantRoman": "saw sôo",
+    "chantEn": "chain",
     "example": {
       "thai": "โซ่",
       "roman": "sôo",
@@ -90,39 +112,57 @@ export const CONSONANTS: Consonant[] = [
   },
   {
     "letter": "ฌ",
-    "chant": "ชอ เฌอ"
+    "chant": "ชอ เฌอ",
+    "chantRoman": "chaw cher",
+    "chantEn": "tree"
   },
   {
     "letter": "ญ",
-    "chant": "ยอ หญิง"
+    "chant": "ยอ หญิง",
+    "chantRoman": "yaw yǐng",
+    "chantEn": "woman"
   },
   {
     "letter": "ฎ",
-    "chant": "ดอ ชฎา"
+    "chant": "ดอ ชฎา",
+    "chantRoman": "daw chá-daa",
+    "chantEn": "dancer's headdress"
   },
   {
     "letter": "ฏ",
-    "chant": "ตอ ปฏัก"
+    "chant": "ตอ ปฏัก",
+    "chantRoman": "dtaw bpà-dtàk",
+    "chantEn": "goad"
   },
   {
     "letter": "ฐ",
-    "chant": "ถอ ฐาน"
+    "chant": "ถอ ฐาน",
+    "chantRoman": "thǎw thǎan",
+    "chantEn": "pedestal"
   },
   {
     "letter": "ฑ",
-    "chant": "ทอ มณโฑ"
+    "chant": "ทอ มณโฑ",
+    "chantRoman": "thaw mon-thoo",
+    "chantEn": "Montho (a queen in the Ramakien)"
   },
   {
     "letter": "ฒ",
-    "chant": "ทอ ผู้เฒ่า"
+    "chant": "ทอ ผู้เฒ่า",
+    "chantRoman": "thaw phûu-thâo",
+    "chantEn": "elder"
   },
   {
     "letter": "ณ",
-    "chant": "นอ เณร"
+    "chant": "นอ เณร",
+    "chantRoman": "naw neen",
+    "chantEn": "novice monk"
   },
   {
     "letter": "ด",
     "chant": "ดอ เด็ก",
+    "chantRoman": "daw dèk",
+    "chantEn": "child",
     "example": {
       "thai": "เด็ก",
       "roman": "dèk",
@@ -132,6 +172,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ต",
     "chant": "ตอ เต่า",
+    "chantRoman": "dtaw dtào",
+    "chantEn": "turtle",
     "example": {
       "thai": "ตา",
       "roman": "dtaa",
@@ -141,6 +183,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ถ",
     "chant": "ถอ ถุง",
+    "chantRoman": "thǎw thǔng",
+    "chantEn": "bag",
     "example": {
       "thai": "ถุง",
       "roman": "thǔng",
@@ -150,6 +194,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ท",
     "chant": "ทอ ทหาร",
+    "chantRoman": "thaw thá-hǎan",
+    "chantEn": "soldier",
     "example": {
       "thai": "ทอง",
       "roman": "thaawng",
@@ -158,11 +204,15 @@ export const CONSONANTS: Consonant[] = [
   },
   {
     "letter": "ธ",
-    "chant": "ทอ ธง"
+    "chant": "ทอ ธง",
+    "chantRoman": "thaw thong",
+    "chantEn": "flag"
   },
   {
     "letter": "น",
     "chant": "นอ หนู",
+    "chantRoman": "naw nǔu",
+    "chantEn": "mouse",
     "example": {
       "thai": "น้ำ",
       "roman": "náam",
@@ -172,6 +222,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "บ",
     "chant": "บอ ใบไม้",
+    "chantRoman": "baw bai-máai",
+    "chantEn": "leaf",
     "example": {
       "thai": "บ้าน",
       "roman": "bâan",
@@ -181,6 +233,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ป",
     "chant": "ปอ ปลา",
+    "chantRoman": "bpaw bplaa",
+    "chantEn": "fish",
     "example": {
       "thai": "ปลา",
       "roman": "bplaa",
@@ -190,6 +244,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ผ",
     "chant": "ผอ ผึ้ง",
+    "chantRoman": "phǎw phûeng",
+    "chantEn": "bee",
     "example": {
       "thai": "ผึ้ง",
       "roman": "phûeng",
@@ -199,6 +255,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ฝ",
     "chant": "ฝอ ฝา",
+    "chantRoman": "fǎw fǎa",
+    "chantEn": "lid",
     "example": {
       "thai": "ฝน",
       "roman": "fǒn",
@@ -208,6 +266,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "พ",
     "chant": "พอ พาน",
+    "chantRoman": "phaw phaan",
+    "chantEn": "offering tray",
     "example": {
       "thai": "พ่อ",
       "roman": "phâaw",
@@ -217,6 +277,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ฟ",
     "chant": "ฟอ ฟัน",
+    "chantRoman": "faw fan",
+    "chantEn": "tooth",
     "example": {
       "thai": "ไฟ",
       "roman": "fai",
@@ -225,11 +287,15 @@ export const CONSONANTS: Consonant[] = [
   },
   {
     "letter": "ภ",
-    "chant": "พอ สำเภา"
+    "chant": "พอ สำเภา",
+    "chantRoman": "phaw sǎm-phao",
+    "chantEn": "sailing junk"
   },
   {
     "letter": "ม",
     "chant": "มอ ม้า",
+    "chantRoman": "maw máa",
+    "chantEn": "horse",
     "example": {
       "thai": "มา",
       "roman": "maa",
@@ -239,6 +305,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ย",
     "chant": "ยอ ยักษ์",
+    "chantRoman": "yaw yák",
+    "chantEn": "giant",
     "example": {
       "thai": "ยา",
       "roman": "yaa",
@@ -248,6 +316,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ร",
     "chant": "รอ เรือ",
+    "chantRoman": "raw ruea",
+    "chantEn": "boat",
     "example": {
       "thai": "เรือ",
       "roman": "ruea",
@@ -257,6 +327,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ล",
     "chant": "ลอ ลิง",
+    "chantRoman": "law ling",
+    "chantEn": "monkey",
     "example": {
       "thai": "ลิง",
       "roman": "ling",
@@ -266,6 +338,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ว",
     "chant": "วอ แหวน",
+    "chantRoman": "waw wǎaen",
+    "chantEn": "ring",
     "example": {
       "thai": "วัน",
       "roman": "wan",
@@ -274,15 +348,21 @@ export const CONSONANTS: Consonant[] = [
   },
   {
     "letter": "ศ",
-    "chant": "สอ ศาลา"
+    "chant": "สอ ศาลา",
+    "chantRoman": "sǎw sǎa-laa",
+    "chantEn": "pavilion"
   },
   {
     "letter": "ษ",
-    "chant": "สอ ฤๅษี"
+    "chant": "สอ ฤๅษี",
+    "chantRoman": "sǎw rue-sǐi",
+    "chantEn": "hermit"
   },
   {
     "letter": "ส",
     "chant": "สอ เสือ",
+    "chantRoman": "sǎw sǔea",
+    "chantEn": "tiger",
     "example": {
       "thai": "เสือ",
       "roman": "sǔea",
@@ -292,6 +372,8 @@ export const CONSONANTS: Consonant[] = [
   {
     "letter": "ห",
     "chant": "หอ หีบ",
+    "chantRoman": "hǎw hìip",
+    "chantEn": "chest, box",
     "example": {
       "thai": "ห้า",
       "roman": "hâa",
@@ -301,11 +383,15 @@ export const CONSONANTS: Consonant[] = [
   },
   {
     "letter": "ฬ",
-    "chant": "ลอ จุฬา"
+    "chant": "ลอ จุฬา",
+    "chantRoman": "law jù-laa",
+    "chantEn": "star-shaped kite"
   },
   {
     "letter": "อ",
     "chant": "ออ อ่าง",
+    "chantRoman": "aw àang",
+    "chantEn": "basin",
     "example": {
       "thai": "อ่าง",
       "roman": "àang",
@@ -314,7 +400,9 @@ export const CONSONANTS: Consonant[] = [
   },
   {
     "letter": "ฮ",
-    "chant": "ฮอ นกฮูก"
+    "chant": "ฮอ นกฮูก",
+    "chantRoman": "haw nók-hûuk",
+    "chantEn": "owl"
   }
 ];
 

@@ -1,54 +1,27 @@
-# React + TypeScript + Vite
+# Baan — Learn Thai
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Our own copy of Baan, originally built in Grok's app builder. It's a static site that runs entirely in the browser.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm install
+npm run dev          # local dev server
+npm run build        # type-check + production build into dist/
+npm run check:data   # sanity checks on the Thai data (tones vs romanization, etc.)
+npm run smoke        # headless Chrome walk-through (needs ./serve.sh or a server on :4321)
+./serve.sh [--build] # (re)start the static server on :4321 and a Cloudflare quick tunnel, print the URL
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Data: `src/data/` (scenes, vocab, tones, minimal sets, letters, glossary)
+- Logic: `src/lib/` (store `baan.v1`, audio, speech, Thai helpers, tone trainer, router)
+- Screens: `src/screens/`
+- Plans: `ROADMAP.md`. History: `CHANGELOG.md`. Original review/spec: `/workspace/baan/REVIEW.md`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Hosting
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+`serve.sh` serves `dist/` on localhost:4321 and opens a Cloudflare quick tunnel (no account needed). Things to know:
+
+- Quick-tunnel URLs are random and **change every time the tunnel restarts**.
+- Progress is saved per browser **and per address**, so a new tunnel URL starts with empty progress.
+- Quick tunnels need outbound port 7844. This box's network blocks it (see `.run/tunnel.log`), so the tunnel can't connect from here.
+
+Because `dist/` is plain static files, a permanent host (GitHub Pages, Cloudflare Pages, Netlify) is the better long-term option, and it keeps progress on one stable address.

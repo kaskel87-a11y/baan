@@ -14,8 +14,8 @@ export function Settings() {
       <fieldset className="grid gap-2">
         <legend className="text-sm font-medium">Particle</legend>
         <div className="flex flex-wrap gap-2">
-          <Button variant={s.voice === "male" ? "primary" : "quiet"} onClick={() => setVoice("male")}>ครับ</Button>
-          <Button variant={s.voice === "female" ? "primary" : "quiet"} onClick={() => setVoice("female")}>ค่ะ / คะ</Button>
+          <Button variant={s.voice === "male" ? "primary" : "quiet"} onClick={() => setVoice("male")}>ครับ · male</Button>
+          <Button variant={s.voice === "female" ? "primary" : "quiet"} onClick={() => setVoice("female")}>ค่ะ / คะ · female</Button>
         </div>
       </fieldset>
       <label className="grid gap-2 text-sm font-medium">

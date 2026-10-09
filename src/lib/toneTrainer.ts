@@ -4,6 +4,7 @@ import { VOCAB } from "../data/vocab";
 import { EAR_POOL } from "../data/tones";
 import type { Tone, ToneWord, Voice } from "../data/types";
 import type { PairStat } from "./store";
+import { gloss } from "../data/glossary";
 import { particle, pick, sample, shuffle, TONES, toneFromRoman } from "./thai";
 
 export type Pair = [Tone, Tone];
@@ -103,15 +104,24 @@ export interface PhraseItem {
   word: string;
   roman: string;
   tone: Tone;
+  /** English for the focus word. */
+  wordEn?: string;
+  /** English for the whole line. */
   en: string;
   lineRoman: string;
 }
 
+const extraEn: Record<string, string> = {
+  ได้: "can; to get", รับ: "to receive, to take (an order)", ดี: "good", นะ: "softening particle", ร้อย: "hundred",
+  ห้า: "five", สิบ: "ten", ดู: "to look", มา: "to come", จอด: "to stop, to park", ตรง: "straight", กี่: "how many",
+  แล้ว: "already; then", เลย: "right away", ชา: "tea", เจอ: "to meet", กัน: "each other", คน: "person",
+};
+
 function toneDictionary(voice: Voice) {
-  const dict = new Map<string, { roman: string; tone: Tone }>();
+  const dict = new Map<string, { roman: string; tone: Tone; en?: string }>();
   const add = (thai: string, roman: string) => {
     if (/[\s-]/.test(roman.trim())) return; // single syllables only
-    if (!dict.has(thai)) dict.set(thai, { roman, tone: toneFromRoman(roman) });
+    if (!dict.has(thai)) dict.set(thai, { roman, tone: toneFromRoman(roman), en: gloss(thai)?.en ?? extraEn[thai] });
   };
   for (const v of VOCAB) add(v.thai, v.roman);
   for (const w of EAR_POOL) add(w.thai, w.roman);
@@ -148,7 +158,7 @@ export function phraseItems(voice: Voice, name: string): PhraseItem[] {
       if (!segs) return [];
       segs.forEach((s, i) => {
         const hit = dict.get(s);
-        if (hit) items.push({ lineId: line.id, segments: segs, focus: i, word: s, roman: hit.roman, tone: hit.tone, en: line.en, lineRoman: pick(line.roman, voice).replaceAll("{name}", nm) });
+        if (hit) items.push({ lineId: line.id, segments: segs, focus: i, word: s, roman: hit.roman, tone: hit.tone, wordEn: hit.en, en: line.en, lineRoman: pick(line.roman, voice).replaceAll("{name}", nm) });
       });
     }
   }

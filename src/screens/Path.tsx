@@ -22,6 +22,7 @@ export function Path() {
     <div className="enter grid gap-6">
       <header className="grid gap-2">
         <p className="thai text-4xl" lang="th">สวัสดี</p>
+        <p className="text-sm text-muted">sà-wàt-dii · “hello”</p>
         <h1 className="font-display text-3xl md:text-4xl">A day in the city, spoken.</h1>
         <p className="max-w-prose text-muted">
           Six conversations, in order. English stays hidden until you ask. What you meet comes back in Review.

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { ArrowLeft, Eye } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { SCENES } from "../data/scenes";
 import { VOCAB_BY_ID } from "../data/vocab";
 import type { Drill, Line, Scene as SceneT, Speaker, Vocab, Voice } from "../data/types";
@@ -7,7 +7,8 @@ import { completeScene, introduce, touchStreak, useStore } from "../lib/store";
 import { speak, speakSequence, stopSpeech } from "../lib/audio";
 import { particle, particleNote, pick, shuffle } from "../lib/thai";
 import { navigate } from "../lib/router";
-import { Button, HearButton, NoVoiceNotice, RomanKey, SayIt } from "../components/ui";
+import { AnswerLine, Button, HearButton, NoVoiceNotice, RomanKey, SayIt } from "../components/ui";
+import { gloss, meaningOf } from "../data/glossary";
 
 const SPEAKERS: Record<Speaker, { th: string; en: string }> = {
   you: { th: "คุณ", en: "You" },
@@ -21,6 +22,7 @@ type Phase = "preview" | "talk" | "drill" | "done";
 interface Miss {
   en: string;
   thai: string;
+  roman?: string;
 }
 interface Session {
   phase: Phase;
@@ -73,6 +75,11 @@ function drillAnswerThai(d: Drill, voice: Voice) {
       return d.stem + particle(voice, d.particleKind).thai;
   }
 }
+/** English meaning of the drill's correct Thai answer (never the prompt wording). */
+function drillMeaning(d: Drill, answerThai: string) {
+  if (d.kind === "listen" || d.kind === "read" || d.kind === "build") return d.en;
+  return meaningOf(answerThai) ?? gloss(answerThai)?.en ?? d.en.replace(/[“”]/g, "");
+}
 function drillRoman(d: Drill, voice: Voice) {
   return d.kind === "particle" ? `${d.stemRoman} ${particle(voice, d.particleKind).roman}` : pick(d.roman, voice);
 }
@@ -82,7 +89,6 @@ export function SceneScreen({ id }: { id: string }) {
   const st = useStore();
   const voice: Voice = st.voice ?? "female";
   const [session, setSession] = useState<Session>(() => loadSession(id) ?? fresh(!!st.scenes[id]?.completed));
-  const [gloss, setGloss] = useState(false);
 
   useEffect(() => {
     try {
@@ -152,8 +158,6 @@ export function SceneScreen({ id }: { id: string }) {
           voice={voice}
           name={st.name}
           roman={st.roman}
-          gloss={gloss}
-          setGloss={setGloss}
           onIndex={(i, text) => {
             set({ ...session, index: i });
             if (text) speak(text);
@@ -197,7 +201,7 @@ function Preview({ words, index, roman, onIndex, onStart }: { words: Vocab[]; in
   const last = index >= words.length - 1;
   return (
     <section className="grid gap-4">
-      <p className="text-sm text-muted">Meet the words first. In the conversation, the English goes away.</p>
+      <p className="text-sm text-muted">Meet the words first, then hear them in the conversation.</p>
       <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
         <p className="text-sm text-muted tabular-nums">Word {index + 1} of {words.length}</p>
         <p className="thai text-4xl" lang="th">{w.thai}</p>
@@ -208,7 +212,7 @@ function Preview({ words, index, roman, onIndex, onStart }: { words: Vocab[]; in
           <HearButton text={w.thai} />
           <HearButton text={w.thai} slow />
         </div>
-        <SayIt target={w.thai} />
+        <SayIt target={w.thai} roman={w.roman} en={w.en} />
       </article>
       <div className="flex flex-wrap gap-2">
         {index > 0 ? <Button onClick={() => onIndex(index - 1)}>Back</Button> : null}
@@ -238,8 +242,6 @@ function Talk({
   voice,
   name,
   roman,
-  gloss,
-  setGloss,
   onIndex,
   onPractice,
 }: {
@@ -248,14 +250,10 @@ function Talk({
   voice: Voice;
   name: string;
   roman: boolean;
-  gloss: boolean;
-  setGloss: (g: boolean) => void;
   onIndex: (i: number, text?: string) => void;
   onPractice: () => void;
 }) {
   const line = scene.lines[index];
-  const [shown, setShown] = useState(false);
-  useEffect(() => setShown(false), [index]);
   if (!line) return null;
   const r = renderLine(line, voice, name);
   const who = SPEAKERS[line.who];
@@ -266,10 +264,6 @@ function Talk({
         <p className="text-sm text-muted tabular-nums">Line {index + 1} of {scene.lines.length}</p>
         <div className="flex gap-2">
           <Button variant="ghost" onClick={() => speakSequence(scene.lines.map((l) => renderLine(l, voice, name).thai))}>Play all</Button>
-          <Button variant={gloss ? "primary" : "quiet"} aria-pressed={gloss} onClick={() => setGloss(!gloss)}>
-            <Eye aria-hidden="true" size={18} />
-            English
-          </Button>
         </div>
       </div>
       {roman ? <RomanKey /> : null}
@@ -280,14 +274,14 @@ function Talk({
         </p>
         <p className="thai text-4xl" lang="th">{r.thai}</p>
         {roman ? <p className="text-lg text-muted">{r.roman}</p> : null}
-        {gloss || shown ? <p>{line.en}</p> : <Button className="justify-self-start" onClick={() => setShown(true)}>Meaning</Button>}
+        <p>{line.en}</p>
         {line.note ? <p className="text-sm text-muted">{line.note}</p> : null}
         {r.thai.includes("…") ? <p className="text-sm text-muted">Add your name in Settings and this line becomes yours.</p> : null}
         <div className="flex flex-wrap gap-2">
           <HearButton text={r.thai} />
           <HearButton text={r.thai} slow />
         </div>
-        <SayIt target={r.thai} />
+        <SayIt target={r.thai} roman={r.roman} en={line.en} />
       </article>
       <div className="flex flex-wrap gap-2">
         {index > 0 ? (
@@ -343,6 +337,7 @@ function Drills({
   const roman = drillRoman(d, voice);
   const locked = session.verdict !== null;
   const buildAnswer = d.kind === "build" ? pick(d.answer, voice) : [];
+  const meaning = drillMeaning(d, answerThai);
 
   function judge(ok: boolean, picked: string) {
     onSession((s) => {
@@ -352,7 +347,7 @@ function Drills({
         picked,
         verdict: ok ? "yes" : "no",
         right: ok ? s.right + 1 : s.right,
-        misses: ok ? s.misses : [...s.misses, { en: d!.en, thai: answerThai }],
+        misses: ok ? s.misses : [...s.misses, { en: meaning, thai: answerThai, roman }],
       };
     });
     speak(answerThai);
@@ -385,6 +380,7 @@ function Drills({
           <div className="grid gap-1">
             <p className="thai text-3xl" lang="th">{d.stem}</p>
             <p className="text-muted">{d.stemRoman}</p>
+            <p className="text-sm">“{meaningOf(d.stem) ?? meaning}”</p>
           </div>
         ) : null}
         {d.kind === "listen" || d.kind === "read" || d.kind === "pick" ? (
@@ -401,6 +397,11 @@ function Drills({
                   className={`min-h-11 rounded-xl border bg-paper px-4 py-3 text-left ${locked && correct ? "border-accent text-accent" : locked && chosen ? "border-miss text-miss" : "border-line"}`}
                 >
                   <span lang={d.kind === "pick" ? "th" : "en"} className={d.kind === "pick" ? "thai text-xl" : ""}>{o}</span>
+                  {d.kind === "pick" && locked && gloss(o) ? (
+                    <span className="block text-sm text-muted">
+                      {gloss(o)!.roman} · “{gloss(o)!.en}”
+                    </span>
+                  ) : null}
                 </button>
               );
             })}
@@ -433,19 +434,28 @@ function Drills({
                 >
                   <span className="thai text-xl" lang="th">{p}</span>
                   <span className="ml-3 text-sm text-muted">{r}</span>
+                  <span className="block text-sm text-muted">
+                    {p === "ครับ" ? "polite ending, male speaker" : p === "ค่ะ" ? "polite ending, female, statements" : "polite ending, female, questions"}
+                  </span>
                 </button>
               );
             })}
           </div>
         ) : null}
         {locked ? (
-          <div className="grid gap-1 text-sm">
+          <div className="grid gap-1 text-sm" data-feedback>
             <p className={session.verdict === "yes" ? "text-accent font-medium" : "text-miss font-medium"}>
-              {session.verdict === "yes" ? "That stayed." : "Not this time."}
+              {session.verdict === "yes" ? "Correct." : "Not quite."}
             </p>
-            <p className="text-muted">{roman}</p>
+            {session.verdict === "no" && session.picked ? (
+              <p className="text-muted">
+                You chose: <span lang={/[\u0E00-\u0E7F]/.test(session.picked) ? "th" : "en"}>{session.picked}</span>
+                {gloss(session.picked) ? ` (${gloss(session.picked)!.roman}, “${gloss(session.picked)!.en}”)` : ""}
+              </p>
+            ) : null}
+            <p className="text-muted">{session.verdict === "yes" ? "You got:" : "The right answer is:"}</p>
+            <AnswerLine thai={answerThai} roman={roman} en={meaning} />
             {d.kind === "particle" ? <p className="text-muted">{particleNote(voice, d.particleKind)}</p> : null}
-            {session.verdict === "no" && d.kind === "build" ? <p lang="th" className="thai text-xl">{buildAnswer.join("")}</p> : null}
           </div>
         ) : null}
       </article>
@@ -532,7 +542,8 @@ function Done({
             <div key={m.thai + m.en} className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-line bg-card px-3 py-2">
               <div>
                 <p className="thai text-xl" lang="th">{m.thai}</p>
-                <p className="text-sm text-muted">{m.en}</p>
+                {m.roman ? <p className="text-sm text-muted">{m.roman}</p> : null}
+                <p className="text-sm">“{m.en}”</p>
               </div>
               <HearButton text={m.thai} />
             </div>

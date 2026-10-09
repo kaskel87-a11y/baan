@@ -25,6 +25,7 @@ export function Onboarding() {
     <main className="mx-auto grid min-h-dvh w-full max-w-xl gap-6 px-4 py-10">
       <header className="grid gap-2">
         <p className="thai text-4xl" lang="th">บ้าน</p>
+        <p className="text-sm text-muted">bâan · “home”</p>
         <h1 className="font-display text-3xl md:text-4xl">Learn Thai by living a day in it.</h1>
         <p className="text-muted">
           Polite Thai ends with a particle that depends on the speaker. Pick the one you will say. You can change it later.
@@ -40,8 +41,8 @@ export function Onboarding() {
         <fieldset className="grid gap-2">
           <legend className="text-sm font-medium">Your particle</legend>
           <div className="grid gap-2 sm:grid-cols-2">
-            <Choice pressed={voice === "male"} onClick={() => setVoice("male")} th="ผม" particle="ครับ" copy="High tone. The same particle on statements and questions." />
-            <Choice pressed={voice === "female"} onClick={() => setVoice("female")} th="ฉัน" particle="ค่ะ / คะ" copy="Statements take ค่ะ, falling. Questions take คะ, high." />
+            <Choice pressed={voice === "male"} onClick={() => setVoice("male")} th="ผม" particle="ครับ" copy="ผม phǒm = “I” (male speaker). ครับ khráp = polite ending: high tone, the same on statements and questions." />
+            <Choice pressed={voice === "female"} onClick={() => setVoice("female")} th="ฉัน" particle="ค่ะ / คะ" copy="ฉัน chǎn = “I” (often female). Polite ending: statements take ค่ะ khâ (falling), questions take คะ khá (high)." />
           </div>
         </fieldset>
         <label className="grid gap-2 text-sm font-medium">

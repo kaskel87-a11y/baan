@@ -1,4 +1,4 @@
-// Ported verbatim from the Grok-hosted Baan build (routes-BILTYoNg.js).
+// Ported from the Grok-hosted Baan build (routes-BILTYoNg.js); later content fixes are listed in CHANGELOG.md.
 import type { Vocab } from "./types";
 
 export const VOCAB: Vocab[] = [

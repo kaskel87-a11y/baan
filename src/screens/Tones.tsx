@@ -16,7 +16,7 @@ import {
   type PhraseItem,
   type Trial,
 } from "../lib/toneTrainer";
-import { Button, NoVoiceNotice, PageHeader, Segmented, ToneShape } from "../components/ui";
+import { AnswerLine, Button, NoVoiceNotice, PageHeader, Segmented, ToneShape } from "../components/ui";
 
 const CLASS_OPTS: { id: ConsonantClass; label: string }[] = [
   { id: "mid", label: "Mid" },
@@ -99,6 +99,7 @@ function MaiSet() {
 // ---------------- Minimal-pair trainer (new) ----------------
 
 const SESSION = 20;
+const SHORT: Record<Tone, string> = { mid: "Mid", low: "Low", falling: "Fall", high: "High", rising: "Rise" };
 
 function playTrial(t: Trial) {
   if (t.kind === "which") speak(t.target.thai, t.rate, t.voiceIndex);
@@ -120,6 +121,19 @@ function WordChip({ w, highlight }: { w: ToneWord; highlight?: "right" | "wrong"
       </span>
     </button>
   );
+}
+
+const tw = (w: ToneWord) => `${w.thai} (${w.roman}, “${w.en}”, ${TONE_LABEL[w.tone].toLowerCase()} tone)`;
+
+/** Plain-English feedback that always names the correct Thai, romanization, meaning, and tone. */
+function feedbackText(trial: Trial, answer: string, ok: boolean) {
+  if (trial.kind === "which") {
+    if (ok) return `Correct. You heard ${tw(trial.target)}.`;
+    const picked = trial.options.find((o) => o.thai === answer);
+    return `Not quite. You picked ${picked ? tw(picked) : answer}. The word was ${tw(trial.target)}.`;
+  }
+  const what = trial.same ? `the same word twice: ${tw(trial.first)}` : `two different words: ${tw(trial.first)}, then ${tw(trial.second)}`;
+  return `${ok ? "Correct" : "Not quite"}. It was ${what}.`;
 }
 
 function PairTrainer() {
@@ -227,6 +241,7 @@ function PairTrainer() {
                   >
                     <span className="thai text-2xl" lang="th">{o.thai}</span>
                     <span className="ml-2 text-sm text-muted">{o.roman}</span>
+                    <span className="block text-sm text-ink">“{o.en}”</span>
                   </button>
                 ))}
               </div>
@@ -254,7 +269,10 @@ function PairTrainer() {
           )}
           {answer ? (
             <div className="grid gap-2">
-              <p className={ok ? "text-sm font-medium text-accent" : "text-sm font-medium text-miss"}>{ok ? "Heard it." : "Not this time. Compare them:"}</p>
+              <p className={ok ? "text-sm font-medium text-accent" : "text-sm font-medium text-miss"} data-feedback>
+                {feedbackText(trial, answer, !!ok)}
+              </p>
+              <p className="text-sm text-muted">Tap a word to hear it again and compare.</p>
               {trial.kind === "which" ? (
                 <div className="grid gap-2">
                   {trial.options.map((o) => (
@@ -285,7 +303,7 @@ function HeatGrid() {
       <div className="grid grid-cols-6 gap-1 text-xs text-muted">
         <span />
         {TONES.map((t) => (
-          <span key={t} className="text-center">{TONE_LABEL[t].slice(0, 4)}</span>
+          <span key={t} className="text-center">{SHORT[t]}</span>
         ))}
       </div>
       {TONES.map((row) => (
@@ -366,6 +384,7 @@ function PhraseQuiz() {
               ),
             )}
           </p>
+          <p className="text-sm">“{cur.en}”{cur.wordEn ? <span className="text-muted"> · marked word: “{cur.wordEn}”</span> : null}</p>
           <div className="flex flex-wrap gap-2">
             <Button onClick={() => play(cur)}>Play the line</Button>
             <Button onClick={() => speak(cur.word, 0.8)}>Just the word</Button>
@@ -388,11 +407,14 @@ function PhraseQuiz() {
             ))}
           </div>
           {picked ? (
-            <div className="grid gap-1 text-sm">
-              <p>
-                <span className="thai text-xl" lang="th">{cur.word}</span> <span className="text-muted">{cur.roman}</span> · {TONE_LABEL[cur.tone]}
+            <div className="grid gap-1 text-sm" data-feedback>
+              <p className={picked === cur.tone ? "font-medium text-accent" : "font-medium text-miss"}>
+                {picked === cur.tone
+                  ? `Correct. ${cur.word} (${cur.roman}${cur.wordEn ? `, “${cur.wordEn}”` : ""}) is ${TONE_LABEL[cur.tone].toLowerCase()}.`
+                  : `Not quite. You picked ${TONE_LABEL[picked].toLowerCase()}; ${cur.word} (${cur.roman}${cur.wordEn ? `, “${cur.wordEn}”` : ""}) is ${TONE_LABEL[cur.tone].toLowerCase()}.`}
               </p>
-              <p className="text-muted">{cur.lineRoman} — {cur.en}</p>
+              <p className="text-muted">The whole line:</p>
+              <AnswerLine thai={cur.segments.join("")} roman={cur.lineRoman} en={cur.en} />
               <Button
                 variant="primary"
                 className="justify-self-start"
@@ -481,11 +503,14 @@ function Ear() {
               ))}
             </div>
             {picked ? (
-              <p>
-                <span className="thai text-2xl" lang="th">{cur.thai}</span>
-                <span className="ml-2 text-muted">{cur.roman}</span>
-                <span className="mt-1 block text-sm">{cur.en}. {TONE_LABEL[cur.tone]}.</span>
-              </p>
+              <div className="grid gap-1 text-sm" data-feedback>
+                <p className={picked === cur.tone ? "font-medium text-accent" : "font-medium text-miss"}>
+                  {picked === cur.tone
+                    ? `Correct. It's ${TONE_LABEL[cur.tone].toLowerCase()}.`
+                    : `Not quite. You picked ${TONE_LABEL[picked].toLowerCase()}; this word is ${TONE_LABEL[cur.tone].toLowerCase()}.`}
+                </p>
+                <AnswerLine thai={cur.thai} roman={cur.roman} en={cur.en} />
+              </div>
             ) : null}
           </article>
           {picked ? (

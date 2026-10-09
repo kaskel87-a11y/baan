@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ButtonHTMLAttributes, type ReactNode } from "react";
-import { Mic, Volume2 } from "lucide-react";
+import { Mic, Square, Volume2 } from "lucide-react";
 import type { Tone } from "../data/types";
 import { speak, stopSpeech, useThaiVoice } from "../lib/audio";
 import { canRecognize, recognitionCtor, type Recognition } from "../lib/speech";
@@ -121,12 +121,24 @@ export function Segmented<T extends string>({
   );
 }
 
+/** Correct Thai + romanization + English, used by every piece of feedback. */
+export function AnswerLine({ thai, roman, en }: { thai: string; roman?: string; en?: string }) {
+  return (
+    <span className="block">
+      <span className="thai text-xl" lang="th">{thai}</span>{" "}
+      {roman ? <span className="ml-1 text-muted">{roman}</span> : null}
+      {en ? <span className="block text-sm">“{en}”</span> : null}
+    </span>
+  );
+}
+
 /**
  * "Say it": browser speech recognition (th-TH), then the same fuzzy word match as the original.
- * Hidden entirely when the browser has no SpeechRecognition.
- * `hideTarget` keeps the Thai off screen while listening (used before a review card is revealed).
+ * One fixed-size button that toggles Say it ⇄ Stop, and a fixed-height result area below it,
+ * so nothing moves when recording starts or the result arrives. Hidden where SpeechRecognition is missing.
+ * `hideTarget` keeps the Thai answer out of the feedback until the card is revealed (Review, From English).
  */
-export function SayIt({ target, hideTarget = false }: { target: string; hideTarget?: boolean }) {
+export function SayIt({ target, roman, en, hideTarget = false }: { target: string; roman?: string; en?: string; hideTarget?: boolean }) {
   const [phase, setPhase] = useState<"idle" | "live">("idle");
   const [verdict, setVerdict] = useState<Verdict | null>(null);
   const [heard, setHeard] = useState("");
@@ -161,7 +173,6 @@ export function SayIt({ target, hideTarget = false }: { target: string; hideTarg
     r.continuous = false;
     r.onresult = (e) => {
       const alts = Array.from(e.results[0] ?? []).map((a) => a.transcript);
-      // Take the best verdict across alternatives.
       const rank = { yes: 2, close: 1, no: 0 } as const;
       let best: { v: Verdict; t: string } = { v: "no", t: alts[0] ?? "" };
       for (const t of alts) {
@@ -176,7 +187,7 @@ export function SayIt({ target, hideTarget = false }: { target: string; hideTarg
         e.error === "not-allowed" || e.error === "service-not-allowed"
           ? "The microphone is blocked. Allow it for this page, then tap Say it again."
           : e.error === "no-speech"
-            ? "I didn't catch that. Hold the phone a little closer and try again."
+            ? "I didn't catch anything. Hold the phone a little closer and try again."
             : e.error === "language-not-supported"
               ? "This browser can't recognize Thai speech."
               : "I couldn't check that. Try once more.",
@@ -195,39 +206,46 @@ export function SayIt({ target, hideTarget = false }: { target: string; hideTarg
     }
   }
 
-  function stop() {
-    rec.current?.stop();
-  }
-
+  const live = phase === "live";
+  const showAnswer = !hideTarget;
   return (
-    <div className="grid gap-2">
-      <Button variant={phase === "live" ? "primary" : "quiet"} aria-pressed={phase === "live"} onClick={phase === "live" ? stop : start} className="justify-self-start">
-        <Mic aria-hidden="true" size={18} />
-        {phase === "live" ? "Listening… tap when done" : "Say it"}
-      </Button>
-      {phase === "live" ? (
-        <div className="rounded-xl border border-line bg-paper px-4 py-3">
-          <p className="text-sm text-muted">{hideTarget ? "Say it in Thai" : "Say this"}</p>
-          {hideTarget ? null : (
-            <p className="thai text-2xl" lang="th">
-              {target}
+    <div className="grid gap-2" data-sayit>
+      <button
+        type="button"
+        aria-pressed={live}
+        onClick={live ? () => rec.current?.stop() : start}
+        className={`inline-flex h-11 w-40 shrink-0 items-center justify-center gap-2 rounded-xl border text-sm font-medium transition-colors duration-150 ${live ? "border-accent bg-accent text-accent-ink" : "border-line bg-card text-ink"}`}
+      >
+        {live ? <Square aria-hidden="true" size={16} /> : <Mic aria-hidden="true" size={18} />}
+        <span>{live ? "Stop" : "Say it"}</span>
+      </button>
+      {/* Reserved space: same height whether empty, listening, or showing a result. */}
+      <div className="min-h-[13rem] text-sm" aria-live="polite" data-sayit-result>
+        {live ? <p className="text-muted">Listening… say it in Thai, then tap Stop.</p> : null}
+        {!live && error ? <p className="text-miss">{error}</p> : null}
+        {!live && verdict === "yes" ? (
+          <div className="grid gap-1">
+            <p className="font-medium text-accent">Correct. That matched the line.</p>
+            {showAnswer ? <AnswerLine thai={target} roman={roman} en={en} /> : null}
+          </div>
+        ) : null}
+        {!live && verdict && verdict !== "yes" ? (
+          <div className="grid gap-1">
+            <p className={verdict === "close" ? "font-medium" : "font-medium text-miss"}>
+              {verdict === "close" ? "Close, but not exact." : "Not quite."} I heard: <span lang="th" className="thai">{heard || "nothing"}</span>
             </p>
-          )}
-        </div>
-      ) : null}
-      {error ? <p className="text-sm text-miss">{error}</p> : null}
-      {verdict === "yes" ? <p className="text-sm font-medium text-accent">Correct.</p> : null}
-      {verdict === "close" ? (
-        <p className="text-sm">
-          Close. Heard <span lang="th">{heard}</span>.
-        </p>
-      ) : null}
-      {verdict === "no" ? (
-        <p className="text-sm text-miss">
-          Not quite. Heard <span lang="th">{heard || "nothing"}</span>.
-        </p>
-      ) : null}
-      {verdict ? <p className="text-sm text-muted">This checks the words. A wrong tone can still match the spelling.</p> : null}
+            {showAnswer ? (
+              <>
+                <p className="text-muted">The line is:</p>
+                <AnswerLine thai={target} roman={roman} en={en} />
+              </>
+            ) : (
+              <p className="text-muted">Tap Show to see the right answer.</p>
+            )}
+          </div>
+        ) : null}
+        {!live && verdict ? <p className="mt-1 text-xs text-muted">This checks the words. A wrong tone can still match the spelling.</p> : null}
+      </div>
     </div>
   );
 }
