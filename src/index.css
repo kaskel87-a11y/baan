@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+/* Design tokens copied from the Grok-hosted Baan build. */
+@theme {
+  --font-sans: "Noto Sans Thai", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Noto Serif Thai", "Noto Sans Thai", ui-serif, serif;
+  --color-paper: #f3f0ea;
+  --color-card: #faf8f5;
+  --color-ink: #1c1917;
+  --color-muted: #78716c;
+  --color-line: #e4dfd6;
+  --color-accent: #1f6f64;
+  --color-accent-ink: #f7f6f3;
+  --color-miss: #9f3a32;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.125rem;
+  --text-4xl: 2.75rem;
+  --radius-4xl: 2rem;
+}
+
+:root {
+  --motion-quick: 0.15s;
+  --motion-fast: 0.25s;
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  font-family: var(--font-sans);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body {
+  min-height: 100dvh;
+}
+
+@layer components {
+  .thai {
+    font-family: var(--font-display);
+    padding-block: 0.08em;
+    font-weight: 600;
+    line-height: 1.65;
+  }
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .enter {
+    animation: rise var(--motion-fast) var(--ease-smooth-out);
+  }
+  .app-shell {
+    background: var(--color-paper);
+    min-height: 100dvh;
+    color: var(--color-ink);
+  }
+  @media (width >= 48rem) {
+    .app-shell {
+      display: grid;
+      grid-template-columns: 15rem minmax(0, 1fr);
+    }
+  }
+  .dock {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+}
+
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .enter {
+    animation: none !important;
+  }
+}
