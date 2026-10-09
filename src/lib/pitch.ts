@@ -41,15 +41,22 @@ export function trackPitch(x: Float32Array, rate = TARGET_RATE): Frame[] {
   const tauMax = Math.ceil(rate / FMIN);
   const d = new Float32Array(tauMax + 1);
   const frames: Frame[] = [];
-  let peak = 0;
-  for (let i = 0; i < x.length; i++) peak = Math.max(peak, Math.abs(x[i]!));
+  // Energy gate relative to the loud part of the recording (90th-percentile frame level), not the single
+  // loudest sample, so a click or tap on a quiet phone mic doesn't silence the voice.
+  const levels: number[] = [];
   for (let start = 0; start + win + tauMax < x.length; start += hop) {
     let e = 0;
     for (let j = 0; j < win; j++) e += x[start + j]! * x[start + j]!;
-    const rms = Math.sqrt(e / win);
+    levels.push(Math.sqrt(e / win));
+  }
+  const sorted = [...levels].sort((a, b) => a - b);
+  const loud = sorted[Math.floor(sorted.length * 0.9)] ?? 0;
+  let fi = 0;
+  for (let start = 0; start + win + tauMax < x.length; start += hop) {
+    const rms = levels[fi++]!;
     const frame: Frame = { t: (start + win / 2) / rate, rms, f0: null };
     frames.push(frame);
-    if (rms < 0.02 * peak || rms < 1e-4) continue;
+    if (rms < 0.05 * loud || rms < 2e-5) continue;
     // Difference function
     for (let tau = 1; tau <= tauMax; tau++) {
       let s = 0;
@@ -68,7 +75,7 @@ export function trackPitch(x: Float32Array, rate = TARGET_RATE): Frame[] {
     }
     let tau = -1;
     for (let t = tauMin; t <= tauMax; t++) {
-      if (d[t]! < 0.15) {
+      if (d[t]! < 0.2) {
         while (t + 1 <= tauMax && d[t + 1]! < d[t]!) t++;
         tau = t;
         break;
@@ -78,7 +85,7 @@ export function trackPitch(x: Float32Array, rate = TARGET_RATE): Frame[] {
       // fall back to the global minimum if it is reasonably periodic
       let best = tauMin;
       for (let t = tauMin; t <= tauMax; t++) if (d[t]! < d[best]!) best = t;
-      if (d[best]! < 0.3) tau = best;
+      if (d[best]! < 0.35) tau = best;
     }
     if (tau < 0) continue;
     // Parabolic interpolation
@@ -113,7 +120,7 @@ export function cleanContour(frames: Frame[]): Frame[] {
     else if (f0 < med * 0.56) f0 *= 2;
     return { ...f, f0 };
   });
-  // Drop voiced runs shorter than 40 ms (clicks, breath)
+  // Drop voiced runs shorter than 30 ms (clicks, breath)
   let i = 0;
   while (i < out.length) {
     if (out[i]!.f0 === null) {
@@ -122,7 +129,7 @@ export function cleanContour(frames: Frame[]): Frame[] {
     }
     let j = i;
     while (j < out.length && out[j]!.f0 !== null) j++;
-    if (j - i < 4) for (let k = i; k < j; k++) out[k]!.f0 = null;
+    if (j - i < 3) for (let k = i; k < j; k++) out[k]!.f0 = null;
     i = j;
   }
   // 5-point median smoothing inside voiced runs
@@ -201,7 +208,7 @@ export function describe(frames: Frame[], seg: Segment, refHz: number): Syllable
     .slice(seg.start, seg.end)
     .filter((f) => f.f0 !== null)
     .map((f) => toSemitones(f.f0!, refHz));
-  if (st.length < 4) return null;
+  if (st.length < 3) return null;
   const q = Math.max(1, Math.floor(st.length / 4));
   const avg = (a: number[]) => a.reduce((s, v) => s + v, 0) / a.length;
   const start = avg(st.slice(0, q));
@@ -292,12 +299,37 @@ export interface Analysis {
 
 /** Full pipeline: raw samples → cleaned pitch track → n syllable segments. */
 export function analyze(samples: Float32Array, rate: number, syllables: number, baselineHz?: number): Analysis {
-  const x = resample(samples, rate);
+  const x = resample(normalize(samples), rate);
   const frames = cleanContour(trackPitch(x));
   const voiced = frames.filter((f) => f.f0 !== null);
   const medianHz = median(voiced.map((f) => f.f0!));
   const voicedMs = voiced.length * HOP * 1000;
   const refHz = baselineHz && baselineHz > 0 ? baselineHz : medianHz;
-  if (voiced.length < 6) return { ok: false, reason: voiced.length ? "too-short" : "no-voice", voicedMs, frames, segments: [], refHz, medianHz };
+  if (voiced.length < 4) return { ok: false, reason: voiced.length ? "too-short" : "no-voice", voicedMs, frames, segments: [], refHz, medianHz };
   return { ok: true, voicedMs, frames, segments: segmentSyllables(frames, syllables), refHz, medianHz };
+}
+
+/** Remove DC offset and scale so the loudest part peaks near 0.5 (quiet phone mics, iOS gain differences). */
+export function normalize(x: Float32Array): Float32Array {
+  let mean = 0;
+  for (let i = 0; i < x.length; i++) mean += x[i]!;
+  mean /= x.length || 1;
+  let peak = 0;
+  for (let i = 0; i < x.length; i++) peak = Math.max(peak, Math.abs(x[i]! - mean));
+  const g = peak > 1e-6 ? 0.5 / peak : 1;
+  const out = new Float32Array(x.length);
+  for (let i = 0; i < x.length; i++) out[i] = (x[i]! - mean) * g;
+  return out;
+}
+
+/** Peak and RMS of a raw recording, before any normalization. */
+export function levelStats(x: Float32Array) {
+  let peak = 0;
+  let e = 0;
+  for (let i = 0; i < x.length; i++) {
+    const v = Math.abs(x[i]!);
+    if (v > peak) peak = v;
+    e += v * v;
+  }
+  return { peak, rms: Math.sqrt(e / (x.length || 1)) };
 }

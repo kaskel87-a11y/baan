@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.3.1 — 2026-10-08
+
+**Fixes a regression from 0.3.0: Say it stopped hearing Collin on his phone.** In 0.2.0 Say it worked, and his mic is fine.
+
+**Cause:** in 0.3.0 one tap started speech recognition and, in the same moment, opened a second recording through `getUserMedia` and an AudioContext for the tone check. On iPhone Safari the recording takes over the mic and recognition gets silence. It then ends with no result, so nothing he said registered. 0.3.0's auto-stop also stopped recognition after a short pause.
+
+**What changed**
+- **Say it is the 0.2.0 word check again.** Speech recognition (th-TH) runs alone. No `getUserMedia` and no AudioContext are opened. Tap Say it, speak, tap Stop.
+  - The 0.3.0 English messages for every ending are kept: no result, no speech, not allowed (with the Dictation hint), network, and Thai unsupported.
+  - A 15-second safety timeout ends the attempt if the browser never ends the session.
+- **The tone check is its own step: Check my tones.** It has a fixed-size button in the Tone check section.
+  - The two can never hold the mic together. Check my tones is disabled while Say it listens, and Say it is disabled while recording. Starting one aborts the other.
+  - If the browser has no speech recognition, Say it runs the tone check instead.
+- Tone recorder hardening:
+  - The AudioContext is created and resumed inside the tap, with a silent-buffer unlock for iOS.
+  - A MediaRecorder (audio/mp4 on iOS) records in parallel. If the Web Audio feed comes back all zeros (suspended context, sample-rate mismatch), the recorded file is decoded and used instead.
+  - Echo cancellation and noise suppression are off, so the pitch isn't filtered.
+- **Silent mic** gets its own English message with steps: "I got no sound from your mic…".
+- **Live Mic level meter** while recording. It uses a log scale so quiet phone mics still move it, and has a fixed size.
+- **Quiet and short speech:**
+  - The voicing gate is now relative to the loud part of the recording, so one click can't silence the voice.
+  - The recording is normalized before analysis, and the YIN thresholds are looser.
+  - A 0.15 s word and a −46 dB recording now both get a verdict.
+- **Diagnostics:** a small "Mic trouble?" link opens a panel to screenshot or copy. It shows the browser, speech recognition, word-check mode, AudioContext state at tap / after mic / at stop, sample rates, capture path, peak and average level, recording length, voice found, pitch, and the last mic and word-check errors.
+- Tests:
+  - `npm run test:mic` (headless Chrome with a fake mic, iPhone user agent). It checks that recognition never starts during recording, that Say it runs recognition alone, the MediaRecorder fallback, an all-zero mic, a quiet mic, a very short word, and the diagnostics.
+  - `npm run test:webkit` is new: Playwright WebKit with an iPhone 13 profile and a synthetic mic stream. It checks that Say it never calls `getUserMedia`, and that the falling, rising and level tones, the ScriptProcessor path and the silent-mic message all work.
+
 ## 0.3.0 — 2026-10-08
 
 Collin reported that on his phone Say it was "not giving feedback on how I pronounce words".

@@ -5,7 +5,8 @@ import { gloss } from "../data/glossary";
 import { stopSpeech } from "../lib/audio";
 import { recognitionCtor, type Recognition } from "../lib/speech";
 import { matchSpoken, TONE_LABEL, toneFromRoman, type Verdict } from "../lib/thai";
-import { createCapture, micSupported, type Capture, type MicError } from "../lib/recorder";
+import { createCapture, micSupported, type Capture, type MicError, type Recording } from "../lib/recorder";
+import { errorName, setDiag, useDiag, type Diag } from "../lib/diag";
 import { analyze, classify, describe, describeMovement, tonesMatch, TONE_ADVICE, type Analysis, type SyllableShape } from "../lib/pitch";
 import { getState, pitchBaseline, recordPitchMedian } from "../lib/store";
 import { AnswerLine, TONE_PATH } from "./ui";
@@ -16,22 +17,25 @@ type WordState =
   | { kind: "idle" }
   | { kind: "pending" }
   | { kind: "heard"; verdict: Verdict; heard: string }
-  | { kind: "message"; text: string };
+  | { kind: "message"; text: string }
+  | { kind: "note"; text: string };
 
 const IS_IOS = typeof navigator !== "undefined" && /iP(hone|ad|od)/.test(navigator.userAgent + (navigator.maxTouchPoints > 1 && /Mac/.test(navigator.userAgent) ? " iPad" : ""));
 
 export const WORD_MSG = {
   unsupported: "Your browser can't check Thai words, but the tone check below still works.",
-  noResult: "The word check didn't hear any words. Tap Say it and speak right away, a little louder.",
+  noResult: IS_IOS
+    ? "The word check didn't hear any words. On iPhone it needs Dictation on (Settings > General > Keyboard > Enable Dictation). Then tap Say it and speak right away."
+    : "The word check didn't hear any words. Tap Say it and speak right away, a little louder.",
   noSpeech: "I didn't hear anything. Tap Say it and speak right away.",
   denied: IS_IOS
-    ? "The word check isn't allowed. On iPhone, turn on Settings > General > Keyboard > Enable Dictation, and allow the microphone for this site. The tone check below still works."
-    : "The word check isn't allowed to use the microphone. Allow it for this site and try again. The tone check below still works.",
-  network: "The word check couldn't reach the speech service (it needs an internet connection). The tone check below still works offline.",
-  language: "Your browser can't recognize Thai speech. The tone check below still works.",
-  audio: "The word check couldn't open the microphone. The tone check below still works if the mic is free.",
-  timeout: "The word check didn't answer in time. The tone check below still works.",
-  failed: "The word check couldn't start. The tone check below still works.",
+    ? "The word check isn't allowed. On iPhone, turn on Settings > General > Keyboard > Enable Dictation, and allow the microphone for this site. The tone check still works."
+    : "The word check isn't allowed to use the microphone. Allow it for this site and try again. The tone check still works.",
+  network: "The word check couldn't reach the speech service (it needs an internet connection). The tone check still works offline.",
+  language: "Your browser can't recognize Thai speech. The tone check still works.",
+  audio: "The word check couldn't open the microphone. The tone check still works if the mic is free.",
+  timeout: "The word check didn't answer in time. The tone check still works.",
+  failed: "The word check couldn't start. The tone check still works.",
 } as const;
 
 function errorText(code: string): string {
@@ -49,7 +53,7 @@ function errorText(code: string): string {
     case "audio-capture":
       return WORD_MSG.audio;
     default:
-      return `The word check stopped (${code || "unknown error"}). The tone check below still works.`;
+      return `The word check stopped (${code || "unknown error"}). The tone check still works.`;
   }
 }
 
@@ -116,8 +120,8 @@ const MIC_MSG: Record<MicError, string> = {
   unsupported: "This browser can't record audio here, so the tone check is off. The word check still runs if your browser has it.",
   insecure: "The microphone only works on a secure (https) page.",
   denied: IS_IOS
-    ? "The microphone is blocked. On iPhone: tap aA in Safari's address bar > Website Settings > Microphone > Allow, then tap Say it again."
-    : "The microphone is blocked. Allow it for this site (the icon in the address bar), then tap Say it again.",
+    ? "The microphone is blocked. On iPhone: tap aA in Safari's address bar > Website Settings > Microphone > Allow, then try again."
+    : "The microphone is blocked. Allow it for this site (the icon in the address bar), then try again.",
   "no-device": "No microphone was found. Plug one in or use your phone, then try again.",
   busy: "The microphone is busy in another app. Close it, then try again.",
   unknown: "The microphone couldn't start. Try again.",
@@ -125,12 +129,19 @@ const MIC_MSG: Record<MicError, string> = {
 
 /* ------------------------------------------------------------------ component */
 
+const SILENT_MSG =
+  "I got no sound from your mic. Try: 1) close calls, Voice Memos or other apps using the mic; 2) disconnect Bluetooth headphones; 3) reload this page and allow the microphone; 4) still nothing? Tap “Mic trouble?” below and send a screenshot.";
+
 /**
- * "Say it": one tap records you once and runs two checks side by side.
- *  1. Word check: browser speech recognition (th-TH), when the browser has it.
- *  2. Tone check: your pitch curve per syllable against the target tone shapes, computed on the phone.
- * One fixed-size button toggles Say it ⇄ Stop; the chart and result area have reserved space, so nothing moves.
- * Every outcome ends with an English message. `hideTarget` keeps the Thai/romanization hidden (Review, From English).
+ * "Say it" — two separate steps that never use the microphone at the same time:
+ *  1. Say it = word check. Exactly the 0.2.0 behaviour: the browser's speech recognition (th-TH) alone gets
+ *     the mic — no getUserMedia, no AudioContext. (0.3.0 opened a recorder in the same tap, which on
+ *     iPhone took the mic away from recognition, so it never heard anything.)
+ *  2. Check my tones = tone check. Records with getUserMedia and compares your pitch curve per syllable
+ *     with the target tone shapes, on the phone. It can only start while recognition is not running.
+ * Where the browser has no speech recognition, Say it runs the tone check instead.
+ * Fixed-size buttons and fixed-height result areas: nothing moves. Every outcome ends with an English message.
+ * `hideTarget` keeps the Thai/romanization hidden (Review, From English).
  */
 export function SayIt({
   target,
@@ -147,114 +158,155 @@ export function SayIt({
   skip?: string[];
 }) {
   const [phase, setPhase] = useState<"idle" | "starting" | "live" | "analyzing">("idle");
+  const [wordPhase, setWordPhase] = useState<"idle" | "listening">("idle");
   const [word, setWord] = useState<WordState>({ kind: "idle" });
   const [tone, setTone] = useState<ToneState>({ kind: "idle" });
+  const [level, setLevel] = useState(0);
+  const [peakSeen, setPeakSeen] = useState(0);
+  const [showDiag, setShowDiag] = useState(false);
   const rec = useRef<Recognition | null>(null);
   const cap = useRef<Capture | null>(null);
   const run = useRef(0);
+  const wordRun = useRef(0);
   const finishing = useRef(false);
   const wordTimer = useRef<number | undefined>(undefined);
-  const [level, setLevel] = useState(0);
 
   const syllables = targetSyllables(target, roman, en, skip);
   const recognizer = recognitionCtor();
-  const mic = micSupported();
 
-  function reset() {
-    run.current++;
+  useEffect(() => {
+    setDiag({
+      speechRecognition: recognizer ? "available" : "not available",
+      wordCheckMode: recognizer ? "Say it = speech recognition only; tone check is a separate step" : "no speech recognition; Say it runs the tone check",
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function stopWords() {
+    wordRun.current++;
     rec.current?.abort();
     rec.current = null;
+    window.clearTimeout(wordTimer.current);
+    setWordPhase("idle");
+  }
+  function stopTone() {
+    run.current++;
     cap.current?.cancel();
     cap.current = null;
-    window.clearTimeout(wordTimer.current);
+    setPhase("idle");
   }
 
   useEffect(() => {
     setPhase("idle");
     setWord({ kind: "idle" });
     setTone({ kind: "idle" });
-    return reset;
+    return () => {
+      stopWords();
+      run.current++;
+      cap.current?.cancel();
+      cap.current = null;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [target]);
 
-  // input meter while recording
+  // live input meter (tone recording only)
   useEffect(() => {
     if (phase !== "live") return;
-    const id = window.setInterval(() => setLevel(cap.current?.level() ?? 0), 80);
+    const id = window.setInterval(() => {
+      const l = cap.current?.level() ?? 0;
+      setLevel(l);
+      setPeakSeen((p) => Math.max(p, l));
+    }, 80);
     return () => window.clearInterval(id);
   }, [phase]);
 
-  /** Everything here runs synchronously inside the tap, which iOS requires for mic + recognition. */
-  function start() {
-    reset();
+  /** Word check: speech recognition alone, as in 0.2.0. Runs synchronously in the tap. */
+  function startWords() {
+    if (!recognizer) return;
+    stopTone(); // never share the mic with the recorder
+    stopWords();
+    stopSpeech();
+    const id = wordRun.current;
+    let gotResult = false;
+    let gotError = false;
+    try {
+      const r = new recognizer();
+      r.lang = "th-TH";
+      r.interimResults = false;
+      r.maxAlternatives = 5;
+      r.continuous = false;
+      r.onresult = (e) => {
+        if (id !== wordRun.current) return;
+        const alts = Array.from(e.results[0] ?? []).map((a) => a.transcript).filter((t) => t.trim());
+        if (!alts.length) return;
+        gotResult = true;
+        const rank = { yes: 2, close: 1, no: 0 } as const;
+        let best: { v: Verdict; t: string } = { v: "no", t: alts[0]! };
+        for (const t of alts) {
+          const v = matchSpoken(t, target);
+          if (rank[v] > rank[best.v]) best = { v, t };
+        }
+        setWord({ kind: "heard", verdict: best.v, heard: best.t });
+      };
+      r.onerror = (e) => {
+        if (id !== wordRun.current || gotResult) return;
+        setDiag({ lastWordError: e.error || "unknown" });
+        if (e.error === "aborted") return;
+        gotError = true;
+        setWord({ kind: "message", text: errorText(e.error) });
+      };
+      r.onend = () => {
+        if (id !== wordRun.current) return;
+        rec.current = null;
+        window.clearTimeout(wordTimer.current);
+        setWordPhase("idle");
+        // iOS Safari can end with neither a result nor an error: say so instead of going quiet.
+        if (!gotResult && !gotError) {
+          setDiag({ lastWordError: "ended with no result" });
+          setWord({ kind: "message", text: WORD_MSG.noResult });
+        }
+      };
+      rec.current = r;
+      r.start();
+      setWord({ kind: "pending" });
+      setWordPhase("listening");
+      // Safety net only: if the browser never ends the session, stop waiting after 15 s.
+      wordTimer.current = window.setTimeout(() => {
+        if (id !== wordRun.current) return;
+        r.abort();
+        rec.current = null;
+        setWordPhase("idle");
+        if (!gotResult && !gotError) setWord({ kind: "message", text: WORD_MSG.timeout });
+      }, 15000);
+    } catch (e) {
+      rec.current = null;
+      setWordPhase("idle");
+      setDiag({ lastWordError: `start: ${errorName(e)}` });
+      setWord({ kind: "message", text: WORD_MSG.failed });
+    }
+  }
+
+  /** Tone check recording. Runs synchronously inside the tap (iOS unlocks audio only in the gesture). */
+  function startTone() {
+    stopWords(); // recognition must not be running while we hold the mic
+    stopTone();
     const id = run.current;
     finishing.current = false;
     stopSpeech();
     setTone({ kind: "idle" });
     setLevel(0);
-
-    // 1. word check
-    if (!recognizer) setWord({ kind: "message", text: WORD_MSG.unsupported });
-    else {
-      let gotResult = false;
-      let gotError = false;
-      try {
-        const r = new recognizer();
-        r.lang = "th-TH";
-        r.interimResults = false;
-        r.maxAlternatives = 5;
-        r.continuous = false;
-        r.onresult = (e) => {
-          if (id !== run.current) return;
-          const alts = Array.from(e.results[0] ?? []).map((a) => a.transcript).filter((t) => t.trim());
-          if (!alts.length) return;
-          gotResult = true;
-          const rank = { yes: 2, close: 1, no: 0 } as const;
-          let best: { v: Verdict; t: string } = { v: "no", t: alts[0]! };
-          for (const t of alts) {
-            const v = matchSpoken(t, target);
-            if (rank[v] > rank[best.v]) best = { v, t };
-          }
-          window.clearTimeout(wordTimer.current);
-          setWord({ kind: "heard", verdict: best.v, heard: best.t });
-        };
-        r.onerror = (e) => {
-          if (id !== run.current || gotResult) return;
-          if (e.error === "aborted") return; // we aborted it ourselves; onend handles the message
-          gotError = true;
-          window.clearTimeout(wordTimer.current);
-          setWord({ kind: "message", text: errorText(e.error) });
-        };
-        r.onend = () => {
-          if (id !== run.current) return;
-          rec.current = null;
-          window.clearTimeout(wordTimer.current);
-          if (!cap.current && !finishing.current) setPhase((p) => (p === "live" ? "idle" : p));
-          // iOS Safari often ends with neither a result nor an error: say so instead of going quiet.
-          if (!gotResult && !gotError) setWord({ kind: "message", text: WORD_MSG.noResult });
-        };
-        rec.current = r;
-        r.start();
-        setWord({ kind: "pending" });
-      } catch {
-        rec.current = null;
-        setWord({ kind: "message", text: WORD_MSG.failed });
-      }
-    }
-
-    // 2. tone check (mic capture)
-    if (!mic) {
+    setPeakSeen(0);
+    if (!micSupported()) {
+      setDiag({ lastError: "getUserMedia missing" });
       setTone({ kind: "message", text: MIC_MSG[window.isSecureContext === false ? "insecure" : "unsupported"] });
-      if (!recognizer) return;
-      setPhase("live");
       return;
     }
     let c: Capture;
     try {
-      c = createCapture();
+      c = createCapture(); // AudioContext created + resumed right here, in the tap
     } catch (e) {
+      setDiag({ lastError: `AudioContext: ${errorName(e)}` });
       setTone({ kind: "message", text: MIC_MSG[(typeof e === "string" ? e : "unsupported") as MicError] ?? MIC_MSG.unknown });
-      setPhase(recognizer ? "live" : "idle");
       return;
     }
     cap.current = c;
@@ -265,8 +317,7 @@ export function SayIt({
         if (id !== run.current) return;
         cap.current = null;
         setTone({ kind: "message", text: MIC_MSG[err] ?? MIC_MSG.unknown });
-        if (!rec.current) setPhase("idle");
-        else setPhase("live");
+        setPhase("idle");
       });
   }
 
@@ -274,46 +325,42 @@ export function SayIt({
     if (finishing.current) return;
     finishing.current = true;
     const id = run.current;
-    const r = rec.current;
     const c = cap.current;
     cap.current = null;
+    if (!c) return setPhase("idle");
     setPhase("analyzing");
-    // Give the recognizer a moment to return; if it never does, say so.
-    if (r) {
-      try {
-        r.stop();
-      } catch {
-        /* already stopped */
+    let recording: Recording;
+    try {
+      recording = await c.stop();
+    } catch (e) {
+      setDiag({ lastError: `stop: ${errorName(e)}` });
+      if (id === run.current) {
+        setTone({ kind: "message", text: MIC_MSG.unknown });
+        setPhase("idle");
       }
-      wordTimer.current = window.setTimeout(() => {
-        if (id !== run.current || rec.current !== r) return;
-        r.abort();
-        rec.current = null;
-        setWord({ kind: "message", text: WORD_MSG.timeout });
-      }, 5000);
+      return;
     }
-    if (c) {
-      const { samples, rate } = await c.stop();
-      if (id !== run.current) return;
-      await new Promise((res) => window.setTimeout(res, 0)); // paint "Checking…" first
-      setTone(toneCheck(samples, rate));
-    }
-    if (id === run.current) setPhase("idle");
+    if (id !== run.current) return;
+    await new Promise((res) => window.setTimeout(res, 0)); // paint "Checking…" first
+    setTone(toneCheck(recording));
+    setPhase("idle");
   }
 
-  function toneCheck(samples: Float32Array, rate: number): ToneState {
-    if (samples.length < rate * 0.2) return { kind: "message", text: "The recording was too short. Tap Say it, speak, then pause; it stops by itself." };
+  function toneCheck({ samples, rate, peak }: Recording): ToneState {
+    if (samples.length < rate * 0.2) return { kind: "message", text: "The recording was too short. Tap Check my tones, speak, then pause; it stops by itself." };
+    if (peak < 0.002) return { kind: "message", text: SILENT_MSG };
     const n = Math.max(1, syllables.length);
     const baseline = pitchBaseline(getState());
     // Lines with 3+ syllables carry their own reference; single words need the learner's usual pitch.
     const useOwn = n >= 3;
     const analysis = analyze(samples, rate, Math.min(n, MAX_SYLLABLES), useOwn ? undefined : baseline);
+    setDiag({ voicedMs: String(Math.round(analysis.voicedMs)), pitchMedianHz: Number.isFinite(analysis.medianHz) ? analysis.medianHz.toFixed(0) : "—" });
     if (!analysis.ok)
       return {
         kind: "message",
         text:
           analysis.reason === "no-voice"
-            ? "I didn't hear your voice. Tap Say it and speak right away, a little louder or closer to the phone."
+            ? "Your mic works, but I couldn't hear a voice in it. Speak right after tapping, close to the phone, and hold the vowel."
             : "I only heard a very short sound. Say the whole word, and hold the vowel a little longer.",
       };
     recordPitchMedian(analysis.medianHz);
@@ -322,47 +369,51 @@ export function SayIt({
     return { kind: "result", result: { analysis, shapes, levelKnown } };
   }
 
-  const busy = phase === "live" || phase === "starting";
-  const label = phase === "starting" ? "Starting…" : busy ? "Stop" : phase === "analyzing" ? "Checking…" : "Say it";
+  const toneBusy = phase === "live" || phase === "starting";
+  const listening = wordPhase === "listening";
+  // Say it: word check when the browser has recognition, otherwise it runs the tone check.
+  const sayBusy = recognizer ? listening : toneBusy;
+  const sayLabel = recognizer ? (listening ? "Stop" : "Say it") : phase === "starting" ? "Starting…" : toneBusy ? "Stop" : phase === "analyzing" ? "Checking…" : "Say it";
+  const toneLabel = phase === "starting" ? "Starting…" : toneBusy ? "Stop" : phase === "analyzing" ? "Checking…" : "Check my tones";
 
   return (
     <div className="grid gap-2" data-sayit>
-      <div className="flex items-center gap-3">
-        <button
-          type="button"
-          aria-pressed={busy}
-          disabled={phase === "analyzing"}
-          onClick={busy ? () => void (cap.current ? finish() : (rec.current?.stop(), setPhase("idle"))) : start}
-          className={`inline-flex h-11 w-40 shrink-0 items-center justify-center gap-2 rounded-xl border text-sm font-medium transition-colors duration-150 ${busy ? "border-accent bg-accent text-accent-ink" : "border-line bg-card text-ink"}`}
-        >
-          {busy ? <Square aria-hidden="true" size={16} /> : <Mic aria-hidden="true" size={18} />}
-          <span>{label}</span>
-        </button>
-        {/* fixed-size level meter; only its fill changes */}
-        <div className="h-2 w-20 overflow-hidden rounded-full bg-line" aria-hidden="true">
-          <div className="h-full bg-accent transition-[width] duration-75" style={{ width: `${phase === "live" ? Math.round(level * 100) : 0}%` }} />
-        </div>
-      </div>
+      <button
+        type="button"
+        aria-pressed={sayBusy}
+        disabled={recognizer ? toneBusy || phase === "analyzing" : phase === "analyzing"}
+        onClick={recognizer ? (listening ? () => rec.current?.stop() : startWords) : toneBusy ? () => void finish() : startTone}
+        className={`inline-flex h-11 w-40 shrink-0 items-center justify-center gap-2 rounded-xl border text-sm font-medium transition-colors duration-150 disabled:opacity-60 ${sayBusy ? "border-accent bg-accent text-accent-ink" : "border-line bg-card text-ink"}`}
+      >
+        {sayBusy ? <Square aria-hidden="true" size={16} /> : <Mic aria-hidden="true" size={18} />}
+        <span>{sayLabel}</span>
+      </button>
 
       <div className="grid gap-2 text-sm" aria-live="polite" data-sayit-result>
         <p className="h-10 overflow-hidden text-muted" data-sayit-status>
-          {phase === "starting"
-            ? "Opening the microphone…"
-            : phase === "live"
-              ? "Listening… say it in Thai now. It stops when you pause, or tap Stop."
-              : phase === "analyzing"
-                ? "Checking your words and tones…"
-                : word.kind === "idle" && tone.kind === "idle"
-                  ? "Tap Say it and speak right away. You'll get a word check and a tone check."
-                  : null}
+          {listening
+            ? "Listening… say it in Thai, then tap Stop."
+            : phase === "starting"
+              ? "Opening the microphone…"
+              : phase === "live"
+                ? peakSeen > 0.15
+                  ? "Recording… I can hear you. It stops when you pause, or tap Stop."
+                  : "Recording… speak now. The Mic level bar should move when you talk."
+                : phase === "analyzing"
+                  ? "Checking your tones…"
+                  : word.kind === "idle" && tone.kind === "idle"
+                    ? recognizer
+                      ? "Tap Say it to check your words. Then tap Check my tones to see your pitch."
+                      : "Tap Say it and speak right away to see your pitch against the target tones."
+                    : null}
         </p>
 
-        {/* word check: reserved block */}
-        <div className="h-[7.5rem] overflow-y-auto" data-word-check>
+        {/* word check: reserved block, directly under Say it (as in 0.2.0) */}
+        <div className="h-[8.5rem] overflow-y-auto" data-word-check>
           <p className="text-xs font-medium uppercase tracking-wide text-muted">Word check</p>
           <WordResult
             state={word.kind === "idle" && !recognizer ? { kind: "message", text: WORD_MSG.unsupported } : word}
-            toneDown={tone.kind === "message" && /microphone|record audio|secure/.test(tone.text)}
+            toneDown={tone.kind === "message" && /microphone|record audio|secure|no sound/.test(tone.text)}
             target={target}
             roman={roman}
             en={en}
@@ -370,15 +421,92 @@ export function SayIt({
           />
         </div>
 
-        {/* tone check: chart always drawn at a fixed height */}
+        {/* tone check: its own button; chart always drawn at a fixed height */}
         <div data-tone-check>
-          <p className="text-xs font-medium uppercase tracking-wide text-muted">Tone check</p>
+          <div className="flex h-9 items-center justify-between gap-2">
+            <p className="text-xs font-medium uppercase tracking-wide text-muted">Tone check</p>
+            <button
+              type="button"
+              data-tone-button
+              aria-pressed={toneBusy}
+              disabled={listening || phase === "analyzing"}
+              onClick={toneBusy ? () => void finish() : startTone}
+              className={`inline-flex h-9 w-36 shrink-0 items-center justify-center rounded-xl border text-xs font-medium disabled:opacity-60 ${toneBusy ? "border-accent bg-accent text-accent-ink" : "border-line bg-card text-ink"}`}
+            >
+              {toneLabel}
+            </button>
+          </div>
+          {/* fixed-size live mic meter; only the fill changes */}
+          <div className="mt-1 flex h-4 items-center gap-2" data-meter>
+            <span className="text-[11px] leading-none text-muted">Mic level</span>
+            <div className="h-2.5 flex-1 overflow-hidden rounded-full bg-line" role="meter" aria-label="Microphone level" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(level * 100)}>
+              <div className="h-full bg-accent transition-[width] duration-75" style={{ width: `${phase === "live" ? Math.round(level * 100) : 0}%` }} data-meter-fill />
+            </div>
+          </div>
           <ToneChart syllables={syllables.slice(0, MAX_SYLLABLES)} result={tone.kind === "result" ? tone.result : null} hideTarget={hideTarget} />
           <div className="mt-1 h-[9rem] overflow-y-auto" data-tone-feedback>
             <ToneFeedback state={tone} syllables={syllables} hideTarget={hideTarget} phase={phase} />
           </div>
         </div>
       </div>
+
+      <div className="text-right">
+        <button type="button" className="text-[11px] text-muted/70 hover:underline" onClick={() => setShowDiag((v) => !v)} aria-expanded={showDiag} data-diag-toggle>
+          Mic trouble?
+        </button>
+        {showDiag ? <DiagPanel /> : null}
+      </div>
+    </div>
+  );
+}
+
+const DIAG_LABELS: [keyof Diag, string][] = [
+  ["updated", "Last update"],
+  ["userAgent", "Browser"],
+  ["speechRecognition", "Speech recognition"],
+  ["wordCheckMode", "Word check mode"],
+  ["getUserMedia", "Mic API (getUserMedia)"],
+  ["audioWorklet", "AudioWorklet"],
+  ["mediaRecorder", "MediaRecorder"],
+  ["ctxStateAtTap", "Audio state at tap"],
+  ["ctxStateAfterMic", "Audio state after mic opened"],
+  ["ctxStateAtStop", "Audio state at stop"],
+  ["ctxSampleRate", "Audio sample rate"],
+  ["micSampleRate", "Mic sample rate"],
+  ["micLabel", "Mic"],
+  ["capturePath", "Capture path"],
+  ["recordingType", "Backup recording"],
+  ["durationMs", "Recording length (ms)"],
+  ["peakLevel", "Peak level (0–1)"],
+  ["rmsLevel", "Average level"],
+  ["voicedMs", "Voice found (ms)"],
+  ["pitchMedianHz", "Your pitch (Hz)"],
+  ["lastError", "Last mic error"],
+  ["lastWordError", "Last word-check error"],
+];
+
+function DiagPanel() {
+  const d = useDiag();
+  const [copied, setCopied] = useState(false);
+  const text = DIAG_LABELS.map(([k, l]) => `${l}: ${d[k]}`).join("\n");
+  return (
+    <div className="mt-2 grid gap-2 rounded-xl border border-line bg-card p-3 text-xs" data-diag>
+      <p className="text-muted">Take a screenshot of this after trying Say it once, and send it over. Nothing here is sent anywhere.</p>
+      <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1">
+        {DIAG_LABELS.map(([k, l]) => (
+          <div key={k} className="contents">
+            <dt className="text-muted">{l}</dt>
+            <dd className="break-all" data-diag-key={k}>{d[k] || "—"}</dd>
+          </div>
+        ))}
+      </dl>
+      <button
+        type="button"
+        className="justify-self-start rounded-lg border border-line px-3 py-1"
+        onClick={() => navigator.clipboard?.writeText(text).then(() => setCopied(true), () => setCopied(false))}
+      >
+        {copied ? "Copied" : "Copy as text"}
+      </button>
     </div>
   );
 }
@@ -399,10 +527,11 @@ function WordResult({
   hideTarget: boolean;
 }) {
   if (state.kind === "idle") return null;
-  if (state.kind === "pending") return <p className="text-muted">Listening for words…</p>;
+  if (state.kind === "pending") return <p className="text-muted">Listening for words… say it in Thai now.</p>;
+  if (state.kind === "note") return <p className="text-muted" data-word-note>{state.text}</p>;
   if (state.kind === "message") {
     // don't promise the tone check when the mic itself failed
-    const text = toneDown ? state.text.replace(/,? but the tone check below still works\.?| The tone check below still works( offline| if the mic is free)?\./, ".").replace("..", ".") : state.text;
+    const text = toneDown ? state.text.replace(/,? but the tone check below still works\.?| The tone check still works( offline| if the mic is free)?\./, ".").replace("..", ".") : state.text;
     return <p className="text-miss" data-word-message>{text}</p>;
   }
   const h = describeHeard(state.heard, target, roman, en);

@@ -36,4 +36,7 @@ save("falling", utter(voice(lambda u: np.where(u < 0.25, 220 + 40 * u, 230 - 130
 save("rising", utter(voice(lambda u: np.where(u < 0.35, 150 - 57 * u, 130 + 90 * (u - 0.35) / 0.65))))
 save("flat", utter(voice(lambda u: 160 + 0 * u)))
 save("fall-rise-2syl", utter(voice(lin(230, 120), 0.4), voice(lambda u: np.where(u < 0.3, 140 - 30 * u, 131 + 100 * (u - 0.3) / 0.7), 0.45)))
+save("zeros", np.zeros(int(4 * R)))
+save("quiet-falling", utter(voice(lambda u: np.where(u < 0.25, 220 + 40 * u, 230 - 130 * (u - 0.25) / 0.75))) * 0.01)
+save("short-rising", utter(voice(lambda u: 140 + 90 * u, 0.18)))
 save("silence", np.random.default_rng(2).normal(0, 0.001, int(4 * R)))

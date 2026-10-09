@@ -111,7 +111,7 @@ await step("req1: Say it is one fixed-size button and nothing shifts", async () 
   const measure = () =>
     page.evaluate(() => {
       const box = document.querySelector("[data-sayit]");
-      const btn = box.querySelector("button");
+      const btn = box.querySelector(":scope > button");
       const next = [...document.querySelectorAll("button")].find((b) => b.textContent?.trim() === "Next line");
       const r = btn.getBoundingClientRect();
       return { w: r.width, h: r.height, x: r.x, y: r.y, buttons: box.querySelectorAll("button").length, nextY: next.getBoundingClientRect().y + window.scrollY, label: btn.textContent.trim() };
@@ -126,7 +126,7 @@ await step("req1: Say it is one fixed-size button and nothing shifts", async () 
   const done = await measure();
   console.log("   idle", JSON.stringify(idle), "\n   live", JSON.stringify(live), "\n   done", JSON.stringify(done));
   for (const [name, m] of [["live", live], ["done", done]]) {
-    if (m.buttons !== 1) throw new Error(`${name}: ${m.buttons} buttons in Say it`);
+    if (m.buttons !== idle.buttons) throw new Error(`${name}: buttons in Say it changed ${idle.buttons} → ${m.buttons}`);
     const near = (a, b) => Math.abs(a - b) < 0.5;
     if (!near(m.w, idle.w) || !near(m.h, idle.h) || !near(m.x, idle.x) || !near(m.y, idle.y)) throw new Error(`${name}: button moved/resized`);
     if (!near(m.nextY, idle.nextY)) throw new Error(`${name}: content below shifted ${idle.nextY} → ${m.nextY}`);

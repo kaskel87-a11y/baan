@@ -64,6 +64,24 @@ for (const c of cases) {
   console.log(`${ok ? "✓" : "✗"} two syllables falling+rising: ${tones.join(", ")}`);
 }
 
+// Quiet phone mic: same falling voice at -46 dB with a loud click at the start; very short word (0.15 s)
+{
+  const v = voice((u) => 230 - 110 * u, 0.5).map((x) => x * 0.005);
+  v[200] = 0.9; // click
+  const a = analyze(v, RATE, 1);
+  const s = a.ok && a.segments[0] ? describe(a.frames, a.segments[0], a.refHz) : null;
+  const got = s ? classify(s, false) : `no analysis (${a.reason})`;
+  const ok = got === "falling";
+  if (!ok) fail++;
+  console.log(`${ok ? "✓" : "✗"} quiet mic (peak 0.005) + click: ${got}`);
+  const b = analyze(voice((u) => 140 + 90 * u, 0.15), RATE, 1);
+  const s2 = b.ok && b.segments[0] ? describe(b.frames, b.segments[0], b.refHz) : null;
+  const got2 = s2 ? classify(s2, false) : `no analysis (${b.reason})`;
+  const ok2 = got2 === "rising";
+  if (!ok2) fail++;
+  console.log(`${ok2 ? "✓" : "✗"} very short 0.15 s rising word: ${got2}`);
+}
+
 // Silence → no-voice
 {
   const a = analyze(new Float32Array(RATE).map(() => (Math.random() * 2 - 1) * 0.001), RATE, 1);
