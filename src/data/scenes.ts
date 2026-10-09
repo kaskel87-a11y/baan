@@ -382,8 +382,8 @@ export const SCENES: Scene[] = [
         "id": "m1",
         "who": "lung",
         "en": "Hello. What are you looking for?",
-        "thai": "สวัสดีครับ มาดูอะไรดีครับ",
-        "roman": "sà-wàt-dii khráp maa duu à-rai dii khráp"
+        "thai": "สวัสดีครับ ดูอะไรครับ",
+        "roman": "sà-wàt-dii khráp duu à-rai khráp"
       },
       {
         "id": "m2",
@@ -573,8 +573,8 @@ export const SCENES: Scene[] = [
         "who": "wit",
         "en": "Sure. Get in.",
         "thai": "ได้ครับ ขึ้นได้เลยครับ",
-        "roman": "dâai khráp khúen dâai loei khráp",
-        "note": "ขึ้น is high. The high tone dips at the end — that dip is still the high tone, not falling."
+        "roman": "dâai khráp khûen dâai loei khráp",
+        "note": "ขึ้น falls: high-class ข plus ้ gives a falling tone."
       },
       {
         "id": "s3",
@@ -609,7 +609,7 @@ export const SCENES: Scene[] = [
           "male": "châi jàwt thîi-nîi khráp",
           "female": "châi jàwt thîi-nîi khâ"
         },
-        "note": "ใช่ falls. ที่นี่ is falling, then high."
+        "note": "ใช่ falls. ที่นี่ is falling, falling."
       },
       {
         "id": "s6",
@@ -757,13 +757,14 @@ export const SCENES: Scene[] = [
         "who": "you",
         "en": "Just one.",
         "thai": {
-          "male": "ท่านเดียวครับ",
-          "female": "ท่านเดียวค่ะ"
+          "male": "คนเดียวครับ",
+          "female": "คนเดียวค่ะ"
         },
         "roman": {
-          "male": "thâan diao khráp",
-          "female": "thâan diao khâ"
-        }
+          "male": "khon diaw khráp",
+          "female": "khon diaw khâ"
+        },
+        "note": "Staff say ท่าน to be polite about you; you say คน about yourself."
       },
       {
         "id": "f3",
@@ -781,10 +782,10 @@ export const SCENES: Scene[] = [
           "female": "เอาผัดไทยไม่เผ็ดค่ะ"
         },
         "roman": {
-          "male": "ao phàt-thai mâi phét khráp",
-          "female": "ao phàt-thai mâi phét khâ"
+          "male": "ao phàt-thai mâi phèt khráp",
+          "female": "ao phàt-thai mâi phèt khâ"
         },
-        "note": "ไม่ falls. เผ็ด is high."
+        "note": "ไม่ falls. เผ็ด is low."
       },
       {
         "id": "f5",
@@ -854,7 +855,7 @@ export const SCENES: Scene[] = [
         "id": "f-r",
         "kind": "read",
         "thai": "เอาผัดไทยไม่เผ็ด",
-        "roman": "ao phàt-thai mâi phét",
+        "roman": "ao phàt-thai mâi phèt",
         "en": "Pad thai, not spicy.",
         "options": [
           "Pad thai, not spicy.",
@@ -966,7 +967,7 @@ export const SCENES: Scene[] = [
         "en": "See you again.",
         "thai": "แล้วเจอกันนะคะ",
         "roman": "láew jer gan ná khá",
-        "note": "นะ softens it. Her คะ is the question-side particle, and here it keeps the goodbye light."
+        "note": "นะ softens it. After นะ, women use คะ (high): นะคะ."
       },
       {
         "id": "l5",
@@ -992,7 +993,8 @@ export const SCENES: Scene[] = [
         "roman": {
           "male": "laa-kàwn khráp",
           "female": "laa-kàwn khâ"
-        }
+        },
+        "note": "Final-sounding, like \"farewell\". Day to day, Thais say ไปก่อนนะครับ/คะ or บ๊ายบาย."
       },
       {
         "id": "l7",

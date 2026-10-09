@@ -13,7 +13,7 @@ export const TONE_ANCHORS: (ToneWord & { hint: string })[] = [
   {
     "tone": "low",
     "thai": "ป่า",
-    "roman": "pàa",
+    "roman": "bpàa",
     "en": "forest",
     "hint": "Lower than ordinary, and it stays there."
   },
@@ -68,7 +68,7 @@ export const EAR_POOL: ToneWord[] = [
   },
   {
     "thai": "ป่า",
-    "roman": "pàa",
+    "roman": "bpàa",
     "en": "forest",
     "tone": "low"
   },
@@ -128,14 +128,20 @@ export const EAR_POOL: ToneWord[] = [
   },
   {
     "thai": "เผ็ด",
-    "roman": "phét",
+    "roman": "phèt",
     "en": "spicy",
-    "tone": "high"
+    "tone": "low"
   },
   {
     "thai": "ครับ",
     "roman": "khráp",
     "en": "polite particle",
+    "tone": "high"
+  },
+  {
+    "thai": "ม้า",
+    "roman": "máa",
+    "en": "horse",
     "tone": "high"
   },
   {
@@ -201,7 +207,7 @@ export const RULE_EXAMPLES: Partial<Record<RuleKey, { thai: string; roman: strin
   },
   "mid|live|ek": {
     "thai": "ป่า",
-    "roman": "pàa",
+    "roman": "bpàa",
     "en": "forest"
   },
   "mid|live|tho": {

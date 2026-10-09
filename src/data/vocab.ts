@@ -41,7 +41,7 @@ export const VOCAB: Vocab[] = [
     "thai": "ไหม",
     "roman": "mǎi",
     "en": "…or not? / right?",
-    "hint": "Rising. Turns a statement into a yes-no question."
+    "hint": "Rising. Turns a statement into a yes-no question. Written rising; in everyday speech usually said high (mái)."
   },
   {
     "id": "chue",
@@ -62,7 +62,7 @@ export const VOCAB: Vocab[] = [
     "thai": "ฉัน",
     "roman": "chǎn",
     "en": "I, often female",
-    "hint": "Rising."
+    "hint": "Rising. Written rising; in everyday speech usually said high (chán)."
   },
   {
     "id": "kho",
@@ -189,7 +189,7 @@ export const VOCAB: Vocab[] = [
     "thai": "ที่นี่",
     "roman": "thîi-nîi",
     "en": "here",
-    "hint": "Falling, then high."
+    "hint": "Falling, falling. นี่ (here/this) is falling; นี้ in อันนี้ and วันนี้ is high."
   },
   {
     "id": "chai",
@@ -208,9 +208,9 @@ export const VOCAB: Vocab[] = [
   {
     "id": "khuen",
     "thai": "ขึ้น",
-    "roman": "khúen",
+    "roman": "khûen",
     "en": "to get on, to go up",
-    "hint": "High, not falling."
+    "hint": "Falling. High-class ข with mai tho is falling."
   },
   {
     "id": "padthai",
@@ -221,9 +221,9 @@ export const VOCAB: Vocab[] = [
   {
     "id": "phet",
     "thai": "เผ็ด",
-    "roman": "phét",
+    "roman": "phèt",
     "en": "spicy",
-    "hint": "High."
+    "hint": "Low. High-class ผ on a short dead syllable is low."
   },
   {
     "id": "mai",
@@ -277,7 +277,8 @@ export const VOCAB: Vocab[] = [
     "id": "laa",
     "thai": "ลาก่อน",
     "roman": "laa-kàwn",
-    "en": "goodbye"
+    "en": "goodbye",
+    "hint": "Final-sounding, like \"farewell\". Day to day, Thais say ไปก่อนนะครับ/คะ or บ๊ายบาย."
   },
   {
     "id": "see-you",

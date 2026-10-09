@@ -293,10 +293,11 @@ export const CONSONANTS: Consonant[] = [
     "letter": "ห",
     "chant": "หอ หีบ",
     "example": {
-      "thai": "หมา",
-      "roman": "mǎa",
-      "en": "dog"
-    }
+      "thai": "ห้า",
+      "roman": "hâa",
+      "en": "five"
+    },
+    "note": "Silent in หมา, หนู, หมอ: it only raises the tone."
   },
   {
     "letter": "ฬ",
