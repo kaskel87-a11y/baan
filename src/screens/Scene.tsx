@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { annotateThai } from "../lib/romanize";
 import { ArrowLeft } from "lucide-react";
 import { SCENES } from "../data/scenes";
 import { VOCAB_BY_ID } from "../data/vocab";
@@ -207,7 +208,7 @@ function Preview({ words, index, roman, onIndex, onStart }: { words: Vocab[]; in
         <p className="thai text-4xl" lang="th">{w.thai}</p>
         {roman ? <p className="text-lg text-muted">{w.roman}</p> : null}
         <p>{w.en}</p>
-        {w.hint ? <p className="text-sm text-muted">{w.hint}</p> : null}
+        {w.hint ? <p className="text-sm text-muted">{annotateThai(w.hint)}</p> : null}
         <div className="flex flex-wrap gap-2">
           <HearButton text={w.thai} />
           <HearButton text={w.thai} slow />
@@ -275,7 +276,7 @@ function Talk({
         <p className="thai text-4xl" lang="th">{r.thai}</p>
         {roman ? <p className="text-lg text-muted">{r.roman}</p> : null}
         <p>{line.en}</p>
-        {line.note ? <p className="text-sm text-muted">{line.note}</p> : null}
+        {line.note ? <p className="text-sm text-muted">{annotateThai(line.note)}</p> : null}
         {r.thai.includes("…") ? <p className="text-sm text-muted">Add your name in Settings and this line becomes yours.</p> : null}
         <div className="flex flex-wrap gap-2">
           <HearButton text={r.thai} />
@@ -455,7 +456,7 @@ function Drills({
             ) : null}
             <p className="text-muted">{session.verdict === "yes" ? "You got:" : "The right answer is:"}</p>
             <AnswerLine thai={answerThai} roman={roman} en={meaning} />
-            {d.kind === "particle" ? <p className="text-muted">{particleNote(voice, d.particleKind)}</p> : null}
+            {d.kind === "particle" ? <p className="text-muted">{annotateThai(particleNote(voice, d.particleKind))}</p> : null}
           </div>
         ) : null}
       </article>

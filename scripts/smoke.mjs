@@ -1,6 +1,7 @@
 // Headless smoke test: walks every route and the main flows, fails on any page error or console error.
 // Usage: node scripts/smoke.mjs [baseUrl]   (default http://localhost:4321/)
 import puppeteer from "puppeteer-core";
+import { thaiSyllables, romanKey } from "../src/lib/romanize.ts";
 
 const base = process.argv[2] ?? "http://localhost:4321/";
 const browser = await puppeteer.launch({
@@ -53,6 +54,19 @@ await page.evaluateOnNewDocument(() => {
   }
   window.SpeechRecognition = FakeRec;
   window.webkitSpeechRecognition = FakeRec;
+});
+// Standing rule: feedback must be readable without Thai. Watch every feedback area as it changes and record
+// any line where Thai appears without romanization (Latin letters) on the same line.
+await page.evaluateOnNewDocument(() => {
+  window.__thaiOnly = [];
+  const check = () => {
+    for (const el of document.querySelectorAll("[data-feedback], [data-word-feedback], [data-tone-feedback], [data-word-check]")) {
+      for (const line of el.innerText.split("\n")) {
+        if (/[\u0E00-\u0E7F]/.test(line)) window.__thaiOnly.push(line.trim());
+      }
+    }
+  };
+  new MutationObserver(check).observe(document, { subtree: true, childList: true, characterData: true });
 });
 await page.goto(base, { waitUntil: "networkidle0" });
 await page.evaluate(() => localStorage.clear());
@@ -136,7 +150,7 @@ await step("req1: Say it is one fixed-size button and nothing shifts", async () 
 
 await step("req3: Say it correction is English + Thai + roman + meaning", async () => {
   const t = await page.evaluate(() => document.querySelector("[data-sayit-result]").innerText);
-  for (const want of ["Not quite.", "I heard", "Target:", "sà-wàt-dii khráp duu à-rai khráp", "Hello. What are you looking for?"])
+  for (const want of ["Not quite.", "I heard something like", "Target:", "sà-wàt-dii khráp duu à-rai khráp", "Hello. What are you looking for?"])
     if (!t.includes(want)) throw new Error(`missing "${want}" in: ${t}`);
 });
 
@@ -232,6 +246,22 @@ await step("settings", async () => {
 await step("manifest", async () => {
   const m = await page.evaluate(async () => (await fetch("manifest.webmanifest")).json());
   if (m.short_name !== "Baan") throw new Error(`manifest name ${m.short_name}`);
+});
+
+await step("rule: no Thai-only line in any feedback seen during the run", async () => {
+  // every Thai run needs its romanization right next to it (within 50 characters)
+  const strip = (x) => x.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  const bad = [];
+  for (const line of new Set(await page.evaluate(() => window.__thaiOnly))) {
+    for (const m of line.matchAll(/[\u0E00-\u0E7F]+/g)) {
+      const first = thaiSyllables(m[0])[0];
+      if (!first) continue;
+      const near = strip(line.slice(Math.max(0, m.index - 50), m.index) + " " + line.slice(m.index + m[0].length, m.index + m[0].length + 50));
+      const key = romanKey(first.onset + first.vowel).slice(0, 2);
+      if (!near.split(/[^a-z]+/).some((t) => romanKey(t).startsWith(key))) bad.push(`${m[0]} in “${line}”`);
+    }
+  }
+  if (bad.length) throw new Error(`Thai without romanization: ${bad.slice(0, 5).join(" | ")}`);
 });
 
 const sayIt = await page.evaluate(() => "webkitSpeechRecognition" in window || "SpeechRecognition" in window);

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { annotateThai } from "../lib/romanize";
 import { VOCAB_BY_ID } from "../data/vocab";
 import { dueIds, gradeCard, useStore, type Grade } from "../lib/store";
 import { Button, HearButton, PageHeader, SayIt } from "../components/ui";
@@ -91,7 +92,7 @@ export function Review() {
               {dir === "thai" ? null : <p className="thai text-3xl" lang="th">{card.thai}</p>}
               <p className="text-muted">{card.roman}</p>
               {dir === "thai" ? null : <p>“{card.en}”</p>}
-              {card.hint ? <p className="text-sm text-muted">{card.hint}</p> : null}
+              {card.hint ? <p className="text-sm text-muted">{annotateThai(card.hint)}</p> : null}
             </div>
           ) : (
             <Button className="justify-self-start" onClick={() => setRevealed(true)}>Show</Button>

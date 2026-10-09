@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.1 — feedback in plain English
+
+- New automatic Thai-to-romanization (`src/lib/romanize.ts`): syllables, clusters, pre-posed vowels, finals and tones via the tone-rule engine. Tested on all app vocabulary (`npm run test:roman`).
+- Word check no longer shows raw Thai. "I heard something like “hát-dtôei”", then up to 3 plain-English tips per syllable (start sound, vowel, ending, tone), most important first. "Close!" gives one fix; a match says "Correct! That sounded like “phàt-thai”."
+- Any Thai in notes, hints, particle notes, letter quiz and review is followed by its romanization.
+- Smoke test fails on any Thai in feedback that has no romanization next to it.
+
 ## 0.4.0 — 2026-10-08
 
 Collin's real iPhone results on 0.3.1 (Chrome for iOS, then Safari):

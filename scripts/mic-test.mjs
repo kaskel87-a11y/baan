@@ -217,12 +217,12 @@ for (const [wav, want] of [["falling", "falling"], ["rising", "rising"], ["flat"
   show(r);
   ok(r.recStartedBySay === 1 && r.sayLabel === "Stop", `Say it starts speech recognition alone (started ${r.recStartedBySay}×, label "${r.sayLabel}")`);
   ok(r.toneDisabledWhileListening === true, "  Check my tones is disabled while recognition listens (no mic sharing)");
-  ok(/Correct\. That matched\./.test(r.wordAfterStep ?? "") && /I heard: แพง · phaaeng/.test(r.wordAfterStep ?? ""), "  word result: Correct + heard Thai/roman/English");
+  ok(/Correct! That sounded like “phaaeng”\./.test(r.wordAfterStep ?? ""), "  word result: Correct! in English with the romanization");
   ok(r.meterMax > 10, `live mic meter moved while recording (max ${r.meterMax}%)`);
 }
 {
   const r = await run({ wav: "falling", syllables: 1, transcript: "ไม่รู้", wordStep: true });
-  ok(/I heard: ไม่รู้/.test(r.wordAfterStep) && /Target:/.test(r.wordAfterStep), "wrong words → shows what was heard next to the target");
+  ok(/I heard something like “mâi-rúu” \(ไม่รู้\)/.test(r.wordAfterStep) && /Target:/.test(r.wordAfterStep), `wrong words → heard shown romanized + English tip: ${r.wordAfterStep.replace(/\n+/g, " | ")}`);
 }
 {
   const r = await run({ wav: "falling", syllables: 1, rec: "network", wordStep: true });
@@ -234,7 +234,7 @@ for (const [wav, want] of [["falling", "falling"], ["rising", "rising"], ["flat"
 }
 {
   const r = await run({ wav: "falling", syllables: 1, rec: "interim-only", transcript: "แพง", wordStep: true });
-  ok(/Correct\. That matched\./.test(r.wordAfterStep ?? ""), `recognition ends with only an interim result → still judged: ${(r.wordAfterStep ?? "").replace(/\n/g, " | ")}`);
+  ok(/Correct! That sounded like/.test(r.wordAfterStep ?? ""), `recognition ends with only an interim result → still judged: ${(r.wordAfterStep ?? "").replace(/\n/g, " | ")}`);
 }
 {
   const r = await run({ wav: "falling", syllables: 1, rec: "silent-end", sayTwiceEmpty: true });
@@ -245,7 +245,7 @@ for (const [wav, want] of [["falling", "falling"], ["rising", "rising"], ["flat"
   const r = await run({ wav: "falling", syllables: 1, ...IOS, via: "say", fakeAsr: "แพง" });
   show(r);
   ok(r.recDuring === 0, `iPhone: Say it never starts speech recognition (${r.recDuring}×)`);
-  ok(/Correct\. That matched\./.test(r.wordText) && /I heard: แพง · phaaeng/.test(r.wordText), "iPhone: word check from the recording → Correct + Thai/roman/English");
+  ok(/Correct! That sounded like “phaaeng”/.test(r.wordText), "iPhone: word check from the recording → Correct! in English");
   ok(r.tones[0] === "falling", `iPhone: same recording gives the tone check → ${r.tones[0]}`);
   ok(r.meterMax > 10, `iPhone: mic meter moved (max ${r.meterMax}%)`);
   ok(r.shift < 0.5 && !r.errors.length, `  no layout shift / errors (${r.shift}px ${r.errors.join("; ")})`);
@@ -256,7 +256,13 @@ for (const [wav, want] of [["falling", "falling"], ["rising", "rising"], ["flat"
 }
 {
   const r = await run({ wav: "falling", syllables: 1, ...IOS, via: "say", fakeAsr: "Pang!" });
-  ok(/Close, but not exact/.test(r.wordText), `Latin transcript "Pang!" for แพง → close (${r.wordText.split("\n")[1]})`);
+  ok(/Close! I heard something like “Pang”/.test(r.wordText), `Latin transcript "Pang!" for แพง → ${r.wordText.replace(/\n+/g, " | ")}`);
+}
+{
+  const r = await run({ wav: "thai-ผัดไทย", syllables: 2, scene: "meal", want: "ผัดไทย", ...IOS, via: "say", fakeAsr: "ฮัดเต้ย" });
+  console.log("   screenshot case:", r.wordText.replace(/\n+/g, " | "));
+  ok(/Not quite\. I heard something like “hát-dtôei” \(ฮัดเต้ย\)/.test(r.wordText), "heard ฮัดเต้ย → romanized “hát-dtôei”");
+  ok(/Start "phàt" with a puffed p sound \(ph\)/.test(r.wordText) && /Start "thai" with a puffed t sound \(th\)/.test(r.wordText), "  syllable tips in plain English");
 }
 // ---- real Thai speech (Google TTS) with room noise + hum, through the fake mic
 for (const [wav, label] of [["thai-ผัดไทย", "clean-ish"], ["phone-phatthai", "quiet voice + hum"]]) {
@@ -306,7 +312,7 @@ if (process.env.REAL_ASR) {
   for (const [wav, scene, want] of [["thai-ผัดไทย", "meal", "ผัดไทย"], ["thai-แพง", "market", "แพง"]]) {
     const r = await run({ wav, syllables: want === "แพง" ? 1 : 2, scene, want, ...IOS, via: "say", fakeAsr: null, asrOk: true });
     show(r);
-    ok(/I heard:/.test(r.wordText), `real Whisper on "${want}" → ${r.wordText.split("\n").filter(Boolean).slice(1, 3).join(" | ")}`);
+    ok(/I heard something like|Correct!/.test(r.wordText), `real Whisper on "${want}" → ${r.wordText.split("\n").filter(Boolean).slice(1, 3).join(" | ")}`);
   }
 }
 

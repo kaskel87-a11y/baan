@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { annotateThai } from "../lib/romanize";
 import { EAR_POOL, MAI_SET, RULE_EXAMPLES, TONE_ANCHORS } from "../data/tones";
 import type { ConsonantClass, SyllableKind, Tone, ToneMark, ToneWord } from "../data/types";
 import { recordBest, recordPair, useStore } from "../lib/store";
@@ -69,7 +70,7 @@ function Anchors() {
               <span className="block text-sm font-medium text-muted">{TONE_LABEL[a.tone]}</span>
               <span className="thai text-2xl" lang="th">{a.thai}</span>
               <span className="ml-2 text-muted">{a.roman}</span>
-              <span className="mt-1 block text-sm">{a.en}. {a.hint}</span>
+              <span className="mt-1 block text-sm">{a.en}. {annotateThai(a.hint)}</span>
             </span>
           </button>
         ))}

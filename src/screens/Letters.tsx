@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { annotateThai } from "../lib/romanize";
 import { CONSONANTS, VOWELS } from "../data/letters";
 import type { Consonant, ConsonantClass } from "../data/types";
 import { recordBest, useStore } from "../lib/store";
@@ -79,7 +80,7 @@ export function Letters() {
               <span className="text-sm text-muted">{v.sign} · {v.roman}</span>
               <span className="mt-1 block thai text-2xl" lang="th">{v.thai}</span>
               <span className="block text-sm">{v.en}</span>
-              <span className="mt-1 block text-sm text-muted">{v.note}</span>
+              <span className="mt-1 block text-sm text-muted">{annotateThai(v.note)}</span>
             </button>
           ))}
         </div>
@@ -130,11 +131,11 @@ export function Letters() {
               <div className="grid gap-1 text-sm" data-feedback>
                 <p className={picked === consonantClass(cur.letter) ? "font-medium text-accent" : "font-medium text-miss"}>
                   {picked === consonantClass(cur.letter)
-                    ? `Correct. ${cur.letter} is a ${consonantClass(cur.letter)}-class letter.`
-                    : `Not quite. You picked ${label(picked).toLowerCase()}; ${cur.letter} is a ${consonantClass(cur.letter)}-class letter.`}
+                    ? `Correct. ${cur.letter} (${cur.chantRoman ?? ""}) is a ${consonantClass(cur.letter)}-class letter.`
+                    : `Not quite. You picked ${label(picked).toLowerCase()}; ${cur.letter} (${cur.chantRoman ?? ""}) is a ${consonantClass(cur.letter)}-class letter.`}
                 </p>
                 <p className="text-muted">Its name:</p>
-                <AnswerLine thai={cur.chant} roman={cur.chantRoman} en={cur.chantEn ? `${cur.letter} as in “${cur.chantEn}”` : undefined} />
+                <AnswerLine thai={cur.chant} roman={cur.chantRoman} en={cur.chantEn ? `${cur.chantRoman?.split(" ")[0] ?? ""}, as in “${cur.chantEn}”` : undefined} />
                 {cur.example ? (
                   <p className="text-muted">
                     Example: <span lang="th">{cur.example.thai}</span> {cur.example.roman}, “{cur.example.en}”
@@ -191,7 +192,7 @@ function LetterCard({ item }: { item: Consonant }) {
       ) : (
         <p className="text-sm text-muted">Learn the class from the name. The mnemonic is the traditional one.</p>
       )}
-      {item.note ? <p className="text-sm text-muted">{item.note}</p> : null}
+      {item.note ? <p className="text-sm text-muted">{annotateThai(item.note)}</p> : null}
     </article>
   );
 }

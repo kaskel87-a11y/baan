@@ -140,7 +140,7 @@ console.log("   diag:", JSON.stringify(r1.diag));
 ok(r1.recStarted === 0 && r1.recAfterTone === 0, `WebKit iPhone: speech recognition never started (${r1.recStarted}, ${r1.recAfterTone})`);
 ok(r1.gum === 1 && r1.sayLabel === "Stop", `WebKit iPhone: Say it records with the mic (getUserMedia ×${r1.gum}, label "${r1.sayLabel}")`);
 ok(r1.meterMax > 10, `WebKit: live mic meter moves (max ${r1.meterMax}%)`);
-ok(/Correct\. That matched\./.test(r1.word) && /phaaeng/.test(r1.word), "WebKit: word check from the recording, in English with Thai/roman/meaning");
+ok(/Correct! That sounded like “phaaeng”/.test(r1.word), "WebKit: word check from the recording, in English with Thai/roman/meaning");
 ok(r1.heard[0] === "falling" && r1.curve > 0, `WebKit: falling voice → ${r1.heard[0]}, curve drawn (path: ${r1.diag.capturePath})`);
 ok(r1.gumAfterTone === 2 && r1.heard2[0] === "falling", `WebKit: Check my tones records alone → ${r1.heard2[0]}`);
 ok(!r1.errors.length, `WebKit: no page errors ${r1.errors.join("; ")}`);
@@ -164,7 +164,7 @@ ok(/Download and check my words/.test(r6.word), "WebKit: first use asks before d
   const r7 = await run({ contour: "real", pcm: { x, rate: 48000 }, scene: "meal", want: "ผัดไทย", asr: "ผัดไทย" });
   console.log("   tone:", r7.tone.replace(/\n+/g, " | "));
   ok(r7.heard.length === 2 && /2 of 2 syllables matched/.test(r7.tone), `WebKit real Thai "phàt thai" (noise + hum) → ${r7.heard.join(", ")}`);
-  ok(/Correct\. That matched\./.test(r7.word), "WebKit real Thai: word check Correct");
+  ok(/Correct! That sounded like “phàt-thai”/.test(r7.word), "WebKit real Thai: word check Correct");
 }
 
 console.log(failures ? `${failures} failed` : "webkit OK");

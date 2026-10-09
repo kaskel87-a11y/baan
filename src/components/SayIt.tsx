@@ -8,6 +8,7 @@ import { matchSpoken, TONE_LABEL, toneFromRoman, type Verdict } from "../lib/tha
 import { createCapture, micSupported, type Capture, type MicError, type Recording } from "../lib/recorder";
 import { errorName, setDiag, useDiag, type Diag } from "../lib/diag";
 import { latinMatches, transcribe, transcriberLoaded } from "../lib/transcribe";
+import { compareSpoken } from "../lib/compare";
 
 const ASR_OK_KEY = "baan.asr.ok";
 const WORD_MODE_KEY = "baan.wordMode";
@@ -510,7 +511,7 @@ export function SayIt({
         </p>
 
         {/* word check: reserved block, directly under Say it (as in 0.2.0) */}
-        <div className="h-[8.5rem] overflow-y-auto" data-word-check>
+        <div className="h-[11rem] overflow-y-auto" data-word-check>
           <p className="text-xs font-medium uppercase tracking-wide text-muted">Word check</p>
           <WordResult
             state={word}
@@ -658,18 +659,37 @@ function WordResult({
     return <p className="text-miss" data-word-message>{text}</p>;
   }
   const h = describeHeard(state.heard, target, roman, en);
-  const head = state.verdict === "yes" ? "Correct. That matched." : state.verdict === "close" ? "Close, but not exact." : "Not quite.";
+  const cmp = compareSpoken(state.heard, target, roman, state.verdict === "close" ? 1 : 3);
+  const heardRoman = cmp.heardRoman || h.roman || state.heard;
+  const isThai = /[\u0E00-\u0E7F]/.test(state.heard);
+  const meaning = h.en ? <> (that means “{h.en}”)</> : null;
   return (
-    <div className="grid gap-1">
-      <p className={`font-medium ${state.verdict === "yes" ? "text-accent" : state.verdict === "no" ? "text-miss" : ""}`}>{head}</p>
-      <p data-heard>
-        <span className="text-muted">I heard: </span>
-        <span lang="th" className="thai">{state.heard}</span>
-        {h.roman ? <span className="text-muted"> · {h.roman}</span> : null}
-        {h.en ? <span> · “{h.en}”</span> : !h.roman ? <span className="text-muted"> (not a word I know)</span> : null}
-      </p>
+    <div className="grid gap-1" data-word-feedback>
+      {state.verdict === "yes" ? (
+        <p className="font-medium text-accent" data-heard>
+          Correct! That sounded like {roman ? `“${roman}”` : `“${heardRoman}”`}.
+        </p>
+      ) : (
+        <p className={`font-medium ${state.verdict === "no" ? "text-miss" : ""}`} data-heard>
+          {state.verdict === "close" ? "Close!" : "Not quite."} I heard something like “{heardRoman}”
+          {isThai ? (
+            <span className="font-normal text-muted">
+              {" "}(<span lang="th" className="thai">{state.heard}</span>)
+            </span>
+          ) : null}
+          {meaning}.
+        </p>
+      )}
+      {state.verdict !== "yes" && !hideTarget && cmp.tips.length ? (
+        <ul className="grid list-disc gap-0.5 pl-5" data-tips>
+          {cmp.tips.map((t, k) => (
+            <li key={k}>{t}</li>
+          ))}
+        </ul>
+      ) : null}
+      {state.verdict !== "yes" && !hideTarget && !cmp.tips.length ? <p>Say it once more, clearly and a little slower.</p> : null}
       {hideTarget ? (
-        <p className="text-muted">Tap Show to see the right answer.</p>
+        state.verdict === "yes" ? null : <p className="text-muted">Tap Show to see the right answer.</p>
       ) : (
         <div className="flex flex-wrap items-baseline gap-x-1">
           <span className="text-muted">Target:</span>
