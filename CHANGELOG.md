@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.7.0 — Today: one short daily session
+
+- New Today card at the top of Path and a Today screen (`#/today`) with one "Start today's session" button. The session is about 10–15 minutes: due Review cards (up to 30, topped up with new cards when few are due), 10 tone-pair trials weighted to your weakest pairs, the next unfinished scene (or a replay of your weakest one), and 5 vendor prices.
+- Thin segmented progress bar, "Finish later" (resumes at the same step, also after closing the app), and "Skip this step". Finishing a scene that is today's step brings you back with "Continue today's session".
+- Daily goal: a finished session or 15 graded items (Review grades, tone-pair answers, number answers, scene drills). Change it to 10, 15, 25 or 40 in Settings.
+- The streak now only grows on days the goal is met (it used to grow on any tap). The last 7 days show as dots; a streak that lapsed shows 0.
+- New saved fields `dailyGoal`, `history{date: {items, minutes, met}}` and `today` in `baan.v1`; existing progress is kept.
+- Fix: in Hear the price, a price you kept missing could loop forever. Misses now come back once, after the main items.
+- Tests: `npm run test:today` (goal, streak and session rules) and a smoke step that runs a whole Today session.
+
 ## 0.6.0 — Numbers and prices trainer
 
 - New Numbers screen on Path (`#/numbers`): Learn 0–10 / teens / tens / hundreds, Hear a vendor price and type digits, Say the price with Say it, and Thai digits ๑–๙.

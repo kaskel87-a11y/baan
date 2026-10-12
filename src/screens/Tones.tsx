@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { annotateThai } from "../lib/romanize";
 import { EAR_POOL, MAI_SET, RULE_EXAMPLES, TONE_ANCHORS } from "../data/tones";
 import type { ConsonantClass, SyllableKind, Tone, ToneMark, ToneWord } from "../data/types";
-import { recordBest, recordPair, useStore } from "../lib/store";
+import { logItems, recordBest, recordPair, useStore } from "../lib/store";
 import { speak, speakSequence } from "../lib/audio";
 import { shuffle, TONE_LABEL, TONES, toneFromRule } from "../lib/thai";
 import {
@@ -137,7 +137,8 @@ function feedbackText(trial: Trial, answer: string, ok: boolean) {
   return `${ok ? "Correct" : "Not quite"}. It was ${what}.`;
 }
 
-function PairTrainer() {
+export function PairTrainer({ length = SESSION, onDone, embedded = false }: { length?: number; onDone?: (right: number) => void; embedded?: boolean } = {}) {
+  const SESSION = length;
   const s = useStore();
   const [mode, setMode] = useState<"which" | "same">("which");
   const [n, setN] = useState(-1); // -1 = not started
@@ -163,6 +164,7 @@ function PairTrainer() {
     setAnswer(a);
     const r = ok ? right + 1 : right;
     setRight(r);
+    logItems(1);
     if (trial.kind === "which") {
       if (ok) pairsOf(trial).forEach((k) => recordPair(k, true));
       else {
@@ -173,12 +175,13 @@ function PairTrainer() {
       // "Same" trials don't name a pair on their own; credit/debit only the different ones.
       pairsOf(trial).forEach((k) => recordPair(k, ok));
     }
-    if (n === SESSION - 1) recordBest("pair", r);
+    if (n === SESSION - 1 && SESSION === 20) recordBest("pair", r);
   }
   function next() {
     if (n >= SESSION - 1) {
       setN(-1);
       setTrial(null);
+      onDone?.(right);
       return;
     }
     const t = makeTrial(mode, s.toneStats, n + 1);
@@ -194,7 +197,7 @@ function PairTrainer() {
     <section className="grid gap-3">
       <h2 className="font-display text-2xl">Minimal pairs</h2>
       <p className="text-sm text-muted">
-        Same syllable, different tone. The trainer keeps score per tone pair and serves your weakest pairs more often. The voice speed changes between plays so you learn the tone, not one recording.
+        Same syllable, different tone. The trainer keeps score per tone pair and serves your weakest pairs more often.{embedded ? "" : " The voice speed changes between plays so you learn the tone, not one recording."}
       </p>
       {totalAttempts >= 6 && weak ? (
         <p className="text-sm">
@@ -203,7 +206,7 @@ function PairTrainer() {
           {s.pairBest > 0 ? <span className="text-muted"> · best session {s.pairBest} of {SESSION}</span> : null}
         </p>
       ) : null}
-      {totalAttempts > 0 ? <HeatGrid /> : null}
+      {totalAttempts > 0 && !embedded ? <HeatGrid /> : null}
       {n < 0 || !trial ? (
         <div className="grid gap-3">
           <Segmented

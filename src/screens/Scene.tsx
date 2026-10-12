@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { SCENES } from "../data/scenes";
 import { VOCAB_BY_ID } from "../data/vocab";
 import type { Drill, Line, Scene as SceneT, Speaker, Vocab, Voice } from "../data/types";
-import { completeScene, introduce, markDueNow, touchStreak, useStore } from "../lib/store";
+import { completeScene, dayKey, introduce, markDueNow, touchStreak, useStore } from "../lib/store";
 import { cardsForMiss } from "../lib/cards";
 import { speak, speakSequence, stopSpeech } from "../lib/audio";
 import { particle, particleNote, pick, shuffle } from "../lib/thai";
@@ -53,6 +53,15 @@ function loadSession(id: string): Session | null {
     return raw ? (JSON.parse(raw) as Session) : null;
   } catch {
     return null;
+  }
+}
+
+/** Used by Today: a new scene opens at its word preview, a replay opens straight at the conversation. */
+export function primeSceneForToday(id: string, replay: boolean) {
+  try {
+    sessionStorage.setItem(sessionKey(id), JSON.stringify({ ...fresh(false), phase: replay ? "talk" : "preview" }));
+  } catch {
+    /* ignore */
   }
 }
 
@@ -177,7 +186,7 @@ export function SceneScreen({ id }: { id: string }) {
             const score = Math.round((right / scene.drills.length) * 100);
             introduce(scene.vocab, { sceneId: scene.id });
             for (const m of misses) markDueNow(cardsForMiss(m.thai));
-            completeScene(scene.id, score);
+            completeScene(scene.id, score, scene.drills.length);
             set({ ...session, phase: "done", right, misses, picked: null, verdict: null, build: [] });
           }}
         />
@@ -192,6 +201,11 @@ export function SceneScreen({ id }: { id: string }) {
           onDrill={() => goto("drill")}
           onReview={() => navigate({ name: "review" })}
           onNext={(nid) => navigate({ name: "scene", id: nid })}
+          onToday={
+            st.today && st.today.date === dayKey(new Date()) && st.today.steps.some((x) => x.kind === "scene" && x.id === scene.id)
+              ? () => navigate({ name: "today" })
+              : undefined
+          }
         />
       ) : null}
     </div>
@@ -511,7 +525,9 @@ function Done({
   onDrill,
   onReview,
   onNext,
+  onToday,
 }: {
+  onToday?: () => void;
   scene: SceneT;
   right: number;
   misses: Miss[];
@@ -554,7 +570,8 @@ function Done({
         </div>
       ) : null}
       <div className="flex flex-wrap gap-2">
-        <Button variant="primary" onClick={onReview}>Review</Button>
+        {onToday ? <Button variant="primary" onClick={onToday}>Continue today’s session</Button> : null}
+        <Button variant={onToday ? "quiet" : "primary"} onClick={onReview}>Review</Button>
         {next ? <Button onClick={() => onNext(next.id)}>Next · {next.title}</Button> : null}
         <Button onClick={onAgain}>Hear it again</Button>
         <Button variant="ghost" onClick={onDrill}>Drill again</Button>

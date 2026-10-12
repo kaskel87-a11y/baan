@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { clearProgress, setName, setRoman, setVoice, useStore } from "../lib/store";
+import { clearProgress, setDailyGoal, setName, setRoman, setVoice, useStore } from "../lib/store";
 import { Button } from "../components/ui";
 
 export function Settings() {
@@ -26,6 +26,17 @@ export function Settings() {
         <span className="text-sm font-medium">Show romanization in scenes</span>
         <input type="checkbox" checked={s.roman} onChange={(e) => setRoman(e.target.checked)} className="size-5 accent-accent" />
       </label>
+      <fieldset className="grid gap-2">
+        <legend className="text-sm font-medium">Daily goal (graded items, or finish today’s session)</legend>
+        <div className="flex flex-wrap gap-2">
+          {[10, 15, 25, 40].map((g) => (
+            <Button key={g} variant={s.dailyGoal === g ? "primary" : "quiet"} onClick={() => setDailyGoal(g)}>
+              {g}
+            </Button>
+          ))}
+        </div>
+        <p className="text-sm text-muted">The streak only grows on days you meet the goal.</p>
+      </fieldset>
       <div className="grid gap-2">
         <Button
           className="justify-self-start"

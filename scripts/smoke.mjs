@@ -260,6 +260,59 @@ await step("letters", async () => {
   await clickText("Next letter");
 });
 
+await step("today: mixed session runs end to end, Finish later resumes, goal moves the streak", async () => {
+  await page.goto(base + "#/path", { waitUntil: "networkidle0" });
+  if (!(await has("Start today’s session"))) throw new Error("Today card missing on Path");
+  await clickText("Start today’s session");
+  if (!(await has("One short mixed session"))) throw new Error("Today screen missing");
+  await clickText("Start today’s session");
+  const btn = (t) => page.evaluate((t) => [...document.querySelectorAll("button")].some((b) => b.textContent.trim() === t && !b.disabled), t);
+  const stepText = () => page.evaluate(() => document.body.innerText.match(/Step (\d+) of (\d+)/)?.slice(1).map(Number) ?? null);
+  const first = await stepText();
+  if (!first) throw new Error("no step counter");
+  // Finish later, then resume at the same step.
+  await clickText("Finish later");
+  if (!(await has("Resume today’s session"))) throw new Error("no Resume on Path");
+  await clickText("Resume today’s session");
+  if ((await stepText())?.[0] !== first[0]) throw new Error("did not resume at the same step");
+  for (let guard = 0; guard < 200; guard++) {
+    if (await has("Today’s session is done")) break;
+    const label = await page.evaluate(() => document.querySelector("main p.font-display")?.textContent ?? "");
+    if (/^Review/.test(label)) {
+      if (await has("Review done")) await clickText("Next");
+      else {
+        await clickText("Show");
+        await clickText("Good");
+      }
+    } else if (/tone pairs/.test(label)) {
+      if (await has("Start 10 trials")) await clickText("Start 10 trials");
+      else if (await page.evaluate(() => [...document.querySelectorAll("button")].some((b) => /^(Next|Done)$/.test(b.textContent.trim()))))
+        await clickText((await btn("Done")) ? "Done" : "Next");
+      else await page.evaluate(() => [...document.querySelectorAll("article button")].find((b) => b.querySelector(".thai") || /^(Same|Different)$/.test(b.textContent.trim()))?.click());
+    } else if (/scene/i.test(label)) {
+      if (!(await has("Open the scene"))) throw new Error("scene step has no Open button");
+      await clickText("Skip this step");
+    } else if (/prices/.test(label)) {
+      if (await page.evaluate(() => [...document.querySelectorAll("button")].some((b) => b.textContent.trim() === "5 prices"))) await clickText("5 prices");
+      else if (await page.evaluate(() => [...document.querySelectorAll("button")].some((b) => b.textContent.trim() === "Check"))) {
+        await page.type("input[inputmode=numeric]", "1");
+        await clickText("Check");
+      } else await clickText((await btn("Done")) ? "Done" : "Next");
+    } else throw new Error(`unknown step "${label}"`);
+    await new Promise((r) => setTimeout(r, 60));
+  }
+  if (!(await has("Today’s session is done")))
+    throw new Error("session never finished: " + (await page.evaluate(() => document.querySelector("main").innerText.slice(0, 400).replace(/\n+/g, " | "))));
+  const st = await page.evaluate(() => JSON.parse(localStorage.getItem("baan.v1")));
+  const d = new Date();
+  const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  if (!st.history?.[key]?.met) throw new Error("goal not marked met");
+  if (!(st.history[key].items >= 10)) throw new Error(`only ${st.history[key].items} items counted`);
+  if (st.streak.count !== 1) throw new Error(`streak ${st.streak.count}`);
+  await page.goto(base + "#/path", { waitUntil: "networkidle0" });
+  if (!(await has("Goal met for today"))) throw new Error("Path does not show goal met");
+});
+
 await step("settings", async () => {
   await page.goto(base + "#/settings", { waitUntil: "networkidle0" });
   if (!(await has("Your voice in the lessons"))) throw new Error("settings missing");

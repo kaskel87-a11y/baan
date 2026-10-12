@@ -1,5 +1,7 @@
 import { SCENES } from "../data/scenes";
-import { dueIds, useStore } from "../lib/store";
+import { dayKey, dueIds, liveStreak, useStore } from "../lib/store";
+import { activeToday, planToday, stepMinutes } from "../lib/today";
+import { StreakDots } from "../components/StreakDots";
 import { navigate } from "../lib/router";
 import { Button } from "../components/ui";
 
@@ -18,6 +20,11 @@ export function Path() {
   const done = SCENES.filter((sc) => s.scenes[sc.id]?.completed).length;
   const next = SCENES.find((sc) => !s.scenes[sc.id]?.completed) ?? SCENES[0]!;
   const open = (id: string) => navigate({ name: "scene", id });
+  const t = activeToday(s);
+  const rec = s.history[dayKey(new Date())] ?? { items: 0, minutes: 0 };
+  const inProgress = !!t && t.step < t.steps.length;
+  const sessionDone = !!t && t.step >= t.steps.length;
+  const mins = planToday(s).reduce((a, st) => a + stepMinutes(st), 0);
   return (
     <div className="enter grid gap-6">
       <header className="grid gap-2">
@@ -28,6 +35,19 @@ export function Path() {
           Six conversations, in order. English stays hidden until you ask. What you meet comes back in Review.
         </p>
       </header>
+      <article className="rounded-4xl border border-accent bg-card p-5 grid gap-3">
+        <p className="text-sm text-muted">Today</p>
+        <h2 className="font-display text-xl">
+          {rec.met ? "Goal met for today." : inProgress ? `Step ${t!.step + 1} of ${t!.steps.length} waiting.` : "About " + mins + " minutes, all mixed."}
+        </h2>
+        <p className="text-sm text-muted tabular-nums">
+          {Math.min(rec.items, s.dailyGoal)} of {s.dailyGoal} graded today · the goal is a finished session or {s.dailyGoal} graded items
+        </p>
+        <StreakDots />
+        <Button variant="primary" className="justify-self-start" onClick={() => navigate({ name: "today" })}>
+          {inProgress ? "Resume today’s session" : sessionDone ? "Today’s session" : "Start today’s session"}
+        </Button>
+      </article>
       <div className="flex gap-1" aria-hidden="true">
         {SCENES.map((sc) => {
           const c = !!s.scenes[sc.id]?.completed;
@@ -36,7 +56,7 @@ export function Path() {
         })}
       </div>
       <dl className="grid grid-cols-3 gap-2">
-        <Stat label="Streak" value={String(s.streak.count)} />
+        <Stat label="Streak" value={String(liveStreak(s))} />
         <Stat label="Due" value={String(due)} />
         <Stat label="Scenes" value={`${done}/${SCENES.length}`} />
       </dl>

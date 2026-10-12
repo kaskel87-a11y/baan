@@ -46,6 +46,33 @@ export interface BaanState {
   srsNewCount?: number;
   /** Numbers & prices trainer best scores and per-range accuracy. */
   numbers: NumbersStats;
+  /** Daily goal in graded items (Review grades, tone-pair trials, number items, scene drills). */
+  dailyGoal: number;
+  /** Per-day activity: graded items, active minutes, and whether the goal was met. */
+  history: Record<string, DayRecord>;
+  /** Last graded item time, for counting active minutes (gaps over 2 min don't count). */
+  lastItemAt?: number;
+  /** Today's mixed session, so "Finish later" resumes at the same step. */
+  today?: TodaySession;
+}
+
+export interface DayRecord {
+  items: number;
+  minutes: number;
+  met?: boolean;
+}
+
+export type TodayStep =
+  | { kind: "review"; cards: string[] }
+  | { kind: "tones"; trials: number }
+  | { kind: "scene"; id: string; replay: boolean }
+  | { kind: "numbers"; items: number };
+
+export interface TodaySession {
+  date: string;
+  steps: TodayStep[];
+  /** Index of the current step; equals steps.length when the session is finished. */
+  step: number;
 }
 
 const DEFAULTS: BaanState = {
@@ -64,13 +91,15 @@ const DEFAULTS: BaanState = {
   srsNewDay: "",
   srsNewCount: 0,
   numbers: EMPTY_NUMBERS,
+  dailyGoal: 15,
+  history: {},
 };
 
 let state: BaanState = DEFAULTS;
 let loaded = false;
 const listeners = new Set<() => void>();
 
-function dayKey(d: Date) {
+export function dayKey(d: Date) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
@@ -119,6 +148,8 @@ function migrateLoaded(t: Partial<BaanState>): BaanState {
     srsNewDay: t.srsNewDay ?? "",
     srsNewCount: t.srsNewCount ?? 0,
     numbers: migrateNumbers(t.numbers),
+    dailyGoal: t.dailyGoal && t.dailyGoal > 0 ? t.dailyGoal : 15,
+    history: t.history ?? {},
   };
 }
 
@@ -170,6 +201,53 @@ function bumpStreak(s: BaanState["streak"]) {
   const y = new Date();
   y.setDate(y.getDate() - 1);
   return { last: today, count: s.last === dayKey(y) ? s.count + 1 : 1 };
+}
+
+/** Mark today's goal met (once per day); this is the only thing that moves the streak. */
+function meetGoal(s: BaanState): BaanState {
+  const today = dayKey(new Date());
+  const rec = s.history[today] ?? { items: 0, minutes: 0 };
+  if (rec.met) return s;
+  return { ...s, streak: bumpStreak(s.streak), history: { ...s.history, [today]: { ...rec, met: true } } };
+}
+
+/** Count graded items toward today's goal and active minutes. */
+function addItems(s: BaanState, n: number): BaanState {
+  if (n <= 0) return s;
+  const now = Date.now();
+  const today = dayKey(new Date(now));
+  const rec = s.history[today] ?? { items: 0, minutes: 0 };
+  const gap = s.lastItemAt && dayKey(new Date(s.lastItemAt)) === today ? Math.min(now - s.lastItemAt, 120_000) : 0;
+  const minutes = Math.round((rec.minutes + gap / 60_000) * 10) / 10;
+  const items = rec.items + n;
+  const next: BaanState = { ...s, lastItemAt: now, history: { ...s.history, [today]: { ...rec, items, minutes } } };
+  return items >= s.dailyGoal ? meetGoal(next) : next;
+}
+
+export function logItems(n = 1) {
+  update((s) => addItems(s, n));
+}
+
+export function setDailyGoal(goal: number) {
+  update((s) => {
+    const next = { ...s, dailyGoal: goal };
+    const rec = next.history[dayKey(new Date())];
+    return rec && rec.items >= goal ? meetGoal(next) : next;
+  });
+}
+
+export function startToday(steps: TodayStep[]) {
+  update((s) => ({ ...s, today: { date: dayKey(new Date()), steps, step: 0 } }));
+}
+
+/** Move today's session past the current step. Finishing the last step meets the goal. */
+export function advanceToday() {
+  update((s) => {
+    if (!s.today) return s;
+    const step = Math.min(s.today.step + 1, s.today.steps.length);
+    const next = { ...s, today: { ...s.today, step } };
+    return step >= s.today.steps.length ? meetGoal(next) : next;
+  });
 }
 
 export function finishOnboarding(voice: Voice, name: string) {
@@ -227,18 +305,25 @@ export function markDueNow(cardIds: string[]) {
   });
 }
 
-export function touchStreak() {
-  update((s) => ({ ...s, streak: bumpStreak(s.streak) }));
-}
+/** Kept for callers; activity alone no longer moves the streak (only a met daily goal does). */
+export function touchStreak() {}
 
-export function completeScene(id: string, score: number) {
+export function completeScene(id: string, score: number, drills = 0) {
   update((s) => {
     const prev = s.scenes[id];
-    return {
+    let next: BaanState = {
       ...s,
-      streak: bumpStreak(s.streak),
       scenes: { ...s.scenes, [id]: { completed: true, best: Math.max(prev?.best ?? 0, score), last: score } },
     };
+    next = addItems(next, Math.max(0, drills));
+    // A scene finished while it is today's current step moves the session on.
+    const cur = next.today?.steps[next.today.step];
+    if (next.today && next.today.date === dayKey(new Date()) && cur?.kind === "scene" && cur.id === id) {
+      const step = next.today.step + 1;
+      next = { ...next, today: { ...next.today, step } };
+      if (step >= next.today!.steps.length) next = meetGoal(next);
+    }
+    return next;
   });
 }
 
@@ -301,17 +386,24 @@ export function gradeCard(id: string, grade: Grade) {
     }
     if (c.reps === 0 && grade !== "again") srsNewCount += 1;
 
-    return { ...s, streak: bumpStreak(s.streak), srs: { ...s.srs, [id]: next }, srsNewDay, srsNewCount };
+    return addItems({ ...s, srs: { ...s.srs, [id]: next }, srsNewDay, srsNewCount }, 1);
   });
 }
 
 export function recordBest(kind: "tone" | "letter" | "pair", score: number) {
   update((s) => {
-    const streak = bumpStreak(s.streak);
-    if (kind === "tone") return { ...s, toneBest: Math.max(s.toneBest, score), streak };
-    if (kind === "letter") return { ...s, letterBest: Math.max(s.letterBest, score), streak };
-    return { ...s, pairBest: Math.max(s.pairBest, score), streak };
+    if (kind === "tone") return { ...s, toneBest: Math.max(s.toneBest, score) };
+    if (kind === "letter") return { ...s, letterBest: Math.max(s.letterBest, score) };
+    return { ...s, pairBest: Math.max(s.pairBest, score) };
   });
+}
+
+/** Current streak, or 0 if the last met goal was before yesterday. */
+export function liveStreak(s: BaanState) {
+  const t = new Date();
+  const y = new Date();
+  y.setDate(y.getDate() - 1);
+  return s.streak.last === dayKey(t) || s.streak.last === dayKey(y) ? s.streak.count : 0;
 }
 
 export function recordPair(pairKey: string, right: boolean) {
@@ -331,7 +423,7 @@ export function recordNumbersBest(kind: "hear" | "say" | "digits", score: number
     if (kind === "hear") numbers.bestHear = Math.max(numbers.bestHear, score);
     else if (kind === "say") numbers.bestSay = Math.max(numbers.bestSay, score);
     else numbers.bestDigits = Math.max(numbers.bestDigits, score);
-    return { ...s, numbers, streak: bumpStreak(s.streak) };
+    return { ...s, numbers };
   });
 }
 
@@ -341,12 +433,12 @@ export function recordNumberRange(n: number, right: boolean) {
     const key = rangeKey(n);
     const cur = numbers.ranges[key] ?? { right: 0, wrong: 0 };
     numbers.ranges[key] = right ? { ...cur, right: cur.right + 1 } : { ...cur, wrong: cur.wrong + 1 };
-    return { ...s, numbers };
+    return addItems({ ...s, numbers }, 1);
   });
 }
 
 export function clearProgress() {
-  update((s) => ({ ...DEFAULTS, voice: s.voice, name: s.name, roman: s.roman }));
+  update((s) => ({ ...DEFAULTS, voice: s.voice, name: s.name, roman: s.roman, dailyGoal: s.dailyGoal }));
 }
 
 /** Card ids that are due now (includes never-reviewed cards already in the deck). */

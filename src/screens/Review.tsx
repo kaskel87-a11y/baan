@@ -18,14 +18,16 @@ const KIND_LABEL: Record<CardKind, string> = {
   produce: "Say it",
 };
 
-export function Review() {
+export function Review({ preset, onDone }: { preset?: string[]; onDone?: (graded: number) => void } = {}) {
   const s = useStore();
   const voice = s.voice ?? "female";
   const due = useMemo(() => dueCardIds(s).filter((id) => (s.srs[id]?.reps ?? 0) >= 1 || s.srs[id]?.relearning), [s]);
   const news = useMemo(() => newCardIds(s, 10), [s]);
   const learned = learnedCount(s);
   const [i, setI] = useState(0);
-  const [queue, setQueue] = useState<string[] | null>(null);
+  const [queue, setQueue] = useState<string[] | null>(() =>
+    preset ? preset.filter((cid) => !!resolveCard(cid, s.voice ?? "female", s.name)) : null,
+  );
   const [revealed, setRevealed] = useState(false);
   const [graded, setGraded] = useState(0);
   const [suggest, setSuggest] = useState<Grade | null>(null);
@@ -70,44 +72,7 @@ export function Review() {
   const hideThai = card?.kind === "produce" || card?.kind === "listen" ? !revealed : false;
   const hideAll = card?.kind === "listen" && !revealed;
 
-  return (
-    <div className="enter grid gap-6">
-      <PageHeader kicker="Review" title="Back before they fade.">
-        <p>
-          Listen, read, and say the words and your lines. Again if it slipped. Hard if it was slow. Good if you had it.
-          Easy if it was instant. Missed drills come back here the same day.
-        </p>
-      </PageHeader>
-      {Object.keys(s.srs).filter((k) => k.includes(":")).length === 0 ? (
-        <p className="text-muted">Nothing is waiting. Walk a conversation and the words land here.</p>
-      ) : null}
-      {Object.keys(s.srs).some((k) => k.includes(":")) && queue === null ? (
-        <div className="grid gap-3">
-          <p className="text-muted tabular-nums">
-            {due.length} due · {news.length} new today · {learned} learned
-          </p>
-          {due.length + news.length > 0 ? (
-            <Button variant="primary" className="justify-self-start" onClick={beginReview}>
-              Review {Math.min(20, due.length + news.length)}
-            </Button>
-          ) : (
-            <Button
-              className="justify-self-start"
-              onClick={() => {
-                const resolve = (cid: string) => resolveCard(cid, voice, s.name);
-                const ahead = Object.keys(s.srs)
-                  .filter((cid) => cid.includes(":"))
-                  .sort((a, b) => (s.srs[a]?.due ?? 0) - (s.srs[b]?.due ?? 0))
-                  .slice(0, 10);
-                start(buildSessionQueue(ahead, [], resolve, 10));
-              }}
-            >
-              Study ahead
-            </Button>
-          )}
-        </div>
-      ) : null}
-      {queue !== null && card && !finished ? (
+  const cardView = card ? (
         <article className="rounded-4xl border border-line bg-card p-5 grid gap-4">
           <div className="flex items-center justify-between gap-3 text-sm text-muted">
             <p className="tabular-nums">
@@ -208,7 +173,62 @@ export function Review() {
             </div>
           )}
         </article>
+  ) : null;
+
+  if (preset) {
+    return (
+      <div className="grid gap-4">
+        {!finished ? cardView : (
+          <div className="grid gap-3">
+            <p className="font-display text-2xl">Review done.</p>
+            <p className="text-muted tabular-nums">{graded} graded.</p>
+            <Button variant="primary" className="justify-self-start" onClick={() => onDone?.(graded)}>
+              Next
+            </Button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="enter grid gap-6">
+      <PageHeader kicker="Review" title="Back before they fade.">
+        <p>
+          Listen, read, and say the words and your lines. Again if it slipped. Hard if it was slow. Good if you had it.
+          Easy if it was instant. Missed drills come back here the same day.
+        </p>
+      </PageHeader>
+      {Object.keys(s.srs).filter((k) => k.includes(":")).length === 0 ? (
+        <p className="text-muted">Nothing is waiting. Walk a conversation and the words land here.</p>
       ) : null}
+      {Object.keys(s.srs).some((k) => k.includes(":")) && queue === null ? (
+        <div className="grid gap-3">
+          <p className="text-muted tabular-nums">
+            {due.length} due · {news.length} new today · {learned} learned
+          </p>
+          {due.length + news.length > 0 ? (
+            <Button variant="primary" className="justify-self-start" onClick={beginReview}>
+              Review {Math.min(20, due.length + news.length)}
+            </Button>
+          ) : (
+            <Button
+              className="justify-self-start"
+              onClick={() => {
+                const resolve = (cid: string) => resolveCard(cid, voice, s.name);
+                const ahead = Object.keys(s.srs)
+                  .filter((cid) => cid.includes(":"))
+                  .sort((a, b) => (s.srs[a]?.due ?? 0) - (s.srs[b]?.due ?? 0))
+                  .slice(0, 10);
+                start(buildSessionQueue(ahead, [], resolve, 10));
+              }}
+            >
+              Study ahead
+            </Button>
+          )}
+        </div>
+      ) : null}
+      {queue !== null && !finished ? cardView : null}
       {finished ? (
         <div className="grid gap-3">
           <p className="font-display text-3xl">Session done.</p>

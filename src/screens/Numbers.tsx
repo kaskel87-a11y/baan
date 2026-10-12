@@ -109,7 +109,8 @@ function Learn() {
 
 const HEAR_LEN = 10;
 
-function HearDrill() {
+export function HearDrill({ length = HEAR_LEN, onDone }: { length?: number; onDone?: (right: number) => void } = {}) {
+  const HEAR_LEN = length;
   const s = useStore();
   const stats = s.numbers ?? EMPTY_NUMBERS;
   const [round, setRound] = useState(0);
@@ -124,7 +125,9 @@ function HearDrill() {
     return out;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [round]);
-  const cur = round > 0 ? (missQueue[0] != null ? { n: missQueue[0], kind: "street" as PriceKind } : items[qi]) : undefined;
+  // Misses come back once, after the main items, so a hard price can't trap the round.
+  const replaying = round > 0 && qi >= items.length;
+  const cur = round > 0 ? (replaying ? (missQueue[0] != null ? { n: missQueue[0], kind: "street" as PriceKind } : undefined) : items[qi]) : undefined;
   const part = s.voice ? (particle(s.voice, "statement").thai as "ครับ" | "ค่ะ") : null;
   const spoken = cur ? priceSpoken(cur.n, part) : "";
 
@@ -148,20 +151,25 @@ function HearDrill() {
     recordNumberRange(cur.n, ok);
     const nextRight = ok ? right + 1 : right;
     setRight(nextRight);
-    if (!ok) setMissQueue((q) => [...q, cur.n]);
+    if (!ok && !replaying) setMissQueue((q) => [...q, cur.n]);
   }
 
   function next() {
     if (!cur) return;
     setInput("");
     setChecked(null);
-    if (missQueue[0] === cur.n) {
+    const finish = () => {
+      if (HEAR_LEN === 10) recordNumbersBest("hear", right);
+      setRound(0);
+      onDone?.(right);
+    };
+    if (replaying) {
+      if (missQueue.length <= 1) finish();
       setMissQueue((q) => q.slice(1));
       return;
     }
-    if (qi + 1 >= items.length) {
-      recordNumbersBest("hear", right);
-      setRound(0);
+    if (qi + 1 >= items.length && missQueue.length === 0) {
+      finish();
       return;
     }
     setQi((x) => x + 1);
@@ -177,7 +185,7 @@ function HearDrill() {
         </p>
         <RangeSummary />
         <Button variant="primary" className="justify-self-start" onClick={begin}>
-          Ten prices
+          {HEAR_LEN === 10 ? "Ten prices" : `${HEAR_LEN} prices`}
         </Button>
       </section>
     );
@@ -186,9 +194,8 @@ function HearDrill() {
   return (
     <section className="grid gap-3">
       <p className="text-sm text-muted tabular-nums">
-        {qi + 1} of {items.length}
+        {replaying ? `Once more · ${missQueue.length} left` : `${qi + 1} of ${items.length}`}
         {checked != null ? ` · ${right} held` : ""}
-        {missQueue.length && missQueue[0] === cur.n ? " · miss replay" : ""}
       </p>
       <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
         <p className="text-sm text-muted">{PRICE_KINDS.find((k) => k.id === cur.kind)?.label ?? "Price"}</p>
@@ -222,7 +229,7 @@ function HearDrill() {
             </p>
             <AnswerLine thai={spoken} roman={priceRoman(cur.n, part)} en={priceEn(cur.n)} />
             <Button variant="primary" className="justify-self-start" onClick={next}>
-              {qi + 1 >= items.length && missQueue[0] !== cur.n && missQueue.length <= 1 ? "Done" : "Next"}
+              {(replaying && missQueue.length <= 1) || (!replaying && qi + 1 >= items.length && missQueue.length === 0) ? "Done" : "Next"}
             </Button>
           </div>
         )}
