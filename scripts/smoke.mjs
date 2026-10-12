@@ -177,15 +177,37 @@ await step("req3: every drill's feedback has English verdict + Thai + roman + me
   }
 });
 
-await step("review: From English hides the answer", async () => {
+await step("review: SRS cards hide the answer until Show", async () => {
   await page.goto(base + "#/review", { waitUntil: "networkidle0" });
+  if (!(await has("due"))) throw new Error("review header missing due/new/learned");
   await clickText("Review ").catch(() => clickText("Study ahead"));
-  await clickText("From English");
-  if (await has("Hear")) {
-    const hearVisible = await page.evaluate(() => [...document.querySelectorAll("article button")].some((b) => b.textContent?.trim() === "Hear"));
-    if (hearVisible) throw new Error("Hear button visible before Show in From English mode");
+  const kind = await page.evaluate(() => {
+    const art = document.querySelector("article");
+    const label = art?.querySelector(".text-sm.text-muted:last-child, p.text-sm")?.textContent?.trim() ?? "";
+    const ps = [...(art?.querySelectorAll("p") ?? [])].map((p) => p.textContent?.trim() ?? "");
+    return { hasShow: [...(art?.querySelectorAll("button") ?? [])].some((b) => b.textContent?.trim() === "Show"), body: ps.join(" | ") };
+  });
+  if (!kind.hasShow) throw new Error("Show button missing on first card");
+  // Before Show, a produce card must not reveal Thai; a listen card must not show Thai text yet.
+  const thaiBefore = await page.evaluate(() => {
+    const art = document.querySelector("article");
+    const thaiEls = [...(art?.querySelectorAll(".thai, [lang=th]") ?? [])];
+    return thaiEls.some((el) => el.textContent && /[\u0E00-\u0E7F]/.test(el.textContent) && el.offsetParent !== null && !el.closest("[data-sayit]"));
+  });
+  const label = await page.evaluate(() => {
+    const art = document.querySelector("article");
+    return [...(art?.querySelectorAll("p") ?? [])].map((p) => p.textContent?.trim()).find((t) => /Listen|Read|Say it/.test(t ?? "")) ?? "";
+  });
+  if (/Listen|Say it/.test(label) && thaiBefore) throw new Error(`${label} showed Thai before Show`);
+  if (await has("Hear") && /Say it|Listen/.test(label)) {
+    const hearVisible = await page.evaluate(() =>
+      [...document.querySelectorAll("article button")].some((b) => b.textContent?.trim() === "Hear" && !b.closest("[data-sayit]")),
+    );
+    // Listen cards may Hear; produce must not.
+    if (/Say it/.test(label) && hearVisible) throw new Error("Hear visible on produce before Show");
   }
   await clickText("Show");
+  if (!(await has("Hard"))) throw new Error("Hard grade missing after Show");
   await clickText("Good");
 });
 

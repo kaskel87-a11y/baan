@@ -1,6 +1,6 @@
 # Roadmap
 
-Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-08.
+Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-12.
 
 | # | Item | Status |
 |---|------|--------|
@@ -9,8 +9,8 @@ Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-08.
 | — | Review answer leak in From English mode | ✅ Done in 0.1.0 |
 | — | Hash routes, random option order, manifest named "Baan", scene progress survives reload | ✅ Done in 0.1.0 |
 | — | Collin's requests: stable Say it button, English always shown, English feedback with the full answer | ✅ Done in 0.2.0 |
-| 3 | Review as a real SRS: listen, read and produce cards for words **and** sentences; drill misses feed Review; Hard button; ±10% interval fuzz; relearning step; mixed order; "N due · M new today · X learned" | ⏳ Next |
-| 4 | Numbers and prices trainer (hear a price → type it; say a price; Thai digits ๑–๙) | ⏳ Planned |
+| 3 | Review as a real SRS: listen, read and produce cards for words **and** sentences; drill misses feed Review; Hard button; ±10% interval fuzz; relearning step; mixed order; "N due · M new today · X learned" | ✅ Done in 0.5.0 |
+| 4 | Numbers and prices trainer (hear a price → type it; say a price; Thai digits ๑–๙) | ⏳ Next |
 | 5 | Reliable audio: pre-generated or server text-to-speech with a cache and male/female voices, falling back to speechSynthesis | ⏳ Planned. Needs a TTS source: either recordings committed to `public/audio` at build time, or a small server. The static build can't make speech on its own. |
 | 6 | "Today" daily session (~12 min mix), daily goal, streak only counts when the goal is met, 7-day dots | ⏳ Planned |
 | 7 | Tone production feedback: your pitch curve against the target tone shape (YIN pitch tracking + AudioWorklet) | ✅ Done in 0.3.0. Since 0.3.1 it is a separate "Check my tones" step that never shares the mic with Say it. Tested with synthetic voices only; still needs tuning against real recordings of Collin and a native speaker. |

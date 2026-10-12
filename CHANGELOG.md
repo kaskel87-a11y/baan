@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0 — Review as a real SRS
+
+- Review cards are now listen, read, and produce for every word, plus your own dialogue lines.
+- Hard grade, ±10% interval fuzz, and a 10-minute relearning step after the first pass.
+- Missed scene drills push matching cards due immediately.
+- Header shows "N due · M new today · X learned" (learned = interval ≥ 21 days). Old vocab saves migrate to `vocab:<id>:read`.
+- Produce cards suggest Again / Hard / Good from the mic check; you can still override.
+
+
 ## 0.4.1 — feedback in plain English
 
 - New automatic Thai-to-romanization (`src/lib/romanize.ts`): syllables, clusters, pre-posed vowels, finals and tones via the tone-rule engine. Tested on all app vocabulary (`npm run test:roman`).

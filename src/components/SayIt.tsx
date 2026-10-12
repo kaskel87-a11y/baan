@@ -165,6 +165,7 @@ export function SayIt({
   en,
   hideTarget = false,
   skip,
+  onWordVerdict,
 }: {
   target: string;
   roman?: string;
@@ -172,6 +173,8 @@ export function SayIt({
   hideTarget?: boolean;
   /** romanized tokens to ignore in the tone check (the learner's name) */
   skip?: string[];
+  /** Optional: Review uses this to suggest Again / Hard / Good. */
+  onWordVerdict?: (v: Verdict) => void;
 }) {
   const [phase, setPhase] = useState<"idle" | "starting" | "live" | "analyzing">("idle");
   const [wordPhase, setWordPhase] = useState<"idle" | "listening">("idle");
@@ -192,6 +195,10 @@ export function SayIt({
   const [recordMode, setRecordMode] = useState(() => initialRecordMode(!!recognizer));
   const lastRecording = useRef<Recording | null>(null);
   const emptyEnds = useRef(0);
+
+  useEffect(() => {
+    if (word.kind === "heard") onWordVerdict?.(word.verdict);
+  }, [word, onWordVerdict]);
 
   useEffect(() => {
     setDiag({

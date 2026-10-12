@@ -4,7 +4,8 @@ import { ArrowLeft } from "lucide-react";
 import { SCENES } from "../data/scenes";
 import { VOCAB_BY_ID } from "../data/vocab";
 import type { Drill, Line, Scene as SceneT, Speaker, Vocab, Voice } from "../data/types";
-import { completeScene, introduce, touchStreak, useStore } from "../lib/store";
+import { completeScene, introduce, markDueNow, touchStreak, useStore } from "../lib/store";
+import { cardsForMiss } from "../lib/cards";
 import { speak, speakSequence, stopSpeech } from "../lib/audio";
 import { particle, particleNote, pick, shuffle } from "../lib/thai";
 import { navigate } from "../lib/router";
@@ -114,7 +115,7 @@ export function SceneScreen({ id }: { id: string }) {
   const set = (s: Session) => setSession(s);
 
   function enterTalk() {
-    introduce(scene!.vocab);
+    introduce(scene!.vocab, { sceneId: scene!.id });
     touchStreak();
     const first = scene!.lines[0];
     set({ ...fresh(false), phase: "talk" });
@@ -174,7 +175,8 @@ export function SceneScreen({ id }: { id: string }) {
           onSession={setSession}
           onDone={(right, misses) => {
             const score = Math.round((right / scene.drills.length) * 100);
-            introduce(scene.vocab);
+            introduce(scene.vocab, { sceneId: scene.id });
+            for (const m of misses) markDueNow(cardsForMiss(m.thai));
             completeScene(scene.id, score);
             set({ ...session, phase: "done", right, misses, picked: null, verdict: null, build: [] });
           }}
