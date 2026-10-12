@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.0 — Numbers and prices trainer
+
+- New Numbers screen on Path (`#/numbers`): Learn 0–10 / teens / tens / hundreds, Hear a vendor price and type digits, Say the price with Say it, and Thai digits ๑–๙.
+- Number-to-Thai words with romanization and English (ยี่สิบเอ็ด, หนึ่งร้อยยี่สิบ, …). Missed hear items replay once; best scores and per-range accuracy live under `numbers` in `baan.v1`.
+
 ## 0.5.0 — Review as a real SRS
 
 - Review cards are now listen, read, and produce for every word, plus your own dialogue lines.

@@ -1,5 +1,6 @@
 import { useSyncExternalStore } from "react";
 import type { Voice } from "../data/types";
+import { EMPTY_NUMBERS, rangeKey, type NumbersStats, type NumberRangeKey } from "./numbers";
 import { isLegacySrsKey, migrateSrsKey, sceneYouLineCardIds, vocabCardIds } from "./cards";
 
 /** localStorage key and shape kept identical to the Grok-hosted Baan so progress carries over. */
@@ -43,6 +44,8 @@ export interface BaanState {
   srsNewDay?: string;
   /** How many brand-new cards entered Review today. */
   srsNewCount?: number;
+  /** Numbers & prices trainer best scores and per-range accuracy. */
+  numbers: NumbersStats;
 }
 
 const DEFAULTS: BaanState = {
@@ -60,6 +63,7 @@ const DEFAULTS: BaanState = {
   pitchMedians: [],
   srsNewDay: "",
   srsNewCount: 0,
+  numbers: EMPTY_NUMBERS,
 };
 
 let state: BaanState = DEFAULTS;
@@ -68,6 +72,20 @@ const listeners = new Set<() => void>();
 
 function dayKey(d: Date) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+
+function migrateNumbers(n?: Partial<NumbersStats> | null): NumbersStats {
+  const base = structuredClone(EMPTY_NUMBERS);
+  if (!n) return base;
+  base.bestHear = n.bestHear ?? 0;
+  base.bestSay = n.bestSay ?? 0;
+  base.bestDigits = n.bestDigits ?? 0;
+  for (const k of Object.keys(base.ranges) as NumberRangeKey[]) {
+    const r = n.ranges?.[k];
+    if (r) base.ranges[k] = { right: r.right ?? 0, wrong: r.wrong ?? 0 };
+  }
+  return base;
 }
 
 function migrateLoaded(t: Partial<BaanState>): BaanState {
@@ -100,6 +118,7 @@ function migrateLoaded(t: Partial<BaanState>): BaanState {
     pitchMedians: t.pitchMedians ?? [],
     srsNewDay: t.srsNewDay ?? "",
     srsNewCount: t.srsNewCount ?? 0,
+    numbers: migrateNumbers(t.numbers),
   };
 }
 
@@ -302,6 +321,27 @@ export function recordPair(pairKey: string, right: boolean) {
       ...s,
       toneStats: { ...s.toneStats, [pairKey]: right ? { ...p, right: p.right + 1 } : { ...p, wrong: p.wrong + 1 } },
     };
+  });
+}
+
+
+export function recordNumbersBest(kind: "hear" | "say" | "digits", score: number) {
+  update((s) => {
+    const numbers = structuredClone(s.numbers ?? EMPTY_NUMBERS);
+    if (kind === "hear") numbers.bestHear = Math.max(numbers.bestHear, score);
+    else if (kind === "say") numbers.bestSay = Math.max(numbers.bestSay, score);
+    else numbers.bestDigits = Math.max(numbers.bestDigits, score);
+    return { ...s, numbers, streak: bumpStreak(s.streak) };
+  });
+}
+
+export function recordNumberRange(n: number, right: boolean) {
+  update((s) => {
+    const numbers = structuredClone(s.numbers ?? EMPTY_NUMBERS);
+    const key = rangeKey(n);
+    const cur = numbers.ranges[key] ?? { right: 0, wrong: 0 };
+    numbers.ranges[key] = right ? { ...cur, right: cur.right + 1 } : { ...cur, wrong: cur.wrong + 1 };
+    return { ...s, numbers };
   });
 }
 

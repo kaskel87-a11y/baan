@@ -41,6 +41,14 @@ export function Path() {
         <Stat label="Scenes" value={`${done}/${SCENES.length}`} />
       </dl>
       <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
+        <p className="text-sm text-muted">Numbers & prices</p>
+        <h2 className="font-display text-xl">Hear a price, type the digits.</h2>
+        <p className="text-sm text-muted">0–10, teens, tens, then vendor prices with บาท.</p>
+        <Button variant="primary" className="justify-self-start" onClick={() => navigate({ name: "numbers" })}>
+          Open Numbers
+        </Button>
+      </article>
+      <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
         <p className="text-sm text-muted">{done === SCENES.length ? "Walk it again" : "Continue"}</p>
         <h2 className="thai text-3xl" lang="th">{next.titleTh}</h2>
         <p className="font-display text-xl">{next.title}</p>

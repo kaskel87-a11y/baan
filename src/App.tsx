@@ -8,6 +8,7 @@ import { Tones } from "./screens/Tones";
 import { Letters } from "./screens/Letters";
 import { Review } from "./screens/Review";
 import { Settings } from "./screens/Settings";
+import { Numbers } from "./screens/Numbers";
 
 type Tab = "path" | "tones" | "letters" | "review";
 const TABS: { id: Tab; label: string; icon: LucideIcon }[] = [
@@ -21,7 +22,7 @@ export default function App() {
   const s = useStore();
   const route = useRoute();
   if (!s.voice) return <Onboarding />;
-  const active: Route["name"] = route.name === "scene" ? "path" : route.name;
+  const active: Route["name"] = route.name === "scene" || route.name === "numbers" ? "path" : route.name;
   const go = (id: Tab | "settings") => navigate({ name: id } as Route);
 
   return (
@@ -69,6 +70,7 @@ export default function App() {
           {route.name === "tones" ? <Tones /> : null}
           {route.name === "letters" ? <Letters /> : null}
           {route.name === "review" ? <Review /> : null}
+          {route.name === "numbers" ? <Numbers /> : null}
           {route.name === "settings" ? <Settings /> : null}
         </main>
         <nav className="dock fixed inset-x-0 bottom-0 z-10 border-t border-line bg-paper md:hidden" aria-label="Main">
