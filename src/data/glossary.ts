@@ -21,6 +21,8 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "เจอ", roman: "jer", en: "to meet" },
   { thai: "กัน", roman: "gan", en: "each other, together" },
   { thai: "น้ำ", roman: "náam", en: "water" },
+  { thai: "ไม่รับ", roman: "mâi ráp", en: "no thanks (I won't take it)" },
+  { thai: "รับถุง", roman: "ráp thǔng", en: "take a bag" },
 ];
 
 export interface Gloss {

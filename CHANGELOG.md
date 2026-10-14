@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.8.0 — New scene: 7-Eleven
+
+- New scene 05, 7-Eleven (`#/scene/seven`), between In the car and A meal. Fon at the counter greets you, you ask for water (มีน้ำเปล่าไหม, mii náam bplào mǎi), she says it's in the fridge, offers to heat your toastie (อุ่นไหม, ùn mǎi) and asks if you want a bag (รับถุงไหม, ráp thǔng mǎi). You answer by repeating the verb, and say no bag with ไม่รับ (mâi ráp).
+- 6 new words: มี (mii, to have), อยู่ (yùu, to be at), ตู้เย็น (dtûu yen, fridge), อุ่น (ùn, to heat up), รับ (ráp, to take), ถุง (thǔng, bag). They join Review automatically, and the scene feeds Today once the earlier scenes are done.
+- Drills: listen, read, pick (“No bag, thanks.”), build (“Do you have water?”) and a particle question. Every Thai option has romanization and English.
+- New speaker Fon (ฝน).
+
 ## 0.7.0 — Today: one short daily session
 
 - New Today card at the top of Path and a Today screen (`#/today`) with one "Start today's session" button. The session is about 10–15 minutes: due Review cards (up to 30, topped up with new cards when few are due), 10 tone-pair trials weighted to your weakest pairs, the next unfinished scene (or a replay of your weakest one), and 5 vendor prices.

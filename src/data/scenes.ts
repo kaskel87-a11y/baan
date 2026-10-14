@@ -730,6 +730,183 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "seven",
+    "title": "7-Eleven",
+    "titleTh": "ที่เซเว่น",
+    "blurb": "Water from the fridge, a toastie heated up, and no bag, thanks.",
+    "vocab": [
+      "mii",
+      "nam",
+      "yuu",
+      "tuu-yen",
+      "un",
+      "rap",
+      "thung"
+    ],
+    "lines": [
+      {
+        "id": "x1",
+        "who": "fon",
+        "en": "Hello.",
+        "thai": "สวัสดีค่ะ",
+        "roman": "sà-wàt-dii khâ",
+        "note": "Staff greet you as you walk in. A smile or a nod is enough back."
+      },
+      {
+        "id": "x2",
+        "who": "you",
+        "en": "Do you have water?",
+        "thai": {
+          "male": "มีน้ำเปล่าไหมครับ",
+          "female": "มีน้ำเปล่าไหมคะ"
+        },
+        "roman": {
+          "male": "mii náam bplào mǎi khráp",
+          "female": "mii náam bplào mǎi khá"
+        },
+        "note": "มี (mii, mid) means “to have” or “there is”. Add ไหม (mǎi, rising) to make it a question."
+      },
+      {
+        "id": "x3",
+        "who": "fon",
+        "en": "Yes, it's in the fridge.",
+        "thai": "มีค่ะ อยู่ในตู้เย็นค่ะ",
+        "roman": "mii khâ, yùu nai dtûu yen khâ",
+        "note": "Thai answers yes by repeating the verb: มี (mii), “have”. อยู่ (yùu, low) means “is located”."
+      },
+      {
+        "id": "x4",
+        "who": "fon",
+        "en": "Shall I heat it up?",
+        "thai": "อุ่นไหมคะ",
+        "roman": "ùn mǎi khá",
+        "note": "You'll hear this for every toastie or frozen meal. อุ่น (ùn) is low."
+      },
+      {
+        "id": "x5",
+        "who": "you",
+        "en": "Yes, heat it up, please.",
+        "thai": {
+          "male": "อุ่นครับ",
+          "female": "อุ่นค่ะ"
+        },
+        "roman": {
+          "male": "ùn khráp",
+          "female": "ùn khâ"
+        },
+        "note": "Say yes by repeating the verb, อุ่น (ùn), “heat”."
+      },
+      {
+        "id": "x6",
+        "who": "fon",
+        "en": "Do you want a bag?",
+        "thai": "รับถุงไหมคะ",
+        "roman": "ráp thǔng mǎi khá",
+        "note": "รับ (ráp, high) means “to take, accept”. ถุง (thǔng, rising) is a bag."
+      },
+      {
+        "id": "x7",
+        "who": "you",
+        "en": "No bag, thanks.",
+        "thai": {
+          "male": "ไม่รับครับ",
+          "female": "ไม่รับค่ะ"
+        },
+        "roman": {
+          "male": "mâi ráp khráp",
+          "female": "mâi ráp khâ"
+        },
+        "note": "Literally “not take”. ไม่ (mâi) is falling, รับ (ráp) is high."
+      }
+    ],
+    "drills": [
+      {
+        "id": "x-l",
+        "kind": "listen",
+        "thai": {
+          "male": "มีน้ำเปล่าไหมครับ",
+          "female": "มีน้ำเปล่าไหมคะ"
+        },
+        "roman": {
+          "male": "mii náam bplào mǎi khráp",
+          "female": "mii náam bplào mǎi khá"
+        },
+        "en": "Do you have water?",
+        "options": [
+          "Do you have water?",
+          "Shall I heat it up?",
+          "Do you want a bag?",
+          "No bag, thanks."
+        ]
+      },
+      {
+        "id": "x-r",
+        "kind": "read",
+        "thai": "อุ่นไหมคะ",
+        "roman": "ùn mǎi khá",
+        "en": "Shall I heat it up?",
+        "options": [
+          "Shall I heat it up?",
+          "Do you want a bag?",
+          "Yes, it's in the fridge.",
+          "Do you have water?"
+        ]
+      },
+      {
+        "id": "x-p",
+        "kind": "pick",
+        "en": "“No bag, thanks.”",
+        "options": [
+          "ไม่รับ",
+          "รับถุง",
+          "อุ่น",
+          "มี"
+        ],
+        "answer": "ไม่รับ",
+        "roman": "mâi ráp"
+      },
+      {
+        "id": "x-b",
+        "kind": "build",
+        "en": "Do you have water?",
+        "tiles": [
+          "มี",
+          "น้ำเปล่า",
+          "ไหม",
+          "ครับ",
+          "คะ",
+          "อุ่น"
+        ],
+        "answer": {
+          "male": [
+            "มี",
+            "น้ำเปล่า",
+            "ไหม",
+            "ครับ"
+          ],
+          "female": [
+            "มี",
+            "น้ำเปล่า",
+            "ไหม",
+            "คะ"
+          ]
+        },
+        "roman": {
+          "male": "mii náam bplào mǎi khráp",
+          "female": "mii náam bplào mǎi khá"
+        }
+      },
+      {
+        "id": "x-part",
+        "kind": "particle",
+        "en": "You're asking if they have water.",
+        "stem": "มีน้ำเปล่าไหม",
+        "stemRoman": "mii náam bplào mǎi",
+        "particleKind": "question"
+      }
+    ]
+  },
+  {
     "id": "meal",
     "title": "A meal",
     "titleTh": "ที่ร้านอาหาร",

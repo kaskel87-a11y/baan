@@ -292,6 +292,48 @@ export const VOCAB: Vocab[] = [
     "roman": "wan-níi",
     "en": "today",
     "hint": "Mid, then high."
+  },
+  {
+    "id": "mii",
+    "thai": "มี",
+    "roman": "mii",
+    "en": "to have; there is",
+    "hint": "Mid. Repeat it to say yes: มี (mii)."
+  },
+  {
+    "id": "yuu",
+    "thai": "อยู่",
+    "roman": "yùu",
+    "en": "to be at, located",
+    "hint": "Low. The อ is silent; it only sets the tone."
+  },
+  {
+    "id": "tuu-yen",
+    "thai": "ตู้เย็น",
+    "roman": "dtûu yen",
+    "en": "fridge",
+    "hint": "Falling, then mid. Literally “cold cabinet”."
+  },
+  {
+    "id": "un",
+    "thai": "อุ่น",
+    "roman": "ùn",
+    "en": "to heat up, warm",
+    "hint": "Low."
+  },
+  {
+    "id": "rap",
+    "thai": "รับ",
+    "roman": "ráp",
+    "en": "to take, accept",
+    "hint": "High."
+  },
+  {
+    "id": "thung",
+    "thai": "ถุง",
+    "roman": "thǔng",
+    "en": "bag",
+    "hint": "Rising."
   }
 ];
 
