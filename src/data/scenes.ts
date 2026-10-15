@@ -1259,6 +1259,190 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "massage",
+    "title": "Massage / pharmacy",
+    "titleTh": "นวดและร้านยา",
+    "blurb": "Say where it hurts, ask for a softer massage, and check if they have medicine for a headache.",
+    "vocab": [
+      "jep",
+      "buat",
+      "hua",
+      "bao",
+      "raeng",
+      "nuat",
+      "yaa",
+      "noi-req"
+    ],
+    "lines": [
+      {
+        "id": "ms1",
+        "who": "ning",
+        "en": "Hello. Where does it hurt?",
+        "thai": "สวัสดีค่ะ เจ็บตรงไหนคะ",
+        "roman": "sà-wàt-dii khâ jèp dtrong nǎi khá",
+        "note": "เจ็บ (jèp, low) = hurt. ตรงไหน (dtrong nǎi) = which spot?"
+      },
+      {
+        "id": "ms2",
+        "who": "you",
+        "en": "My head hurts.",
+        "thai": {
+          "male": "ปวดหัวครับ",
+          "female": "ปวดหัวค่ะ"
+        },
+        "roman": {
+          "male": "bpùat hǔa khráp",
+          "female": "bpùat hǔa khâ"
+        },
+        "note": "ปวด (bpùat, low) + หัว (hǔa, rising) = headache. A very common combo."
+      },
+      {
+        "id": "ms3",
+        "who": "ning",
+        "en": "I’ll massage gently.",
+        "thai": "นวดเบาๆนะคะ",
+        "roman": "nûat bao-bao ná khá",
+        "note": "นวด (nûat, falling) = to massage. เบาๆ (bao-bao) = gently. นะ softens it."
+      },
+      {
+        "id": "ms4",
+        "who": "you",
+        "en": "A little softer, please.",
+        "thai": {
+          "male": "เบาๆหน่อยครับ",
+          "female": "เบาๆหน่อยค่ะ"
+        },
+        "roman": {
+          "male": "bao-bao nàwy khráp",
+          "female": "bao-bao nàwy khâ"
+        },
+        "note": "เบา (bao, mid) repeated with ๆ. หน่อย (nàwy, low) softens the ask, same as in the market."
+      },
+      {
+        "id": "ms5",
+        "who": "ning",
+        "en": "Like this?",
+        "thai": "แบบนี้ไหมคะ",
+        "roman": "bàaep níi mǎi khá",
+        "note": "แบบนี้ (bàaep níi) = like this. ไหม turns it into a check-in."
+      },
+      {
+        "id": "ms6",
+        "who": "you",
+        "en": "Not so hard.",
+        "thai": {
+          "male": "ไม่แรงครับ",
+          "female": "ไม่แรงค่ะ"
+        },
+        "roman": {
+          "male": "mâi raeng khráp",
+          "female": "mâi raeng khâ"
+        },
+        "note": "แรง (raeng, mid) = strong or hard pressure. ไม่แรง = not hard. แรงไป = too hard."
+      },
+      {
+        "id": "ms7",
+        "who": "you",
+        "en": "Do you have medicine for a headache?",
+        "thai": {
+          "male": "มียาแก้ปวดหัวไหมครับ",
+          "female": "มียาแก้ปวดหัวไหมคะ"
+        },
+        "roman": {
+          "male": "mii yaa gâae bpùat hǔa mǎi khráp",
+          "female": "mii yaa gâae bpùat hǔa mǎi khá"
+        },
+        "note": "ยา (yaa, mid) = medicine. แก้ (gâae) = to relieve. Same มี…ไหม pattern as at 7-Eleven."
+      },
+      {
+        "id": "ms8",
+        "who": "ning",
+        "en": "Yes. Take one after food.",
+        "thai": "มีค่ะ กินหลังอาหารหนึ่งเม็ดค่ะ",
+        "roman": "mii khâ gin lǎng aa-hǎan nùeng mét khâ",
+        "note": "Answer yes by repeating มี. หลังอาหาร (lǎng aa-hǎan) = after food. เม็ด (mét) = a pill."
+      }
+    ],
+    "drills": [
+      {
+        "id": "ms-l",
+        "kind": "listen",
+        "thai": "ปวดหัวครับ",
+        "roman": "bpùat hǔa khráp",
+        "en": "My head hurts.",
+        "options": [
+          "My head hurts.",
+          "A little softer, please.",
+          "Not so hard.",
+          "Do you have medicine for a headache?"
+        ]
+      },
+      {
+        "id": "ms-r",
+        "kind": "read",
+        "thai": "นวดเบาๆนะคะ",
+        "roman": "nûat bao-bao ná khá",
+        "en": "I’ll massage gently.",
+        "options": [
+          "I’ll massage gently.",
+          "Like this?",
+          "Where does it hurt?",
+          "Take one after food."
+        ]
+      },
+      {
+        "id": "ms-p",
+        "kind": "pick",
+        "en": "“A little softer, please.”",
+        "options": [
+          "เบาๆหน่อย",
+          "ไม่แรง",
+          "ปวดหัว",
+          "มียาไหม"
+        ],
+        "answer": "เบาๆหน่อย",
+        "roman": "bao-bao nàwy"
+      },
+      {
+        "id": "ms-b",
+        "kind": "build",
+        "en": "Not so hard.",
+        "tiles": [
+          "ไม่",
+          "แรง",
+          "ครับ",
+          "ค่ะ",
+          "เบา",
+          "หน่อย"
+        ],
+        "answer": {
+          "male": [
+            "ไม่",
+            "แรง",
+            "ครับ"
+          ],
+          "female": [
+            "ไม่",
+            "แรง",
+            "ค่ะ"
+          ]
+        },
+        "roman": {
+          "male": "mâi raeng khráp",
+          "female": "mâi raeng khâ"
+        }
+      },
+      {
+        "id": "ms-part",
+        "kind": "particle",
+        "en": "You’re asking if they have medicine for a headache.",
+        "stem": "มียาแก้ปวดหัวไหม",
+        "stemRoman": "mii yaa gâae bpùat hǔa mǎi",
+        "particleKind": "question"
+      }
+    ]
+  },
+  {
     "id": "meal",
     "title": "A meal",
     "titleTh": "ที่ร้านอาหาร",

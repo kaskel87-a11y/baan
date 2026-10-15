@@ -30,6 +30,12 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "เดินไปได้", roman: "dern bpai dâai", en: "can walk there" },
   { thai: "อยู่ที่ไหน", roman: "yùu thîi nǎi", en: "where is it?" },
   { thai: "ใกล้ไหม", roman: "glai mǎi", en: "is it close?" },
+  { thai: "เบาๆหน่อย", roman: "bao-bao nàwy", en: "a little softer, please" },
+  { thai: "ไม่แรง", roman: "mâi raeng", en: "not so hard" },
+  { thai: "ปวดหัว", roman: "bpùat hǔa", en: "headache; my head hurts" },
+  { thai: "มียาไหม", roman: "mii yaa mǎi", en: "do you have medicine?" },
+  { thai: "เจ็บตรงไหน", roman: "jèp dtrong nǎi", en: "where does it hurt?" },
+  { thai: "แรงไป", roman: "raeng bpai", en: "too hard" },
 ];
 
 export interface Gloss {

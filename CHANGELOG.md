@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.11.0 — New scene: Massage / pharmacy
+
+- New scene 08, Massage / pharmacy (`#/scene/massage`), between Lost and A meal. Ning asks where it hurts (เจ็บตรงไหน), you say your head hurts (ปวดหัว), ask for a softer massage (เบาๆหน่อย), say not so hard (ไม่แรง), and ask if they have medicine for a headache (มียาแก้ปวดหัวไหม).
+- 7 new words: เจ็บ (jèp, hurt), ปวด (bpùat, ache), หัว (hǔa, head), เบา (bao, soft), แรง (raeng, hard), นวด (nûat, massage), ยา (yaa, medicine). หน่อย is reused. They join Review automatically, and the scene feeds Today once earlier scenes are done.
+- Drills: listen, read, pick (“A little softer, please.”), build (“Not so hard.”) and a particle question. Every Thai option has romanization and English.
+- New speaker Ning (นิ้ง).
+
+
 ## 0.10.0 — New scene: Lost
 
 - New scene 07, Lost (`#/scene/lost`), between BTS / MRT and A meal. Joy helps when you’re looking for Wat Pho: where is it (อยู่ที่ไหน, yùu thîi nǎi), is it close (ใกล้ไหม, glai mǎi), you can walk (เดินไปได้, dern bpai dâai), I don’t understand (ไม่เข้าใจ, mâi kâo-jai), and please speak a little slower (พูดช้าๆหน่อย, phûut châa-châa nàwy). She points the way (ทางนั้น) and says walk straight (ตรงไป).

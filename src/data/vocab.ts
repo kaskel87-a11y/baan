@@ -418,6 +418,55 @@ export const VOCAB: Vocab[] = [
     "roman": "châa",
     "en": "slow",
     "hint": "Falling. พูดช้าๆหน่อย (phûut châa-châa nàwy) = please speak a little slower."
+  },
+  {
+    "id": "jep",
+    "thai": "เจ็บ",
+    "roman": "jèp",
+    "en": "to hurt, be sore",
+    "hint": "Low. Mid-class จ on a short dead syllable with mai ek is low."
+  },
+  {
+    "id": "buat",
+    "thai": "ปวด",
+    "roman": "bpùat",
+    "en": "to ache, to have pain",
+    "hint": "Low. ปวดหัว (bpùat hǔa) = headache."
+  },
+  {
+    "id": "hua",
+    "thai": "หัว",
+    "roman": "hǔa",
+    "en": "head",
+    "hint": "Rising. High-class ห on a live syllable with no mark is rising."
+  },
+  {
+    "id": "bao",
+    "thai": "เบา",
+    "roman": "bao",
+    "en": "soft, gentle, light",
+    "hint": "Mid. เบาๆหน่อย (bao-bao nàwy) = a little softer, please."
+  },
+  {
+    "id": "raeng",
+    "thai": "แรง",
+    "roman": "raeng",
+    "en": "strong, hard (pressure)",
+    "hint": "Mid. ไม่แรง (mâi raeng) / แรงไป (raeng bpai) = not so hard / too hard."
+  },
+  {
+    "id": "nuat",
+    "thai": "นวด",
+    "roman": "nûat",
+    "en": "to massage",
+    "hint": "Falling. Low-class น on a dead long syllable with no mark is falling."
+  },
+  {
+    "id": "yaa",
+    "thai": "ยา",
+    "roman": "yaa",
+    "en": "medicine",
+    "hint": "Mid. มียาไหม (mii yaa mǎi) = do you have medicine?"
   }
 ];
 

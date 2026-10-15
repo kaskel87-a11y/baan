@@ -21,6 +21,7 @@ const SPEAKERS: Record<Speaker, { th: string; en: string }> = {
   fon: { th: "ฝน", en: "Fon" },
   bee: { th: "บี", en: "Bee" },
   joy: { th: "จอย", en: "Joy" },
+  ning: { th: "นิ้ง", en: "Ning" },
 };
 
 type Phase = "preview" | "talk" | "drill" | "done";
