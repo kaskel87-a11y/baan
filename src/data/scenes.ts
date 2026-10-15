@@ -1078,6 +1078,187 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "lost",
+    "title": "Lost",
+    "titleTh": "หลงทาง",
+    "blurb": "Ask where something is, if it’s close, whether you can walk, and get someone to slow down.",
+    "vocab": [
+      "yuu",
+      "nai",
+      "glai",
+      "dern",
+      "dai",
+      "khao-jai",
+      "phuut",
+      "chaa"
+    ],
+    "lines": [
+      {
+        "id": "l1",
+        "who": "you",
+        "en": "Where is Wat Pho?",
+        "thai": {
+          "male": "วัดโพธิ์อยู่ที่ไหนครับ",
+          "female": "วัดโพธิ์อยู่ที่ไหนคะ"
+        },
+        "roman": {
+          "male": "wát pho yùu thîi nǎi khráp",
+          "female": "wát pho yùu thîi nǎi khá"
+        },
+        "note": "อยู่ที่ไหน (yùu thîi nǎi) = where is …? Put the place name first."
+      },
+      {
+        "id": "l2",
+        "who": "joy",
+        "en": "It’s that way.",
+        "thai": "ทางนั้นค่ะ",
+        "roman": "thaang nán khâ",
+        "note": "ทาง (thaang, mid) is a way or path. นั้น (nán, falling) means that."
+      },
+      {
+        "id": "l3",
+        "who": "you",
+        "en": "Is it close?",
+        "thai": {
+          "male": "ใกล้ไหมครับ",
+          "female": "ใกล้ไหมคะ"
+        },
+        "roman": {
+          "male": "glai mǎi khráp",
+          "female": "glai mǎi khá"
+        },
+        "note": "ใกล้ (glai, mid) + ไหม (mǎi, rising) makes the yes/no question."
+      },
+      {
+        "id": "l4",
+        "who": "joy",
+        "en": "Yes. You can walk there.",
+        "thai": "ใกล้ค่ะ เดินไปได้ค่ะ",
+        "roman": "glai khâ dern bpai dâai khâ",
+        "note": "Answer yes by repeating ใกล้. เดินไปได้ (dern bpai dâai) = you can walk (there)."
+      },
+      {
+        "id": "l5",
+        "who": "you",
+        "en": "I don’t understand.",
+        "thai": {
+          "male": "ไม่เข้าใจครับ",
+          "female": "ไม่เข้าใจค่ะ"
+        },
+        "roman": {
+          "male": "mâi kâo-jai khráp",
+          "female": "mâi kâo-jai khâ"
+        },
+        "note": "ไม่ falls. เข้าใจ (kâo-jai) is falling then mid."
+      },
+      {
+        "id": "l6",
+        "who": "you",
+        "en": "Please speak a little slower.",
+        "thai": {
+          "male": "พูดช้าๆหน่อยครับ",
+          "female": "พูดช้าๆหน่อยค่ะ"
+        },
+        "roman": {
+          "male": "phûut châa-châa nàwy khráp",
+          "female": "phûut châa-châa nàwy khâ"
+        },
+        "note": "ๆ repeats ช้า. หน่อย (nàwy, low) softens the request."
+      },
+      {
+        "id": "l7",
+        "who": "joy",
+        "en": "Walk straight ahead.",
+        "thai": "ตรงไปค่ะ",
+        "roman": "dtrong bpai khâ",
+        "note": "ตรงไป (dtrong bpai) = go straight. Same phrase you heard in the car scene."
+      }
+    ],
+    "drills": [
+      {
+        "id": "l-l",
+        "kind": "listen",
+        "thai": "ใกล้ไหมครับ",
+        "roman": "glai mǎi khráp",
+        "en": "Is it close?",
+        "options": [
+          "Is it close?",
+          "Where is Wat Pho?",
+          "I don’t understand.",
+          "Please speak a little slower."
+        ]
+      },
+      {
+        "id": "l-r",
+        "kind": "read",
+        "thai": "เดินไปได้ค่ะ",
+        "roman": "dern bpai dâai khâ",
+        "en": "You can walk there.",
+        "options": [
+          "You can walk there.",
+          "It’s that way.",
+          "Walk straight ahead.",
+          "Is it close?"
+        ]
+      },
+      {
+        "id": "l-p",
+        "kind": "pick",
+        "en": "“I don’t understand.”",
+        "options": [
+          "ไม่เข้าใจ",
+          "ใกล้ไหม",
+          "อยู่ที่ไหน",
+          "พูดช้าๆหน่อย"
+        ],
+        "answer": "ไม่เข้าใจ",
+        "roman": "mâi kâo-jai"
+      },
+      {
+        "id": "l-b",
+        "kind": "build",
+        "en": "Can I walk there?",
+        "tiles": [
+          "เดิน",
+          "ไป",
+          "ได้",
+          "ไหม",
+          "ครับ",
+          "คะ",
+          "ใกล้"
+        ],
+        "answer": {
+          "male": [
+            "เดิน",
+            "ไป",
+            "ได้",
+            "ไหม",
+            "ครับ"
+          ],
+          "female": [
+            "เดิน",
+            "ไป",
+            "ได้",
+            "ไหม",
+            "คะ"
+          ]
+        },
+        "roman": {
+          "male": "dern bpai dâai mǎi khráp",
+          "female": "dern bpai dâai mǎi khá"
+        }
+      },
+      {
+        "id": "l-part",
+        "kind": "particle",
+        "en": "You’re asking someone to speak slower.",
+        "stem": "พูดช้าๆหน่อย",
+        "stemRoman": "phûut châa-châa nàwy",
+        "particleKind": "statement"
+      }
+    ]
+  },
+  {
     "id": "meal",
     "title": "A meal",
     "titleTh": "ที่ร้านอาหาร",

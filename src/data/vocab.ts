@@ -376,6 +376,48 @@ export const VOCAB: Vocab[] = [
     "roman": "bàt",
     "en": "ticket, card",
     "hint": "Low. Your rabbit card is บัตรกระต่าย."
+  },
+  {
+    "id": "glai",
+    "thai": "ใกล้",
+    "roman": "glai",
+    "en": "near, close",
+    "hint": "Mid. ใกล้ไหม (glai mǎi) = is it close?"
+  },
+  {
+    "id": "dern",
+    "thai": "เดิน",
+    "roman": "dern",
+    "en": "to walk",
+    "hint": "Mid. เดินไป (dern bpai) = walk (over) there."
+  },
+  {
+    "id": "dai",
+    "thai": "ได้",
+    "roman": "dâai",
+    "en": "can, to get",
+    "hint": "Falling. เดินไปได้ไหม (dern bpai dâai mǎi) = can I walk there?"
+  },
+  {
+    "id": "khao-jai",
+    "thai": "เข้าใจ",
+    "roman": "kâo-jai",
+    "en": "to understand",
+    "hint": "Falling, then mid. ไม่เข้าใจ (mâi kâo-jai) = I don’t understand."
+  },
+  {
+    "id": "phuut",
+    "thai": "พูด",
+    "roman": "phûut",
+    "en": "to speak, talk",
+    "hint": "Rising. พ high-class on a live syllable with no mark is rising."
+  },
+  {
+    "id": "chaa",
+    "thai": "ช้า",
+    "roman": "châa",
+    "en": "slow",
+    "hint": "Falling. พูดช้าๆหน่อย (phûut châa-châa nàwy) = please speak a little slower."
   }
 ];
 

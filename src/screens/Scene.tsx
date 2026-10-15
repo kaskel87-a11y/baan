@@ -20,6 +20,7 @@ const SPEAKERS: Record<Speaker, { th: string; en: string }> = {
   pla: { th: "ปลา", en: "Pla" },
   fon: { th: "ฝน", en: "Fon" },
   bee: { th: "บี", en: "Bee" },
+  joy: { th: "จอย", en: "Joy" },
 };
 
 type Phase = "preview" | "talk" | "drill" | "done";

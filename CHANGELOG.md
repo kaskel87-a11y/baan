@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.10.0 — New scene: Lost
+
+- New scene 07, Lost (`#/scene/lost`), between BTS / MRT and A meal. Joy helps when you’re looking for Wat Pho: where is it (อยู่ที่ไหน, yùu thîi nǎi), is it close (ใกล้ไหม, glai mǎi), you can walk (เดินไปได้, dern bpai dâai), I don’t understand (ไม่เข้าใจ, mâi kâo-jai), and please speak a little slower (พูดช้าๆหน่อย, phûut châa-châa nàwy). She points the way (ทางนั้น) and says walk straight (ตรงไป).
+- 6 new words: ใกล้ (glai, near), เดิน (dern, walk), ได้ (dâai, can), เข้าใจ (kâo-jai, understand), พูด (phûut, speak), ช้า (châa, slow). อยู่ and ไหน are reused from earlier scenes. They join Review automatically, and the scene feeds Today once earlier scenes are done.
+- Drills: listen, read, pick (“I don’t understand.”), build (“Can I walk there?”) and a particle statement. Every Thai option has romanization and English.
+- New speaker Joy (จอย).
+
 ## 0.9.0 — New scene: BTS / MRT
 
 - New scene 06, BTS / MRT (`#/scene/bts`), between 7-Eleven and A meal. Bee helps you: where are you going (ไปไหน, bpai nǎi), get off at Siam station (ลงสถานีสยาม, long sà-thǎa-nii sà-yǎam), one-way please (เที่ยวเดียว, thîao diaw), here's your ticket (บัตร, bàt), and do you transfer (ต่อรถไหม, dtàw rót mǎi). You answer transfer by repeating ต่อ (dtàw).

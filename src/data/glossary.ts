@@ -23,6 +23,13 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "น้ำ", roman: "náam", en: "water" },
   { thai: "ไม่รับ", roman: "mâi ráp", en: "no thanks (I won't take it)" },
   { thai: "รับถุง", roman: "ráp thǔng", en: "take a bag" },
+  { thai: "ต่อรถ", roman: "dtàw rót", en: "transfer trains" },
+  { thai: "ลงสถานี", roman: "long sà-thǎa-nii", en: "get off at the station" },
+  { thai: "ไม่เข้าใจ", roman: "mâi kâo-jai", en: "I don’t understand" },
+  { thai: "พูดช้าๆหน่อย", roman: "phûut châa-châa nàwy", en: "please speak a little slower" },
+  { thai: "เดินไปได้", roman: "dern bpai dâai", en: "can walk there" },
+  { thai: "อยู่ที่ไหน", roman: "yùu thîi nǎi", en: "where is it?" },
+  { thai: "ใกล้ไหม", roman: "glai mǎi", en: "is it close?" },
 ];
 
 export interface Gloss {
