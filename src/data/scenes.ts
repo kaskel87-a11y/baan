@@ -907,6 +907,177 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "bts",
+    "title": "BTS / MRT",
+    "titleTh": "รถไฟฟ้า",
+    "blurb": "Ask where to get off, buy a one-way ticket, and say if you transfer.",
+    "vocab": [
+      "bpai",
+      "nai",
+      "sathaanii",
+      "long",
+      "thiao-diaw",
+      "dtaw",
+      "bat"
+    ],
+    "lines": [
+      {
+        "id": "b1",
+        "who": "bee",
+        "en": "Where are you going?",
+        "thai": "ไปไหนคะ",
+        "roman": "bpai nǎi khá",
+        "note": "ไป (bpai, mid) + ไหน (nǎi, rising). A helpful stranger or staff will start here."
+      },
+      {
+        "id": "b2",
+        "who": "you",
+        "en": "I'm going to Siam.",
+        "thai": {
+          "male": "ไปสยามครับ",
+          "female": "ไปสยามค่ะ"
+        },
+        "roman": {
+          "male": "bpai sà-yǎam khráp",
+          "female": "bpai sà-yǎam khâ"
+        },
+        "note": "Name the place right after ไป. สยาม is a station name; say it as one word."
+      },
+      {
+        "id": "b3",
+        "who": "bee",
+        "en": "Get off at Siam station.",
+        "thai": "ลงสถานีสยามค่ะ",
+        "roman": "long sà-thǎa-nii sà-yǎam khâ",
+        "note": "ลง (long, mid) means get off. สถานี (sà-thǎa-nii) is station. Pair with ขึ้น (khûen) to get on."
+      },
+      {
+        "id": "b4",
+        "who": "you",
+        "en": "One-way, please.",
+        "thai": {
+          "male": "เที่ยวเดียวครับ",
+          "female": "เที่ยวเดียวค่ะ"
+        },
+        "roman": {
+          "male": "thîao diaw khráp",
+          "female": "thîao diaw khâ"
+        },
+        "note": "เที่ยวเดียว (thîao diaw) is a single trip. Say it at the machine or the window."
+      },
+      {
+        "id": "b5",
+        "who": "bee",
+        "en": "Here's your ticket.",
+        "thai": "บัตรค่ะ",
+        "roman": "bàt khâ",
+        "note": "บัตร (bàt, low) is a ticket or card. Your rabbit card is บัตรกระต่าย."
+      },
+      {
+        "id": "b6",
+        "who": "bee",
+        "en": "Do you transfer?",
+        "thai": "ต่อรถไหมคะ",
+        "roman": "dtàw rót mǎi khá",
+        "note": "ต่อ (dtàw, low) means transfer or continue. รถ here is the train."
+      },
+      {
+        "id": "b7",
+        "who": "you",
+        "en": "Yes, I transfer.",
+        "thai": {
+          "male": "ต่อครับ",
+          "female": "ต่อค่ะ"
+        },
+        "roman": {
+          "male": "dtàw khráp",
+          "female": "dtàw khâ"
+        },
+        "note": "Answer yes by repeating the verb: ต่อ (dtàw). For no, say ไม่ต่อ (mâi dtàw)."
+      }
+    ],
+    "drills": [
+      {
+        "id": "b-l",
+        "kind": "listen",
+        "thai": "ไปไหนคะ",
+        "roman": "bpai nǎi khá",
+        "en": "Where are you going?",
+        "options": [
+          "Where are you going?",
+          "Get off at Siam station.",
+          "One-way, please.",
+          "Do you transfer?"
+        ]
+      },
+      {
+        "id": "b-r",
+        "kind": "read",
+        "thai": "ลงสถานีสยามค่ะ",
+        "roman": "long sà-thǎa-nii sà-yǎam khâ",
+        "en": "Get off at Siam station.",
+        "options": [
+          "Get off at Siam station.",
+          "Where are you going?",
+          "Here's your ticket.",
+          "Yes, I transfer."
+        ]
+      },
+      {
+        "id": "b-p",
+        "kind": "pick",
+        "en": "“One-way, please.”",
+        "options": [
+          "เที่ยวเดียว",
+          "ต่อรถ",
+          "ลงสถานี",
+          "บัตร"
+        ],
+        "answer": "เที่ยวเดียว",
+        "roman": "thîao diaw"
+      },
+      {
+        "id": "b-b",
+        "kind": "build",
+        "en": "Do you transfer?",
+        "tiles": [
+          "ต่อ",
+          "รถ",
+          "ไหม",
+          "ครับ",
+          "คะ",
+          "บัตร"
+        ],
+        "answer": {
+          "male": [
+            "ต่อ",
+            "รถ",
+            "ไหม",
+            "ครับ"
+          ],
+          "female": [
+            "ต่อ",
+            "รถ",
+            "ไหม",
+            "คะ"
+          ]
+        },
+        "roman": {
+          "male": "dtàw rót mǎi khráp",
+          "female": "dtàw rót mǎi khá"
+        }
+      },
+      {
+        "id": "b-part",
+        "kind": "particle",
+        "en": "You're saying one-way.",
+        "stem": "เที่ยวเดียว",
+        "stemRoman": "thîao diaw",
+        "particleKind": "statement"
+      }
+    ]
+  },
+  {
     "id": "meal",
     "title": "A meal",
     "titleTh": "ที่ร้านอาหาร",

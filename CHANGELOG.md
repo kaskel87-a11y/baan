@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.9.0 — New scene: BTS / MRT
+
+- New scene 06, BTS / MRT (`#/scene/bts`), between 7-Eleven and A meal. Bee helps you: where are you going (ไปไหน, bpai nǎi), get off at Siam station (ลงสถานีสยาม, long sà-thǎa-nii sà-yǎam), one-way please (เที่ยวเดียว, thîao diaw), here's your ticket (บัตร, bàt), and do you transfer (ต่อรถไหม, dtàw rót mǎi). You answer transfer by repeating ต่อ (dtàw).
+- 6 new words: ไหน (nǎi, which/where), สถานี (sà-thǎa-nii, station), ลง (long, get off), เที่ยวเดียว (thîao diaw, one-way), ต่อ (dtàw, transfer), บัตร (bàt, ticket). They join Review automatically, and the scene feeds Today once earlier scenes are done.
+- Drills: listen, read, pick (“One-way, please.”), build (“Do you transfer?”) and a particle statement. Every Thai option has romanization and English.
+- New speaker Bee (บี).
+
+
 ## 0.8.0 — New scene: 7-Eleven
 
 - New scene 05, 7-Eleven (`#/scene/seven`), between In the car and A meal. Fon at the counter greets you, you ask for water (มีน้ำเปล่าไหม, mii náam bplào mǎi), she says it's in the fridge, offers to heat your toastie (อุ่นไหม, ùn mǎi) and asks if you want a bag (รับถุงไหม, ráp thǔng mǎi). You answer by repeating the verb, and say no bag with ไม่รับ (mâi ráp).

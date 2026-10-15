@@ -334,6 +334,48 @@ export const VOCAB: Vocab[] = [
     "roman": "thǔng",
     "en": "bag",
     "hint": "Rising."
+  },
+  {
+    "id": "nai",
+    "thai": "ไหน",
+    "roman": "nǎi",
+    "en": "which, where",
+    "hint": "Rising. ไปไหน (bpai nǎi) = where are you going?"
+  },
+  {
+    "id": "sathaanii",
+    "thai": "สถานี",
+    "roman": "sà-thǎa-nii",
+    "en": "station",
+    "hint": "Low, rising, mid. ลงสถานี… = get off at … station."
+  },
+  {
+    "id": "long",
+    "thai": "ลง",
+    "roman": "long",
+    "en": "to get off, go down",
+    "hint": "Mid. Pair with ขึ้น (khûen, get on)."
+  },
+  {
+    "id": "thiao-diaw",
+    "thai": "เที่ยวเดียว",
+    "roman": "thîao diaw",
+    "en": "one-way (ticket)",
+    "hint": "Falling, then mid. Opposite of a day pass."
+  },
+  {
+    "id": "dtaw",
+    "thai": "ต่อ",
+    "roman": "dtàw",
+    "en": "to transfer, continue",
+    "hint": "Low. ต่อรถ (dtàw rót) = transfer trains."
+  },
+  {
+    "id": "bat",
+    "thai": "บัตร",
+    "roman": "bàt",
+    "en": "ticket, card",
+    "hint": "Low. Your rabbit card is บัตรกระต่าย."
   }
 ];
 
