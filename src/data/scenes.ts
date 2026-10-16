@@ -564,8 +564,8 @@ export const SCENES: Scene[] = [
           "female": "ไปสยามได้ไหมคะ"
         },
         "roman": {
-          "male": "bpai sà-yaam dâai mǎi khráp",
-          "female": "bpai sà-yaam dâai mǎi khá"
+          "male": "bpai sà-yǎam dâai mǎi khráp",
+          "female": "bpai sà-yǎam dâai mǎi khá"
         }
       },
       {
@@ -654,8 +654,8 @@ export const SCENES: Scene[] = [
           "female": "ไปสยามได้ไหมคะ"
         },
         "roman": {
-          "male": "bpai sà-yaam dâai mǎi khráp",
-          "female": "bpai sà-yaam dâai mǎi khá"
+          "male": "bpai sà-yǎam dâai mǎi khráp",
+          "female": "bpai sà-yǎam dâai mǎi khá"
         },
         "en": "Can you go to Siam?",
         "options": [
@@ -1124,17 +1124,17 @@ export const SCENES: Scene[] = [
           "female": "ใกล้ไหมคะ"
         },
         "roman": {
-          "male": "glai mǎi khráp",
-          "female": "glai mǎi khá"
+          "male": "glâi mǎi khráp",
+          "female": "glâi mǎi khá"
         },
-        "note": "ใกล้ (glai, mid) + ไหม (mǎi, rising) makes the yes/no question."
+        "note": "ใกล้ (glâi, falling) + ไหม (mǎi, rising) makes the yes/no question."
       },
       {
         "id": "l4",
         "who": "joy",
         "en": "Yes. You can walk there.",
         "thai": "ใกล้ค่ะ เดินไปได้ค่ะ",
-        "roman": "glai khâ dern bpai dâai khâ",
+        "roman": "glâi khâ dern bpai dâai khâ",
         "note": "Answer yes by repeating ใกล้. เดินไปได้ (dern bpai dâai) = you can walk (there)."
       },
       {
@@ -1146,10 +1146,10 @@ export const SCENES: Scene[] = [
           "female": "ไม่เข้าใจค่ะ"
         },
         "roman": {
-          "male": "mâi kâo-jai khráp",
-          "female": "mâi kâo-jai khâ"
+          "male": "mâi khâo-jai khráp",
+          "female": "mâi khâo-jai khâ"
         },
-        "note": "ไม่ falls. เข้าใจ (kâo-jai) is falling then mid."
+        "note": "ไม่ falls. เข้าใจ (khâo-jai) is falling then mid."
       },
       {
         "id": "l6",
@@ -1179,7 +1179,7 @@ export const SCENES: Scene[] = [
         "id": "l-l",
         "kind": "listen",
         "thai": "ใกล้ไหมครับ",
-        "roman": "glai mǎi khráp",
+        "roman": "glâi mǎi khráp",
         "en": "Is it close?",
         "options": [
           "Is it close?",
@@ -1212,7 +1212,7 @@ export const SCENES: Scene[] = [
           "พูดช้าๆหน่อย"
         ],
         "answer": "ไม่เข้าใจ",
-        "roman": "mâi kâo-jai"
+        "roman": "mâi khâo-jai"
       },
       {
         "id": "l-b",

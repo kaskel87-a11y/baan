@@ -36,13 +36,22 @@ export function speak(text: string, rate = NORMAL_RATE(), voiceIndex = 0) {
 }
 
 /** Speak several strings back to back, with an optional pause between them (ms). */
-export function speakSequence(texts: string[], rate = 0.9, opts: { gapMs?: number; voices?: number[] } = {}) {
+export function speakSequence(
+  texts: string[],
+  rate = 0.9,
+  opts: { gapMs?: number; voices?: number[]; onStep?: (i: number) => void; onDone?: () => void } = {},
+) {
   if (typeof window === "undefined" || !window.speechSynthesis) return;
   const synth = window.speechSynthesis;
   const t = ++token;
   synth.cancel();
   const step = (i: number) => {
-    if (t !== token || i >= texts.length) return;
+    if (t !== token) return;
+    if (i >= texts.length) {
+      opts.onDone?.();
+      return;
+    }
+    opts.onStep?.(i);
     const u = utterance(texts[i] ?? "", rate, opts.voices?.[i] ?? 0);
     u.onend = () => window.setTimeout(() => step(i + 1), opts.gapMs ?? 0);
     synth.speak(u);

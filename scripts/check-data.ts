@@ -1,6 +1,7 @@
 // Sanity checks for the Thai data: run with `npm run check:data`.
 import { VOCAB, VOCAB_BY_ID } from "../src/data/vocab";
 import { SCENES } from "../src/data/scenes";
+import { STORIES } from "../src/data/stories";
 import { EAR_POOL, MAI_SET, TONE_ANCHORS } from "../src/data/tones";
 import { TONE_SETS } from "../src/data/toneSets";
 import { toneFromRoman } from "../src/lib/thai";
@@ -19,9 +20,17 @@ for (const s of SCENES) for (const v of s.vocab) if (!VOCAB_BY_ID.has(v)) err(`s
 
 const words = new Map<string, string>();
 for (const v of VOCAB) words.set(v.thai, v.roman);
-const must: [string, string][] = [["ขึ้น", "khûen"], ["เผ็ด", "phèt"], ["ที่นี่", "thîi-nîi"]];
+const must: [string, string][] = [["ขึ้น", "khûen"], ["เผ็ด", "phèt"], ["ที่นี่", "thîi-nîi"], ["ใกล้", "glâi"], ["เข้าใจ", "khâo-jai"]];
 for (const [t, r] of must) if (words.get(t) !== r) err(`${t} should be ${r}, is ${words.get(t)}`);
 if (JSON.stringify(SCENES).includes("ท่านเดียว")) err("ท่านเดียว still present");
+
+const sceneIds = new Set(SCENES.map((s) => s.id));
+if (JSON.stringify(SCENES).includes("sà-yaam")) err("สยาม should be sà-yǎam");
+for (const st of STORIES) {
+  for (const id of st.scenes) if (!sceneIds.has(id)) err(`story ${st.id} names unknown scene ${id}`);
+  for (const x of st.sentences) if (!x.thai || !x.roman || !x.en) err(`story ${st.id} sentence missing thai/roman/en`);
+  for (const q of st.questions) if (q.options.length < 3 || new Set(q.options).size !== q.options.length) err(`story ${st.id} question "${q.q}" needs 3+ distinct options`);
+}
 
 if (AVAILABLE_PAIRS.length !== 10) err(`expected 10 tone pairs, got ${AVAILABLE_PAIRS.length}`);
 for (let i = 0; i < 500; i++) {

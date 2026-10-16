@@ -54,6 +54,14 @@ export interface BaanState {
   lastItemAt?: number;
   /** Today's mixed session, so "Finish later" resumes at the same step. */
   today?: TodaySession;
+  /** Listening stories: best and last score (questions right) per story id. */
+  stories?: Record<string, StoryRecord>;
+}
+
+export interface StoryRecord {
+  best: number;
+  last: number;
+  total: number;
 }
 
 export interface DayRecord {
@@ -416,6 +424,13 @@ export function recordPair(pairKey: string, right: boolean) {
   });
 }
 
+
+export function recordStory(id: string, right: number, total: number) {
+  update((s) => {
+    const prev = s.stories?.[id];
+    return { ...s, stories: { ...(s.stories ?? {}), [id]: { best: Math.max(prev?.best ?? 0, right), last: right, total } } };
+  });
+}
 
 export function recordNumbersBest(kind: "hear" | "say" | "digits", score: number) {
   update((s) => {

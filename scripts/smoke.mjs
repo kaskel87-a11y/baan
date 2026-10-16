@@ -415,6 +415,36 @@ await step("listen & respond: audio-first cue, pick reveals English", async () =
   if (!(await has("Listen & respond finished"))) throw new Error("no listen-respond summary");
 });
 
+await step("listening story: listen, answer in English, then full transcript", async () => {
+  await page.goto(base + "#/stories", { waitUntil: "networkidle0" });
+  if (!(await has("Listening stories"))) throw new Error("no stories list");
+  await page.evaluate(() => {
+    window.__utts = [];
+    speechSynthesis.speak = (u) => { window.__utts.push({ t: u.text, r: u.rate }); u.onend && setTimeout(() => u.onend(), 30); };
+  });
+  await clickText("01");
+  if (!(await has("Morning coffee"))) throw new Error("story did not open");
+  if (await has("In the morning, Tom goes")) throw new Error("English shown before questions");
+  await clickText("Play the story");
+  await new Promise((r) => setTimeout(r, 5500));
+  if (!(await has("Play the story again"))) throw new Error("player did not return to idle after the story");
+  const n = await page.evaluate(() => window.__utts.length);
+  if (n < 7) throw new Error(`expected 7 sentences spoken, got ${n}`);
+  await clickText("Answer the questions");
+  for (let i = 0; i < 6 && !(await has("Story finished")); i++) {
+    await page.evaluate(() => {
+      const b = [...document.querySelectorAll("[data-story-questions] article button")].find((x) => !x.disabled);
+      b?.click();
+    });
+    await new Promise((r) => setTimeout(r, 100));
+    if (!(await page.$("[data-story-feedback]"))) throw new Error("no feedback after answer");
+    await clickText(i === 3 ? "See the story" : "Next");
+  }
+  if (!(await has("Story finished"))) throw new Error("no story summary");
+  if (!(await has("In the morning, Tom goes to a café."))) throw new Error("no English transcript");
+  if (!(await has("dtawn cháo"))) throw new Error("no romanization in transcript");
+});
+
 await step("audio: Slow uses a much lower rate and splits words", async () => {
   await page.goto(base + "#/scene/market", { waitUntil: "networkidle0" });
   await page.evaluate(() => {

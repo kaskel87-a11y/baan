@@ -1,4 +1,5 @@
 import { SCENES } from "../data/scenes";
+import { STORIES } from "../data/stories";
 import { dayKey, dueIds, liveStreak, useStore } from "../lib/store";
 import { activeToday, planToday, stepMinutes } from "../lib/today";
 import { StreakDots } from "../components/StreakDots";
@@ -60,6 +61,14 @@ export function Path() {
         <Stat label="Due" value={String(due)} />
         <Stat label="Scenes" value={`${done}/${SCENES.length}`} />
       </dl>
+      <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
+        <p className="text-sm text-muted">Listening stories</p>
+        <h2 className="font-display text-xl">Hear a short story, answer in English.</h2>
+        <p className="text-sm text-muted">{STORIES.length} stories under a minute each, built from the scene words.</p>
+        <Button variant="primary" className="justify-self-start" onClick={() => navigate({ name: "stories" })}>
+          Open Stories
+        </Button>
+      </article>
       <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
         <p className="text-sm text-muted">Numbers & prices</p>
         <h2 className="font-display text-xl">Hear a price, type the digits.</h2>

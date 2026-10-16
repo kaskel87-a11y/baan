@@ -1,6 +1,6 @@
 # Roadmap
 
-Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-16 (0.13.0). Babbel research: `docs/BABBEL-NOTES.md`.
+Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-16 (0.14.0). Babbel research: `docs/BABBEL-NOTES.md`.
 
 **Priority (Collin, 2026-10-15): speaking and listening first. No reading/writing quizzes. Letters stays as optional reference only. Romanization stays prominent and never fades.**
 
@@ -31,8 +31,8 @@ Content to re-check with a native speaker: the new minimal sets in `src/data/ton
 | 1 | Role-play: speak your own lines in each scene, partner lines played aloud | ✅ 0.12.0 |
 | — | Slow playback clearly slower on iPhone (rate 0.42, word by word) | ✅ 0.12.0 |
 | 2 | Listen-and-respond: hear the partner's line (audio only), say or pick your reply; English shown after | ✅ Done in 0.13.0 |
-| 3 | Listening stories: 30–60 s audio stories from scene words, English comprehension questions | ⏳ Next |
-| 4 | Shadowing / repeat-after-me mode: play a line, pause, you echo, with tone check | ⏳ |
+| 3 | Listening stories: 30–60 s audio stories from scene words, English comprehension questions | ✅ 0.14.0 (4 stories) |
+| 4 | Shadowing / repeat-after-me mode: play a line, pause, you echo, with tone check | ⏳ Next |
 | 5 | Speaking-weighted Review: more say/listen cards, fewer read cards | ⏳ |
 | 6 | Tip cards (1–2 per scene): grammar-in-use and culture, all romanized with English | ⏳ |
 | 7 | Reliable audio / real voices (old #5) | ⏳ needs a TTS source |

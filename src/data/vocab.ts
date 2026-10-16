@@ -380,9 +380,9 @@ export const VOCAB: Vocab[] = [
   {
     "id": "glai",
     "thai": "ใกล้",
-    "roman": "glai",
+    "roman": "glâi",
     "en": "near, close",
-    "hint": "Mid. ใกล้ไหม (glai mǎi) = is it close?"
+    "hint": "Falling. ใกล้ไหม (glâi mǎi) = is it close?"
   },
   {
     "id": "dern",
@@ -401,9 +401,9 @@ export const VOCAB: Vocab[] = [
   {
     "id": "khao-jai",
     "thai": "เข้าใจ",
-    "roman": "kâo-jai",
+    "roman": "khâo-jai",
     "en": "to understand",
-    "hint": "Falling, then mid. ไม่เข้าใจ (mâi kâo-jai) = I don’t understand."
+    "hint": "Falling, then mid. ไม่เข้าใจ (mâi khâo-jai) = I don’t understand."
   },
   {
     "id": "phuut",

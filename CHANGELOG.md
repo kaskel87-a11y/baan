@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.14.0 — Listening stories; tone fix for ใกล้
+
+- **Listening stories** (`#/stories`, card on Path). Four short narrated stories (Morning coffee, The market then a ride, A hot day, This afternoon) built from the scene words. Play the whole story with no text, slowly, or one sentence at a time (tap a line number). Romanization while listening is an optional checkbox. Then answer 4–5 questions in English. After that you get the full story with English, romanization, and Thai, each line with Hear and Slow, and the player highlights the line being spoken. Best scores are saved, and each answer counts toward the daily goal.
+- **Tone fix:** ใกล้ (near) was romanized "glai" with a mid tone in the Lost scene, its vocab card, and glossary. That is the tone of ไกล (far). It is now glâi (falling) everywhere, and the tone-shape target follows it.
+- Romanization fixes: เข้าใจ is khâo-jai (was kâo-jai), and สยาม is sà-yǎam in the car scene (was sà-yaam).
+- Data check now guards these spellings and the story data; smoke test covers a full story run.
+
 ## 0.13.0 — Listen & respond
 
 - **Listen & respond** in every scene (Babbel-style). After the conversation (or from the finish screen), tap "Listen & respond". You only hear the other person's line at first (no English yet). Then you either Say it or Pick your reply from English options. After you answer, English, romanization, and Thai for both lines appear. Thai script for your reply stays optional.
