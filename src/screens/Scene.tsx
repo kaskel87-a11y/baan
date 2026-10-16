@@ -25,7 +25,7 @@ const SPEAKERS: Record<Speaker, { th: string; en: string }> = {
   ning: { th: "นิ้ง", en: "Ning" },
 };
 
-type Phase = "preview" | "talk" | "drill" | "roleplay" | "done";
+type Phase = "preview" | "talk" | "drill" | "roleplay" | "listenrespond" | "done";
 interface Miss {
   en: string;
   thai: string;
@@ -180,10 +180,19 @@ export function SceneScreen({ id }: { id: string }) {
           }}
           onPractice={() => goto("drill")}
           onRolePlay={() => goto("roleplay")}
+          onListenRespond={() => goto("listenrespond")}
         />
       ) : null}
       {session.phase === "roleplay" ? (
         <RolePlay
+          scene={scene}
+          voice={voice}
+          name={st.name}
+          onExit={(to) => goto(to)}
+        />
+      ) : null}
+      {session.phase === "listenrespond" ? (
+        <ListenRespond
           scene={scene}
           voice={voice}
           name={st.name}
@@ -213,6 +222,7 @@ export function SceneScreen({ id }: { id: string }) {
           savedScore={rec?.last}
           onAgain={() => goto("talk")}
           onRolePlay={() => goto("roleplay")}
+          onListenRespond={() => goto("listenrespond")}
           onDrill={() => goto("drill")}
           onReview={() => navigate({ name: "review" })}
           onNext={(nid) => navigate({ name: "scene", id: nid })}
@@ -277,6 +287,7 @@ function Talk({
   onIndex,
   onPractice,
   onRolePlay,
+  onListenRespond,
 }: {
   scene: SceneT;
   index: number;
@@ -286,6 +297,7 @@ function Talk({
   onIndex: (i: number, text?: string) => void;
   onPractice: () => void;
   onRolePlay: () => void;
+  onListenRespond: () => void;
 }) {
   const line = scene.lines[index];
   if (!line) return null;
@@ -331,6 +343,7 @@ function Talk({
         {last ? (
           <>
             <Button variant="primary" onClick={onRolePlay}>Role-play it: speak your lines</Button>
+            <Button onClick={onListenRespond}>Listen & respond</Button>
             <Button onClick={onPractice}>Practice what you heard</Button>
           </>
         ) : (
@@ -547,8 +560,10 @@ function Done({
   onNext,
   onToday,
   onRolePlay,
+  onListenRespond,
 }: {
   onRolePlay: () => void;
+  onListenRespond: () => void;
   onToday?: () => void;
   scene: SceneT;
   right: number;
@@ -596,6 +611,7 @@ function Done({
         <Button variant={onToday ? "quiet" : "primary"} onClick={onReview}>Review</Button>
         {next ? <Button onClick={() => onNext(next.id)}>Next · {next.title}</Button> : null}
         <Button onClick={onRolePlay}>Role-play: speak your lines</Button>
+        <Button onClick={onListenRespond}>Listen & respond</Button>
         <Button onClick={onAgain}>Hear it again</Button>
         <Button variant="ghost" onClick={onDrill}>Drill again</Button>
       </div>
@@ -719,6 +735,198 @@ function RolePlay({ scene, voice, name, onExit }: { scene: SceneT; voice: Voice;
           {i >= lines.length - 1 ? "Finish" : mine ? "Next line" : "Your turn next"}
         </Button>
         {mine ? <HearButton text={r.thai} /> : null}
+      </div>
+    </section>
+  );
+}
+
+/** Partner→you turns only: hear the cue with audio alone, then say or pick your reply. English for both lines appears after you answer. */
+function partnerYouExchanges(scene: SceneT): { cue: Line; reply: Line }[] {
+  const out: { cue: Line; reply: Line }[] = [];
+  for (let i = 0; i < scene.lines.length - 1; i++) {
+    const cue = scene.lines[i];
+    const reply = scene.lines[i + 1];
+    if (cue && reply && cue.who !== "you" && reply.who === "you") out.push({ cue, reply });
+  }
+  return out;
+}
+
+function ListenRespond({ scene, voice, name, onExit }: { scene: SceneT; voice: Voice; name: string; onExit: (to: Phase) => void }) {
+  const turns = useMemo(() => partnerYouExchanges(scene), [scene]);
+  const [i, setI] = useState(0);
+  const [mode, setMode] = useState<"say" | "pick">("say");
+  const [revealed, setRevealed] = useState(false);
+  const [picked, setPicked] = useState<string | null>(null);
+  const [ok, setOk] = useState<boolean | null>(null);
+  const [results, setResults] = useState<Record<string, boolean>>({});
+  const [cueOn, setCueOn] = useState(true);
+  const [showThai, setShowThai] = useState(false);
+  const turn = turns[i];
+
+  useEffect(() => {
+    setRevealed(false);
+    setPicked(null);
+    setOk(null);
+    setShowThai(false);
+    if (turn) speak(renderLine(turn.cue, voice, name).thai);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i]);
+
+  const pickOpts = useMemo(() => {
+    if (!turn) return [] as string[];
+    const yours = scene.lines.filter((l) => l.who === "you");
+    const distractors = shuffle(yours.filter((l) => l.id !== turn.reply.id)).slice(0, 2);
+    return shuffle([turn.reply, ...distractors].map((l) => l.en));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [turn?.reply.id, i]);
+
+  if (!turns.length) {
+    return (
+      <section className="grid gap-4" data-listenrespond-empty>
+        <p className="text-muted">This scene has no listen-and-respond turns yet.</p>
+        <Button onClick={() => onExit("talk")}>Back to the conversation</Button>
+      </section>
+    );
+  }
+
+  if (i >= turns.length || !turn) {
+    const good = Object.values(results).filter(Boolean).length;
+    return (
+      <section className="grid gap-4" data-listenrespond-done>
+        <article className="rounded-4xl border border-line bg-card p-5 grid gap-2">
+          <p className="text-sm text-muted">Listen & respond finished</p>
+          <p className="font-display text-3xl tabular-nums">
+            {good} <span className="text-muted text-2xl">of {turns.length} replies clear</span>
+          </p>
+          <p className="text-muted">Hearing the other person first, then answering, is how real conversations feel on the street.</p>
+        </article>
+        <div className="flex flex-wrap gap-2">
+          <Button variant="primary" onClick={() => { setResults({}); setI(0); }}>Listen & respond again</Button>
+          <Button onClick={() => onExit("roleplay")}>Role-play your lines</Button>
+          <Button variant="ghost" onClick={() => onExit("talk")}>Hear it again</Button>
+        </div>
+      </section>
+    );
+  }
+
+  const cueR = renderLine(turn.cue, voice, name);
+  const replyR = renderLine(turn.reply, voice, name);
+  const who = SPEAKERS[turn.cue.who];
+
+  function lockPick(choice: string) {
+    if (revealed) return;
+    const correct = choice === turn!.reply.en;
+    setPicked(choice);
+    setOk(correct);
+    setRevealed(true);
+    setResults((x) => ({ ...x, [turn!.reply.id]: correct }));
+    speak(replyR.thai);
+  }
+
+  function next() {
+    setI(i + 1);
+  }
+
+  return (
+    <section className="grid gap-4" data-listenrespond>
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="text-sm text-muted tabular-nums">Listen & respond · {i + 1} of {turns.length}</p>
+        <div className="flex gap-2 text-sm">
+          <button type="button" className={`min-h-11 rounded-xl border px-3 ${mode === "say" ? "border-accent text-accent" : "border-line"}`} onClick={() => setMode("say")}>Say it</button>
+          <button type="button" className={`min-h-11 rounded-xl border px-3 ${mode === "pick" ? "border-accent text-accent" : "border-line"}`} onClick={() => setMode("pick")}>Pick</button>
+        </div>
+      </div>
+
+      <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
+        <p className="text-sm text-muted">{who.en} is speaking. Listen first.</p>
+        {revealed ? (
+          <>
+            <p className="font-display text-2xl">“{turn.cue.en}”</p>
+            <p className="text-lg text-muted">{cueR.roman}</p>
+            <p className="thai text-2xl" lang="th">{cueR.thai}</p>
+          </>
+        ) : (
+          <p className="text-muted">You’ll see what they said in English after you answer.</p>
+        )}
+        <div className="flex flex-wrap gap-2">
+          <HearButton text={cueR.thai} label="Play again" />
+          <HearButton text={cueR.thai} slow />
+        </div>
+      </article>
+
+      <article className="rounded-4xl border border-accent bg-card p-5 grid gap-3">
+        <p className="text-sm text-muted">Your reply</p>
+        {mode === "say" ? (
+          <>
+            <label className="inline-flex min-h-11 items-center gap-2 text-sm">
+              <input type="checkbox" checked={cueOn} onChange={(e) => setCueOn(e.target.checked)} />
+              Show romanization cue
+            </label>
+            <p className="text-lg text-muted min-h-7">{cueOn ? replyR.roman : "Answer from what you heard."}</p>
+            <div className="min-h-10">
+              {showThai ? (
+                <p className="thai text-2xl" lang="th">{replyR.thai} <span className="font-sans text-sm text-muted">{replyR.roman}</span></p>
+              ) : (
+                <button type="button" className="min-h-10 text-sm underline text-muted" onClick={() => setShowThai(true)}>Show Thai script (optional)</button>
+              )}
+            </div>
+            <SayIt
+              key={turn.reply.id}
+              target={replyR.thai}
+              roman={replyR.roman}
+              en={turn.reply.en}
+              hideTarget
+              skip={name.trim() ? [name.trim()] : []}
+              onWordVerdict={(v) => {
+                if (revealed) return;
+                const clear = v === "yes";
+                setOk(clear);
+                setRevealed(true);
+                setResults((x) => ({ ...x, [turn.reply.id]: clear || x[turn.reply.id] === true }));
+              }}
+            />
+          </>
+        ) : (
+          <div className="grid gap-2">
+            {pickOpts.map((o, idx) => {
+              const correct = o === turn.reply.en;
+              const chosen = picked === o;
+              return (
+                <button
+                  key={`${o}-${idx}`}
+                  type="button"
+                  disabled={revealed}
+                  onClick={() => lockPick(o)}
+                  className={`min-h-11 rounded-xl border bg-paper px-4 py-3 text-left ${revealed && correct ? "border-accent text-accent" : revealed && chosen ? "border-miss text-miss" : "border-line"}`}
+                >
+                  {o}
+                </button>
+              );
+            })}
+          </div>
+        )}
+        {revealed ? (
+          <div className="grid gap-1 text-sm" data-feedback>
+            <p className={ok ? "text-accent font-medium" : "text-miss font-medium"}>
+              {ok ? "Clear." : mode === "pick" ? "Not quite." : "Keep going. Here’s the reply."}
+            </p>
+            <p className="text-muted">You say:</p>
+            <AnswerLine thai={replyR.thai} roman={replyR.roman} en={turn.reply.en} />
+            <div className="flex flex-wrap gap-2 pt-1">
+              <HearButton text={replyR.thai} />
+              <HearButton text={replyR.thai} slow />
+            </div>
+          </div>
+        ) : mode === "say" ? (
+          <Button variant="ghost" className="justify-self-start" onClick={() => { setRevealed(true); setOk(null); }}>Show the reply</Button>
+        ) : null}
+      </article>
+
+      <div className="flex flex-wrap gap-2">
+        <Button disabled={i === 0} onClick={() => setI(i - 1)}>Back</Button>
+        <Button variant="primary" disabled={!revealed} onClick={next}>
+          {i >= turns.length - 1 ? "Finish" : "Next"}
+        </Button>
       </div>
     </section>
   );

@@ -372,6 +372,49 @@ await step("role-play: speak your lines, stable action row, no Thai-only cue", a
   if (!(await has("Role-play finished"))) throw new Error("no summary");
 });
 
+
+await step("listen & respond: audio-first cue, pick reveals English", async () => {
+  await page.goto(base + "#/scene/market", { waitUntil: "networkidle0" });
+  await page.evaluate(() => sessionStorage.clear());
+  await page.reload({ waitUntil: "networkidle0" });
+  if (await has("Hear it again")) await clickText("Listen & respond");
+  else {
+    if (await has("Skip ahead")) await clickText("Skip ahead");
+    else if (await has("Enter the conversation")) await clickText("Enter the conversation");
+    for (let i = 0; i < 15 && (await has("Next line")); i++) await clickText("Next line");
+    await clickText("Listen & respond");
+  }
+  if (!(await has("Listen first"))) throw new Error("no listen cue");
+  if (!(await has("You’ll see what they said"))) throw new Error("cue English should stay hidden until after answer");
+  const advance = async () => {
+    await page.evaluate(() => {
+      const pickTab = [...document.querySelectorAll("[data-listenrespond] button")].find((b) => b.textContent?.trim() === "Pick");
+      pickTab?.click();
+    });
+    await new Promise((r) => setTimeout(r, 80));
+    const chose = await page.evaluate(() => {
+      const btns = [...document.querySelectorAll("[data-listenrespond] article:nth-of-type(2) button")];
+      const pick = btns.find((b) => b.textContent && !/Show Thai|Play|Slow|Say it|Pick|Show the reply|Hear/.test(b.textContent) && !b.disabled);
+      if (!pick) return null;
+      pick.click();
+      return pick.textContent.trim();
+    });
+    if (!chose) throw new Error("no pick option");
+    await new Promise((r) => setTimeout(r, 150));
+    if (!(await has("You say:"))) throw new Error("no reveal after pick");
+    const moved = await page.evaluate(() => {
+      const btn = [...document.querySelectorAll("[data-listenrespond] > div:last-child button")].find((b) => /^(Next|Finish)$/.test(b.textContent.trim()) && !b.disabled);
+      if (!btn) return false;
+      btn.click();
+      return true;
+    });
+    if (!moved) throw new Error("no enabled Next/Finish after reveal");
+    await new Promise((r) => setTimeout(r, 150));
+  };
+  for (let i = 0; i < 8 && !(await has("Listen & respond finished")); i++) await advance();
+  if (!(await has("Listen & respond finished"))) throw new Error("no listen-respond summary");
+});
+
 await step("audio: Slow uses a much lower rate and splits words", async () => {
   await page.goto(base + "#/scene/market", { waitUntil: "networkidle0" });
   await page.evaluate(() => {

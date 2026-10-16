@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.13.0 — Listen & respond
+
+- **Listen & respond** in every scene (Babbel-style). After the conversation (or from the finish screen), tap "Listen & respond". You only hear the other person's line at first (no English yet). Then you either Say it or Pick your reply from English options. After you answer, English, romanization, and Thai for both lines appear. Thai script for your reply stays optional.
+- Reachable next to Role-play from the end of the conversation and from the scene finish screen.
+- Roadmap: listen-and-respond marked done; listening stories is next.
+
+
 ## 0.12.0 — Role-play your lines; Slow is really slow
 
 - **Role-play** in every scene (Babbel-style dialogue practice, speaking first). After the conversation, tap "Role-play it: speak your lines". The other person's lines play aloud with romanization and English. On your turn you see the English and the romanization cue, then press Say it and speak. Thai script is optional (Show Thai script). You can turn the romanization cue off to try from English alone. The summary lists each of your lines as Clear / Close / Not heard right yet, with a Hear button. Also reachable from the scene's finish screen.
