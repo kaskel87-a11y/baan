@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { annotateThai } from "../lib/romanize";
 import { ArrowLeft } from "lucide-react";
 import { SCENES } from "../data/scenes";
@@ -7,7 +7,7 @@ import type { Verdict } from "../lib/thai";
 import type { Drill, Line, Scene as SceneT, Speaker, Vocab, Voice } from "../data/types";
 import { completeScene, dayKey, introduce, markDueNow, touchStreak, useStore } from "../lib/store";
 import { cardsForMiss } from "../lib/cards";
-import { speak, speakSequence, stopSpeech } from "../lib/audio";
+import { NORMAL_RATE, SLOW_RATE, slowChunks, speak, speakSequence, stopSpeech } from "../lib/audio";
 import { particle, particleNote, pick, shuffle } from "../lib/thai";
 import { navigate } from "../lib/router";
 import { AnswerLine, Button, HearButton, NoVoiceNotice, RomanKey, SayIt } from "../components/ui";
@@ -25,7 +25,7 @@ const SPEAKERS: Record<Speaker, { th: string; en: string }> = {
   ning: { th: "นิ้ง", en: "Ning" },
 };
 
-type Phase = "preview" | "talk" | "drill" | "roleplay" | "listenrespond" | "done";
+type Phase = "preview" | "talk" | "drill" | "roleplay" | "listenrespond" | "shadow" | "done";
 interface Miss {
   en: string;
   thai: string;
@@ -181,8 +181,10 @@ export function SceneScreen({ id }: { id: string }) {
           onPractice={() => goto("drill")}
           onRolePlay={() => goto("roleplay")}
           onListenRespond={() => goto("listenrespond")}
+          onShadow={() => goto("shadow")}
         />
       ) : null}
+      {session.phase === "shadow" ? <Shadow scene={scene} voice={voice} name={st.name} onExit={(to) => goto(to)} /> : null}
       {session.phase === "roleplay" ? (
         <RolePlay
           scene={scene}
@@ -223,6 +225,7 @@ export function SceneScreen({ id }: { id: string }) {
           onAgain={() => goto("talk")}
           onRolePlay={() => goto("roleplay")}
           onListenRespond={() => goto("listenrespond")}
+          onShadow={() => goto("shadow")}
           onDrill={() => goto("drill")}
           onReview={() => navigate({ name: "review" })}
           onNext={(nid) => navigate({ name: "scene", id: nid })}
@@ -288,7 +291,9 @@ function Talk({
   onPractice,
   onRolePlay,
   onListenRespond,
+  onShadow,
 }: {
+  onShadow: () => void;
   scene: SceneT;
   index: number;
   voice: Voice;
@@ -344,6 +349,7 @@ function Talk({
           <>
             <Button variant="primary" onClick={onRolePlay}>Role-play it: speak your lines</Button>
             <Button onClick={onListenRespond}>Listen & respond</Button>
+            <Button onClick={onShadow}>Shadow: repeat after me</Button>
             <Button onClick={onPractice}>Practice what you heard</Button>
           </>
         ) : (
@@ -561,9 +567,11 @@ function Done({
   onToday,
   onRolePlay,
   onListenRespond,
+  onShadow,
 }: {
   onRolePlay: () => void;
   onListenRespond: () => void;
+  onShadow: () => void;
   onToday?: () => void;
   scene: SceneT;
   right: number;
@@ -612,6 +620,7 @@ function Done({
         {next ? <Button onClick={() => onNext(next.id)}>Next · {next.title}</Button> : null}
         <Button onClick={onRolePlay}>Role-play: speak your lines</Button>
         <Button onClick={onListenRespond}>Listen & respond</Button>
+        <Button onClick={onShadow}>Shadow: repeat after me</Button>
         <Button onClick={onAgain}>Hear it again</Button>
         <Button variant="ghost" onClick={onDrill}>Drill again</Button>
       </div>
@@ -927,6 +936,243 @@ function ListenRespond({ scene, voice, name, onExit }: { scene: SceneT; voice: V
         <Button variant="primary" disabled={!revealed} onClick={next}>
           {i >= turns.length - 1 ? "Finish" : "Next"}
         </Button>
+      </div>
+    </section>
+  );
+}
+
+/** How long to leave for your echo: roughly the line's length at speaking pace, plus breathing room. */
+function echoMs(roman: string, slow: boolean) {
+  const syl = roman.replace(/[.,!?…"“”()]/g, " ").split(/[\s-]+/).filter(Boolean).length;
+  return Math.round(Math.max(2500, syl * (slow ? 750 : 550) + 1300));
+}
+
+/**
+ * Shadowing (repeat after me): every line of the scene plays, then there's a timed pause for you to echo it out loud.
+ * "Check me" mode: one line at a time, then Say it and Check my tones on your echo.
+ * "Hands-free" mode: plays the whole scene line by line with echo pauses and no taps (no mic, so it never fights the speaker).
+ * English and romanization always show; Thai script is optional.
+ */
+function Shadow({ scene, voice, name, onExit }: { scene: SceneT; voice: Voice; name: string; onExit: (to: Phase) => void }) {
+  const lines = scene.lines;
+  const [i, setI] = useState(0);
+  const [mode, setMode] = useState<"check" | "handsfree">("check");
+  const [speed, setSpeed] = useState<"normal" | "slow">("normal");
+  const [showThai, setShowThai] = useState(false);
+  const [stage, setStage] = useState<{ kind: "idle" } | { kind: "playing" } | { kind: "echo"; ms: number; n: number }>({ kind: "idle" });
+  const [running, setRunning] = useState(false);
+  const [results, setResults] = useState<Record<string, Verdict>>({});
+  const [echoes, setEchoes] = useState(0);
+  const run = useRef(0);
+  const timers = useRef<number[]>([]);
+  const speedRef = useRef(speed);
+  speedRef.current = speed;
+
+  const clearTimers = () => {
+    timers.current.forEach((t) => window.clearTimeout(t));
+    timers.current = [];
+  };
+  const halt = () => {
+    run.current++;
+    clearTimers();
+    stopSpeech();
+    setStage({ kind: "idle" });
+    setRunning(false);
+  };
+
+  function play(idx: number, auto: boolean) {
+    const l = lines[idx];
+    if (!l) return;
+    clearTimers();
+    const id = ++run.current;
+    const r = renderLine(l, voice, name);
+    const slow = speedRef.current === "slow";
+    const parts = slow ? slowChunks(r.thai) : [r.thai];
+    let ended = false;
+    const afterAudio = () => {
+      if (ended || id !== run.current) return;
+      ended = true;
+      clearTimers();
+      const ms = echoMs(r.roman, slow);
+      setStage({ kind: "echo", ms, n: id });
+      timers.current.push(
+        window.setTimeout(() => {
+          if (id !== run.current) return;
+          setStage({ kind: "idle" });
+          setEchoes((e) => e + 1);
+          if (!auto) return;
+          if (idx + 1 < lines.length) {
+            setI(idx + 1);
+            play(idx + 1, true);
+          } else {
+            setRunning(false);
+            setI(lines.length);
+          }
+        }, ms),
+      );
+    };
+    setStage({ kind: "playing" });
+    speakSequence(parts, slow ? SLOW_RATE() : NORMAL_RATE(), { gapMs: slow ? 280 : 0, onDone: afterAudio });
+    // If the browser never reports the end of speech (or has no Thai voice), move on after a generous estimate.
+    timers.current.push(window.setTimeout(afterAudio, echoMs(r.roman, slow) * (slow ? 2 : 1.5) + 2500));
+  }
+
+  // Check me: each new line plays once by itself.
+  useEffect(() => {
+    if (mode === "check" && i < lines.length) play(i, false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i, mode]);
+  useEffect(
+    () => () => {
+      run.current++;
+      timers.current.forEach((t) => window.clearTimeout(t));
+    },
+    [],
+  );
+
+  const go = (to: number) => {
+    halt();
+    setI(to);
+  };
+
+  if (i >= lines.length) {
+    const tried = lines.filter((l) => results[l.id]);
+    const clear = tried.filter((l) => results[l.id] === "yes").length;
+    return (
+      <section className="grid gap-4" data-shadow-done>
+        <article className="rounded-4xl border border-line bg-card p-5 grid gap-2">
+          <p className="text-sm text-muted">Shadowing finished</p>
+          <p className="font-display text-3xl">You echoed all {lines.length} lines.</p>
+          {tried.length ? (
+            <p className="text-muted tabular-nums">{clear} of {tried.length} checked lines came through clear.</p>
+          ) : (
+            <p className="text-muted">Next time, use Check me on a few lines to see how your tones land.</p>
+          )}
+          <p className="text-muted">Copying the rhythm and melody right after a native speaker trains your mouth and your ear at once. Doing a scene twice in a row helps more than once.</p>
+        </article>
+        <div className="grid gap-2">
+          {lines.map((l) => {
+            const r = renderLine(l, voice, name);
+            const v = results[l.id];
+            return (
+              <div key={l.id} className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-line bg-card px-3 py-2">
+                <div>
+                  <p className="text-sm">“{l.en}”</p>
+                  <p className="text-sm text-muted">{r.roman} · <span className="thai" lang="th">{r.thai}</span></p>
+                  {v ? (
+                    <p className={`text-xs ${v === "yes" ? "text-accent" : v === "close" ? "text-muted" : "text-miss"}`}>
+                      {v === "yes" ? "Clear" : v === "close" ? "Close" : "Not heard right yet"}
+                    </p>
+                  ) : null}
+                </div>
+                <div className="flex gap-2">
+                  <HearButton text={r.thai} />
+                  <HearButton text={r.thai} slow />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Button variant="primary" onClick={() => { setResults({}); setEchoes(0); setI(0); }}>Shadow again</Button>
+          <Button onClick={() => onExit("roleplay")}>Role-play your lines</Button>
+          <Button variant="ghost" onClick={() => onExit("talk")}>Hear it again</Button>
+        </div>
+      </section>
+    );
+  }
+
+  const line = lines[i]!;
+  const r = renderLine(line, voice, name);
+  const mine = line.who === "you";
+  const who = SPEAKERS[line.who];
+  return (
+    <section className="grid gap-4" data-shadow>
+      <div className="grid gap-1">
+        <p className="text-sm text-muted tabular-nums">Shadowing · line {i + 1} of {lines.length}</p>
+        <p className="text-sm text-muted">Listen, then echo the line out loud right away. Copy the melody, not just the words.</p>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        {(["check", "handsfree"] as const).map((m) => (
+          <button
+            key={m}
+            type="button"
+            aria-pressed={mode === m}
+            className={`min-h-11 rounded-xl border px-3 text-sm ${mode === m ? "border-accent text-accent" : "border-line"}`}
+            onClick={() => { if (m !== mode) { halt(); setMode(m); } }}
+          >
+            {m === "check" ? "Check me" : "Hands-free"}
+          </button>
+        ))}
+        {(["normal", "slow"] as const).map((sp) => (
+          <button
+            key={sp}
+            type="button"
+            aria-pressed={speed === sp}
+            className={`min-h-11 rounded-xl border px-3 text-sm ${speed === sp ? "border-accent text-accent" : "border-line"}`}
+            onClick={() => setSpeed(sp)}
+          >
+            {sp === "normal" ? "Normal speed" : "Slow"}
+          </button>
+        ))}
+      </div>
+      <article className={`rounded-4xl border bg-card p-5 grid gap-3 ${mine ? "border-accent" : "border-line"}`}>
+        <p className="text-sm text-muted">{mine ? "Your line" : `${who.en} says`}</p>
+        <p className="font-display text-2xl">“{line.en}”</p>
+        <p className="text-xl">{r.roman}</p>
+        <div className="min-h-10">
+          {showThai ? (
+            <p className="thai text-2xl" lang="th">{r.thai}</p>
+          ) : (
+            <button type="button" className="min-h-10 text-sm underline text-muted" onClick={() => setShowThai(true)}>Show Thai script (optional)</button>
+          )}
+        </div>
+        <div className="min-h-12 grid content-center gap-2" aria-live="polite">
+          {stage.kind === "playing" ? (
+            <p className="text-sm text-muted">Listen…</p>
+          ) : stage.kind === "echo" ? (
+            <>
+              <p className="text-sm font-medium text-accent">Your turn: echo it now.</p>
+              <div className="h-1.5 overflow-hidden rounded-full bg-line">
+                <div key={stage.n} className="h-full origin-left bg-accent" style={{ animation: `baan-shrink ${stage.ms}ms linear forwards` }} />
+              </div>
+            </>
+          ) : (
+            <p className="text-sm text-muted">
+              {mode === "handsfree" ? (running ? "…" : "Press Start and keep the phone nearby. No tapping needed.") : "Echo it again, or check your echo below."}
+            </p>
+          )}
+        </div>
+        {mode === "check" ? (
+          <>
+            <div className="flex flex-wrap gap-2">
+              <Button onClick={() => play(i, false)}>Play and echo again</Button>
+            </div>
+            <SayIt
+              key={line.id}
+              target={r.thai}
+              roman={r.roman}
+              en={line.en}
+              skip={name.trim() ? [name.trim()] : []}
+              onWordVerdict={(v) => setResults((x) => ({ ...x, [line.id]: x[line.id] === "yes" ? "yes" : v }))}
+            />
+          </>
+        ) : (
+          <div className="flex flex-wrap gap-2">
+            {running ? (
+              <Button variant="primary" onClick={halt}>Pause</Button>
+            ) : (
+              <Button variant="primary" onClick={() => { setRunning(true); play(i, true); }}>{i === 0 && echoes === 0 ? "Start" : "Resume"}</Button>
+            )}
+          </div>
+        )}
+      </article>
+      <div className="flex flex-wrap gap-2">
+        <Button disabled={i === 0} onClick={() => go(i - 1)}>Back</Button>
+        <Button variant={mode === "check" ? "primary" : "quiet"} onClick={() => go(i + 1)}>
+          {i >= lines.length - 1 ? "Finish" : "Next line"}
+        </Button>
+        <Button variant="ghost" onClick={() => { halt(); onExit("talk"); }}>Leave</Button>
       </div>
     </section>
   );

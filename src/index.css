@@ -80,3 +80,8 @@ body {
     animation: none !important;
   }
 }
+
+@keyframes baan-shrink {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}

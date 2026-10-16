@@ -415,6 +415,40 @@ await step("listen & respond: audio-first cue, pick reveals English", async () =
   if (!(await has("Listen & respond finished"))) throw new Error("no listen-respond summary");
 });
 
+await step("shadowing: plays, echo pause, hands-free runs to the end", async () => {
+  await page.goto(base + "#/scene/market", { waitUntil: "networkidle0" });
+  const savedScene = await page.evaluate(() => sessionStorage.getItem("baan.scene.market"));
+  await page.evaluate(() => sessionStorage.clear());
+  await page.reload({ waitUntil: "networkidle0" });
+  await page.evaluate(() => {
+    window.__utts = [];
+    speechSynthesis.speak = (u) => { window.__utts.push(u.text); u.onend && setTimeout(() => u.onend(), 30); };
+  });
+  if (await has("Hear it again")) await clickText("Shadow");
+  else {
+    if (await has("Skip ahead")) await clickText("Skip ahead");
+    else if (await has("Enter the conversation")) await clickText("Enter the conversation");
+    for (let i = 0; i < 15 && (await has("Next line")); i++) await clickText("Next line");
+    await clickText("Shadow");
+  }
+  if (!(await page.$("[data-shadow]"))) throw new Error("shadow did not open");
+  await new Promise((r) => setTimeout(r, 400));
+  if (!(await has("Your turn: echo it now"))) throw new Error("no echo pause after the line played");
+  if (!(await has("Say it"))) throw new Error("no Say it in Check me");
+  const latin = await page.evaluate(() => /[a-z]/i.test(document.querySelector("[data-shadow] article")?.textContent ?? ""));
+  if (!latin) throw new Error("no English/romanization on the line");
+  await clickText("Hands-free");
+  await clickText("Start");
+  const total = await page.evaluate(() => Number(/of (\d+)/.exec(document.querySelector("[data-shadow] p")?.textContent ?? "")?.[1] ?? 0));
+  for (let i = 0; i < total * 12 && !(await has("Shadowing finished")); i++) await new Promise((r) => setTimeout(r, 500));
+  if (!(await has("Shadowing finished"))) throw new Error("hands-free did not reach the summary");
+  const played = await page.evaluate(() => window.__utts.length);
+  if (played < total) throw new Error(`only ${played} of ${total} lines played`);
+  // Leave the scene the way the earlier steps left it, for the steps that follow.
+  await page.goto(base + "#/path", { waitUntil: "networkidle0" });
+  await page.evaluate((v) => v && sessionStorage.setItem("baan.scene.market", v), savedScene);
+});
+
 await step("listening story: listen, answer in English, then full transcript", async () => {
   await page.goto(base + "#/stories", { waitUntil: "networkidle0" });
   if (!(await has("Listening stories"))) throw new Error("no stories list");

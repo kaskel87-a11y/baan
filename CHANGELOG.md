@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.15.0 — Shadowing (repeat after me)
+
+- **Shadowing** in every scene, next to Role-play and Listen & respond (end of the conversation and the finish screen). Each line plays, then a timed bar gives you a pause sized to the line to echo it out loud. English and romanization always show; Thai script is optional.
+- **Check me** mode goes one line at a time, with Play and echo again, Say it, and Check my tones on your echo. **Hands-free** mode plays the whole scene with echo pauses and no tapping (no mic, so it never fights the speaker), with Pause and Resume.
+- Normal or Slow speed (Slow plays word by word). The summary lists every line with Hear and Slow, and how each checked line came through.
+- Smoke test covers the echo pause and a full hands-free run.
+
 ## 0.14.0 — Listening stories; tone fix for ใกล้
 
 - **Listening stories** (`#/stories`, card on Path). Four short narrated stories (Morning coffee, The market then a ride, A hot day, This afternoon) built from the scene words. Play the whole story with no text, slowly, or one sentence at a time (tap a line number). Romanization while listening is an optional checkbox. Then answer 4–5 questions in English. After that you get the full story with English, romanization, and Thai, each line with Hear and Slow, and the player highlights the line being spoken. Best scores are saved, and each answer counts toward the daily goal.
