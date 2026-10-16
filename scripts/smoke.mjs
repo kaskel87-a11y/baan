@@ -341,6 +341,61 @@ await step("rule: no Thai-only line in any feedback seen during the run", async 
 
 const sayIt = await page.evaluate(() => "webkitSpeechRecognition" in window || "SpeechRecognition" in window);
 console.log(`SpeechRecognition available in this Chrome: ${sayIt}`);
+
+await step("role-play: speak your lines, stable action row, no Thai-only cue", async () => {
+  await page.goto(base + "#/scene/market", { waitUntil: "networkidle0" });
+  await page.evaluate(() => sessionStorage.clear());
+  await page.reload({ waitUntil: "networkidle0" });
+  if (await has("Hear it again")) await clickText("Role-play");
+  else {
+    if (await has("Skip ahead")) await clickText("Skip ahead");
+    else if (await has("Enter the conversation")) await clickText("Enter the conversation");
+    for (let i = 0; i < 15 && (await has("Next line")); i++) await clickText("Next line");
+    await clickText("Role-play it");
+  }
+  let sawMine = false;
+  for (let i = 0; i < 20 && !(await has("Role-play finished")); i++) {
+    const info = await page.evaluate(() => {
+      const art = document.querySelector("[data-roleplay] article");
+      const row = document.querySelector("[data-roleplay] > div:last-child");
+      return { mine: /Your turn/.test(art?.textContent ?? ""), latin: /[a-z]/i.test(art?.textContent ?? ""), y: row?.getBoundingClientRect().height };
+    });
+    if (!info.latin) throw new Error("role-play line had no English/romanization");
+    if (info.mine) {
+      sawMine = true;
+      if (!(await has("Say it"))) throw new Error("no Say it on your turn");
+    }
+    const btn = await page.evaluate(() => [...document.querySelectorAll("[data-roleplay] > div:last-child button")].map((b) => b.textContent.trim()).find((t) => /Next line|Your turn next|Finish/.test(t)));
+    await clickText(btn);
+  }
+  if (!sawMine) throw new Error("never got a 'your turn' line");
+  if (!(await has("Role-play finished"))) throw new Error("no summary");
+});
+
+await step("audio: Slow uses a much lower rate and splits words", async () => {
+  await page.goto(base + "#/scene/market", { waitUntil: "networkidle0" });
+  await page.evaluate(() => {
+    window.__utts = [];
+    const real = speechSynthesis.speak.bind(speechSynthesis);
+    speechSynthesis.speak = (u) => { window.__utts.push({ t: u.text, r: u.rate }); u.onend && setTimeout(() => u.onend(), 50); };
+    void real;
+  });
+  await page.evaluate(() => sessionStorage.clear());
+  const hear = async (label) => {
+    await page.evaluate(() => (window.__utts = []));
+    await clickText(label);
+    await new Promise((r) => setTimeout(r, 1500));
+    return page.evaluate(() => window.__utts);
+  };
+  if (await has("Role-play again")) await clickText("Hear it again");
+  if (!(await has("Hear"))) await clickText("Hear it again");
+  const n = await hear("Hear");
+  const s = await hear("Slow");
+  if (!n.length || !s.length) throw new Error("no utterances");
+  if (!(s[0].r < n[0].r - 0.2)) throw new Error(`slow rate ${s[0].r} vs normal ${n[0].r}`);
+  console.log("   normal", JSON.stringify(n), "slow", JSON.stringify(s));
+});
+
 await browser.close();
 if (problems.length) {
   console.log("\nPROBLEMS:\n" + problems.join("\n"));

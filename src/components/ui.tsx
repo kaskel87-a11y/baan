@@ -1,7 +1,7 @@
 import { useState, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { Volume2 } from "lucide-react";
 import type { Tone } from "../data/types";
-import { speak, useThaiVoice } from "../lib/audio";
+import { speakNormal, speakSlow, useThaiVoice } from "../lib/audio";
 
 export const TONE_PATH: Record<Tone, string> = {
   mid: "M6 24 H58",
@@ -43,7 +43,7 @@ export function Button({
 
 export function HearButton({ text, slow = false, label }: { text: string; slow?: boolean; label?: string }) {
   return (
-    <Button aria-label={label ?? (slow ? "Play slowly" : "Play Thai")} onClick={() => speak(text, slow ? 0.68 : 0.9)}>
+    <Button aria-label={label ?? (slow ? "Play slowly" : "Play Thai")} onClick={() => (slow ? speakSlow(text) : speakNormal(text))}>
       <Volume2 aria-hidden="true" size={18} />
       {slow ? "Slow" : "Hear"}
     </Button>

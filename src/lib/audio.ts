@@ -24,7 +24,7 @@ export function stopSpeech() {
 }
 
 /** Speak one Thai string. `voiceIndex` picks among installed Thai voices (for variation drills). */
-export function speak(text: string, rate = 0.9, voiceIndex = 0) {
+export function speak(text: string, rate = NORMAL_RATE(), voiceIndex = 0) {
   if (typeof window === "undefined" || !window.speechSynthesis || !text.trim()) return;
   const synth = window.speechSynthesis;
   const t = ++token;
@@ -67,4 +67,30 @@ export function useThaiVoice(): "unknown" | "yes" | "no" {
     return () => synth.removeEventListener("voiceschanged", check);
   }, []);
   return v;
+}
+
+/** iPhone/iPad (incl. iPadOS that reports as Mac). iOS speech rates feel much faster than desktop at the same value. */
+export function isIOS() {
+  if (typeof navigator === "undefined") return false;
+  return /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+}
+export const NORMAL_RATE = () => (isIOS() ? 1.0 : 0.9);
+export const SLOW_RATE = () => (isIOS() ? 0.42 : 0.6);
+
+/** Split Thai into words (not single letters, which TTS would read as letter names). */
+export function slowChunks(text: string): string[] {
+  const clean = text.replace(/[!?.,"“”'()]/g, " ").trim();
+  if (typeof Intl === "undefined" || !("Segmenter" in Intl)) return clean.split(/\s+/).filter(Boolean);
+  return [...new Intl.Segmenter("th", { granularity: "word" }).segment(clean)].map((x) => x.segment.trim()).filter(Boolean);
+}
+
+/** Normal-speed playback. */
+export function speakNormal(text: string) {
+  speak(text, NORMAL_RATE());
+}
+/** Clearly slower playback: a much lower rate, and multi-word text is spoken word by word with short pauses. */
+export function speakSlow(text: string) {
+  const parts = slowChunks(text);
+  if (parts.length > 1) speakSequence(parts, SLOW_RATE(), { gapMs: 280 });
+  else speak(text, SLOW_RATE());
 }

@@ -32,7 +32,7 @@ export function Path() {
         <p className="text-sm text-muted">sà-wàt-dii · “hello”</p>
         <h1 className="font-display text-3xl md:text-4xl">A day in the city, spoken.</h1>
         <p className="max-w-prose text-muted">
-          Six conversations, in order. English stays hidden until you ask. What you meet comes back in Review.
+          {SCENES.length} conversations, in order. Hear each one, then role-play it: you speak your own lines. Everything comes with English and romanization, and what you meet comes back in Review.
         </p>
       </header>
       <article className="rounded-4xl border border-accent bg-card p-5 grid gap-3">

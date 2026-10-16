@@ -3,6 +3,7 @@ import { annotateThai } from "../lib/romanize";
 import { ArrowLeft } from "lucide-react";
 import { SCENES } from "../data/scenes";
 import { VOCAB_BY_ID } from "../data/vocab";
+import type { Verdict } from "../lib/thai";
 import type { Drill, Line, Scene as SceneT, Speaker, Vocab, Voice } from "../data/types";
 import { completeScene, dayKey, introduce, markDueNow, touchStreak, useStore } from "../lib/store";
 import { cardsForMiss } from "../lib/cards";
@@ -24,7 +25,7 @@ const SPEAKERS: Record<Speaker, { th: string; en: string }> = {
   ning: { th: "นิ้ง", en: "Ning" },
 };
 
-type Phase = "preview" | "talk" | "drill" | "done";
+type Phase = "preview" | "talk" | "drill" | "roleplay" | "done";
 interface Miss {
   en: string;
   thai: string;
@@ -178,6 +179,15 @@ export function SceneScreen({ id }: { id: string }) {
             if (text) speak(text);
           }}
           onPractice={() => goto("drill")}
+          onRolePlay={() => goto("roleplay")}
+        />
+      ) : null}
+      {session.phase === "roleplay" ? (
+        <RolePlay
+          scene={scene}
+          voice={voice}
+          name={st.name}
+          onExit={(to) => goto(to)}
         />
       ) : null}
       {session.phase === "drill" ? (
@@ -202,6 +212,7 @@ export function SceneScreen({ id }: { id: string }) {
           misses={session.misses}
           savedScore={rec?.last}
           onAgain={() => goto("talk")}
+          onRolePlay={() => goto("roleplay")}
           onDrill={() => goto("drill")}
           onReview={() => navigate({ name: "review" })}
           onNext={(nid) => navigate({ name: "scene", id: nid })}
@@ -265,6 +276,7 @@ function Talk({
   roman,
   onIndex,
   onPractice,
+  onRolePlay,
 }: {
   scene: SceneT;
   index: number;
@@ -273,6 +285,7 @@ function Talk({
   roman: boolean;
   onIndex: (i: number, text?: string) => void;
   onPractice: () => void;
+  onRolePlay: () => void;
 }) {
   const line = scene.lines[index];
   if (!line) return null;
@@ -316,7 +329,10 @@ function Talk({
           </Button>
         ) : null}
         {last ? (
-          <Button variant="primary" onClick={onPractice}>Practice what you heard</Button>
+          <>
+            <Button variant="primary" onClick={onRolePlay}>Role-play it: speak your lines</Button>
+            <Button onClick={onPractice}>Practice what you heard</Button>
+          </>
         ) : (
           <Button
             variant="primary"
@@ -530,7 +546,9 @@ function Done({
   onReview,
   onNext,
   onToday,
+  onRolePlay,
 }: {
+  onRolePlay: () => void;
   onToday?: () => void;
   scene: SceneT;
   right: number;
@@ -577,8 +595,130 @@ function Done({
         {onToday ? <Button variant="primary" onClick={onToday}>Continue today’s session</Button> : null}
         <Button variant={onToday ? "quiet" : "primary"} onClick={onReview}>Review</Button>
         {next ? <Button onClick={() => onNext(next.id)}>Next · {next.title}</Button> : null}
+        <Button onClick={onRolePlay}>Role-play: speak your lines</Button>
         <Button onClick={onAgain}>Hear it again</Button>
         <Button variant="ghost" onClick={onDrill}>Drill again</Button>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * Babbel-style dialogue role-play, speaking-first: the partner's lines play aloud (Thai + romanization + English),
+ * and on your turns you see the English and the romanization as a cue and say the line out loud.
+ * Thai script for your line is optional ("Show Thai"). Layout stays fixed: the action row never moves.
+ */
+function RolePlay({ scene, voice, name, onExit }: { scene: SceneT; voice: Voice; name: string; onExit: (to: Phase) => void }) {
+  const [i, setI] = useState(0);
+  const [showThai, setShowThai] = useState(false);
+  const [cue, setCue] = useState(true);
+  const [results, setResults] = useState<Record<string, Verdict>>({});
+  const lines = scene.lines;
+  const yours = lines.filter((l) => l.who === "you");
+  const line = lines[i];
+  useEffect(() => {
+    const l = lines[i];
+    if (l && l.who !== "you") speak(renderLine(l, voice, name).thai);
+    setShowThai(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i]);
+  if (i >= lines.length || !line) {
+    const good = yours.filter((l) => results[l.id] === "yes").length;
+    const close = yours.filter((l) => results[l.id] === "close").length;
+    return (
+      <section className="grid gap-4" data-roleplay-done>
+        <article className="rounded-4xl border border-line bg-card p-5 grid gap-2">
+          <p className="text-sm text-muted">Role-play finished</p>
+          <p className="font-display text-3xl tabular-nums">
+            {good} <span className="text-muted text-2xl">of {yours.length} lines clear</span>
+          </p>
+          {close ? <p className="text-muted">{close} close. Say those once more and they’ll land.</p> : null}
+          <p className="text-muted">Speaking your own lines out loud, in order, is the fastest way to make them come out on the street.</p>
+        </article>
+        <div className="grid gap-2">
+          {yours.map((l) => {
+            const r = renderLine(l, voice, name);
+            const v = results[l.id];
+            return (
+              <div key={l.id} className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-line bg-card px-3 py-2">
+                <div>
+                  <p className="text-sm">“{l.en}”</p>
+                  <p className="text-sm text-muted">{r.roman} · <span className="thai" lang="th">{r.thai}</span></p>
+                  <p className={`text-xs ${v === "yes" ? "text-accent" : v === "close" ? "text-muted" : "text-miss"}`}>
+                    {v === "yes" ? "Clear" : v === "close" ? "Close" : v === "no" ? "Not heard right yet" : "Not tried"}
+                  </p>
+                </div>
+                <HearButton text={r.thai} />
+              </div>
+            );
+          })}
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Button variant="primary" onClick={() => { setResults({}); setI(0); }}>Role-play again</Button>
+          <Button onClick={() => onExit("drill")}>Practice drills</Button>
+          <Button variant="ghost" onClick={() => onExit("talk")}>Hear it again</Button>
+        </div>
+      </section>
+    );
+  }
+  const r = renderLine(line, voice, name);
+  const mine = line.who === "you";
+  const who = SPEAKERS[line.who];
+  const prev = i > 0 ? lines[i - 1] : undefined;
+  return (
+    <section className="grid gap-4" data-roleplay>
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="text-sm text-muted tabular-nums">Role-play · line {i + 1} of {lines.length}</p>
+        <label className="inline-flex min-h-11 items-center gap-2 text-sm">
+          <input type="checkbox" checked={cue} onChange={(e) => setCue(e.target.checked)} />
+          Show romanization cue
+        </label>
+      </div>
+      {prev && mine && prev.who !== "you" ? (
+        <p className="text-sm text-muted">
+          {SPEAKERS[prev.who].en} said: {renderLine(prev, voice, name).roman} · “{prev.en}”
+        </p>
+      ) : null}
+      <article className={`rounded-4xl border bg-card p-5 grid gap-3 ${mine ? "border-accent" : "border-line"}`}>
+        <p className="text-sm text-muted">{mine ? "Your turn. Say it out loud." : `${who.en} says`}</p>
+        <p className="font-display text-2xl">“{line.en}”</p>
+        {mine ? (
+          <>
+            <p className="text-lg text-muted min-h-7">{cue ? r.roman : "Try it from the English first."}</p>
+            <div className="min-h-10">
+              {showThai ? (
+                <p className="thai text-2xl" lang="th">{r.thai} <span className="font-sans text-sm text-muted">{r.roman}</span></p>
+              ) : (
+                <button type="button" className="min-h-10 text-sm underline text-muted" onClick={() => setShowThai(true)}>Show Thai script (optional)</button>
+              )}
+            </div>
+            <SayIt
+              key={line.id}
+              target={r.thai}
+              roman={r.roman}
+              en={line.en}
+              hideTarget
+              skip={name.trim() ? [name.trim()] : []}
+              onWordVerdict={(v) => setResults((x) => ({ ...x, [line.id]: x[line.id] === "yes" ? "yes" : v }))}
+            />
+          </>
+        ) : (
+          <>
+            <p className="text-lg">{r.roman}</p>
+            <p className="thai text-2xl" lang="th">{r.thai}</p>
+            <div className="flex flex-wrap gap-2">
+              <HearButton text={r.thai} />
+              <HearButton text={r.thai} slow />
+            </div>
+          </>
+        )}
+      </article>
+      <div className="flex flex-wrap gap-2">
+        <Button disabled={i === 0} onClick={() => setI(i - 1)}>Back</Button>
+        <Button variant="primary" onClick={() => setI(i + 1)}>
+          {i >= lines.length - 1 ? "Finish" : mine ? "Next line" : "Your turn next"}
+        </Button>
+        {mine ? <HearButton text={r.thai} /> : null}
       </div>
     </section>
   );

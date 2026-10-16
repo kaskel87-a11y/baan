@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.12.0 — Role-play your lines; Slow is really slow
+
+- **Role-play** in every scene (Babbel-style dialogue practice, speaking first). After the conversation, tap "Role-play it: speak your lines". The other person's lines play aloud with romanization and English. On your turn you see the English and the romanization cue, then press Say it and speak. Thai script is optional (Show Thai script). You can turn the romanization cue off to try from English alone. The summary lists each of your lines as Clear / Close / Not heard right yet, with a Hear button. Also reachable from the scene's finish screen.
+- **Slow fix (iPhone):** Slow and Hear sounded the same on iOS. Normal now plays at rate 1.0 on iOS and Slow at 0.42 (desktop 0.9 / 0.6), and multi-word lines are spoken word by word with short pauses.
+- Path intro text updated (it still said six scenes and that English stays hidden).
+- Babbel research notes in `docs/BABBEL-NOTES.md`; roadmap reprioritized for speaking and listening.
+
 ## 0.11.0 — New scene: Massage / pharmacy
 
 - New scene 08, Massage / pharmacy (`#/scene/massage`), between Lost and A meal. Ning asks where it hurts (เจ็บตรงไหน), you say your head hurts (ปวดหัว), ask for a softer massage (เบาๆหน่อย), say not so hard (ไม่แรง), and ask if they have medicine for a headache (มียาแก้ปวดหัวไหม).
