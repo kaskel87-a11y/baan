@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { clearProgress, setDailyGoal, setName, setRoman, setVoice, useStore } from "../lib/store";
+import { clearProgress, setDailyGoal, setName, setReadCards, setRoman, setVoice, useStore } from "../lib/store";
 import { Button } from "../components/ui";
 
 export function Settings() {
@@ -26,6 +26,13 @@ export function Settings() {
         <span className="text-sm font-medium">Show romanization in scenes</span>
         <input type="checkbox" checked={s.roman} onChange={(e) => setRoman(e.target.checked)} className="size-5 accent-accent" />
       </label>
+      <div className="grid gap-1">
+        <label className="flex min-h-11 items-center justify-between gap-3 rounded-xl border border-line bg-card px-3">
+          <span className="text-sm font-medium">Thai script reading cards in Review</span>
+          <input type="checkbox" checked={!!s.readCards} onChange={(e) => setReadCards(e.target.checked)} className="size-5 accent-accent" />
+        </label>
+        <p className="text-sm text-muted">Off by default, so Review is all Say it and Listen. Your reading progress is kept if you turn it back on.</p>
+      </div>
       <fieldset className="grid gap-2">
         <legend className="text-sm font-medium">Daily goal (graded items, or finish today’s session)</legend>
         <div className="flex flex-wrap gap-2">

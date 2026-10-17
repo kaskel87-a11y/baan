@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { annotateThai } from "../lib/romanize";
 import { buildSessionQueue, resolveCard, type CardKind } from "../lib/cards";
 import {
+  cardAllowed,
   dueCardIds,
   gradeCard,
   learnedCount,
@@ -14,7 +15,7 @@ import type { Verdict } from "../lib/thai";
 
 const KIND_LABEL: Record<CardKind, string> = {
   listen: "Listen",
-  read: "Read",
+  read: "Read (Thai script)",
   produce: "Say it",
 };
 
@@ -26,7 +27,7 @@ export function Review({ preset, onDone }: { preset?: string[]; onDone?: (graded
   const learned = learnedCount(s);
   const [i, setI] = useState(0);
   const [queue, setQueue] = useState<string[] | null>(() =>
-    preset ? preset.filter((cid) => !!resolveCard(cid, s.voice ?? "female", s.name)) : null,
+    preset ? preset.filter((cid) => cardAllowed(s, cid) && !!resolveCard(cid, s.voice ?? "female", s.name)) : null,
   );
   const [revealed, setRevealed] = useState(false);
   const [graded, setGraded] = useState(0);
@@ -132,6 +133,18 @@ export function Review({ preset, onDone }: { preset?: string[]; onDone?: (graded
           ) : null}
 
           {!hideAll && card.kind !== "produce" && revealed ? <HearButton text={card.thai} /> : null}
+          {card.kind === "produce" && revealed ? (
+            <div className="flex flex-wrap gap-2">
+              <HearButton text={card.thai} label="Hear it" />
+              <HearButton text={card.thai} slow />
+            </div>
+          ) : null}
+          {card.kind === "listen" && revealed ? (
+            <div className="grid gap-1">
+              <p className="text-sm text-muted">Now say it back.</p>
+              <SayIt key={`${card.id}-echo`} target={card.thai} roman={card.roman} en={card.en} />
+            </div>
+          ) : null}
           {card.kind === "produce" || card.kind === "read" ? (
             <SayIt
               target={card.thai}
@@ -195,8 +208,8 @@ export function Review({ preset, onDone }: { preset?: string[]; onDone?: (graded
     <div className="enter grid gap-6">
       <PageHeader kicker="Review" title="Back before they fade.">
         <p>
-          Listen, read, and say the words and your lines. Again if it slipped. Hard if it was slow. Good if you had it.
-          Easy if it was instant. Missed drills come back here the same day.
+          Mostly speaking and listening: say it from the English, or hear it and say it back. Again if it slipped. Hard
+          if it was slow. Good if you had it. Easy if it was instant. Missed drills come back here the same day.
         </p>
       </PageHeader>
       {Object.keys(s.srs).filter((k) => k.includes(":")).length === 0 ? (
@@ -217,7 +230,7 @@ export function Review({ preset, onDone }: { preset?: string[]; onDone?: (graded
               onClick={() => {
                 const resolve = (cid: string) => resolveCard(cid, voice, s.name);
                 const ahead = Object.keys(s.srs)
-                  .filter((cid) => cid.includes(":"))
+                  .filter((cid) => cid.includes(":") && cardAllowed(s, cid))
                   .sort((a, b) => (s.srs[a]?.due ?? 0) - (s.srs[b]?.due ?? 0))
                   .slice(0, 10);
                 start(buildSessionQueue(ahead, [], resolve, 10));

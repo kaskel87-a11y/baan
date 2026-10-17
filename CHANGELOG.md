@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.16.0 — Speaking-weighted Review
+
+- **Review is now mostly speaking and listening.** Each session mixes cards as Say it, Listen, Say it, Listen, Say it, so about 3 in 5 cards ask you to say it from the English and the rest are listen-first. Sessions open with a Say it card.
+- **Thai script reading cards are off by default.** They no longer show up in Review, Today, or the due counts. Your reading progress is kept, and you can turn them back on in Settings (Thai script reading cards in Review). When on, they stay a small share (about 1 in 6).
+- **Say it cards** now have Hear and Slow after Show, so you can hear the right answer and compare it with what you said.
+- **Listen cards** now end with "Now say it back": after Show you get Say it on the phrase you just heard (with romanization and English).
+- Missed scene drills now feed the Listen and Say it cards for that word or line instead of the reading card.
+- New store-level test (`npm run test:review`) checks the mix, that reading cards sleep by default, and that drill misses feed speaking cards.
+
 ## 0.15.0 — Shadowing (repeat after me)
 
 - **Shadowing** in every scene, next to Role-play and Listen & respond (end of the conversation and the finish screen). Each line plays, then a timed bar gives you a pause sized to the line to echo it out loud. English and romanization always show; Thai script is optional.

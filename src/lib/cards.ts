@@ -102,23 +102,23 @@ export function sceneYouLineCardIds(sceneId: string) {
     .flatMap((l) => KINDS.map((k) => cardId("line", l.id, k)));
 }
 
-/** Match a missed drill answer to the closest review card ids (prefer read). */
+/** Match a missed drill answer to the closest review card ids (listen and say, never script-only). */
 export function cardsForMiss(thai: string): string[] {
   const clean = thai.replace(/\s+/g, "");
   for (const v of VOCAB_BY_ID.values()) {
-    if (v.thai.replace(/\s+/g, "") === clean) return [cardId("vocab", v.id, "read"), cardId("vocab", v.id, "produce")];
+    if (v.thai.replace(/\s+/g, "") === clean) return [cardId("vocab", v.id, "listen"), cardId("vocab", v.id, "produce")];
   }
   for (const scene of SCENES) {
     for (const line of scene.lines) {
       for (const voice of ["male", "female"] as Voice[]) {
         const t = pick(line.thai, voice).replaceAll("{name}", "").replace(/\s+/g, "");
         if (t && (clean === t || clean.includes(t) || t.includes(clean))) {
-          if (line.who === "you") return [cardId("line", line.id, "read"), cardId("line", line.id, "produce")];
+          if (line.who === "you") return [cardId("line", line.id, "listen"), cardId("line", line.id, "produce")];
           // Map NPC-line misses to vocab in that scene when possible
           for (const vid of scene.vocab) {
             const v = VOCAB_BY_ID.get(vid);
             if (v && clean.includes(v.thai.replace(/\s+/g, ""))) {
-              return [cardId("vocab", vid, "read"), cardId("vocab", vid, "produce")];
+              return [cardId("vocab", vid, "listen"), cardId("vocab", vid, "produce")];
             }
           }
         }
@@ -129,8 +129,14 @@ export function cardsForMiss(thai: string): string[] {
 }
 
 /**
+ * Speaking first: each round of the mix is say, listen, say, listen, say, read.
+ * Read cards only appear when the learner turned them on (they are filtered out earlier otherwise).
+ */
+const MIX: CardKind[] = ["produce", "listen", "produce", "listen", "produce", "read"];
+
+/**
  * Build a session queue: due cards first, then up to `newCap` brand-new cards,
- * interleaved so card kinds and scenes mix and the same group isn't back-to-back.
+ * weighted toward Say it and Listen, mixed so the same group isn't back-to-back.
  */
 export function buildSessionQueue(
   due: string[],
@@ -140,35 +146,33 @@ export function buildSessionQueue(
 ): string[] {
   const pool = [...due, ...news].slice(0, limit * 2);
   const cards = pool.map((id) => resolve(id)).filter((c): c is ReviewCard => !!c);
-  // Soft shuffle by mixing kinds: round-robin listen/read/produce buckets.
   const buckets: Record<CardKind, ReviewCard[]> = { listen: [], read: [], produce: [] };
   for (const c of cards) buckets[c.kind].push(c);
   for (const k of KINDS) buckets[k].sort(() => Math.random() - 0.5);
 
   const out: ReviewCard[] = [];
-  while (out.length < limit) {
-    let added = false;
-    for (const k of KINDS) {
-      while (buckets[k].length) {
-        const next = buckets[k].shift()!;
-        const prev = out[out.length - 1];
-        if (prev && prev.group === next.group) {
-          buckets[k].push(next);
-          break;
-        }
-        out.push(next);
-        added = true;
-        break;
-      }
-      if (out.length >= limit) break;
+  const total = cards.length;
+  let slot = 0;
+  let misses = 0;
+  while (out.length < Math.min(limit, total) && misses < MIX.length * 2) {
+    const k = MIX[slot++ % MIX.length];
+    const b = buckets[k];
+    if (!b.length) {
+      misses++;
+      continue;
     }
-    if (!added) {
-      // Drain leftovers even if group collides
-      for (const k of KINDS) {
-        while (buckets[k].length && out.length < limit) out.push(buckets[k].shift()!);
-      }
-      break;
+    const prev = out[out.length - 1];
+    const idx = b.findIndex((c) => !prev || c.group !== prev.group);
+    if (idx < 0) {
+      misses++;
+      continue;
     }
+    out.push(b.splice(idx, 1)[0]);
+    misses = 0;
+  }
+  // Drain leftovers (group collisions or an exhausted mix), speaking kinds first.
+  for (const k of ["produce", "listen", "read"] as CardKind[]) {
+    while (buckets[k].length && out.length < limit) out.push(buckets[k].shift()!);
   }
   return out.map((c) => c.id);
 }

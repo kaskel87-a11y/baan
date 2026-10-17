@@ -56,6 +56,8 @@ export interface BaanState {
   today?: TodaySession;
   /** Listening stories: best and last score (questions right) per story id. */
   stories?: Record<string, StoryRecord>;
+  /** Thai-script reading cards in Review. Off by default (speaking and listening first). */
+  readCards?: boolean;
 }
 
 export interface StoryRecord {
@@ -264,6 +266,13 @@ export function finishOnboarding(voice: Voice, name: string) {
 export function setRoman(roman: boolean) {
   update((s) => ({ ...s, roman }));
 }
+export function setReadCards(readCards: boolean) {
+  update((s) => ({ ...s, readCards }));
+}
+/** Whether a card id belongs in sessions and counts. Reading cards sleep unless turned on. */
+export function cardAllowed(s: BaanState, id: string) {
+  return s.readCards ? true : !id.endsWith(":read");
+}
 export function setVoice(voice: Voice) {
   update((s) => ({ ...s, voice }));
 }
@@ -453,13 +462,13 @@ export function recordNumberRange(n: number, right: boolean) {
 }
 
 export function clearProgress() {
-  update((s) => ({ ...DEFAULTS, voice: s.voice, name: s.name, roman: s.roman, dailyGoal: s.dailyGoal }));
+  update((s) => ({ ...DEFAULTS, voice: s.voice, name: s.name, roman: s.roman, dailyGoal: s.dailyGoal, readCards: s.readCards }));
 }
 
 /** Card ids that are due now (includes never-reviewed cards already in the deck). */
 export function dueCardIds(s: BaanState, now = Date.now()) {
   return Object.keys(s.srs)
-    .filter((id) => id.includes(":"))
+    .filter((id) => id.includes(":") && cardAllowed(s, id))
     .filter((id) => {
       const c = s.srs[id];
       return !c || c.due <= now;
@@ -473,7 +482,7 @@ export function newCardIds(s: BaanState, cap = 10) {
   const used = s.srsNewDay === today ? s.srsNewCount ?? 0 : 0;
   const left = Math.max(0, cap - used);
   return Object.keys(s.srs)
-    .filter((id) => id.includes(":"))
+    .filter((id) => id.includes(":") && cardAllowed(s, id))
     .filter((id) => (s.srs[id]?.reps ?? 0) === 0 && (s.srs[id]?.due ?? 0) <= Date.now())
     .slice(0, left);
 }
