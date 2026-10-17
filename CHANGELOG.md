@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.18.0 — Move your progress (backup and restore)
+
+- **Backup code** in Settings (Move your progress). Progress lives in one browser, so Chrome and Safari on the same iPhone keep separate copies. Tap Copy backup code (or Share backup, or Save backup file), then paste it into Baan in the other browser or on another phone.
+- **Restore** checks the code first and shows what it holds (scenes done, review cards, learned, streak, when it was made) before you tap Replace progress here. Bad or cut-off codes get a plain-English message and change nothing.
+- A fresh browser's welcome screen has "Already using Baan in another browser? Restore your progress", so you can skip setup and pick up where you left off.
+- Everything comes across: review schedule, scene scores, tone stats, numbers, stories, streak and history, particle, name, and settings.
+- New test (`npm run test:backup`) round-trips a backup, and the smoke test copies a code, clears the browser, and restores it from the welcome screen.
+
 ## 0.17.0 — Tip cards
 
 - **Tip cards in every scene** (20 in all, 2 per scene). Each one pops up in the conversation right under the line where its pattern first shows up, Babbel-style: you hear it in use first, then get a one-line explanation in plain English.

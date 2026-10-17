@@ -1,6 +1,6 @@
 # Roadmap
 
-Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-17 (0.17.0). Babbel research: `docs/BABBEL-NOTES.md`.
+Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-17 (0.18.0). Babbel research: `docs/BABBEL-NOTES.md`.
 
 **Priority (Collin, 2026-10-15): speaking and listening first. No reading/writing quizzes. Letters stays as optional reference only. Romanization stays prominent and never fades.**
 
@@ -20,7 +20,7 @@ Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-17 (0.1
 | — | Stable public hosting | ✅ GitHub Pages: https://kaskel87-a11y.github.io/baan/ (`./deploy.sh`) |
 | — | Word check without the browser's speech recognition | ✅ 0.4.0: on-device Whisper base on iPhone, and as a fallback elsewhere. Thai accuracy on single words is only fair. **Decision pending:** a cloud speech-to-text service (needs an API key and a small proxy, e.g. a Cloudflare Worker, since keys can't ship in a static site) would be much more accurate. |
 | — | Tone check tuning on real voices: high tone often rises in modern Bangkok speech, creaky low tones, and syllable splitting on fast speech | ⏳ Next, needs recordings from a real phone |
-| — | Move progress to IndexedDB and add export/import, so progress isn't tied to one browser | 💤 Later |
+| — | Export/import so progress isn't tied to one browser | ✅ 0.18.0 (backup code, share, file; restore from Settings or the welcome screen). IndexedDB still later. |
 
 Content to re-check with a native speaker: the tip cards in `src/data/tips.ts`, the new minimal sets in `src/data/toneSets.ts`, the letter-name romanizations (`chantRoman`), and the glosses in `src/data/glossary.ts`.
 
@@ -38,4 +38,4 @@ Content to re-check with a native speaker: the tip cards in `src/data/tips.ts`, 
 | 7 | Reliable audio / real voices (old #5) | ⏳ needs a TTS source |
 | 8 | Cloud speech-to-text for better word checks | ⏳ decision pending (cost, API key) |
 | 9 | Tone check tuning on real voices | ⏳ needs recordings |
-| 10 | Learning path by goal; progress export/import | 💤 Later |
+| 10 | Learning path by goal | 💤 Later (progress export/import ✅ 0.18.0) |

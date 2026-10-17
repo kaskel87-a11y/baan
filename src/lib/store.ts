@@ -508,3 +508,77 @@ export function pitchBaseline(s: BaanState): number | undefined {
   return v[v.length >> 1];
 }
 
+
+/* ---------- Backup and restore (move progress between browsers or phones) ---------- */
+
+const BACKUP_PREFIX = "BAAN1:";
+
+export interface BackupSummary {
+  name: string;
+  scenes: number;
+  cards: number;
+  learned: number;
+  streak: number;
+  days: number;
+}
+
+export function backupSummary(s: BaanState): BackupSummary {
+  return {
+    name: s.name,
+    scenes: Object.values(s.scenes).filter((r) => r.completed).length,
+    cards: Object.keys(s.srs).filter((k) => k.includes(":")).length,
+    learned: learnedCount(s),
+    streak: s.streak?.count ?? 0,
+    days: Object.keys(s.history ?? {}).length,
+  };
+}
+
+function toBase64(text: string) {
+  const bytes = new TextEncoder().encode(text);
+  let bin = "";
+  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  return btoa(bin);
+}
+
+function fromBase64(b64: string) {
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+
+/** One copyable line holding all progress and settings. */
+export function exportProgress(s: BaanState = getState()): string {
+  const payload = { app: "baan", v: 1, at: new Date().toISOString(), state: s };
+  return BACKUP_PREFIX + toBase64(JSON.stringify(payload));
+}
+
+/** Accepts a backup code (BAAN1:...), a saved backup file's text, or raw saved state JSON. */
+export function parseBackup(text: string): { state: BaanState; summary: BackupSummary; at?: string } | { error: string } {
+  const t = text.trim().replace(/\s+/g, "");
+  if (!t) return { error: "Paste a backup code first." };
+  let json: string;
+  try {
+    json = t.startsWith(BACKUP_PREFIX) ? fromBase64(t.slice(BACKUP_PREFIX.length)) : text.trim();
+  } catch {
+    return { error: "That code looks cut off. Copy the whole thing (it starts with BAAN1:) and try again." };
+  }
+  let obj: unknown;
+  try {
+    obj = JSON.parse(json);
+  } catch {
+    return { error: "That isn't a Baan backup. Copy the whole code (it starts with BAAN1:) and try again." };
+  }
+  const o = obj as { app?: string; state?: Partial<BaanState>; at?: string } & Partial<BaanState>;
+  const raw = o && o.app === "baan" ? o.state : o;
+  if (!raw || typeof raw !== "object" || (!("srs" in raw) && !("scenes" in raw))) {
+    return { error: "That isn't a Baan backup. Copy the whole code (it starts with BAAN1:) and try again." };
+  }
+  const state = migrateLoaded(raw as Partial<BaanState>);
+  return { state, summary: backupSummary(state), at: o.app === "baan" ? o.at : undefined };
+}
+
+/** Replace everything on this device with a parsed backup. */
+export function restoreProgress(next: BaanState) {
+  update(() => next);
+}

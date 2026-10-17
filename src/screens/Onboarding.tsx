@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Voice } from "../data/types";
 import { finishOnboarding } from "../lib/store";
 import { Button } from "../components/ui";
+import { Backup } from "../components/Backup";
 
 function Choice({ pressed, onClick, th, particle, copy }: { pressed: boolean; onClick: () => void; th: string; particle: string; copy: string }) {
   return (
@@ -62,6 +63,11 @@ export function Onboarding() {
         </Button>
       </form>
       <p className="text-sm text-muted">You’ll hear Thai out loud. Headphones help.</p>
+      <details className="grid gap-2">
+        <summary className="min-h-11 cursor-pointer text-sm font-medium">Already using Baan in another browser? Restore your progress</summary>
+        <p className="text-sm text-muted">In the other browser, open Settings and tap Copy backup code, then paste it here.</p>
+        <Backup restoreOnly />
+      </details>
     </main>
   );
 }

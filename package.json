@@ -1,7 +1,7 @@
 {
   "name": "baan-app",
   "private": true,
-  "version": "0.17.0",
+  "version": "0.18.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,7 +16,8 @@
     "test:roman": "tsx scripts/test-romanize.ts",
     "test:numbers": "tsx scripts/test-numbers.ts",
     "test:today": "tsx scripts/test-today.ts",
-    "test:review": "tsx scripts/test-review.ts"
+    "test:review": "tsx scripts/test-review.ts",
+    "test:backup": "tsx scripts/test-backup.ts"
   },
   "dependencies": {
     "@fontsource/noto-sans-thai": "^5.3.0",

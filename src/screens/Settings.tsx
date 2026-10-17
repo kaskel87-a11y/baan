@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { clearProgress, setDailyGoal, setName, setReadCards, setRoman, setVoice, useStore } from "../lib/store";
 import { Button } from "../components/ui";
+import { Backup } from "../components/Backup";
 
 export function Settings() {
   const s = useStore();
@@ -44,6 +45,7 @@ export function Settings() {
         </div>
         <p className="text-sm text-muted">The streak only grows on days you meet the goal.</p>
       </fieldset>
+      <Backup />
       <div className="grid gap-2">
         <Button
           className="justify-self-start"

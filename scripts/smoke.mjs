@@ -318,6 +318,32 @@ await step("settings", async () => {
   if (!(await has("Your voice in the lessons"))) throw new Error("settings missing");
 });
 
+await step("backup: copy code, fresh browser restores it from the welcome screen", async () => {
+  await page.goto(base + "#/settings", { waitUntil: "networkidle0" });
+  if (!(await has("Move your progress"))) throw new Error("backup section missing");
+  const before = await page.evaluate(() => localStorage.getItem("baan.v1"));
+  await page.evaluate(() => { window.__clip = ""; navigator.clipboard.writeText = async (t) => { window.__clip = t; }; });
+  await clickText("Copy backup code");
+  const code = await page.evaluate(() => window.__clip || document.querySelector('textarea[aria-label="Your backup code"]')?.value);
+  if (!code?.startsWith("BAAN1:")) throw new Error("no backup code");
+  await page.evaluate(() => localStorage.clear());
+  await page.reload({ waitUntil: "networkidle0" });
+  if (!(await has("Begin the morning"))) throw new Error("did not land on welcome screen after clearing");
+  await clickText("Already using Baan", "summary");
+  await page.type('textarea[aria-label="Paste a backup code"]', code.slice(0, 60) + "\n" + code.slice(60));
+  await clickText("Check backup");
+  if (!(await has("This backup has"))) throw new Error("no backup summary");
+  await clickText("Replace progress here");
+  await new Promise((r) => setTimeout(r, 300));
+  const after = await page.evaluate(() => localStorage.getItem("baan.v1"));
+  if (JSON.parse(after).srs && JSON.stringify(JSON.parse(after).srs) !== JSON.stringify(JSON.parse(before).srs)) throw new Error("review cards differ after restore");
+  if (await has("Begin the morning")) throw new Error("still on welcome screen after restore");
+  await page.goto(base + "#/settings", { waitUntil: "networkidle0" });
+  await page.type('textarea[aria-label="Paste a backup code"]', "not a code");
+  await clickText("Check backup");
+  if (!(await has("isn't a Baan backup"))) throw new Error("bad code gives no English error");
+});
+
 await step("manifest", async () => {
   const m = await page.evaluate(async () => (await fetch("manifest.webmanifest")).json());
   if (m.short_name !== "Baan") throw new Error(`manifest name ${m.short_name}`);
