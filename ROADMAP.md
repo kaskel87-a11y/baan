@@ -1,6 +1,6 @@
 # Roadmap
 
-Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-17 (0.16.0). Babbel research: `docs/BABBEL-NOTES.md`.
+Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-17 (0.17.0). Babbel research: `docs/BABBEL-NOTES.md`.
 
 **Priority (Collin, 2026-10-15): speaking and listening first. No reading/writing quizzes. Letters stays as optional reference only. Romanization stays prominent and never fades.**
 
@@ -22,7 +22,7 @@ Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-17 (0.1
 | — | Tone check tuning on real voices: high tone often rises in modern Bangkok speech, creaky low tones, and syllable splitting on fast speech | ⏳ Next, needs recordings from a real phone |
 | — | Move progress to IndexedDB and add export/import, so progress isn't tied to one browser | 💤 Later |
 
-Content to re-check with a native speaker: the new minimal sets in `src/data/toneSets.ts`, the letter-name romanizations (`chantRoman`), and the glosses in `src/data/glossary.ts`.
+Content to re-check with a native speaker: the tip cards in `src/data/tips.ts`, the new minimal sets in `src/data/toneSets.ts`, the letter-name romanizations (`chantRoman`), and the glosses in `src/data/glossary.ts`.
 
 ## Next, speaking & listening first (Babbel-inspired, merged)
 
@@ -34,7 +34,7 @@ Content to re-check with a native speaker: the new minimal sets in `src/data/ton
 | 3 | Listening stories: 30–60 s audio stories from scene words, English comprehension questions | ✅ 0.14.0 (4 stories) |
 | 4 | Shadowing / repeat-after-me mode: play a line, pause, you echo, with tone check | ✅ 0.15.0 (Check me + Hands-free) |
 | 5 | Speaking-weighted Review: more say/listen cards, fewer read cards | ✅ 0.16.0 (3:2 say/listen mix, reading cards off by default, say-it-back on listen cards) |
-| 6 | Tip cards (1–2 per scene): grammar-in-use and culture, all romanized with English | ⏳ Next |
+| 6 | Tip cards (1–2 per scene): grammar-in-use and culture, all romanized with English | ✅ 0.17.0 (20 tips, shown under the line they explain, Say it on every example) |
 | 7 | Reliable audio / real voices (old #5) | ⏳ needs a TTS source |
 | 8 | Cloud speech-to-text for better word checks | ⏳ decision pending (cost, API key) |
 | 9 | Tone check tuning on real voices | ⏳ needs recordings |

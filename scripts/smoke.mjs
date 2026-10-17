@@ -503,6 +503,30 @@ await step("audio: Slow uses a much lower rate and splits words", async () => {
   console.log("   normal", JSON.stringify(n), "slow", JSON.stringify(s));
 });
 
+await step("tip cards: show under their line in the conversation, romanized, with Hear and Say it", async () => {
+  await page.goto(base + "#/scene/cafe", { waitUntil: "networkidle0" });
+  await page.evaluate(() => sessionStorage.clear());
+  await page.reload({ waitUntil: "networkidle0" });
+  if (await has("Hear it again")) await clickText("Hear it again");
+  else if (await has("Skip ahead")) await clickText("Skip ahead");
+  else if (await has("Enter the conversation")) await clickText("Enter the conversation");
+  if (await page.$("[data-tip]")) throw new Error("tip showed on line 1 (should be under line 2)");
+  await clickText("Next line");
+  const tip = await page.evaluate(() => {
+    const el = document.querySelector("[data-tip]");
+    return el ? { id: el.getAttribute("data-tip"), text: el.textContent ?? "", buttons: [...el.querySelectorAll("button")].map((b) => b.textContent.trim()) } : null;
+  });
+  if (!tip || tip.id !== "cafe-particle") throw new Error(`expected cafe-particle tip, got ${tip?.id}`);
+  if (!/khráp/.test(tip.text) || !/Hello\./.test(tip.text)) throw new Error("tip missing romanization or English");
+  if (!tip.buttons.includes("Hear") || !tip.buttons.includes("Slow") || !tip.buttons.includes("Say it")) throw new Error(`tip buttons: ${tip.buttons}`);
+  await page.evaluate(() => [...document.querySelectorAll("[data-tip] button")].find((b) => b.textContent.trim() === "Say it").click());
+  await new Promise((r) => setTimeout(r, 200));
+  if (!(await page.evaluate(() => /Close Say it/.test(document.querySelector("[data-tip]")?.textContent ?? "")))) throw new Error("Say it did not open in the tip");
+  await clickText("Next line");
+  const id3 = await page.evaluate(() => document.querySelector("[data-tip]")?.getAttribute("data-tip"));
+  if (id3 !== "cafe-mai") throw new Error(`line 3 tip ${id3}`);
+});
+
 await browser.close();
 if (problems.length) {
   console.log("\nPROBLEMS:\n" + problems.join("\n"));

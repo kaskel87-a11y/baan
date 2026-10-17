@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.17.0 — Tip cards
+
+- **Tip cards in every scene** (20 in all, 2 per scene). Each one pops up in the conversation right under the line where its pattern first shows up, Babbel-style: you hear it in use first, then get a one-line explanation in plain English.
+- Grammar tips cover the patterns you actually say: khráp/khâ endings, adding mǎi for a yes/no question, khǎw for “may I have”, bpai meaning “too”, châi mǎi for “right?”, saying yes by repeating the verb, mâi for no, khûen/long for getting on and off, place + yùu thîi nǎi, doubling a word to soften it, bpùat vs jèp, and counting people with khon.
+- Culture tips cover sweetness in drinks, bargaining only at markets, bpai nǎi as a casual hello, speaking up during a Thai massage, setting the spice level, mâi bpen rai, and everyday goodbyes (bpai gàwn ná, bye-bye) instead of the very final laa-kàwn.
+- Titles are romanized (no Thai script). Every example leads with romanization and English, has Hear and Slow, and its own Say it with the tone check. Thai script is small underneath. Examples follow your particle (khráp or khâ/khá).
+- The scene's finish screen lists its tips (tap to open) so you can come back to them.
+- Data check guards the tips (real scenes and lines, Thai + romanization + English on every example, 1–2 per scene); smoke test checks the cards appear under the right lines with Hear and Say it.
+
 ## 0.16.0 — Speaking-weighted Review
 
 - **Review is now mostly speaking and listening.** Each session mixes cards as Say it, Listen, Say it, Listen, Say it, so about 3 in 5 cards ask you to say it from the English and the rest are listen-first. Sessions open with a Say it card.

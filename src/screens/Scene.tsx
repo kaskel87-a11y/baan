@@ -12,6 +12,8 @@ import { particle, particleNote, pick, shuffle } from "../lib/thai";
 import { navigate } from "../lib/router";
 import { AnswerLine, Button, HearButton, NoVoiceNotice, RomanKey, SayIt } from "../components/ui";
 import { gloss, meaningOf } from "../data/glossary";
+import { tipAfterLine, tipsForScene } from "../data/tips";
+import { TipCard } from "../components/TipCard";
 
 const SPEAKERS: Record<Speaker, { th: string; en: string }> = {
   you: { th: "คุณ", en: "You" },
@@ -222,6 +224,7 @@ export function SceneScreen({ id }: { id: string }) {
           right={session.right}
           misses={session.misses}
           savedScore={rec?.last}
+          voice={voice}
           onAgain={() => goto("talk")}
           onRolePlay={() => goto("roleplay")}
           onListenRespond={() => goto("listenrespond")}
@@ -334,6 +337,9 @@ function Talk({
         </div>
         <SayIt target={r.thai} roman={r.roman} en={line.en} skip={name.trim() ? [name.trim()] : []} />
       </article>
+      {tipAfterLine(scene.id, line.id).map((t) => (
+        <TipCard key={t.id} tip={t} voice={voice} />
+      ))}
       <div className="flex flex-wrap gap-2">
         {index > 0 ? (
           <Button
@@ -568,7 +574,9 @@ function Done({
   onRolePlay,
   onListenRespond,
   onShadow,
+  voice,
 }: {
+  voice: Voice;
   onRolePlay: () => void;
   onListenRespond: () => void;
   onShadow: () => void;
@@ -611,6 +619,14 @@ function Done({
               </div>
               <HearButton text={m.thai} />
             </div>
+          ))}
+        </div>
+      ) : null}
+      {tipsForScene(scene.id).length > 0 ? (
+        <div className="grid gap-2" data-scene-tips>
+          <p className="text-sm font-medium">Tips from this scene</p>
+          {tipsForScene(scene.id).map((t) => (
+            <TipCard key={t.id} tip={t} voice={voice} open={false} />
           ))}
         </div>
       ) : null}
