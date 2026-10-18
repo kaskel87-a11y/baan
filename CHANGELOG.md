@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.22.0 — New listening story: Check-in, then a new shirt
+
+- **Fifth listening story** (Stories, 05), built from the three newest scenes (Small talk, Hotel check-in, Clothes shop). Tom says where he's from, books three nights, gets room 305, hears breakfast is from six to ten, finds the first shirt too big, takes a smaller black one, and answers "you speak Thai well!" with phûut dâai nít-nàwy. Nine sentences, seven English questions, and the full transcript with romanization and English afterwards.
+
 ## 0.21.0 — Clothes shop scene; fix for the "get on" word card
 
 - **Fix:** since 0.20.0, the word ขึ้น (khûen, to get on) in the In the car scene showed up as คืน (khuen, night), because the new hotel word reused its id. The night word now has its own id, so In the car is back to "to get on" and both words get their own Review cards. The data check now fails on any duplicate word or scene id.
