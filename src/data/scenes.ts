@@ -1822,7 +1822,7 @@ export const SCENES: Scene[] = [
     "blurb": "You have a booking, how many nights, your room number, what time breakfast is, and the Wi-Fi password.",
     "vocab": [
       "jawng",
-      "khuen",
+      "khuen-night",
       "gii",
       "hawng",
       "aa-haan-chao",
@@ -2025,6 +2025,216 @@ export const SCENES: Scene[] = [
         "stem": "จองไว้แล้ว",
         "stemRoman": "jawng wái láew",
         "particleKind": "statement"
+      }
+    ]
+  },
+  {
+    "id": "shop",
+    "title": "Clothes shop",
+    "titleTh": "ร้านเสื้อผ้า",
+    "blurb": "Ask to try it on, say it's too big, ask for a smaller one and another color, and pick the one you'll take.",
+    "vocab": [
+      "lawng",
+      "suea",
+      "yai",
+      "lek",
+      "gwaa",
+      "sii",
+      "dtua"
+    ],
+    "lines": [
+      {
+        "id": "sh1",
+        "who": "kaew",
+        "en": "Feel free to look around.",
+        "thai": "เลือกดูได้เลยค่ะ",
+        "roman": "lûeak duu dâai loei khâ",
+        "note": "เลือก (lûeak, falling) = choose. ดู (duu) = look. ได้เลย (dâai loei) = go right ahead."
+      },
+      {
+        "id": "sh2",
+        "who": "you",
+        "en": "Can I try this shirt on?",
+        "thai": {
+          "male": "ขอลองเสื้อตัวนี้ได้ไหมครับ",
+          "female": "ขอลองเสื้อตัวนี้ได้ไหมคะ"
+        },
+        "roman": {
+          "male": "khǎw lawng sûea dtua níi dâai mǎi khráp",
+          "female": "khǎw lawng sûea dtua níi dâai mǎi khá"
+        },
+        "note": "ขอลอง (khǎw lawng) = may I try. ตัวนี้ (dtua níi) = this one, for clothes. ได้ไหม (dâai mǎi) = can I?"
+      },
+      {
+        "id": "sh3",
+        "who": "kaew",
+        "en": "Sure. The fitting room is over there.",
+        "thai": "ได้ค่ะ ห้องลองเสื้ออยู่ตรงนั้นค่ะ",
+        "roman": "dâai khâ, hâwng lawng sûea yùu dtrong nán khâ",
+        "note": "ห้องลองเสื้อ (hâwng lawng sûea) = fitting room, literally try-shirt room. ตรงนั้น (dtrong nán) = over there."
+      },
+      {
+        "id": "sh4",
+        "who": "you",
+        "en": "It's a little too big.",
+        "thai": {
+          "male": "ใหญ่ไปหน่อยครับ",
+          "female": "ใหญ่ไปหน่อยค่ะ"
+        },
+        "roman": {
+          "male": "yài bpai nàwy khráp",
+          "female": "yài bpai nàwy khâ"
+        },
+        "note": "ใหญ่ (yài, low) = big. ไป after it means too, and หน่อย softens it."
+      },
+      {
+        "id": "sh5",
+        "who": "kaew",
+        "en": "What size do you wear?",
+        "thai": "ใส่ไซซ์อะไรคะ",
+        "roman": "sài sai à-rai khá",
+        "note": "ใส่ (sài, low) = wear. ไซซ์ (sai) is the English word size."
+      },
+      {
+        "id": "sh6",
+        "who": "you",
+        "en": "Do you have a smaller one?",
+        "thai": {
+          "male": "มีตัวเล็กกว่านี้ไหมครับ",
+          "female": "มีตัวเล็กกว่านี้ไหมคะ"
+        },
+        "roman": {
+          "male": "mii dtua lék gwàa níi mǎi khráp",
+          "female": "mii dtua lék gwàa níi mǎi khá"
+        },
+        "note": "เล็ก (lék, high) = small. กว่า (gwàa, low) = more, so เล็กกว่านี้ = smaller than this."
+      },
+      {
+        "id": "sh7",
+        "who": "kaew",
+        "en": "Yes. A medium.",
+        "thai": "มีค่ะ ไซซ์เอ็มค่ะ",
+        "roman": "mii khâ, sai em khâ",
+        "note": "Sizes use the English letters after ไซซ์ (sai)."
+      },
+      {
+        "id": "sh8",
+        "who": "you",
+        "en": "Is there another color?",
+        "thai": {
+          "male": "มีสีอื่นไหมครับ",
+          "female": "มีสีอื่นไหมคะ"
+        },
+        "roman": {
+          "male": "mii sǐi ùuen mǎi khráp",
+          "female": "mii sǐi ùuen mǎi khá"
+        },
+        "note": "สี (sǐi, rising) = color. อื่น (ùuen, low) = other."
+      },
+      {
+        "id": "sh9",
+        "who": "kaew",
+        "en": "There's black and white.",
+        "thai": "มีสีดำกับสีขาวค่ะ",
+        "roman": "mii sǐi dam gàp sǐi khǎaw khâ",
+        "note": "ดำ (dam) = black. ขาว (khǎaw, rising) = white. กับ (gàp, low) = and."
+      },
+      {
+        "id": "sh10",
+        "who": "you",
+        "en": "I'll take the black one.",
+        "thai": {
+          "male": "เอาตัวสีดำครับ",
+          "female": "เอาตัวสีดำค่ะ"
+        },
+        "roman": {
+          "male": "ao dtua sǐi dam khráp",
+          "female": "ao dtua sǐi dam khâ"
+        },
+        "note": "เอา (ao) = I'll take. Same ตัว (dtua) for one piece of clothing."
+      }
+    ],
+    "drills": [
+      {
+        "id": "sh-l",
+        "kind": "listen",
+        "thai": "ใส่ไซซ์อะไรคะ",
+        "roman": "sài sai à-rai khá",
+        "en": "What size do you wear?",
+        "options": [
+          "What size do you wear?",
+          "Is there another color?",
+          "It's a little too big.",
+          "The fitting room is over there."
+        ]
+      },
+      {
+        "id": "sh-r",
+        "kind": "read",
+        "thai": "ใหญ่ไป",
+        "roman": "yài bpai",
+        "en": "Too big.",
+        "options": [
+          "Too big.",
+          "Too expensive.",
+          "Another color.",
+          "This one."
+        ]
+      },
+      {
+        "id": "sh-p",
+        "kind": "pick",
+        "en": "“color”",
+        "options": [
+          "สี",
+          "ตัว",
+          "เสื้อ",
+          "ลอง"
+        ],
+        "answer": "สี",
+        "roman": "sǐi"
+      },
+      {
+        "id": "sh-b",
+        "kind": "build",
+        "en": "Is there another color?",
+        "tiles": [
+          "มี",
+          "สี",
+          "อื่น",
+          "ไหม",
+          "ครับ",
+          "คะ",
+          "เล็ก"
+        ],
+        "answer": {
+          "male": [
+            "มี",
+            "สี",
+            "อื่น",
+            "ไหม",
+            "ครับ"
+          ],
+          "female": [
+            "มี",
+            "สี",
+            "อื่น",
+            "ไหม",
+            "คะ"
+          ]
+        },
+        "roman": {
+          "male": "mii sǐi ùuen mǎi khráp",
+          "female": "mii sǐi ùuen mǎi khá"
+        }
+      },
+      {
+        "id": "sh-part",
+        "kind": "particle",
+        "en": "You're asking if you can try it on.",
+        "stem": "ขอลองได้ไหม",
+        "stemRoman": "khǎw lawng dâai mǎi",
+        "particleKind": "question"
       }
     ]
   },

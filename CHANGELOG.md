@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.21.0 — Clothes shop scene; fix for the "get on" word card
+
+- **Fix:** since 0.20.0, the word ขึ้น (khûen, to get on) in the In the car scene showed up as คืน (khuen, night), because the new hotel word reused its id. The night word now has its own id, so In the car is back to "to get on" and both words get their own Review cards. The data check now fails on any duplicate word or scene id.
+- **New scene: Clothes shop** (before Goodbye), with Kaew at the counter. You ask to try a shirt on (khǎw lawng sûea dtua níi dâai mǎi), say it's a little too big (yài bpai nàwy), ask for a smaller one (mii dtua lék gwàa níi mǎi), ask for another color (mii sǐi ùuen mǎi) and take the black one (ao dtua sǐi dam). 7 new words (lawng, sûea, yài, lék, gwàa, sǐi, dtua), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
+- **Two tip cards:** add gwàa to compare (smaller, bigger, cheaper than this), and dtua as the counting word for clothes.
+
 ## 0.20.0 — Hotel check-in scene
 
 - **New scene: Hotel check-in** (before Goodbye), with Dao at the front desk. You say you have a booking (jawng wái láew), give your name, say how many nights (sǎam khuen, three nights), hear your room number read digit by digit (hâwng sǎam sǔun hâa), ask what time breakfast is (aa-hǎan cháo gìi moong) and ask for the Wi-Fi password (rá-hàt wai-fai à-rai). 7 new words (jawng, khuen, gìi, hâwng, aa-hǎan cháo, moong, rá-hàt), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.

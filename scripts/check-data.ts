@@ -18,6 +18,25 @@ for (const w of [...EAR_POOL, ...MAI_SET, ...TONE_ANCHORS, ...TONE_SETS.flatMap(
   if (toneFromRoman(w.roman) !== w.tone) err(`${w.thai} ${w.roman}: tone field ${w.tone} but roman says ${toneFromRoman(w.roman)}`);
 
 for (const s of SCENES) for (const v of s.vocab) if (!VOCAB_BY_ID.has(v)) err(`scene ${s.id} missing vocab ${v}`);
+// Duplicate ids silently shadow each other in VOCAB_BY_ID (0.20.0 shipped two "khuen" words).
+{
+  const seen = new Set<string>();
+  for (const v of VOCAB) {
+    if (seen.has(v.id)) err(`duplicate vocab id ${v.id}`);
+    seen.add(v.id);
+  }
+  const sids = new Set<string>();
+  for (const s of SCENES) {
+    if (sids.has(s.id)) err(`duplicate scene id ${s.id}`);
+    sids.add(s.id);
+  }
+  for (const s of SCENES) {
+    const ids = [...s.lines.map((l) => l.id), ...s.drills.map((d) => d.id)];
+    if (new Set(ids).size !== ids.length) err(`scene ${s.id} has duplicate line or drill ids`);
+  }
+}
+for (const [id, thai] of [["khuen", "ขึ้น"], ["khuen-night", "คืน"]] as const)
+  if (VOCAB_BY_ID.get(id)?.thai !== thai) err(`vocab ${id} should be ${thai}`);
 
 const words = new Map<string, string>();
 for (const v of VOCAB) words.set(v.thai, v.roman);

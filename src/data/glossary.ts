@@ -57,6 +57,22 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "เขียน", roman: "khǐan", en: "to write" },
   { thai: "ตรงนี้", roman: "dtrong níi", en: "right here" },
   { thai: "บ่าย", roman: "bàai", en: "afternoon" },
+  { thai: "ลองเสื้อ", roman: "lawng sûea", en: "try on clothes" },
+  { thai: "เสื้อผ้า", roman: "sûea-phâa", en: "clothes" },
+  { thai: "ห้องลองเสื้อ", roman: "hâwng lawng sûea", en: "fitting room" },
+  { thai: "ตรงนั้น", roman: "dtrong nán", en: "over there" },
+  { thai: "ใส่", roman: "sài", en: "to wear" },
+  { thai: "ไซซ์", roman: "sai", en: "size" },
+  { thai: "เล็กกว่า", roman: "lék gwàa", en: "smaller" },
+  { thai: "ใหญ่ไป", roman: "yài bpai", en: "too big" },
+  { thai: "อื่น", roman: "ùuen", en: "other" },
+  { thai: "สีอื่น", roman: "sǐi ùuen", en: "another color" },
+  { thai: "ดำ", roman: "dam", en: "black" },
+  { thai: "ขาว", roman: "khǎaw", en: "white" },
+  { thai: "กับ", roman: "gàp", en: "and, with" },
+  { thai: "ตัวนี้", roman: "dtua níi", en: "this one (clothes)" },
+  { thai: "เลือก", roman: "lûeak", en: "to choose" },
+  { thai: "ดู", roman: "duu", en: "to look, watch" },
 ];
 
 export interface Gloss {

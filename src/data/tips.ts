@@ -313,6 +313,33 @@ export const TIPS: Tip[] = [
       { ...p("เที่ยง", "thîang"), en: "Noon." },
     ],
   },
+  // Clothes shop
+  {
+    id: "shop-gwaa",
+    sceneId: "shop",
+    afterLine: "sh6",
+    kind: "grammar",
+    title: "Add gwàa to compare: smaller, cheaper, bigger",
+    body: "Put gwàa (more) after a describing word to compare. Add níi (than this) to point at the one in your hand.",
+    examples: [
+      { ...p("เล็กกว่านี้", "lék gwàa níi"), en: "Smaller than this." },
+      { ...p("มีตัวใหญ่กว่านี้ไหม", "mii dtua yài gwàa níi mǎi", "question"), en: "Do you have a bigger one?" },
+      { ...p("มีถูกกว่านี้ไหม", "mii thùuk gwàa níi mǎi", "question"), en: "Do you have a cheaper one?" },
+    ],
+  },
+  {
+    id: "shop-dtua",
+    sceneId: "shop",
+    afterLine: "sh10",
+    kind: "grammar",
+    title: "dtua is how Thai counts clothes",
+    body: "Thai counts things with a counting word after the number or after níi (this). Shirts, pants and dresses use dtua, so this one is dtua níi and two shirts is sûea sǎwng dtua.",
+    examples: [
+      { ...p("เอาตัวนี้", "ao dtua níi"), en: "I'll take this one." },
+      { ...p("เสื้อสองตัว", "sûea sǎwng dtua"), en: "Two shirts." },
+      { ...p("ตัวนี้เท่าไหร่", "dtua níi thâo-rài", "question"), en: "How much is this one?" },
+    ],
+  },
   // Goodbye
   {
     id: "leave-mai-pen-rai",

@@ -525,7 +525,7 @@ export const VOCAB: Vocab[] = [
     "hint": "Mid. Mid-class จ on a live syllable with no mark is mid. จองไว้แล้ว (jawng wái láew) = I have a booking."
   },
   {
-    "id": "khuen",
+    "id": "khuen-night",
     "thai": "คืน",
     "roman": "khuen",
     "en": "night (counting nights)",
@@ -565,6 +565,55 @@ export const VOCAB: Vocab[] = [
     "roman": "rá-hàt",
     "en": "code, password",
     "hint": "High, then low. รหัสไวไฟ (rá-hàt wai-fai) = Wi-Fi password."
+  },
+  {
+    "id": "lawng",
+    "thai": "ลอง",
+    "roman": "lawng",
+    "en": "to try (on)",
+    "hint": "Mid. Low-class ล on a live syllable with no mark is mid. ขอลอง (khǎw lawng) = may I try it on?"
+  },
+  {
+    "id": "suea",
+    "thai": "เสื้อ",
+    "roman": "sûea",
+    "en": "shirt, top",
+    "hint": "Falling. High-class ส with mai tho is falling. เสื้อผ้า (sûea-phâa) = clothes."
+  },
+  {
+    "id": "yai",
+    "thai": "ใหญ่",
+    "roman": "yài",
+    "en": "big",
+    "hint": "Low. ห in front of ญ makes it high class, and mai ek makes it low."
+  },
+  {
+    "id": "lek",
+    "thai": "เล็ก",
+    "roman": "lék",
+    "en": "small",
+    "hint": "High. Low-class ล on a short dead syllable (ends in k) is high."
+  },
+  {
+    "id": "gwaa",
+    "thai": "กว่า",
+    "roman": "gwàa",
+    "en": "more than (-er)",
+    "hint": "Low. Mid-class ก with mai ek is low. เล็กกว่า (lék gwàa) = smaller."
+  },
+  {
+    "id": "sii",
+    "thai": "สี",
+    "roman": "sǐi",
+    "en": "color",
+    "hint": "Rising. High-class ส on a live syllable with no mark is rising. สีดำ (sǐi dam) = black."
+  },
+  {
+    "id": "dtua",
+    "thai": "ตัว",
+    "roman": "dtua",
+    "en": "counting word for clothes",
+    "hint": "Mid. Shirts, pants and dresses are counted with ตัว: ตัวนี้ (dtua níi) = this one."
   }
 ];
 
