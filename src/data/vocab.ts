@@ -516,6 +516,55 @@ export const VOCAB: Vocab[] = [
     "roman": "mueang thai",
     "en": "Thailand (everyday word)",
     "hint": "Mid, mid. ประเทศไทย (bprà-thêet thai) is the formal name."
+  },
+  {
+    "id": "jawng",
+    "thai": "จอง",
+    "roman": "jawng",
+    "en": "to book, reserve",
+    "hint": "Mid. Mid-class จ on a live syllable with no mark is mid. จองไว้แล้ว (jawng wái láew) = I have a booking."
+  },
+  {
+    "id": "khuen",
+    "thai": "คืน",
+    "roman": "khuen",
+    "en": "night (counting nights)",
+    "hint": "Mid. สามคืน (sǎam khuen) = three nights."
+  },
+  {
+    "id": "gii",
+    "thai": "กี่",
+    "roman": "gìi",
+    "en": "how many",
+    "hint": "Low. Mid-class ก with mai ek is low. Put the counting word after it: กี่คืน (gìi khuen), how many nights."
+  },
+  {
+    "id": "hawng",
+    "thai": "ห้อง",
+    "roman": "hâwng",
+    "en": "room",
+    "hint": "Falling. High-class ห with mai tho is falling. ห้องน้ำ (hâwng-náam) = bathroom."
+  },
+  {
+    "id": "aa-haan-chao",
+    "thai": "อาหารเช้า",
+    "roman": "aa-hǎan cháo",
+    "en": "breakfast",
+    "hint": "Mid, rising, high. Literally morning food."
+  },
+  {
+    "id": "moong",
+    "thai": "โมง",
+    "roman": "moong",
+    "en": "o'clock (daytime hours)",
+    "hint": "Mid. กี่โมง (gìi moong) = what time?"
+  },
+  {
+    "id": "rahat",
+    "thai": "รหัส",
+    "roman": "rá-hàt",
+    "en": "code, password",
+    "hint": "High, then low. รหัสไวไฟ (rá-hàt wai-fai) = Wi-Fi password."
   }
 ];
 

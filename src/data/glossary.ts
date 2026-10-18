@@ -44,6 +44,19 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "อาทิตย์เดียว", roman: "aa-thít diaw", en: "just one week" },
   { thai: "อเมริกา", roman: "à-mee-rí-gaa", en: "America" },
   { thai: "ไม่นาน", roman: "mâi naan", en: "not long" },
+  { thai: "เช็คอิน", roman: "chék-in", en: "check in" },
+  { thai: "จองไว้แล้ว", roman: "jawng wái láew", en: "I have a booking" },
+  { thai: "ไว้", roman: "wái", en: "(done) ahead, kept" },
+  { thai: "กี่คืน", roman: "gìi khuen", en: "how many nights?" },
+  { thai: "สามคืน", roman: "sǎam khuen", en: "three nights" },
+  { thai: "กี่โมง", roman: "gìi moong", en: "what time?" },
+  { thai: "เช้า", roman: "cháo", en: "morning" },
+  { thai: "ศูนย์", roman: "sǔun", en: "zero" },
+  { thai: "ถึง", roman: "thǔeng", en: "until; to reach" },
+  { thai: "ไวไฟ", roman: "wai-fai", en: "Wi-Fi" },
+  { thai: "เขียน", roman: "khǐan", en: "to write" },
+  { thai: "ตรงนี้", roman: "dtrong níi", en: "right here" },
+  { thai: "บ่าย", roman: "bàai", en: "afternoon" },
 ];
 
 export interface Gloss {

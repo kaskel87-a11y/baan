@@ -286,6 +286,33 @@ export const TIPS: Tip[] = [
       { ...p("ขอบคุณ", "khàwp-khun"), en: "Thank you." },
     ],
   },
+  // Hotel check-in
+  {
+    id: "hotel-gii",
+    sceneId: "hotel",
+    afterLine: "h5",
+    kind: "grammar",
+    title: "gìi + a counting word asks how many",
+    body: "Put gìi (how many) in front of what you're counting: nights, people, or o'clock. Answer with the number in the same spot.",
+    examples: [
+      { ...p("กี่คืน", "gìi khuen", "question"), en: "How many nights?" },
+      { ...p("กี่คน", "gìi khon", "question"), en: "How many people?" },
+      { ...p("กี่โมง", "gìi moong", "question"), en: "What time?" },
+    ],
+  },
+  {
+    id: "hotel-clock",
+    sceneId: "hotel",
+    afterLine: "h9",
+    kind: "culture",
+    title: "Thai clock time: morning and afternoon",
+    body: "Day to day, Thais split the day into parts. Morning hours are the number plus moong cháo, and afternoon hours start with bàai (afternoon). Midday is thîang.",
+    examples: [
+      { ...p("หกโมงเช้า", "hòk moong cháo"), en: "Six in the morning." },
+      { ...p("บ่ายสามโมง", "bàai sǎam moong"), en: "Three in the afternoon." },
+      { ...p("เที่ยง", "thîang"), en: "Noon." },
+    ],
+  },
   // Goodbye
   {
     id: "leave-mai-pen-rai",

@@ -1,6 +1,6 @@
 # Roadmap
 
-Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-18 (0.19.0). Babbel research: `docs/BABBEL-NOTES.md`.
+Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-18 (0.20.0). Babbel research: `docs/BABBEL-NOTES.md`.
 
 **Priority (Collin, 2026-10-15): speaking and listening first. No reading/writing quizzes. Letters stays as optional reference only. Romanization stays prominent and never fades.**
 
@@ -16,7 +16,7 @@ Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-18 (0.1
 | 5 | Reliable audio: pre-generated or server text-to-speech with a cache and male/female voices, falling back to speechSynthesis | ⏳ Planned. Needs a TTS source: either recordings committed to `public/audio` at build time, or a small server. The static build can't make speech on its own. |
 | 6 | "Today" daily session (~12 min mix), daily goal, streak only counts when the goal is met, 7-day dots | ✅ Done in 0.7.0. Resume is per step (a half-done review or tone round restarts that step). |
 | 7 | Tone production feedback: your pitch curve against the target tone shape (YIN pitch tracking + AudioWorklet) | ✅ Done in 0.3.0. Since 0.3.1 it is a separate "Check my tones" step that never shares the mic with Say it. Tested with synthetic voices only; still needs tuning against real recordings of Collin and a native speaker. |
-| 8 | Content: new scenes (7-Eleven, BTS/MRT, Lost, Massage/pharmacy, Small talk) | ✅ 0.8.0–0.11.0, Small talk in 0.19.0. Reading quizzes and romanization fading **dropped** (Collin doesn't want script). |
+| 8 | Content: new scenes (7-Eleven, BTS/MRT, Lost, Massage/pharmacy, Small talk, Hotel check-in) | ✅ 0.8.0–0.11.0, Small talk in 0.19.0, Hotel check-in in 0.20.0. Reading quizzes and romanization fading **dropped** (Collin doesn't want script). |
 | — | Stable public hosting | ✅ GitHub Pages: https://kaskel87-a11y.github.io/baan/ (`./deploy.sh`) |
 | — | Word check without the browser's speech recognition | ✅ 0.4.0: on-device Whisper base on iPhone, and as a fallback elsewhere. Thai accuracy on single words is only fair. **Decision pending:** a cloud speech-to-text service (needs an API key and a small proxy, e.g. a Cloudflare Worker, since keys can't ship in a static site) would be much more accurate. |
 | — | Tone check tuning on real voices: high tone often rises in modern Bangkok speech, creaky low tones, and syllable splitting on fast speech | ⏳ Next, needs recordings from a real phone |

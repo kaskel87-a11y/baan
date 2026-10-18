@@ -1816,6 +1816,219 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "hotel",
+    "title": "Hotel check-in",
+    "titleTh": "เช็คอินโรงแรม",
+    "blurb": "You have a booking, how many nights, your room number, what time breakfast is, and the Wi-Fi password.",
+    "vocab": [
+      "jawng",
+      "khuen",
+      "gii",
+      "hawng",
+      "aa-haan-chao",
+      "moong",
+      "rahat"
+    ],
+    "lines": [
+      {
+        "id": "h1",
+        "who": "dao",
+        "en": "Hello. Checking in?",
+        "thai": "สวัสดีค่ะ เช็คอินไหมคะ",
+        "roman": "sà-wàt-dii khâ, chék-in mǎi khá",
+        "note": "เช็คอิน (chék-in) is the English word, said the Thai way. ไหม (mǎi, rising) makes it a question."
+      },
+      {
+        "id": "h2",
+        "who": "you",
+        "en": "Yes. I have a booking.",
+        "thai": {
+          "male": "ครับ จองไว้แล้วครับ",
+          "female": "ค่ะ จองไว้แล้วค่ะ"
+        },
+        "roman": {
+          "male": "khráp, jawng wái láew khráp",
+          "female": "khâ, jawng wái láew khâ"
+        },
+        "note": "จอง (jawng, mid) = to book. ไว้แล้ว (wái láew, high, high) = already, ahead of time. A particle alone (khráp or khâ) is a polite yes."
+      },
+      {
+        "id": "h3",
+        "who": "dao",
+        "en": "What name is the booking under?",
+        "thai": "จองชื่ออะไรคะ",
+        "roman": "jawng chûue à-rai khá",
+        "note": "Same chûue à-rai (what name) as at the café, with jawng in front."
+      },
+      {
+        "id": "h4",
+        "who": "you",
+        "en": "Under the name …",
+        "thai": {
+          "male": "ชื่อ{name}ครับ",
+          "female": "ชื่อ{name}ค่ะ"
+        },
+        "roman": {
+          "male": "chûue {name} khráp",
+          "female": "chûue {name} khâ"
+        },
+        "note": "Just chûue plus your name. No “I” needed."
+      },
+      {
+        "id": "h5",
+        "who": "dao",
+        "en": "How many nights?",
+        "thai": "กี่คืนคะ",
+        "roman": "gìi khuen khá",
+        "note": "กี่ (gìi, low) = how many. คืน (khuen, mid) = night."
+      },
+      {
+        "id": "h6",
+        "who": "you",
+        "en": "Three nights.",
+        "thai": {
+          "male": "สามคืนครับ",
+          "female": "สามคืนค่ะ"
+        },
+        "roman": {
+          "male": "sǎam khuen khráp",
+          "female": "sǎam khuen khâ"
+        },
+        "note": "Number first, then คืน. สาม (sǎam) is rising."
+      },
+      {
+        "id": "h7",
+        "who": "dao",
+        "en": "Room 305.",
+        "thai": "ห้องสามศูนย์ห้าค่ะ",
+        "roman": "hâwng sǎam sǔun hâa khâ",
+        "note": "ห้อง (hâwng, falling) = room. Room numbers are read digit by digit: sǎam, sǔun (zero), hâa."
+      },
+      {
+        "id": "h8",
+        "who": "you",
+        "en": "What time is breakfast?",
+        "thai": {
+          "male": "อาหารเช้ากี่โมงครับ",
+          "female": "อาหารเช้ากี่โมงค่ะ"
+        },
+        "roman": {
+          "male": "aa-hǎan cháo gìi moong khráp",
+          "female": "aa-hǎan cháo gìi moong khâ"
+        },
+        "note": "อาหารเช้า (aa-hǎan cháo) = breakfast, literally morning food. เช้า is high. กี่โมง (gìi moong) = what time."
+      },
+      {
+        "id": "h9",
+        "who": "dao",
+        "en": "From six to ten in the morning.",
+        "thai": "หกโมงเช้าถึงสิบโมงค่ะ",
+        "roman": "hòk moong cháo thǔeng sìp moong khâ",
+        "note": "โมง (moong, mid) = o'clock for daytime hours. ถึง (thǔeng, rising) = until."
+      },
+      {
+        "id": "h10",
+        "who": "you",
+        "en": "What's the Wi-Fi password?",
+        "thai": {
+          "male": "รหัสไวไฟอะไรครับ",
+          "female": "รหัสไวไฟอะไรค่ะ"
+        },
+        "roman": {
+          "male": "rá-hàt wai-fai à-rai khráp",
+          "female": "rá-hàt wai-fai à-rai khâ"
+        },
+        "note": "รหัส (rá-hàt) = code or password: high, then low. ไวไฟ (wai-fai) is mid, mid."
+      },
+      {
+        "id": "h11",
+        "who": "dao",
+        "en": "It's written right here.",
+        "thai": "เขียนไว้ตรงนี้ค่ะ",
+        "roman": "khǐan wái dtrong níi khâ",
+        "note": "เขียน (khǐan, rising) = write. ตรงนี้ (dtrong níi) = right here."
+      }
+    ],
+    "drills": [
+      {
+        "id": "h-l",
+        "kind": "listen",
+        "thai": "กี่คืนคะ",
+        "roman": "gìi khuen khá",
+        "en": "How many nights?",
+        "options": [
+          "How many nights?",
+          "What time is breakfast?",
+          "What name is the booking under?",
+          "How much is it?"
+        ]
+      },
+      {
+        "id": "h-r",
+        "kind": "read",
+        "thai": "จองไว้แล้ว",
+        "roman": "jawng wái láew",
+        "en": "I have a booking.",
+        "options": [
+          "I have a booking.",
+          "Three nights.",
+          "It's written right here.",
+          "Checking in?"
+        ]
+      },
+      {
+        "id": "h-p",
+        "kind": "pick",
+        "en": "“room”",
+        "options": [
+          "ห้อง",
+          "คืน",
+          "จอง",
+          "รหัส"
+        ],
+        "answer": "ห้อง",
+        "roman": "hâwng"
+      },
+      {
+        "id": "h-b",
+        "kind": "build",
+        "en": "Three nights.",
+        "tiles": [
+          "สาม",
+          "คืน",
+          "ครับ",
+          "ค่ะ",
+          "กี่",
+          "ห้อง"
+        ],
+        "answer": {
+          "male": [
+            "สาม",
+            "คืน",
+            "ครับ"
+          ],
+          "female": [
+            "สาม",
+            "คืน",
+            "ค่ะ"
+          ]
+        },
+        "roman": {
+          "male": "sǎam khuen khráp",
+          "female": "sǎam khuen khâ"
+        }
+      },
+      {
+        "id": "h-part",
+        "kind": "particle",
+        "en": "You're telling the front desk you have a booking.",
+        "stem": "จองไว้แล้ว",
+        "stemRoman": "jawng wái láew",
+        "particleKind": "statement"
+      }
+    ]
+  },
+  {
     "id": "leave",
     "title": "Goodbye",
     "titleTh": "ลาก่อน",

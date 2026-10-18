@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.20.0 — Hotel check-in scene
+
+- **New scene: Hotel check-in** (before Goodbye), with Dao at the front desk. You say you have a booking (jawng wái láew), give your name, say how many nights (sǎam khuen, three nights), hear your room number read digit by digit (hâwng sǎam sǔun hâa), ask what time breakfast is (aa-hǎan cháo gìi moong) and ask for the Wi-Fi password (rá-hàt wai-fai à-rai). 7 new words (jawng, khuen, gìi, hâwng, aa-hǎan cháo, moong, rá-hàt), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
+- **Two tip cards:** gìi plus a counting word for "how many" (nights, people, what time), and how Thais say clock times (hòk moong cháo, bàai sǎam moong, thîang).
+
 ## 0.19.0 — Small talk scene; tone fix for ช้า (slow)
 
 - **New scene: Small talk** (before Goodbye), with Ploy. You answer where you're from (maa jàak …), take “you speak Thai well!” modestly (phûut dâai nít-nàwy, I can speak a little), say how long you've been here (mâi naan, aa-thít diaw, not long, just one week), and that you like it (châwp mâak). 7 new words (khun, jàak, gèng, nít-nàwy, naan, châwp, mueang thai), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
