@@ -204,7 +204,7 @@ export const TIPS: Tip[] = [
     title: "Say a word twice to soften it",
     body: "Doubling a describing word makes it gentler, like “nice and slow”. In writing there's a repeat mark, but you just say it twice.",
     examples: [
-      { ...p("พูดช้าๆหน่อย", "phûut châa-châa nàwy"), en: "Please speak a little slower." },
+      { ...p("พูดช้าๆหน่อย", "phûut cháa-cháa nàwy"), en: "Please speak a little slower." },
       { ...p("เบาๆหน่อย", "bao-bao nàwy"), en: "A little softer, please." },
     ],
   },
@@ -258,6 +258,32 @@ export const TIPS: Tip[] = [
     examples: [
       { ...p("ไม่เผ็ด", "mâi phèt"), en: "Not spicy." },
       { ...p("เผ็ดนิดหน่อย", "phèt nít-nàwy"), en: "A little spicy." },
+    ],
+  },
+  // Small talk
+  {
+    id: "chat-from",
+    sceneId: "chat",
+    afterLine: "k2",
+    kind: "grammar",
+    title: "maa jàak + a place says where you're from",
+    body: "maa jàak means come from. Put the place after it. You can drop “I” when it's obvious, so maa jàak plus your country is a full answer.",
+    examples: [
+      { ...p("มาจากอเมริกา", "maa jàak à-mee-rí-gaa"), en: "(I'm) from America." },
+      { ...p("มาจากอังกฤษ", "maa jàak ang-grìt"), en: "(I'm) from England." },
+    ],
+  },
+  {
+    id: "chat-modest",
+    sceneId: "chat",
+    afterLine: "k3",
+    kind: "culture",
+    title: "Brush off the compliment",
+    body: "Thais praise almost any Thai you speak. A modest reply is the natural one: say you only speak a little, or mâi gèng (not really good), with a smile. Thanking them works too.",
+    examples: [
+      { ...p("พูดได้นิดหน่อย", "phûut dâai nít-nàwy"), en: "I can speak a little." },
+      { ...p("ไม่เก่ง", "mâi gèng"), en: "Not really good." },
+      { ...p("ขอบคุณ", "khàwp-khun"), en: "Thank you." },
     ],
   },
   // Goodbye

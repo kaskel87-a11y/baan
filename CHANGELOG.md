@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.19.0 — Small talk scene; tone fix for ช้า (slow)
+
+- **New scene: Small talk** (before Goodbye), with Ploy. You answer where you're from (maa jàak …), take “you speak Thai well!” modestly (phûut dâai nít-nàwy, I can speak a little), say how long you've been here (mâi naan, aa-thít diaw, not long, just one week), and that you like it (châwp mâak). 7 new words (khun, jàak, gèng, nít-nàwy, naan, châwp, mueang thai), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
+- **Two tip cards:** maa jàak + a place (with how to drop “I”), and the culture tip on brushing off compliments about your Thai.
+- **Tone fix:** ช้า (slow) was romanized châa (falling). It is cháa (high): low-class ช with mai tho is high. Fixed in the Lost scene line “please speak a little slower” (phûut cháa-cháa nàwy), its drill, the tip card, vocab card and glossary, so the tone check now aims for the right shape.
+- Hint fixes: พูด (phûut) is falling because พ is low class on a dead syllable (the hint wrongly said rising, high class), and the เจ็บ hint no longer calls ็ a mai ek.
+
 ## 0.18.0 — Move your progress (backup and restore)
 
 - **Backup code** in Settings (Move your progress). Progress lives in one browser, so Chrome and Safari on the same iPhone keep separate copies. Tap Copy backup code (or Share backup, or Save backup file), then paste it into Baan in the other browser or on another phone.

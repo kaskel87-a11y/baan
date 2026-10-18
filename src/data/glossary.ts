@@ -26,7 +26,7 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "ต่อรถ", roman: "dtàw rót", en: "transfer trains" },
   { thai: "ลงสถานี", roman: "long sà-thǎa-nii", en: "get off at the station" },
   { thai: "ไม่เข้าใจ", roman: "mâi khâo-jai", en: "I don’t understand" },
-  { thai: "พูดช้าๆหน่อย", roman: "phûut châa-châa nàwy", en: "please speak a little slower" },
+  { thai: "พูดช้าๆหน่อย", roman: "phûut cháa-cháa nàwy", en: "please speak a little slower" },
   { thai: "เดินไปได้", roman: "dern bpai dâai", en: "can walk there" },
   { thai: "อยู่ที่ไหน", roman: "yùu thîi nǎi", en: "where is it?" },
   { thai: "ใกล้ไหม", roman: "glâi mǎi", en: "is it close?" },
@@ -36,6 +36,14 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "มียาไหม", roman: "mii yaa mǎi", en: "do you have medicine?" },
   { thai: "เจ็บตรงไหน", roman: "jèp dtrong nǎi", en: "where does it hurt?" },
   { thai: "แรงไป", roman: "raeng bpai", en: "too hard" },
+  { thai: "มาจาก", roman: "maa jàak", en: "come from" },
+  { thai: "มาจากไหน", roman: "maa jàak nǎi", en: "where are you from?" },
+  { thai: "พูดไทย", roman: "phûut thai", en: "speak Thai" },
+  { thai: "พูดได้", roman: "phûut dâai", en: "can speak" },
+  { thai: "อาทิตย์", roman: "aa-thít", en: "week" },
+  { thai: "อาทิตย์เดียว", roman: "aa-thít diaw", en: "just one week" },
+  { thai: "อเมริกา", roman: "à-mee-rí-gaa", en: "America" },
+  { thai: "ไม่นาน", roman: "mâi naan", en: "not long" },
 ];
 
 export interface Gloss {

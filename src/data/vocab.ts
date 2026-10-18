@@ -410,21 +410,21 @@ export const VOCAB: Vocab[] = [
     "thai": "พูด",
     "roman": "phûut",
     "en": "to speak, talk",
-    "hint": "Rising. พ high-class on a live syllable with no mark is rising."
+    "hint": "Falling. Low-class พ on a dead long syllable with no mark is falling."
   },
   {
     "id": "chaa",
     "thai": "ช้า",
-    "roman": "châa",
+    "roman": "cháa",
     "en": "slow",
-    "hint": "Falling. พูดช้าๆหน่อย (phûut châa-châa nàwy) = please speak a little slower."
+    "hint": "High. Low-class ช with mai tho is high. พูดช้าๆหน่อย (phûut cháa-cháa nàwy) = please speak a little slower."
   },
   {
     "id": "jep",
     "thai": "เจ็บ",
     "roman": "jèp",
     "en": "to hurt, be sore",
-    "hint": "Low. Mid-class จ on a short dead syllable with mai ek is low."
+    "hint": "Low. Mid-class จ on a short dead syllable is low (the little ็ just keeps the vowel short)."
   },
   {
     "id": "buat",
@@ -467,6 +467,55 @@ export const VOCAB: Vocab[] = [
     "roman": "yaa",
     "en": "medicine",
     "hint": "Mid. มียาไหม (mii yaa mǎi) = do you have medicine?"
+  },
+  {
+    "id": "khun",
+    "thai": "คุณ",
+    "roman": "khun",
+    "en": "you; Mr./Ms. before a name",
+    "hint": "Mid. Polite with anyone."
+  },
+  {
+    "id": "jaak",
+    "thai": "จาก",
+    "roman": "jàak",
+    "en": "from",
+    "hint": "Low. มาจาก… (maa jàak …) = come from …"
+  },
+  {
+    "id": "geng",
+    "thai": "เก่ง",
+    "roman": "gèng",
+    "en": "good at, skilled",
+    "hint": "Low. Mid-class ก with mai ek is low."
+  },
+  {
+    "id": "nit-noi",
+    "thai": "นิดหน่อย",
+    "roman": "nít-nàwy",
+    "en": "a little, a bit",
+    "hint": "High, then low. The modest answer when someone praises your Thai."
+  },
+  {
+    "id": "naan",
+    "thai": "นาน",
+    "roman": "naan",
+    "en": "a long time",
+    "hint": "Mid. ไม่นาน (mâi naan) = not long."
+  },
+  {
+    "id": "chawp",
+    "thai": "ชอบ",
+    "roman": "châwp",
+    "en": "to like",
+    "hint": "Falling. Low-class ช on a dead long syllable is falling."
+  },
+  {
+    "id": "mueang-thai",
+    "thai": "เมืองไทย",
+    "roman": "mueang thai",
+    "en": "Thailand (everyday word)",
+    "hint": "Mid, mid. ประเทศไทย (bprà-thêet thai) is the formal name."
   }
 ];
 

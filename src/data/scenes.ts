@@ -1160,10 +1160,10 @@ export const SCENES: Scene[] = [
           "female": "พูดช้าๆหน่อยค่ะ"
         },
         "roman": {
-          "male": "phûut châa-châa nàwy khráp",
-          "female": "phûut châa-châa nàwy khâ"
+          "male": "phûut cháa-cháa nàwy khráp",
+          "female": "phûut cháa-cháa nàwy khâ"
         },
-        "note": "ๆ repeats ช้า. หน่อย (nàwy, low) softens the request."
+        "note": "ๆ repeats ช้า (cháa, high). หน่อย (nàwy, low) softens the request."
       },
       {
         "id": "l7",
@@ -1253,7 +1253,7 @@ export const SCENES: Scene[] = [
         "kind": "particle",
         "en": "You’re asking someone to speak slower.",
         "stem": "พูดช้าๆหน่อย",
-        "stemRoman": "phûut châa-châa nàwy",
+        "stemRoman": "phûut cháa-cháa nàwy",
         "particleKind": "statement"
       }
     ]
@@ -1622,6 +1622,195 @@ export const SCENES: Scene[] = [
         "en": "You're asking for the bill.",
         "stem": "เช็คบิล",
         "stemRoman": "chék bin",
+        "particleKind": "statement"
+      }
+    ]
+  },
+  {
+    "id": "chat",
+    "title": "Small talk",
+    "titleTh": "คุยเล่น",
+    "blurb": "Where you're from, how long you've been here, a modest reply to “your Thai is good”, and that you like it here.",
+    "vocab": [
+      "khun",
+      "jaak",
+      "geng",
+      "nit-noi",
+      "naan",
+      "chawp",
+      "mueang-thai",
+      "phuut"
+    ],
+    "lines": [
+      {
+        "id": "k1",
+        "who": "ploy",
+        "en": "Where are you from?",
+        "thai": "คุณมาจากไหนคะ",
+        "roman": "khun maa jàak nǎi khá",
+        "note": "คุณ (khun, mid) = you. มาจาก (maa jàak) = come from. ไหน (nǎi, rising) = where."
+      },
+      {
+        "id": "k2",
+        "who": "you",
+        "en": "I'm from America.",
+        "thai": {
+          "male": "ผมมาจากอเมริกาครับ",
+          "female": "ฉันมาจากอเมริกาค่ะ"
+        },
+        "roman": {
+          "male": "phǒm maa jàak à-mee-rí-gaa khráp",
+          "female": "chǎn maa jàak à-mee-rí-gaa khâ"
+        },
+        "note": "จาก (jàak) is low. Swap in your country: อังกฤษ (ang-grìt, England), แคนาดา (khaae-naa-daa, Canada), ออสเตรเลีย (áws-dtree-lia, Australia)."
+      },
+      {
+        "id": "k3",
+        "who": "ploy",
+        "en": "You speak Thai well!",
+        "thai": "พูดไทยเก่งนะคะ",
+        "roman": "phûut thai gèng ná khá",
+        "note": "เก่ง (gèng, low) = good at, skilled. นะ (ná) makes it warm."
+      },
+      {
+        "id": "k4",
+        "who": "you",
+        "en": "I can speak a little.",
+        "thai": {
+          "male": "พูดได้นิดหน่อยครับ",
+          "female": "พูดได้นิดหน่อยค่ะ"
+        },
+        "roman": {
+          "male": "phûut dâai nít-nàwy khráp",
+          "female": "phûut dâai nít-nàwy khâ"
+        },
+        "note": "นิดหน่อย (nít-nàwy) = a little: high, then low. No “I” needed; Thai drops it when it's obvious."
+      },
+      {
+        "id": "k5",
+        "who": "ploy",
+        "en": "Have you been in Thailand long?",
+        "thai": "อยู่เมืองไทยนานไหมคะ",
+        "roman": "yùu mueang thai naan mǎi khá",
+        "note": "เมืองไทย (mueang thai) is the everyday way to say Thailand. นาน (naan, mid) = a long time."
+      },
+      {
+        "id": "k6",
+        "who": "you",
+        "en": "Not long. Just one week.",
+        "thai": {
+          "male": "ไม่นาน อาทิตย์เดียวครับ",
+          "female": "ไม่นาน อาทิตย์เดียวค่ะ"
+        },
+        "roman": {
+          "male": "mâi naan, aa-thít diaw khráp",
+          "female": "mâi naan, aa-thít diaw khâ"
+        },
+        "note": "อาทิตย์ (aa-thít) = week: mid, then high. เดียว (diaw) = just one, as in the one-way ticket."
+      },
+      {
+        "id": "k7",
+        "who": "ploy",
+        "en": "Do you like Thailand?",
+        "thai": "ชอบเมืองไทยไหมคะ",
+        "roman": "châwp mueang thai mǎi khá",
+        "note": "ชอบ (châwp, falling) = to like."
+      },
+      {
+        "id": "k8",
+        "who": "you",
+        "en": "I like it a lot.",
+        "thai": {
+          "male": "ชอบมากครับ",
+          "female": "ชอบมากค่ะ"
+        },
+        "roman": {
+          "male": "châwp mâak khráp",
+          "female": "châwp mâak khâ"
+        },
+        "note": "Answer yes by repeating the verb: ชอบ (châwp). มาก (mâak) = a lot."
+      }
+    ],
+    "drills": [
+      {
+        "id": "k-l",
+        "kind": "listen",
+        "thai": "คุณมาจากไหนคะ",
+        "roman": "khun maa jàak nǎi khá",
+        "en": "Where are you from?",
+        "options": [
+          "Where are you from?",
+          "Do you like Thailand?",
+          "Have you been in Thailand long?",
+          "Where is it?"
+        ]
+      },
+      {
+        "id": "k-r",
+        "kind": "read",
+        "thai": "พูดไทยเก่งนะคะ",
+        "roman": "phûut thai gèng ná khá",
+        "en": "You speak Thai well!",
+        "options": [
+          "You speak Thai well!",
+          "I can speak a little.",
+          "I like it a lot.",
+          "Please speak a little slower."
+        ]
+      },
+      {
+        "id": "k-p",
+        "kind": "pick",
+        "en": "“a little”",
+        "options": [
+          "นิดหน่อย",
+          "นาน",
+          "เก่ง",
+          "ชอบ"
+        ],
+        "answer": "นิดหน่อย",
+        "roman": "nít-nàwy"
+      },
+      {
+        "id": "k-b",
+        "kind": "build",
+        "en": "I like Thailand a lot.",
+        "tiles": [
+          "ชอบ",
+          "เมือง",
+          "ไทย",
+          "มาก",
+          "ครับ",
+          "ค่ะ",
+          "นาน"
+        ],
+        "answer": {
+          "male": [
+            "ชอบ",
+            "เมือง",
+            "ไทย",
+            "มาก",
+            "ครับ"
+          ],
+          "female": [
+            "ชอบ",
+            "เมือง",
+            "ไทย",
+            "มาก",
+            "ค่ะ"
+          ]
+        },
+        "roman": {
+          "male": "châwp mueang thai mâak khráp",
+          "female": "châwp mueang thai mâak khâ"
+        }
+      },
+      {
+        "id": "k-part",
+        "kind": "particle",
+        "en": "You're telling someone you can speak a little.",
+        "stem": "พูดได้นิดหน่อย",
+        "stemRoman": "phûut dâai nít-nàwy",
         "particleKind": "statement"
       }
     ]
