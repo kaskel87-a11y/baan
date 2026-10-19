@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.25.0 — New listening story: Dinner to go, then laundry
+
+- **Sixth listening story** (Stories, 06), built from the two newest scenes (Street food stall, Laundry). Tom asks for one plate of pork fried rice with a fried egg and no cilantro, takes it to go (ao glàp bâan) for sixty baht altogether, then drops off three kilos of laundry at forty baht a kilo, skips the ironing (mâi dtâwng rîit) and hears it will be done tomorrow evening (phrûng-níi yen). Ten sentences, eight English questions (including pork vs chicken and 60 vs 55 vs 16 baht to train your ear), and the full transcript with romanization and English afterwards.
+
 ## 0.24.0 — Laundry scene
 
 - **New scene: Laundry** (before Goodbye), with Nok at a laundry shop. You ask how much per kilo (sák phâa gì-loo lá thâo-rài), hear forty baht a kilo, ask when it will be done (sèt mûea-rài), hear tomorrow evening (phrûng-níi yen), ask if they iron too (rîit dûay dâai mǎi), turn it down when it's twenty baht extra (ngán mâi dtâwng rîit), and say you'll pick it up tomorrow (phrûng-níi jà maa ráp). 7 new words (sák phâa, gì-loo, sèt, mûea-rài, phrûng-níi, rîit, dtâwng), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
