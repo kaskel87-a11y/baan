@@ -340,6 +340,33 @@ export const TIPS: Tip[] = [
       { ...p("ตัวนี้เท่าไหร่", "dtua níi thâo-rài", "question"), en: "How much is this one?" },
     ],
   },
+  // Street food stall
+  {
+    id: "food-glap-baan",
+    sceneId: "food",
+    afterLine: "sf4",
+    kind: "culture",
+    title: "glàp bâan is how you say to go",
+    body: "At a stall, takeaway is glàp bâan (go back home), even if you're eating at your desk. Eating there is gin thîi-nîi. Vendors bag almost everything, and sài thǔng asks for a bag.",
+    examples: [
+      { ...p("กลับบ้าน", "glàp bâan"), en: "To go." },
+      { ...p("กินที่นี่", "gin thîi-nîi"), en: "To eat here." },
+      { ...p("ใส่ถุงด้วย", "sài thǔng dûay"), en: "A bag too, please." },
+    ],
+  },
+  {
+    id: "food-mai-sai",
+    sceneId: "food",
+    afterLine: "sf7",
+    kind: "grammar",
+    title: "mâi sài leaves something out, sài adds it",
+    body: "mâi sài means don't put in. Name the thing right after it: no cilantro, no ice, no chili. Drop the mâi to ask for something added, and put dûay (too) at the end.",
+    examples: [
+      { ...p("ไม่ใส่น้ำแข็ง", "mâi sài náam-khǎeng"), en: "No ice." },
+      { ...p("ไม่ใส่พริก", "mâi sài phrík"), en: "No chili." },
+      { ...p("ใส่ไข่ดาวด้วย", "sài khài daaw dûay"), en: "Add a fried egg too." },
+    ],
+  },
   // Goodbye
   {
     id: "leave-mai-pen-rai",

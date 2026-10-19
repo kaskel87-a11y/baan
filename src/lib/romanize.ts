@@ -67,8 +67,8 @@ function parseOne(w: string, i: number): { syl: ThaiSyllable; next: number } | n
   let onset = INITIAL[w[i]!] ?? "";
   let j = i + 1;
   const after = (k: number) => w[k];
-  // leading ห (หม, หน, หว…) and อย: silent leader sets the class
-  if (w[i] === "ห" && LEADABLE.includes(after(j) ?? "") && (pre || !isCons(after(j + 1)) || ABOVE_BELOW.includes(after(j + 1) ?? "") || TONES.includes(after(j + 1) ?? "") || "าอะ".includes(after(j + 1) ?? "") || !after(j + 1))) {
+  // leading ห (หม, หน, หว…) and อย: silent leader sets the class; also before an implicit o (หมด = mòt)
+  if (w[i] === "ห" && LEADABLE.includes(after(j) ?? "") && (pre || !isCons(after(j + 1)) || ABOVE_BELOW.includes(after(j + 1) ?? "") || TONES.includes(after(j + 1) ?? "") || "าอะ".includes(after(j + 1) ?? "") || !after(j + 1) || (isCons(after(j + 1)) && !startsSyllable(w, j + 1)))) {
     onset = INITIAL[w[j]!]!;
     j++;
   } else if (w[i] === "อ" && after(j) === "ย" && after(j + 1) && !isCons(after(j + 1))) {

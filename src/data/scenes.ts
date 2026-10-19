@@ -2239,6 +2239,216 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "food",
+    "title": "Street food stall",
+    "titleTh": "ร้านข้าวริมทาง",
+    "blurb": "Order fried rice, say to go, add a fried egg, skip the cilantro, and ask how much altogether.",
+    "vocab": [
+      "gin",
+      "glap-baan",
+      "sai-put",
+      "khai-daaw",
+      "phak-chii",
+      "tang-mot",
+      "jaan"
+    ],
+    "lines": [
+      {
+        "id": "sf1",
+        "who": "pim",
+        "en": "What can I get you?",
+        "thai": "รับอะไรดีคะ",
+        "roman": "ráp à-rai dii khá",
+        "note": "รับ (ráp, high) = take. รับอะไรดี is how vendors ask what you'd like."
+      },
+      {
+        "id": "sf2",
+        "who": "you",
+        "en": "Pork fried rice, one plate.",
+        "thai": {
+          "male": "เอาข้าวผัดหมูหนึ่งจานครับ",
+          "female": "เอาข้าวผัดหมูหนึ่งจานค่ะ"
+        },
+        "roman": {
+          "male": "ao khâaw phàt mǔu nùeng jaan khráp",
+          "female": "ao khâaw phàt mǔu nùeng jaan khâ"
+        },
+        "note": "ข้าวผัด (khâaw phàt) = fried rice, หมู (mǔu, rising) = pork. หนึ่งจาน (nùeng jaan) = one plate, so จาน counts plates of food."
+      },
+      {
+        "id": "sf3",
+        "who": "pim",
+        "en": "Eat here or take it home?",
+        "thai": "กินที่นี่หรือกลับบ้านคะ",
+        "roman": "gin thîi-nîi rǔue glàp bâan khá",
+        "note": "กิน (gin) = eat. หรือ (rǔue, rising) = or. กลับบ้าน (glàp bâan) = go back home, which is how Thai says to go."
+      },
+      {
+        "id": "sf4",
+        "who": "you",
+        "en": "To go, please.",
+        "thai": {
+          "male": "กลับบ้านครับ",
+          "female": "กลับบ้านค่ะ"
+        },
+        "roman": {
+          "male": "glàp bâan khráp",
+          "female": "glàp bâan khâ"
+        },
+        "note": "Just repeat the choice you want. กลับ (glàp) is low, บ้าน (bâan) is falling."
+      },
+      {
+        "id": "sf5",
+        "who": "pim",
+        "en": "Do you want a fried egg on it?",
+        "thai": "ใส่ไข่ดาวไหมคะ",
+        "roman": "sài khài daaw mǎi khá",
+        "note": "ใส่ (sài, low) = put in, add. ไข่ดาว (khài daaw) = fried egg, literally star egg."
+      },
+      {
+        "id": "sf6",
+        "who": "you",
+        "en": "Yes, add a fried egg too.",
+        "thai": {
+          "male": "ใส่ไข่ดาวด้วยครับ",
+          "female": "ใส่ไข่ดาวด้วยค่ะ"
+        },
+        "roman": {
+          "male": "sài khài daaw dûay khráp",
+          "female": "sài khài daaw dûay khâ"
+        },
+        "note": "Say yes by repeating the verb ใส่ (sài). ด้วย (dûay, falling) = too, as well."
+      },
+      {
+        "id": "sf7",
+        "who": "you",
+        "en": "No cilantro, please.",
+        "thai": {
+          "male": "ไม่ใส่ผักชีนะครับ",
+          "female": "ไม่ใส่ผักชีนะคะ"
+        },
+        "roman": {
+          "male": "mâi sài phàk-chii ná khráp",
+          "female": "mâi sài phàk-chii ná khá"
+        },
+        "note": "ไม่ใส่ (mâi sài) = don't put in. ผักชี (phàk-chii) = cilantro. นะ (ná) makes it a friendly request."
+      },
+      {
+        "id": "sf8",
+        "who": "pim",
+        "en": "Okay. Wait about five minutes.",
+        "thai": "ได้ค่ะ รอห้านาทีนะคะ",
+        "roman": "dâai khâ, raw hâa naa-thii ná khá",
+        "note": "รอ (raw) = wait. ห้า (hâa, falling) = five. นาที (naa-thii) = minute."
+      },
+      {
+        "id": "sf9",
+        "who": "you",
+        "en": "How much altogether?",
+        "thai": {
+          "male": "ทั้งหมดเท่าไหร่ครับ",
+          "female": "ทั้งหมดเท่าไหร่คะ"
+        },
+        "roman": {
+          "male": "tháng-mòt thâo-rài khráp",
+          "female": "tháng-mòt thâo-rài khá"
+        },
+        "note": "ทั้งหมด (tháng-mòt) = altogether, high then low. เท่าไหร่ (thâo-rài) = how much."
+      },
+      {
+        "id": "sf10",
+        "who": "pim",
+        "en": "Fifty-five baht.",
+        "thai": "ห้าสิบห้าบาทค่ะ",
+        "roman": "hâa-sìp-hâa bàat khâ",
+        "note": "ห้าสิบ (hâa-sìp) = fifty, then ห้า (hâa) = five. บาท (bàat, low) = baht."
+      }
+    ],
+    "drills": [
+      {
+        "id": "sf-l",
+        "kind": "listen",
+        "thai": "กินที่นี่หรือกลับบ้านคะ",
+        "roman": "gin thîi-nîi rǔue glàp bâan khá",
+        "en": "Eat here or take it home?",
+        "options": [
+          "Eat here or take it home?",
+          "Do you want a fried egg on it?",
+          "How much altogether?",
+          "Wait about five minutes."
+        ]
+      },
+      {
+        "id": "sf-r",
+        "kind": "read",
+        "thai": "ไม่ใส่ผักชี",
+        "roman": "mâi sài phàk-chii",
+        "en": "No cilantro.",
+        "options": [
+          "No cilantro.",
+          "No ice.",
+          "Not spicy.",
+          "To go."
+        ]
+      },
+      {
+        "id": "sf-p",
+        "kind": "pick",
+        "en": "“altogether”",
+        "options": [
+          "ทั้งหมด",
+          "จาน",
+          "ไข่ดาว",
+          "กิน"
+        ],
+        "answer": "ทั้งหมด",
+        "roman": "tháng-mòt"
+      },
+      {
+        "id": "sf-b",
+        "kind": "build",
+        "en": "No cilantro, please.",
+        "tiles": [
+          "ไม่",
+          "ใส่",
+          "ผักชี",
+          "นะ",
+          "ครับ",
+          "คะ",
+          "ไข่"
+        ],
+        "answer": {
+          "male": [
+            "ไม่",
+            "ใส่",
+            "ผักชี",
+            "นะ",
+            "ครับ"
+          ],
+          "female": [
+            "ไม่",
+            "ใส่",
+            "ผักชี",
+            "นะ",
+            "คะ"
+          ]
+        },
+        "roman": {
+          "male": "mâi sài phàk-chii ná khráp",
+          "female": "mâi sài phàk-chii ná khá"
+        }
+      },
+      {
+        "id": "sf-part",
+        "kind": "particle",
+        "en": "You're asking how much it is altogether.",
+        "stem": "ทั้งหมดเท่าไหร่",
+        "stemRoman": "tháng-mòt thâo-rài",
+        "particleKind": "question"
+      }
+    ]
+  },
+  {
     "id": "leave",
     "title": "Goodbye",
     "titleTh": "ลาก่อน",

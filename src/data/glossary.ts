@@ -73,6 +73,21 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "ตัวนี้", roman: "dtua níi", en: "this one (clothes)" },
   { thai: "เลือก", roman: "lûeak", en: "to choose" },
   { thai: "ดู", roman: "duu", en: "to look, watch" },
+  { thai: "ข้าวผัด", roman: "khâaw phàt", en: "fried rice" },
+  { thai: "ข้าวผัดหมู", roman: "khâaw phàt mǔu", en: "pork fried rice" },
+  { thai: "หมู", roman: "mǔu", en: "pork" },
+  { thai: "หนึ่ง", roman: "nùeng", en: "one" },
+  { thai: "หรือ", roman: "rǔue", en: "or" },
+  { thai: "ด้วย", roman: "dûay", en: "too, as well" },
+  { thai: "รอ", roman: "raw", en: "to wait" },
+  { thai: "นาที", roman: "naa-thii", en: "minute" },
+  { thai: "ห้า", roman: "hâa", en: "five" },
+  { thai: "น้ำแข็ง", roman: "náam-khǎeng", en: "ice" },
+  { thai: "พริก", roman: "phrík", en: "chili" },
+  { thai: "ไม่ใส่ผักชี", roman: "mâi sài phàk-chii", en: "no cilantro" },
+  { thai: "กินที่นี่", roman: "gin thîi-nîi", en: "eat here" },
+  { thai: "ใส่ถุง", roman: "sài thǔng", en: "put it in a bag" },
+  { thai: "นะ", roman: "ná", en: "softener for a friendly request" },
 ];
 
 export interface Gloss {

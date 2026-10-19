@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.23.0 — Street food stall scene
+
+- **New scene: Street food stall** (before Goodbye), with Pim at a fried rice stall. You order pork fried rice, one plate (ao khâaw phàt mǔu nùeng jaan), answer eat here or to go (glàp bâan, to go), add a fried egg (sài khài daaw dûay), skip the cilantro (mâi sài phàk-chii ná) and ask how much altogether (tháng-mòt thâo-rài). 7 new words (gin, glàp bâan, sài, khài daaw, phàk-chii, tháng-mòt, jaan), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
+- **Two tip cards:** glàp bâan is how you say to go (and gin thîi-nîi for eating there, sài thǔng for a bag), and mâi sài to leave something out (no ice, no chili) or sài ... dûay to add it.
+- **Fix:** the word check's romanizer read หมด as hǒm-dà, so if you said tháng-mòt (altogether) it would show you a wrong "heard" spelling. A silent ห before an implicit o is now handled (หมด mòt, หมวก mùak).
+
 ## 0.22.0 — New listening story: Check-in, then a new shirt
 
 - **Fifth listening story** (Stories, 05), built from the three newest scenes (Small talk, Hotel check-in, Clothes shop). Tom says where he's from, books three nights, gets room 305, hears breakfast is from six to ten, finds the first shirt too big, takes a smaller black one, and answers "you speak Thai well!" with phûut dâai nít-nàwy. Nine sentences, seven English questions, and the full transcript with romanization and English afterwards.

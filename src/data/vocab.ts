@@ -614,6 +614,55 @@ export const VOCAB: Vocab[] = [
     "roman": "dtua",
     "en": "counting word for clothes",
     "hint": "Mid. Shirts, pants and dresses are counted with ตัว: ตัวนี้ (dtua níi) = this one."
+  },
+  {
+    "id": "gin",
+    "thai": "กิน",
+    "roman": "gin",
+    "en": "to eat",
+    "hint": "Mid. Mid-class ก on a live syllable with no mark is mid. กินที่นี่ (gin thîi-nîi) = eat here."
+  },
+  {
+    "id": "glap-baan",
+    "thai": "กลับบ้าน",
+    "roman": "glàp bâan",
+    "en": "to go (take it home)",
+    "hint": "Low, then falling. กลับ: mid-class ก on a short dead syllable is low. บ้าน: mid-class บ with mai tho is falling."
+  },
+  {
+    "id": "sai-put",
+    "thai": "ใส่",
+    "roman": "sài",
+    "en": "to put in, add",
+    "hint": "Low. High-class ส with mai ek is low. The same word means to wear."
+  },
+  {
+    "id": "khai-daaw",
+    "thai": "ไข่ดาว",
+    "roman": "khài daaw",
+    "en": "fried egg",
+    "hint": "Low, then mid. High-class ข with mai ek is low; ดาว (star) is mid."
+  },
+  {
+    "id": "phak-chii",
+    "thai": "ผักชี",
+    "roman": "phàk-chii",
+    "en": "cilantro (coriander)",
+    "hint": "Low, then mid. High-class ผ on a short dead syllable is low; low-class ช on a live syllable is mid."
+  },
+  {
+    "id": "tang-mot",
+    "thai": "ทั้งหมด",
+    "roman": "tháng-mòt",
+    "en": "altogether, all of it",
+    "hint": "High, then low. Low-class ท with mai tho is high. ห in front of ม makes it high class, and a short dead syllable is low."
+  },
+  {
+    "id": "jaan",
+    "thai": "จาน",
+    "roman": "jaan",
+    "en": "plate (also counts plates of food)",
+    "hint": "Mid. Mid-class จ on a live syllable with no mark is mid. หนึ่งจาน (nùeng jaan) = one plate."
   }
 ];
 
