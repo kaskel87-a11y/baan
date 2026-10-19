@@ -2449,6 +2449,210 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "laundry",
+    "title": "Laundry",
+    "titleTh": "ร้านซักผ้า",
+    "blurb": "Ask the price per kilo, when it's ready, whether they iron, and say you'll pick it up tomorrow.",
+    "vocab": [
+      "sak-phaa",
+      "gi-loo",
+      "set",
+      "muea-rai",
+      "phrung-nii",
+      "riit",
+      "dtawng"
+    ],
+    "lines": [
+      {
+        "id": "la1",
+        "who": "nok",
+        "en": "Hello. Laundry?",
+        "thai": "สวัสดีค่ะ ซักผ้าไหมคะ",
+        "roman": "sà-wàt-dii khâ, sák phâa mǎi khá",
+        "note": "ซักผ้า (sák phâa) = wash clothes, the everyday word for doing laundry."
+      },
+      {
+        "id": "la2",
+        "who": "you",
+        "en": "How much per kilo to wash?",
+        "thai": {
+          "male": "ซักผ้ากิโลละเท่าไหร่ครับ",
+          "female": "ซักผ้ากิโลละเท่าไหร่คะ"
+        },
+        "roman": {
+          "male": "sák phâa gì-loo lá thâo-rài khráp",
+          "female": "sák phâa gì-loo lá thâo-rài khá"
+        },
+        "note": "กิโล (gì-loo) = kilo. ละ (lá, high) = per, so กิโลละ = per kilo. Most laundry shops charge by weight."
+      },
+      {
+        "id": "la3",
+        "who": "nok",
+        "en": "Forty baht a kilo.",
+        "thai": "กิโลละสี่สิบบาทค่ะ",
+        "roman": "gì-loo lá sìi-sìp bàat khâ",
+        "note": "สี่สิบ (sìi-sìp) = forty, both low. บาท (bàat) = baht."
+      },
+      {
+        "id": "la4",
+        "who": "you",
+        "en": "When will it be done?",
+        "thai": {
+          "male": "เสร็จเมื่อไหร่ครับ",
+          "female": "เสร็จเมื่อไหร่คะ"
+        },
+        "roman": {
+          "male": "sèt mûea-rài khráp",
+          "female": "sèt mûea-rài khá"
+        },
+        "note": "เสร็จ (sèt, low) = finished, done. เมื่อไหร่ (mûea-rài) = when, falling then low."
+      },
+      {
+        "id": "la5",
+        "who": "nok",
+        "en": "Tomorrow evening.",
+        "thai": "พรุ่งนี้เย็นค่ะ",
+        "roman": "phrûng-níi yen khâ",
+        "note": "พรุ่งนี้ (phrûng-níi) = tomorrow. เย็น (yen) = evening, the same word as cold."
+      },
+      {
+        "id": "la6",
+        "who": "you",
+        "en": "Can you iron them too?",
+        "thai": {
+          "male": "รีดด้วยได้ไหมครับ",
+          "female": "รีดด้วยได้ไหมคะ"
+        },
+        "roman": {
+          "male": "rîit dûay dâai mǎi khráp",
+          "female": "rîit dûay dâai mǎi khá"
+        },
+        "note": "รีด (rîit, falling) = to iron. ด้วย (dûay) = too. ได้ไหม (dâai mǎi) = can you?"
+      },
+      {
+        "id": "la7",
+        "who": "nok",
+        "en": "Sure. Ironing is twenty baht extra.",
+        "thai": "ได้ค่ะ รีดเพิ่มยี่สิบบาทค่ะ",
+        "roman": "dâai khâ, rîit phêrm yîi-sìp bàat khâ",
+        "note": "เพิ่ม (phêrm, falling) = extra, more. ยี่สิบ (yîi-sìp) = twenty, a special word, not sǎawng-sìp."
+      },
+      {
+        "id": "la8",
+        "who": "you",
+        "en": "Then no need to iron.",
+        "thai": {
+          "male": "งั้นไม่ต้องรีดครับ",
+          "female": "งั้นไม่ต้องรีดค่ะ"
+        },
+        "roman": {
+          "male": "ngán mâi dtâwng rîit khráp",
+          "female": "ngán mâi dtâwng rîit khâ"
+        },
+        "note": "งั้น (ngán, high) = then, in that case. ไม่ต้อง (mâi dtâwng) = no need to, both falling."
+      },
+      {
+        "id": "la9",
+        "who": "you",
+        "en": "I'll come pick it up tomorrow.",
+        "thai": {
+          "male": "พรุ่งนี้จะมารับครับ",
+          "female": "พรุ่งนี้จะมารับค่ะ"
+        },
+        "roman": {
+          "male": "phrûng-níi jà maa ráp khráp",
+          "female": "phrûng-níi jà maa ráp khâ"
+        },
+        "note": "จะ (jà, low) marks the future. มารับ (maa ráp) = come and pick up."
+      },
+      {
+        "id": "la10",
+        "who": "nok",
+        "en": "Okay. Here's your laundry ticket.",
+        "thai": "ได้ค่ะ นี่ใบรับผ้านะคะ",
+        "roman": "dâai khâ, nîi bai ráp phâa ná khá",
+        "note": "นี่ (nîi, falling) = here's. ใบรับผ้า (bai ráp phâa) = the slip you show to collect your clothes."
+      }
+    ],
+    "drills": [
+      {
+        "id": "la-l",
+        "kind": "listen",
+        "thai": "พรุ่งนี้เย็นค่ะ",
+        "roman": "phrûng-níi yen khâ",
+        "en": "Tomorrow evening.",
+        "options": [
+          "Tomorrow evening.",
+          "Forty baht a kilo.",
+          "Ironing is twenty baht extra.",
+          "Here's your laundry ticket."
+        ]
+      },
+      {
+        "id": "la-r",
+        "kind": "read",
+        "thai": "ไม่ต้องรีด",
+        "roman": "mâi dtâwng rîit",
+        "en": "No need to iron.",
+        "options": [
+          "No need to iron.",
+          "Iron it too.",
+          "When will it be done?",
+          "Tomorrow evening."
+        ]
+      },
+      {
+        "id": "la-p",
+        "kind": "pick",
+        "en": "“tomorrow”",
+        "options": [
+          "พรุ่งนี้",
+          "วันนี้",
+          "เมื่อไหร่",
+          "กิโล"
+        ],
+        "answer": "พรุ่งนี้",
+        "roman": "phrûng-níi"
+      },
+      {
+        "id": "la-b",
+        "kind": "build",
+        "en": "When will it be done?",
+        "tiles": [
+          "เสร็จ",
+          "เมื่อไหร่",
+          "ครับ",
+          "คะ",
+          "พรุ่งนี้"
+        ],
+        "answer": {
+          "male": [
+            "เสร็จ",
+            "เมื่อไหร่",
+            "ครับ"
+          ],
+          "female": [
+            "เสร็จ",
+            "เมื่อไหร่",
+            "คะ"
+          ]
+        },
+        "roman": {
+          "male": "sèt mûea-rài khráp",
+          "female": "sèt mûea-rài khá"
+        }
+      },
+      {
+        "id": "la-part",
+        "kind": "particle",
+        "en": "You're asking how much it is per kilo.",
+        "stem": "กิโลละเท่าไหร่",
+        "stemRoman": "gì-loo lá thâo-rài",
+        "particleKind": "question"
+      }
+    ]
+  },
+  {
     "id": "leave",
     "title": "Goodbye",
     "titleTh": "ลาก่อน",

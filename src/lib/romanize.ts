@@ -76,9 +76,13 @@ function parseOne(w: string, i: number): { syl: ThaiSyllable; next: number } | n
     j++;
   } else if (isCons(after(j)) && CLUSTERS.has(w[i]! + after(j)!)) {
     const n2 = after(j + 1);
+    // after ใ/ไ the vowel is complete, so a vowel sign on the 2nd consonant starts a new syllable (ใบรับ = bai ráp, not brai-bà)
     const vowelNext = !!n2 && (ABOVE_BELOW.includes(n2) || TONES.includes(n2) || "าะำอ".includes(n2));
+    const newSyllable = (pre === "ใ" || pre === "ไ") && !!n2 && ABOVE_BELOW.includes(n2);
     const implicitO = after(j) !== "ว" && isCons(n2) && !startsSyllable(w, j + 1) && !pre;
-    if (vowelNext || (pre && !isCons(n2)) || (pre && isCons(n2) && !startsSyllable(w, j + 1)) || implicitO) {
+    if (newSyllable) {
+      // not a cluster: the 2nd consonant opens the next syllable
+    } else if (vowelNext || (pre && !isCons(n2)) || (pre && isCons(n2) && !startsSyllable(w, j + 1)) || implicitO) {
       onset = w[i] + after(j)! === "ทร" ? "s" : onset + INITIAL[after(j)!]!;
       j++;
     }
@@ -169,6 +173,7 @@ special("น้ำ", [["n", "aa", true, "m", "high"]]);
 special("แล้ว", [["l", "ae", false, "w", "high"]]);
 special("เขา", [["kh", "ao", true, "", "rising"]]);
 special("ไหน", [["n", "ai", true, "", "rising"]]);
+special("เสร็จ", [["s", "e", false, "t", "low"]]); // silent ร
 
 /** Split one Thai word into syllables. */
 export function syllabify(word: string): ThaiSyllable[] {

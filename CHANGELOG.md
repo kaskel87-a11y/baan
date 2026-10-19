@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.24.0 — Laundry scene
+
+- **New scene: Laundry** (before Goodbye), with Nok at a laundry shop. You ask how much per kilo (sák phâa gì-loo lá thâo-rài), hear forty baht a kilo, ask when it will be done (sèt mûea-rài), hear tomorrow evening (phrûng-níi yen), ask if they iron too (rîit dûay dâai mǎi), turn it down when it's twenty baht extra (ngán mâi dtâwng rîit), and say you'll pick it up tomorrow (phrûng-níi jà maa ráp). 7 new words (sák phâa, gì-loo, sèt, mûea-rài, phrûng-níi, rîit, dtâwng), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
+- **Two tip cards:** lá for per (per kilo, per person, per hour), and mâi dtâwng for no need to, including mâi dtâwng thawn (keep the change).
+- **Fix:** the word check's romanizer read เสร็จ (done) as sěe-ráw-jà and ใบรับ as brai-bà, so a correct answer could show a wrong "heard" spelling. Both now come out right (sèt, bai ráp).
+
 ## 0.23.0 — Street food stall scene
 
 - **New scene: Street food stall** (before Goodbye), with Pim at a fried rice stall. You order pork fried rice, one plate (ao khâaw phàt mǔu nùeng jaan), answer eat here or to go (glàp bâan, to go), add a fried egg (sài khài daaw dûay), skip the cilantro (mâi sài phàk-chii ná) and ask how much altogether (tháng-mòt thâo-rài). 7 new words (gin, glàp bâan, sài, khài daaw, phàk-chii, tháng-mòt, jaan), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.

@@ -88,6 +88,21 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "กินที่นี่", roman: "gin thîi-nîi", en: "eat here" },
   { thai: "ใส่ถุง", roman: "sài thǔng", en: "put it in a bag" },
   { thai: "นะ", roman: "ná", en: "softener for a friendly request" },
+  { thai: "ละ", roman: "lá", en: "per, each" },
+  { thai: "กิโลละ", roman: "gì-loo lá", en: "per kilo" },
+  { thai: "เพิ่ม", roman: "phêrm", en: "extra, more" },
+  { thai: "ยี่สิบ", roman: "yîi-sìp", en: "twenty" },
+  { thai: "สี่สิบ", roman: "sìi-sìp", en: "forty" },
+  { thai: "งั้น", roman: "ngán", en: "then, in that case" },
+  { thai: "ไม่ต้อง", roman: "mâi dtâwng", en: "no need to" },
+  { thai: "ไม่ต้องรีด", roman: "mâi dtâwng rîit", en: "no need to iron" },
+  { thai: "จะ", roman: "jà", en: "will (future)" },
+  { thai: "มารับ", roman: "maa ráp", en: "come and pick up" },
+  { thai: "ใบรับผ้า", roman: "bai ráp phâa", en: "laundry ticket" },
+  { thai: "ผ้า", roman: "phâa", en: "cloth" },
+  { thai: "ไม่ต้องทอน", roman: "mâi dtâwng thawn", en: "keep the change" },
+  { thai: "ชั่วโมง", roman: "chûa-moong", en: "hour" },
+  { thai: "เสร็จแล้ว", roman: "sèt láew", en: "it's done" },
 ];
 
 export interface Gloss {

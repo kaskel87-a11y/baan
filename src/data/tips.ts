@@ -367,6 +367,33 @@ export const TIPS: Tip[] = [
       { ...p("ใส่ไข่ดาวด้วย", "sài khài daaw dûay"), en: "Add a fried egg too." },
     ],
   },
+  // Laundry
+  {
+    id: "laundry-la",
+    sceneId: "laundry",
+    afterLine: "la2",
+    kind: "grammar",
+    title: "lá means per",
+    body: "Put lá between a unit and a price to say per: per kilo, per person, per hour. You'll hear it at laundries, massage shops and markets.",
+    examples: [
+      { ...p("กิโลละสี่สิบบาท", "gì-loo lá sìi-sìp bàat"), en: "Forty baht a kilo." },
+      { ...p("คนละร้อยบาท", "khon lá ráwy bàat"), en: "A hundred baht each." },
+      { ...p("ชั่วโมงละสามร้อยบาท", "chûa-moong lá sǎam-ráwy bàat"), en: "Three hundred baht an hour." },
+    ],
+  },
+  {
+    id: "laundry-mai-dtawng",
+    sceneId: "laundry",
+    afterLine: "la8",
+    kind: "grammar",
+    title: "mâi dtâwng means no need to",
+    body: "dtâwng is must or have to. mâi dtâwng turns it into no need to, a polite way to turn down an offer. mâi dtâwng thawn is how you say keep the change.",
+    examples: [
+      { ...p("ไม่ต้องรีด", "mâi dtâwng rîit"), en: "No need to iron." },
+      { ...p("ไม่ต้องใส่ถุง", "mâi dtâwng sài thǔng"), en: "No bag needed." },
+      { ...p("ไม่ต้องทอน", "mâi dtâwng thawn"), en: "Keep the change." },
+    ],
+  },
   // Goodbye
   {
     id: "leave-mai-pen-rai",

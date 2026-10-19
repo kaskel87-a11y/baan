@@ -663,6 +663,55 @@ export const VOCAB: Vocab[] = [
     "roman": "jaan",
     "en": "plate (also counts plates of food)",
     "hint": "Mid. Mid-class จ on a live syllable with no mark is mid. หนึ่งจาน (nùeng jaan) = one plate."
+  },
+  {
+    "id": "sak-phaa",
+    "thai": "ซักผ้า",
+    "roman": "sák phâa",
+    "en": "to do laundry, wash clothes",
+    "hint": "High, then falling. Low-class ซ on a short dead syllable is high. High-class ผ with mai tho is falling. ผ้า (phâa) = cloth, as in เสื้อผ้า (sûea-phâa)."
+  },
+  {
+    "id": "gi-loo",
+    "thai": "กิโล",
+    "roman": "gì-loo",
+    "en": "kilo",
+    "hint": "Low, then mid. Mid-class ก on a short open syllable is low; low-class ล on a live syllable is mid. กิโลละ (gì-loo lá) = per kilo."
+  },
+  {
+    "id": "set",
+    "thai": "เสร็จ",
+    "roman": "sèt",
+    "en": "finished, done",
+    "hint": "Low. High-class ส leads (the ร is silent), and a short dead syllable is low. เสร็จแล้ว (sèt láew) = it's done."
+  },
+  {
+    "id": "muea-rai",
+    "thai": "เมื่อไหร่",
+    "roman": "mûea-rài",
+    "en": "when?",
+    "hint": "Falling, then low. Low-class ม with mai ek is falling. ห in front of ร makes it high class, and mai ek makes it low, as in เท่าไหร่."
+  },
+  {
+    "id": "phrung-nii",
+    "thai": "พรุ่งนี้",
+    "roman": "phrûng-níi",
+    "en": "tomorrow",
+    "hint": "Falling, then high. Low-class พ with mai ek is falling. นี้ is high, as in วันนี้ (wan-níi)."
+  },
+  {
+    "id": "riit",
+    "thai": "รีด",
+    "roman": "rîit",
+    "en": "to iron",
+    "hint": "Falling. Low-class ร on a long dead syllable is falling."
+  },
+  {
+    "id": "dtawng",
+    "thai": "ต้อง",
+    "roman": "dtâwng",
+    "en": "must, have to",
+    "hint": "Falling. Mid-class ต with mai tho is falling. ไม่ต้อง (mâi dtâwng) = no need to."
   }
 ];
 
