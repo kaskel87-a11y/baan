@@ -421,6 +421,33 @@ export const TIPS: Tip[] = [
       { ...p("พอดี", "phaw-dii"), en: "Just right." },
     ],
   },
+  // Phone shop
+  {
+    id: "phone-chai-dai",
+    sceneId: "phone",
+    afterLine: "ph8",
+    kind: "grammar",
+    title: "chái dâai means it works",
+    body: "chái is to use, so chái dâai (can use) is how Thais say it works or it's fine, and chái mâi dâai means it doesn't work. Handy for a SIM, the Wi-Fi, a card at the till, or the air-con. Careful: chái (high) is use, châi (falling) is yes.",
+    examples: [
+      { ...p("ใช้ได้แล้ว", "chái dâai láew"), en: "It works now." },
+      { ...p("ใช้ไม่ได้", "chái mâi dâai"), en: "It doesn't work." },
+      { ...p("ไวไฟใช้ไม่ได้", "wai-fai chái mâi dâai"), en: "The Wi-Fi doesn't work." },
+    ],
+  },
+  {
+    id: "phone-thaa",
+    sceneId: "phone",
+    afterLine: "ph9",
+    kind: "grammar",
+    title: "thâa for if",
+    body: "Put thâa (falling) at the start to say if. The rest of the sentence follows straight on, with no word for then. It works for plans, prices and problems.",
+    examples: [
+      { thai: "ถ้าเน็ตหมด", roman: "thâa nét mòt", en: "If the data runs out." },
+      { ...p("ถ้าแพงไป ไม่เอา", "thâa phaaeng bpai, mâi ao"), en: "If it's too expensive, I won't take it." },
+      { ...p("ถ้าใช้ไม่ได้ ช่วยดูหน่อยได้ไหม", "thâa chái mâi dâai, chûay duu nàwy dâai mǎi", "question"), en: "If it doesn't work, could you take a look?" },
+    ],
+  },
   // Goodbye
   {
     id: "leave-mai-pen-rai",

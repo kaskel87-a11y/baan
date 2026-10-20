@@ -217,6 +217,8 @@ function thaiWords(text: string): string[] {
   const out: string[] = [];
   for (const w of words) {
     if (/^ๆ+$/.test(w.trim()) && out.length) out[out.length - 1] += "ๆ";
+    // a lone consonant can't be a word, so it's the final of the word before it (ICU splits ซิม as ซิ + ม)
+    else if (/^[ก-ฮ]$/.test(w) && w !== "ณ" && out.length && /[ก-๛]$/.test(out[out.length - 1]!)) out[out.length - 1] += w;
     else out.push(w);
   }
   return out;

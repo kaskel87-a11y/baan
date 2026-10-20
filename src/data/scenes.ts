@@ -2857,6 +2857,213 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "phone",
+    "title": "Phone shop",
+    "titleTh": "ร้านโทรศัพท์",
+    "blurb": "Get a SIM card: ask the price, pick the days, ask them to put it in, and find out where to top up.",
+    "vocab": [
+      "sim",
+      "net",
+      "wan",
+      "chai-use",
+      "dterm-ngern",
+      "thaa",
+      "mai-jam-gat"
+    ],
+    "lines": [
+      {
+        "id": "ph1",
+        "who": "fah",
+        "en": "Hello. What can I get you?",
+        "thai": "สวัสดีค่ะ รับอะไรดีคะ",
+        "roman": "sà-wàt-dii khâ, ráp à-rai dii khá",
+        "note": "รับอะไรดี (ráp à-rai dii) = what would you like, what can I get you. You hear it in every shop."
+      },
+      {
+        "id": "ph2",
+        "who": "you",
+        "en": "I'd like a SIM.",
+        "thai": {
+          "male": "อยากได้ซิมครับ",
+          "female": "อยากได้ซิมค่ะ"
+        },
+        "roman": {
+          "male": "yàak dâai sim khráp",
+          "female": "yàak dâai sim khâ"
+        },
+        "note": "อยากได้ (yàak dâai) = I'd like, I want to get. ซิม (sim, mid) is the SIM card."
+      },
+      {
+        "id": "ph3",
+        "who": "fah",
+        "en": "We have seven days or thirty days.",
+        "thai": "มีเจ็ดวันกับสามสิบวันค่ะ",
+        "roman": "mii jèt wan gàp sǎam-sìp wan khâ",
+        "note": "วัน (wan, mid) = day. เจ็ดวัน (jèt wan) = seven days, สามสิบวัน (sǎam-sìp wan) = thirty days. กับ (gàp) = and."
+      },
+      {
+        "id": "ph4",
+        "who": "you",
+        "en": "How much for thirty days?",
+        "thai": {
+          "male": "สามสิบวันเท่าไหร่ครับ",
+          "female": "สามสิบวันเท่าไหร่คะ"
+        },
+        "roman": {
+          "male": "sǎam-sìp wan thâo-rài khráp",
+          "female": "sǎam-sìp wan thâo-rài khá"
+        },
+        "note": "Say the thing first, then เท่าไหร่ (thâo-rài), the same as at the market."
+      },
+      {
+        "id": "ph5",
+        "who": "fah",
+        "en": "Five hundred baht, unlimited data.",
+        "thai": "ห้าร้อยบาท เน็ตไม่จำกัดค่ะ",
+        "roman": "hâa-ráwy bàat, nét mâi jam-gàt khâ",
+        "note": "เน็ต (nét, high) = mobile data, internet. ไม่จำกัด (mâi jam-gàt) = no limit, unlimited."
+      },
+      {
+        "id": "ph6",
+        "who": "you",
+        "en": "I'll take thirty days.",
+        "thai": {
+          "male": "เอาสามสิบวันครับ",
+          "female": "เอาสามสิบวันค่ะ"
+        },
+        "roman": {
+          "male": "ao sǎam-sìp wan khráp",
+          "female": "ao sǎam-sìp wan khâ"
+        },
+        "note": "เอา (ao) = I'll take, the same word you order food with."
+      },
+      {
+        "id": "ph7",
+        "who": "you",
+        "en": "Could you put the SIM in for me?",
+        "thai": {
+          "male": "ช่วยใส่ซิมให้หน่อยได้ไหมครับ",
+          "female": "ช่วยใส่ซิมให้หน่อยได้ไหมคะ"
+        },
+        "roman": {
+          "male": "chûay sài sim hâi nàwy dâai mǎi khráp",
+          "female": "chûay sài sim hâi nàwy dâai mǎi khá"
+        },
+        "note": "ช่วย ... ให้หน่อย (chûay ... hâi nàwy) = please do ... for me. ใส่ (sài) = put in, from the street food stall."
+      },
+      {
+        "id": "ph8",
+        "who": "fah",
+        "en": "Sure. There, it works now.",
+        "thai": "ได้ค่ะ ใช้ได้แล้วค่ะ",
+        "roman": "dâai khâ, chái dâai láew khâ",
+        "note": "ใช้ (chái, high) = to use. ใช้ได้ (chái dâai) = it works. แล้ว (láew) = now, already."
+      },
+      {
+        "id": "ph9",
+        "who": "you",
+        "en": "If the data runs out, where do I top up?",
+        "thai": {
+          "male": "ถ้าเน็ตหมด เติมเงินที่ไหนครับ",
+          "female": "ถ้าเน็ตหมด เติมเงินที่ไหนคะ"
+        },
+        "roman": {
+          "male": "thâa nét mòt, dterm ngern thîi nǎi khráp",
+          "female": "thâa nét mòt, dterm ngern thîi nǎi khá"
+        },
+        "note": "ถ้า (thâa, falling) = if. หมด (mòt) = run out, all gone. เติมเงิน (dterm ngern) = top up, literally add money."
+      },
+      {
+        "id": "ph10",
+        "who": "fah",
+        "en": "You can top up at 7-Eleven.",
+        "thai": "เติมที่เซเว่นได้ค่ะ",
+        "roman": "dterm thîi se-wên dâai khâ",
+        "note": "เซเว่น (se-wên) is what everyone calls 7-Eleven. ได้ (dâai) at the end = you can."
+      }
+    ],
+    "drills": [
+      {
+        "id": "ph-l",
+        "kind": "listen",
+        "thai": "ใช้ได้แล้วค่ะ",
+        "roman": "chái dâai láew khâ",
+        "en": "It works now.",
+        "options": [
+          "It works now.",
+          "Five hundred baht.",
+          "What can I get you?",
+          "You can top up at 7-Eleven."
+        ]
+      },
+      {
+        "id": "ph-r",
+        "kind": "read",
+        "thai": "เติมเงิน",
+        "roman": "dterm ngern",
+        "en": "to top up",
+        "options": [
+          "to top up",
+          "unlimited",
+          "to use",
+          "if"
+        ]
+      },
+      {
+        "id": "ph-p",
+        "kind": "pick",
+        "en": "“if”",
+        "options": [
+          "ถ้า",
+          "ใช้",
+          "วัน",
+          "เน็ต"
+        ],
+        "answer": "ถ้า",
+        "roman": "thâa"
+      },
+      {
+        "id": "ph-b",
+        "kind": "build",
+        "en": "I'd like a SIM.",
+        "tiles": [
+          "อยาก",
+          "ได้",
+          "ซิม",
+          "ครับ",
+          "ค่ะ",
+          "เน็ต"
+        ],
+        "answer": {
+          "male": [
+            "อยาก",
+            "ได้",
+            "ซิม",
+            "ครับ"
+          ],
+          "female": [
+            "อยาก",
+            "ได้",
+            "ซิม",
+            "ค่ะ"
+          ]
+        },
+        "roman": {
+          "male": "yàak dâai sim khráp",
+          "female": "yàak dâai sim khâ"
+        }
+      },
+      {
+        "id": "ph-part",
+        "kind": "particle",
+        "en": "You're asking where to top up.",
+        "stem": "เติมเงินที่ไหน",
+        "stemRoman": "dterm ngern thîi nǎi",
+        "particleKind": "question"
+      }
+    ]
+  },
+  {
     "id": "leave",
     "title": "Goodbye",
     "titleTh": "ลาก่อน",

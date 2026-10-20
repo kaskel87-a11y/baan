@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.27.0 — Phone shop scene (getting a SIM)
+
+- **New scene: Phone shop** (before Goodbye), with Fah at the counter. You ask for a SIM (yàak dâai sim), hear there are seven-day and thirty-day ones, ask how much for thirty days (sǎam-sìp wan thâo-rài), hear five hundred baht with unlimited data (nét mâi jam-gàt), take it (ao sǎam-sìp wan), ask her to put the SIM in for you (chûay sài sim hâi nàwy dâai mǎi), hear it works now (chái dâai láew), and ask where to top up if the data runs out (thâa nét mòt, dterm ngern thîi nǎi). Answer: at 7-Eleven. 7 new words (sim, nét, wan, chái, dterm ngern, thâa, mâi jam-gàt), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
+- **Two tip cards:** chái dâai for it works (and chái mâi dâai, it doesn't work, plus the chái/châi tone difference), and thâa for if.
+- **Fix:** the word and tone checks split ซิม (sim) into two syllables (sí-má), because the phone's word splitter cut off the final ม. A lone consonant is now joined back onto the word before it.
+
 ## 0.26.0 — Haircut scene; ๆ now repeats in the word and tone checks
 
 - **New scene: Haircut** (before Goodbye), with Som at a barber. You ask how much a haircut is (dtàt phǒm thâo-rài), skip the wash (mâi dtâwng, dtàt yàang diaw, no need, just the cut), ask for it a little shorter (dtàt sân nít-nàwy), short on the sides and a bit longer on top (khâang-khâang sân, khâang bon yaaw nàwy), and tell her when it's enough (phaw láew). 7 new words (dtàt phǒm, sà phǒm, bàaep, sân, yaaw, khâang, phaw), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.

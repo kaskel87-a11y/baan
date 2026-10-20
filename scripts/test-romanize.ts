@@ -33,7 +33,7 @@ console.log(misses.join("\n"));
 console.log(`\n${total} words: ${exact} exact, ${sylCountOk} same syllable count, ${toneOk} same tones`);
 const heard = romanize("ฮัดเต้ย");
 console.log(`ฮัดเต้ย → ${heard}`);
-const extra: [string, string][] = [["ฮัดเต้ย", "hát-dtôei"], ["ไม่เป็นไรครับ", "mâi bpen-rai khráp"], ["ขอบคุณครับ", "khàwp-khun khráp"], ["ผัดไทย", "phàt-thai"], ["เปล่า", "bplào"], ["ตรงไป", "dtrong bpai"], ["เสร็จ", "sèt"], ["ใบรับผ้า", "bai ráp phâa"], ["สระผม", "sà phǒm"], ["ตัดผม", "dtàt-phǒm"], ["พูดช้าๆหน่อย", "phûut cháa-cháa nàwy"], ["ข้างๆ", "khâang-khâang"], ["พอแล้ว", "phaw-láew"]];
+const extra: [string, string][] = [["ฮัดเต้ย", "hát-dtôei"], ["ไม่เป็นไรครับ", "mâi bpen-rai khráp"], ["ขอบคุณครับ", "khàwp-khun khráp"], ["ผัดไทย", "phàt-thai"], ["เปล่า", "bplào"], ["ตรงไป", "dtrong bpai"], ["เสร็จ", "sèt"], ["ใบรับผ้า", "bai ráp phâa"], ["สระผม", "sà phǒm"], ["ตัดผม", "dtàt-phǒm"], ["พูดช้าๆหน่อย", "phûut cháa-cháa nàwy"], ["ข้างๆ", "khâang-khâang"], ["พอแล้ว", "phaw-láew"], ["อยากได้ซิมครับ", "yàak-dâi sim khráp"]];
 let fail = 0;
 for (const [t, want] of extra) {
   const got = romanize(t);

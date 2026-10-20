@@ -761,6 +761,55 @@ export const VOCAB: Vocab[] = [
     "roman": "phaw",
     "en": "enough",
     "hint": "Mid. Low-class พ on a live syllable with no mark is mid. พอแล้ว (phaw láew) = that's enough."
+  },
+  {
+    "id": "sim",
+    "thai": "ซิม",
+    "roman": "sim",
+    "en": "SIM card",
+    "hint": "Mid. Low-class ซ on a live syllable with no mark is mid. Borrowed from English."
+  },
+  {
+    "id": "net",
+    "thai": "เน็ต",
+    "roman": "nét",
+    "en": "mobile data, internet",
+    "hint": "High. Low-class น on a short dead syllable (ends in t) is high. Short for อินเทอร์เน็ต (internet)."
+  },
+  {
+    "id": "wan",
+    "thai": "วัน",
+    "roman": "wan",
+    "en": "day",
+    "hint": "Mid. Low-class ว on a live syllable with no mark is mid. วันนี้ (wan-níi) = today."
+  },
+  {
+    "id": "chai-use",
+    "thai": "ใช้",
+    "roman": "chái",
+    "en": "to use",
+    "hint": "High. Low-class ช with mai tho is high. ใช้ได้ (chái dâai) = it works, ใช้ไม่ได้ (chái mâi dâai) = it doesn't work. Not the same tone as ใช่ (châi, yes)."
+  },
+  {
+    "id": "dterm-ngern",
+    "thai": "เติมเงิน",
+    "roman": "dterm ngern",
+    "en": "to top up (a phone)",
+    "hint": "Mid, mid. Mid-class ต and low-class ง, both live syllables with no mark. Literally add money."
+  },
+  {
+    "id": "thaa",
+    "thai": "ถ้า",
+    "roman": "thâa",
+    "en": "if",
+    "hint": "Falling. High-class ถ with mai tho is falling. It goes at the start: ถ้า ... (if ...)."
+  },
+  {
+    "id": "mai-jam-gat",
+    "thai": "ไม่จำกัด",
+    "roman": "mâi jam-gàt",
+    "en": "unlimited, no limit",
+    "hint": "Falling, mid, low. จำกัด (jam-gàt) = to limit. Mid-class ก on a short dead syllable is low."
   }
 ];
 
