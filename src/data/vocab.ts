@@ -712,6 +712,55 @@ export const VOCAB: Vocab[] = [
     "roman": "dtâwng",
     "en": "must, have to",
     "hint": "Falling. Mid-class ต with mai tho is falling. ไม่ต้อง (mâi dtâwng) = no need to."
+  },
+  {
+    "id": "dtat-phom",
+    "thai": "ตัดผม",
+    "roman": "dtàt phǒm",
+    "en": "to get a haircut, cut hair",
+    "hint": "Low, then rising. Mid-class ต on a short dead syllable is low. High-class ผ on a live syllable with no mark is rising. ผม (phǒm) is also how a man says I."
+  },
+  {
+    "id": "sa-phom",
+    "thai": "สระผม",
+    "roman": "sà phǒm",
+    "en": "to wash hair",
+    "hint": "Low, then rising. The ร in สระ is silent, so it's one syllable: high-class ส on a short dead syllable is low."
+  },
+  {
+    "id": "baaep",
+    "thai": "แบบ",
+    "roman": "bàaep",
+    "en": "style, kind, like",
+    "hint": "Low. Mid-class บ on a dead syllable (ends in p) is low. แบบไหน (bàaep nǎi) = what kind, แบบนี้ (bàaep níi) = like this."
+  },
+  {
+    "id": "san",
+    "thai": "สั้น",
+    "roman": "sân",
+    "en": "short",
+    "hint": "Falling. High-class ส with mai tho is falling. The opposite is ยาว (yaaw, long)."
+  },
+  {
+    "id": "yaaw",
+    "thai": "ยาว",
+    "roman": "yaaw",
+    "en": "long",
+    "hint": "Mid. Low-class ย on a live syllable with no mark is mid. Say it flat and long."
+  },
+  {
+    "id": "khaang",
+    "thai": "ข้าง",
+    "roman": "khâang",
+    "en": "side",
+    "hint": "Falling. High-class ข with mai tho is falling. ข้างบน (khâang bon) = on top, ข้างๆ (khâang-khâang) = beside, the sides."
+  },
+  {
+    "id": "phaw",
+    "thai": "พอ",
+    "roman": "phaw",
+    "en": "enough",
+    "hint": "Mid. Low-class พ on a live syllable with no mark is mid. พอแล้ว (phaw láew) = that's enough."
   }
 ];
 

@@ -103,6 +103,20 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "ไม่ต้องทอน", roman: "mâi dtâwng thawn", en: "keep the change" },
   { thai: "ชั่วโมง", roman: "chûa-moong", en: "hour" },
   { thai: "เสร็จแล้ว", roman: "sèt láew", en: "it's done" },
+  { thai: "ตัด", roman: "dtàt", en: "to cut" },
+  { thai: "สองร้อย", roman: "sǎawng-ráwy", en: "two hundred" },
+  { thai: "อย่างเดียว", roman: "yàang diaw", en: "only, just that" },
+  { thai: "ตัดอย่างเดียว", roman: "dtàt yàang diaw", en: "just the cut" },
+  { thai: "แบบไหน", roman: "bàaep nǎi", en: "what kind, which style" },
+  { thai: "ข้างๆ", roman: "khâang-khâang", en: "the sides, beside" },
+  { thai: "ข้างบน", roman: "khâang bon", en: "on top, upstairs" },
+  { thai: "บน", roman: "bon", en: "on, above" },
+  { thai: "ประมาณนี้", roman: "bprà-maan níi", en: "about like this" },
+  { thai: "ประมาณ", roman: "bprà-maan", en: "about, roughly" },
+  { thai: "พอแล้ว", roman: "phaw láew", en: "that's enough" },
+  { thai: "พอดี", roman: "phaw-dii", en: "just right, fits well" },
+  { thai: "อิ่มแล้ว", roman: "ìm láew", en: "I'm full" },
+  { thai: "ผม", roman: "phǒm", en: "I (male speaker); hair" },
 ];
 
 export interface Gloss {

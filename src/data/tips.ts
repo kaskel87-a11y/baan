@@ -394,6 +394,33 @@ export const TIPS: Tip[] = [
       { ...p("ไม่ต้องทอน", "mâi dtâwng thawn"), en: "Keep the change." },
     ],
   },
+  // Haircut
+  {
+    id: "haircut-phom",
+    sceneId: "haircut",
+    afterLine: "hc2",
+    kind: "grammar",
+    title: "phǒm means hair, and I",
+    body: "phǒm (rising) is hair, and it's also the word men use for I. Same sound, same tone, and context tells you which. A man asking for a haircut says phǒm twice without blinking.",
+    examples: [
+      { ...p("ตัดผม", "dtàt phǒm"), en: "Get a haircut." },
+      { ...p("สระผม", "sà phǒm"), en: "Wash hair." },
+      { thai: "ผมชื่อทอมครับ", roman: "phǒm chûue Tom khráp", en: "My name is Tom (a man speaking)." },
+    ],
+  },
+  {
+    id: "haircut-phaw",
+    sceneId: "haircut",
+    afterLine: "hc9",
+    kind: "culture",
+    title: "phaw láew means that's enough",
+    body: "phaw is enough. phaw láew is how you stop someone politely: the barber, a host refilling your plate, or a massage that's strong enough. phaw-dii means just right, handy for clothes and pressure too.",
+    examples: [
+      { ...p("พอแล้ว", "phaw láew"), en: "That's enough." },
+      { ...p("อิ่มแล้ว", "ìm láew"), en: "I'm full." },
+      { ...p("พอดี", "phaw-dii"), en: "Just right." },
+    ],
+  },
   // Goodbye
   {
     id: "leave-mai-pen-rai",

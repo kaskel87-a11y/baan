@@ -2653,6 +2653,210 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "haircut",
+    "title": "Haircut",
+    "titleTh": "ร้านตัดผม",
+    "blurb": "Ask the price, skip the wash, say how short you want it, and say when it's enough.",
+    "vocab": [
+      "dtat-phom",
+      "sa-phom",
+      "baaep",
+      "san",
+      "yaaw",
+      "khaang",
+      "phaw"
+    ],
+    "lines": [
+      {
+        "id": "hc1",
+        "who": "som",
+        "en": "Hello. Haircut?",
+        "thai": "สวัสดีค่ะ ตัดผมไหมคะ",
+        "roman": "sà-wàt-dii khâ, dtàt phǒm mǎi khá",
+        "note": "ตัดผม (dtàt phǒm) = to cut hair, get a haircut. ตัด (dtàt, low) = cut, ผม (phǒm, rising) = hair."
+      },
+      {
+        "id": "hc2",
+        "who": "you",
+        "en": "How much is a haircut?",
+        "thai": {
+          "male": "ตัดผมเท่าไหร่ครับ",
+          "female": "ตัดผมเท่าไหร่คะ"
+        },
+        "roman": {
+          "male": "dtàt phǒm thâo-rài khráp",
+          "female": "dtàt phǒm thâo-rài khá"
+        },
+        "note": "เท่าไหร่ (thâo-rài) = how much, the same as at the market."
+      },
+      {
+        "id": "hc3",
+        "who": "som",
+        "en": "Two hundred baht. A wash too?",
+        "thai": "สองร้อยบาทค่ะ สระผมด้วยไหมคะ",
+        "roman": "sǎawng-ráwy bàat khâ, sà phǒm dûay mǎi khá",
+        "note": "สองร้อย (sǎawng-ráwy) = two hundred. สระผม (sà phǒm) = wash hair. The ร in สระ is silent, so it's one syllable, sà (low)."
+      },
+      {
+        "id": "hc4",
+        "who": "you",
+        "en": "No need, just the cut.",
+        "thai": {
+          "male": "ไม่ต้องครับ ตัดอย่างเดียว",
+          "female": "ไม่ต้องค่ะ ตัดอย่างเดียว"
+        },
+        "roman": {
+          "male": "mâi dtâwng khráp, dtàt yàang diaw",
+          "female": "mâi dtâwng khâ, dtàt yàang diaw"
+        },
+        "note": "ไม่ต้อง (mâi dtâwng) = no need, from the laundry. อย่างเดียว (yàang diaw) = only, just this one thing."
+      },
+      {
+        "id": "hc5",
+        "who": "som",
+        "en": "How would you like it cut?",
+        "thai": "จะตัดแบบไหนคะ",
+        "roman": "jà dtàt bàaep nǎi khá",
+        "note": "แบบ (bàaep, low) = style, kind. แบบไหน (bàaep nǎi) = which style, what kind."
+      },
+      {
+        "id": "hc6",
+        "who": "you",
+        "en": "A little shorter, please.",
+        "thai": {
+          "male": "ตัดสั้นนิดหน่อยครับ",
+          "female": "ตัดสั้นนิดหน่อยค่ะ"
+        },
+        "roman": {
+          "male": "dtàt sân nít-nàwy khráp",
+          "female": "dtàt sân nít-nàwy khâ"
+        },
+        "note": "สั้น (sân, falling) = short. นิดหน่อย (nít-nàwy) = a little, as in small talk."
+      },
+      {
+        "id": "hc7",
+        "who": "you",
+        "en": "Short on the sides, a bit longer on top.",
+        "thai": {
+          "male": "ข้างๆ สั้น ข้างบนยาวหน่อยครับ",
+          "female": "ข้างๆ สั้น ข้างบนยาวหน่อยค่ะ"
+        },
+        "roman": {
+          "male": "khâang-khâang sân, khâang bon yaaw nàwy khráp",
+          "female": "khâang-khâang sân, khâang bon yaaw nàwy khâ"
+        },
+        "note": "ข้าง (khâang, falling) = side. ข้างๆ (khâang-khâang) = the sides. ข้างบน (khâang bon) = on top. ยาว (yaaw, mid) = long."
+      },
+      {
+        "id": "hc8",
+        "who": "som",
+        "en": "About like this, okay?",
+        "thai": "ประมาณนี้ได้ไหมคะ",
+        "roman": "bprà-maan níi dâai mǎi khá",
+        "note": "ประมาณนี้ (bprà-maan níi) = about like this. She'll hold up a mirror."
+      },
+      {
+        "id": "hc9",
+        "who": "you",
+        "en": "Yes, that's enough. It's good.",
+        "thai": {
+          "male": "ได้ครับ พอแล้วครับ",
+          "female": "ได้ค่ะ พอแล้วค่ะ"
+        },
+        "roman": {
+          "male": "dâai khráp, phaw láew khráp",
+          "female": "dâai khâ, phaw láew khâ"
+        },
+        "note": "พอ (phaw, mid) = enough. พอแล้ว (phaw láew) = that's enough, you can stop."
+      },
+      {
+        "id": "hc10",
+        "who": "som",
+        "en": "Two hundred baht altogether.",
+        "thai": "ทั้งหมดสองร้อยบาทค่ะ",
+        "roman": "tháng-mòt sǎawng-ráwy bàat khâ",
+        "note": "ทั้งหมด (tháng-mòt) = altogether, from the street food stall."
+      }
+    ],
+    "drills": [
+      {
+        "id": "hc-l",
+        "kind": "listen",
+        "thai": "จะตัดแบบไหนคะ",
+        "roman": "jà dtàt bàaep nǎi khá",
+        "en": "How would you like it cut?",
+        "options": [
+          "How would you like it cut?",
+          "A wash too?",
+          "About like this, okay?",
+          "Two hundred baht altogether."
+        ]
+      },
+      {
+        "id": "hc-r",
+        "kind": "read",
+        "thai": "พอแล้ว",
+        "roman": "phaw láew",
+        "en": "That's enough.",
+        "options": [
+          "That's enough.",
+          "A little shorter.",
+          "Just the cut.",
+          "Longer on top."
+        ]
+      },
+      {
+        "id": "hc-p",
+        "kind": "pick",
+        "en": "“short”",
+        "options": [
+          "สั้น",
+          "ยาว",
+          "ข้าง",
+          "พอ"
+        ],
+        "answer": "สั้น",
+        "roman": "sân"
+      },
+      {
+        "id": "hc-b",
+        "kind": "build",
+        "en": "How much is a haircut?",
+        "tiles": [
+          "ตัดผม",
+          "เท่าไหร่",
+          "ครับ",
+          "คะ",
+          "สั้น"
+        ],
+        "answer": {
+          "male": [
+            "ตัดผม",
+            "เท่าไหร่",
+            "ครับ"
+          ],
+          "female": [
+            "ตัดผม",
+            "เท่าไหร่",
+            "คะ"
+          ]
+        },
+        "roman": {
+          "male": "dtàt phǒm thâo-rài khráp",
+          "female": "dtàt phǒm thâo-rài khá"
+        }
+      },
+      {
+        "id": "hc-part",
+        "kind": "particle",
+        "en": "You're asking how much a haircut costs.",
+        "stem": "ตัดผมเท่าไหร่",
+        "stemRoman": "dtàt phǒm thâo-rài",
+        "particleKind": "question"
+      }
+    ]
+  },
+  {
     "id": "leave",
     "title": "Goodbye",
     "titleTh": "ลาก่อน",

@@ -16,7 +16,7 @@ export interface Vocab {
   hint?: string;
 }
 
-export type Speaker = "you" | "nid" | "lung" | "wit" | "pla" | "fon" | "bee" | "joy" | "ning" | "ploy" | "dao" | "kaew" | "pim" | "nok";
+export type Speaker = "you" | "nid" | "lung" | "wit" | "pla" | "fon" | "bee" | "joy" | "ning" | "ploy" | "dao" | "kaew" | "pim" | "nok" | "som";
 
 export interface Line {
   id: string;

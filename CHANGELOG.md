@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.26.0 — Haircut scene; ๆ now repeats in the word and tone checks
+
+- **New scene: Haircut** (before Goodbye), with Som at a barber. You ask how much a haircut is (dtàt phǒm thâo-rài), skip the wash (mâi dtâwng, dtàt yàang diaw, no need, just the cut), ask for it a little shorter (dtàt sân nít-nàwy), short on the sides and a bit longer on top (khâang-khâang sân, khâang bon yaaw nàwy), and tell her when it's enough (phaw láew). 7 new words (dtàt phǒm, sà phǒm, bàaep, sân, yaaw, khâang, phaw), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
+- **Two tip cards:** phǒm means both hair and I (for men), and phaw láew for that's enough, with ìm láew (I'm full) and phaw-dii (just right).
+- **Fix:** the word and tone checks dropped the repeat mark ๆ, so พูดช้าๆหน่อย (phûut cháa-cháa nàwy) in the Lost scene and เบาๆ (bao-bao) at the massage shop were checked as if the word was said once, and "heard" spellings lost the repeat. ๆ now repeats the word before it, so the tone check expects both syllables. สระ (sà, wash) is also read as one syllable, not sà-rá.
+
 ## 0.25.0 — New listening story: Dinner to go, then laundry
 
 - **Sixth listening story** (Stories, 06), built from the two newest scenes (Street food stall, Laundry). Tom asks for one plate of pork fried rice with a fried egg and no cilantro, takes it to go (ao glàp bâan) for sixty baht altogether, then drops off three kilos of laundry at forty baht a kilo, skips the ironing (mâi dtâwng rîit) and hears it will be done tomorrow evening (phrûng-níi yen). Ten sentences, eight English questions (including pork vs chicken and 60 vs 55 vs 16 baht to train your ear), and the full transcript with romanization and English afterwards.

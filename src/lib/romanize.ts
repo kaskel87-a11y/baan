@@ -174,10 +174,19 @@ special("แล้ว", [["l", "ae", false, "w", "high"]]);
 special("เขา", [["kh", "ao", true, "", "rising"]]);
 special("ไหน", [["n", "ai", true, "", "rising"]]);
 special("เสร็จ", [["s", "e", false, "t", "low"]]); // silent ร
+special("สระ", [["s", "a", false, "", "low"]]); // สระผม (wash hair): one syllable, silent ร
+special("พอแล้ว", [["ph", "aw", true, "", "mid"], ["l", "ae", false, "w", "high"]]);
 
 /** Split one Thai word into syllables. */
 export function syllabify(word: string): ThaiSyllable[] {
-  const w = word.replace(/[ก-ฮ][ิุ]?์/g, "").replace(/ๆ/g, "");
+  // ๆ repeats what comes before it: ช้าๆ = cháa-cháa, ข้างๆ = khâang-khâang
+  if (word.includes("ๆ")) {
+    const base = word.replace(/ๆ.*$/, "");
+    const rest = word.slice(word.indexOf("ๆ") + 1);
+    const b = syllabify(base);
+    return [...b, ...b, ...(rest ? syllabify(rest) : [])];
+  }
+  const w = word.replace(/[ก-ฮ][ิุ]?์/g, "");
   if (SPECIAL[w]) return SPECIAL[w]!;
   const out: ThaiSyllable[] = [];
   let i = 0;
@@ -200,10 +209,17 @@ export function thaiSyllables(text: string): ThaiSyllable[] {
 
 function thaiWords(text: string): string[] {
   const clean = text.replace(/[!?.,"“”'()]/g, " ").trim();
-  if (typeof Intl !== "undefined" && "Segmenter" in Intl) {
-    return [...new Intl.Segmenter("th", { granularity: "word" }).segment(clean)].map((s) => s.segment).filter((s) => s.trim());
+  const words =
+    typeof Intl !== "undefined" && "Segmenter" in Intl
+      ? [...new Intl.Segmenter("th", { granularity: "word" }).segment(clean)].map((s) => s.segment).filter((s) => s.trim())
+      : clean.split(/\s+/);
+  // a ๆ on its own (ช้า ๆ, with a space) belongs to the word before it
+  const out: string[] = [];
+  for (const w of words) {
+    if (/^ๆ+$/.test(w.trim()) && out.length) out[out.length - 1] += "ๆ";
+    else out.push(w);
   }
-  return clean.split(/\s+/);
+  return out;
 }
 
 /** "ฮัดเต้ย" → "hát-dtôei". Non-Thai text passes through unchanged. */
