@@ -1,6 +1,6 @@
 # Roadmap
 
-Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-20 (0.27.0). Babbel research: `docs/BABBEL-NOTES.md`.
+Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-10-20 (0.28.0). Babbel research: `docs/BABBEL-NOTES.md`.
 
 **Priority (Collin, 2026-10-15): speaking and listening first. No reading/writing quizzes. Letters stays as optional reference only. Romanization stays prominent and never fades.**
 
@@ -31,7 +31,7 @@ Content to re-check with a native speaker: the tip cards in `src/data/tips.ts`, 
 | 1 | Role-play: speak your own lines in each scene, partner lines played aloud | ✅ 0.12.0 |
 | — | Slow playback clearly slower on iPhone (rate 0.42, word by word) | ✅ 0.12.0 |
 | 2 | Listen-and-respond: hear the partner's line (audio only), say or pick your reply; English shown after | ✅ Done in 0.13.0 |
-| 3 | Listening stories: 30–60 s audio stories from scene words, English comprehension questions | ✅ 0.14.0 (4 stories), 5th story for Small talk/Hotel/Clothes shop in 0.22.0, 6th for Street food stall/Laundry in 0.25.0 |
+| 3 | Listening stories: 30–60 s audio stories from scene words, English comprehension questions | ✅ 0.14.0 (4 stories), 5th story for Small talk/Hotel/Clothes shop in 0.22.0, 6th for Street food stall/Laundry in 0.25.0, 7th for Haircut/Phone shop in 0.28.0 |
 | 4 | Shadowing / repeat-after-me mode: play a line, pause, you echo, with tone check | ✅ 0.15.0 (Check me + Hands-free) |
 | 5 | Speaking-weighted Review: more say/listen cards, fewer read cards | ✅ 0.16.0 (3:2 say/listen mix, reading cards off by default, say-it-back on listen cards) |
 | 6 | Tip cards (1–2 per scene): grammar-in-use and culture, all romanized with English | ✅ 0.17.0 (20 tips, shown under the line they explain, Say it on every example) |

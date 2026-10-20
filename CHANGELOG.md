@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.28.0 — New listening story: A haircut, then a SIM card
+
+- **Seventh listening story** (Stories, 07), built from the two newest scenes (Haircut, Phone shop). Tom gets a two-hundred-baht haircut with no wash (dtàt yàang diaw), short on the sides and a bit longer on top, then goes to the phone shop in the afternoon (dtawn bàai), picks the thirty-day SIM over the seven-day one for five hundred baht with unlimited data (nét mâi jam-gàt), has the shop put it in (chái dâai láew) and learns he can top up at 7-Eleven if the data runs out (thâa nét mòt). Ten sentences, eight English questions (including 30 vs 13 days and 500 vs 50 baht to train your ear), and the full transcript with romanization and English afterwards.
+
 ## 0.27.0 — Phone shop scene (getting a SIM)
 
 - **New scene: Phone shop** (before Goodbye), with Fah at the counter. You ask for a SIM (yàak dâai sim), hear there are seven-day and thirty-day ones, ask how much for thirty days (sǎam-sìp wan thâo-rài), hear five hundred baht with unlimited data (nét mâi jam-gàt), take it (ao sǎam-sìp wan), ask her to put the SIM in for you (chûay sài sim hâi nàwy dâai mǎi), hear it works now (chái dâai láew), and ask where to top up if the data runs out (thâa nét mòt, dterm ngern thîi nǎi). Answer: at 7-Eleven. 7 new words (sim, nét, wan, chái, dterm ngern, thâa, mâi jam-gàt), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
