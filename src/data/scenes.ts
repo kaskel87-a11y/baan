@@ -3064,6 +3064,221 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "exchange",
+    "title": "Money exchange",
+    "titleTh": "ร้านแลกเงิน",
+    "blurb": "Change dollars into baht: ask the rate, hand over your passport, count your money, and ask for smaller notes.",
+    "vocab": [
+      "laek",
+      "ngern",
+      "phan",
+      "nap",
+      "gawn",
+      "bai",
+      "nang-sue-dern-thaang"
+    ],
+    "lines": [
+      {
+        "id": "ex1",
+        "who": "kai",
+        "en": "Hello. How can I help?",
+        "thai": "สวัสดีค่ะ รับอะไรดีคะ",
+        "roman": "sà-wàt-dii khâ, ráp à-rai dii khá",
+        "note": "รับอะไรดี (ráp à-rai dii) again, the same as at the phone shop."
+      },
+      {
+        "id": "ex2",
+        "who": "you",
+        "en": "I'd like to change money.",
+        "thai": {
+          "male": "อยากแลกเงินครับ",
+          "female": "อยากแลกเงินค่ะ"
+        },
+        "roman": {
+          "male": "yàak lâaek ngern khráp",
+          "female": "yàak lâaek ngern khâ"
+        },
+        "note": "แลก (lâaek, falling) = to exchange. เงิน (ngern, mid) = money. แลกเงิน = change money."
+      },
+      {
+        "id": "ex3",
+        "who": "kai",
+        "en": "What money are you changing?",
+        "thai": "แลกเงินอะไรคะ",
+        "roman": "lâaek ngern à-rai khá",
+        "note": "อะไร (à-rai) = what. Here she means which currency."
+      },
+      {
+        "id": "ex4",
+        "who": "you",
+        "en": "Dollars. How many baht for one dollar today?",
+        "thai": {
+          "male": "ดอลลาร์ครับ วันนี้หนึ่งดอลลาร์ได้กี่บาทครับ",
+          "female": "ดอลลาร์ค่ะ วันนี้หนึ่งดอลลาร์ได้กี่บาทคะ"
+        },
+        "roman": {
+          "male": "dawn-lâa khráp, wan-níi nùeng dawn-lâa dâai gìi bàat khráp",
+          "female": "dawn-lâa khâ, wan-níi nùeng dawn-lâa dâai gìi bàat khá"
+        },
+        "note": "ดอลลาร์ (dawn-lâa) = dollar. ได้กี่บาท (dâai gìi bàat) = get how many baht. This is how you ask the rate."
+      },
+      {
+        "id": "ex5",
+        "who": "kai",
+        "en": "Thirty-three baht forty satang.",
+        "thai": "สามสิบสามบาทสี่สิบสตางค์ค่ะ",
+        "roman": "sǎam-sìp-sǎam bàat sìi-sìp sà-dtaang khâ",
+        "note": "สตางค์ (sà-dtaang) = satang, 100 satang make one baht. You only hear satang at banks and exchange counters."
+      },
+      {
+        "id": "ex6",
+        "who": "you",
+        "en": "I'll change one hundred dollars.",
+        "thai": {
+          "male": "แลกหนึ่งร้อยดอลลาร์ครับ",
+          "female": "แลกหนึ่งร้อยดอลลาร์ค่ะ"
+        },
+        "roman": {
+          "male": "lâaek nùeng-ráwy dawn-lâa khráp",
+          "female": "lâaek nùeng-ráwy dawn-lâa khâ"
+        },
+        "note": "Thai puts the number before the money word, like English: หนึ่งร้อยดอลลาร์ (nùeng-ráwy dawn-lâa) = one hundred dollars."
+      },
+      {
+        "id": "ex7",
+        "who": "kai",
+        "en": "May I see your passport, please?",
+        "thai": "ขอดูหนังสือเดินทางหน่อยค่ะ",
+        "roman": "khǎw duu nǎng-sǔe dern-thaang nàwy khâ",
+        "note": "หนังสือเดินทาง (nǎng-sǔe dern-thaang) = passport, literally travel book. Many people also just say passport in English."
+      },
+      {
+        "id": "ex8",
+        "who": "you",
+        "en": "Here you go.",
+        "thai": {
+          "male": "นี่ครับ",
+          "female": "นี่ค่ะ"
+        },
+        "roman": {
+          "male": "nîi khráp",
+          "female": "nîi khâ"
+        },
+        "note": "นี่ (nîi, falling) = here, this. Say it as you hand something over."
+      },
+      {
+        "id": "ex9",
+        "who": "kai",
+        "en": "Three thousand three hundred forty baht. Please count it first.",
+        "thai": "สามพันสามร้อยสี่สิบบาทค่ะ นับดูก่อนนะคะ",
+        "roman": "sǎam-phan sǎam-ráwy sìi-sìp bàat khâ, náp duu gàwn ná khá",
+        "note": "พัน (phan) = thousand. นับ (náp, high) = to count. นับดู (náp duu) = count and check. ก่อน (gàwn) = first."
+      },
+      {
+        "id": "ex10",
+        "who": "you",
+        "en": "Could I have some smaller notes too?",
+        "thai": {
+          "male": "ขอเงินย่อยด้วยได้ไหมครับ",
+          "female": "ขอเงินย่อยด้วยได้ไหมคะ"
+        },
+        "roman": {
+          "male": "khǎw ngern yâwy dûay dâai mǎi khráp",
+          "female": "khǎw ngern yâwy dûay dâai mǎi khá"
+        },
+        "note": "เงินย่อย (ngern yâwy) = small money, smaller notes. ด้วย (dûay) = too, as well."
+      },
+      {
+        "id": "ex11",
+        "who": "kai",
+        "en": "Sure. Here are five hundred-baht notes.",
+        "thai": "ได้ค่ะ ใบละร้อยห้าใบค่ะ",
+        "roman": "dâai khâ, bai lá ráwy hâa bai khâ",
+        "note": "ใบ (bai) counts notes, tickets and sheets. ใบละร้อย (bai lá ráwy) = a hundred each. ห้าใบ (hâa bai) = five notes."
+      }
+    ],
+    "drills": [
+      {
+        "id": "ex-l",
+        "kind": "listen",
+        "thai": "นับดูก่อนนะคะ",
+        "roman": "náp duu gàwn ná khá",
+        "en": "Please count it first.",
+        "options": [
+          "Please count it first.",
+          "May I see your passport?",
+          "How can I help?",
+          "Thirty-three baht forty satang."
+        ]
+      },
+      {
+        "id": "ex-r",
+        "kind": "read",
+        "thai": "แลกเงิน",
+        "roman": "lâaek ngern",
+        "en": "to change money",
+        "options": [
+          "to change money",
+          "to top up",
+          "to count",
+          "small notes"
+        ]
+      },
+      {
+        "id": "ex-p",
+        "kind": "pick",
+        "en": "“thousand”",
+        "options": [
+          "พัน",
+          "ร้อย",
+          "สิบ",
+          "ใบ"
+        ],
+        "answer": "พัน",
+        "roman": "phan"
+      },
+      {
+        "id": "ex-b",
+        "kind": "build",
+        "en": "I'd like to change money.",
+        "tiles": [
+          "อยาก",
+          "แลก",
+          "เงิน",
+          "ครับ",
+          "ค่ะ",
+          "นับ"
+        ],
+        "answer": {
+          "male": [
+            "อยาก",
+            "แลก",
+            "เงิน",
+            "ครับ"
+          ],
+          "female": [
+            "อยาก",
+            "แลก",
+            "เงิน",
+            "ค่ะ"
+          ]
+        },
+        "roman": {
+          "male": "yàak lâaek ngern khráp",
+          "female": "yàak lâaek ngern khâ"
+        }
+      },
+      {
+        "id": "ex-part",
+        "kind": "particle",
+        "en": "You're asking for smaller notes.",
+        "stem": "ขอเงินย่อยด้วยได้ไหม",
+        "stemRoman": "khǎw ngern yâwy dûay dâai mǎi",
+        "particleKind": "question"
+      }
+    ]
+  },
+  {
     "id": "leave",
     "title": "Goodbye",
     "titleTh": "ลาก่อน",

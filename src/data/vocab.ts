@@ -810,6 +810,55 @@ export const VOCAB: Vocab[] = [
     "roman": "mâi jam-gàt",
     "en": "unlimited, no limit",
     "hint": "Falling, mid, low. จำกัด (jam-gàt) = to limit. Mid-class ก on a short dead syllable is low."
+  },
+  {
+    "id": "laek",
+    "thai": "แลก",
+    "roman": "lâaek",
+    "en": "to exchange, swap",
+    "hint": "Falling. Low-class ล on a long dead syllable (ends in k) is falling. แลกเงิน (lâaek ngern) = change money."
+  },
+  {
+    "id": "ngern",
+    "thai": "เงิน",
+    "roman": "ngern",
+    "en": "money",
+    "hint": "Mid. Low-class ง on a live syllable with no mark is mid. เงินย่อย (ngern yâwy) = smaller notes, change."
+  },
+  {
+    "id": "phan",
+    "thai": "พัน",
+    "roman": "phan",
+    "en": "thousand",
+    "hint": "Mid. Low-class พ on a live syllable with no mark is mid. สามพัน (sǎam-phan) = three thousand."
+  },
+  {
+    "id": "nap",
+    "thai": "นับ",
+    "roman": "náp",
+    "en": "to count",
+    "hint": "High. Low-class น on a short dead syllable (ends in p) is high. นับดู (náp duu) = count and check."
+  },
+  {
+    "id": "gawn",
+    "thai": "ก่อน",
+    "roman": "gàwn",
+    "en": "first, before",
+    "hint": "Low. Mid-class ก with mai ek is low. นับดูก่อน (náp duu gàwn) = count it first. Also in ลาก่อน (laa-gàwn), goodbye."
+  },
+  {
+    "id": "bai",
+    "thai": "ใบ",
+    "roman": "bai",
+    "en": "counter for notes, tickets, sheets",
+    "hint": "Mid. Mid-class บ on a live syllable with no mark is mid. ห้าใบ (hâa bai) = five notes."
+  },
+  {
+    "id": "nang-sue-dern-thaang",
+    "thai": "หนังสือเดินทาง",
+    "roman": "nǎng-sǔe dern-thaang",
+    "en": "passport",
+    "hint": "Rising, rising, mid, mid. High-class ห makes น rise, and high-class ส rises. Literally travel book."
   }
 ];
 

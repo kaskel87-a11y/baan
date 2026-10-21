@@ -448,6 +448,33 @@ export const TIPS: Tip[] = [
       { ...p("ถ้าใช้ไม่ได้ ช่วยดูหน่อยได้ไหม", "thâa chái mâi dâai, chûay duu nàwy dâai mǎi", "question"), en: "If it doesn't work, could you take a look?" },
     ],
   },
+  // Money exchange
+  {
+    id: "exchange-gii-thao-rai",
+    sceneId: "exchange",
+    afterLine: "ex4",
+    kind: "grammar",
+    title: "gìi or thâo-rài",
+    body: "Both ask about amounts. thâo-rài is how much, for a price or a total. gìi is how many, and it always needs a counting word right after it: gìi bàat (how many baht), gìi bai (how many notes), gìi wan (how many days).",
+    examples: [
+      { ...p("อันนี้เท่าไหร่", "an-níi thâo-rài", "question"), en: "How much is this?" },
+      { ...p("หนึ่งดอลลาร์ได้กี่บาท", "nùeng dawn-lâa dâai gìi bàat", "question"), en: "How many baht for one dollar?" },
+      { ...p("กี่ใบ", "gìi bai", "question"), en: "How many notes?" },
+    ],
+  },
+  {
+    id: "exchange-gawn",
+    sceneId: "exchange",
+    afterLine: "ex9",
+    kind: "grammar",
+    title: "gàwn at the end means first",
+    body: "Put gàwn (low) after a verb to say do this first, before anything else. You hear it at counters all the time, and you can use it to buy a moment: wait a moment first, let me check first.",
+    examples: [
+      { ...p("นับดูก่อน", "náp duu gàwn"), en: "Count it first." },
+      { ...p("รอก่อน", "raw gàwn"), en: "Wait a moment." },
+      { ...p("ขอดูก่อน", "khǎw duu gàwn"), en: "Let me have a look first." },
+    ],
+  },
   // Goodbye
   {
     id: "leave-mai-pen-rai",

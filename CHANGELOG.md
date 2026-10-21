@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.29.0 — Money exchange scene
+
+- **New scene: Money exchange** (before Goodbye), with Kai at the counter. You say you'd like to change money (yàak lâaek ngern), ask how many baht you get for one dollar today (wan-níi nùeng dawn-lâa dâai gìi bàat), hear thirty-three baht forty satang, change one hundred dollars (lâaek nùeng-ráwy dawn-lâa), hand over your passport when asked (khǎw duu nǎng-sǔe dern-thaang nàwy, nîi khráp), hear the total of three thousand three hundred forty baht and to count it first (náp duu gàwn ná), and ask for smaller notes (khǎw ngern yâwy dûay dâai mǎi). 7 new words (lâaek, ngern, phan, náp, gàwn, bai, nǎng-sǔe dern-thaang), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
+- **Two tip cards:** gìi (how many, with a counting word) versus thâo-rài (how much), and gàwn at the end of a sentence for do this first (náp duu gàwn, raw gàwn, khǎw duu gàwn).
+
 ## 0.28.0 — New listening story: A haircut, then a SIM card
 
 - **Seventh listening story** (Stories, 07), built from the two newest scenes (Haircut, Phone shop). Tom gets a two-hundred-baht haircut with no wash (dtàt yàang diaw), short on the sides and a bit longer on top, then goes to the phone shop in the afternoon (dtawn bàai), picks the thirty-day SIM over the seven-day one for five hundred baht with unlimited data (nét mâi jam-gàt), has the shop put it in (chái dâai láew) and learns he can top up at 7-Eleven if the data runs out (thâa nét mòt). Ten sentences, eight English questions (including 30 vs 13 days and 500 vs 50 baht to train your ear), and the full transcript with romanization and English afterwards.
