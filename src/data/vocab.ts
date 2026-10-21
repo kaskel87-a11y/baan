@@ -859,6 +859,55 @@ export const VOCAB: Vocab[] = [
     "roman": "nǎng-sǔe dern-thaang",
     "en": "passport",
     "hint": "Rising, rising, mid, mid. High-class ห makes น rise, and high-class ส rises. Literally travel book."
+  },
+  {
+    "id": "wat",
+    "thai": "วัด",
+    "roman": "wát",
+    "en": "temple",
+    "hint": "High. Low-class ว on a short dead syllable (ends in t) is high. วัดโพธิ์ (wát phoo) = Wat Pho."
+  },
+  {
+    "id": "raan",
+    "thai": "ร้าน",
+    "roman": "ráan",
+    "en": "shop, restaurant",
+    "hint": "High. Low-class ร with mai tho is high. ร้านกาแฟ (ráan gaa-faae) = café."
+  },
+  {
+    "id": "wae",
+    "thai": "แวะ",
+    "roman": "wáe",
+    "en": "to stop off, drop in",
+    "hint": "High. Low-class ว on a short dead syllable (short vowel, no final) is high. ไม่แวะร้าน (mâi wáe ráan) = no stopping at shops."
+  },
+  {
+    "id": "dtaae",
+    "thai": "แต่",
+    "roman": "dtàae",
+    "en": "but",
+    "hint": "Low. Mid-class ต with mai ek is low."
+  },
+  {
+    "id": "glai-far",
+    "thai": "ไกล",
+    "roman": "glai",
+    "en": "far",
+    "hint": "Mid. ก + ล cluster, live syllable, no mark: mid. Don't mix it up with ใกล้ (glâi, falling) = close."
+  },
+  {
+    "id": "naa-thii",
+    "thai": "นาที",
+    "roman": "naa-thii",
+    "en": "minute",
+    "hint": "Mid, mid. สิบห้านาที (sìp-hâa naa-thii) = fifteen minutes."
+  },
+  {
+    "id": "jawt",
+    "thai": "จอด",
+    "roman": "jàwt",
+    "en": "to park, pull over",
+    "hint": "Low. Mid-class จ on a long dead syllable (ends in t) is low. จอดตรงนี้ (jàwt dtrong-níi) = stop right here."
   }
 ];
 

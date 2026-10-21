@@ -156,6 +156,23 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "ใบ", roman: "bai", en: "counter for notes, tickets" },
   { thai: "ใบละร้อย", roman: "bai lá ráwy", en: "a hundred each (note)" },
   { thai: "ห้าใบ", roman: "hâa bai", en: "five notes" },
+  { thai: "ไปไหน", roman: "bpai nǎi", en: "where to?" },
+  { thai: "วัดโพธิ์", roman: "wát phoo", en: "Wat Pho (temple)" },
+  { thai: "โพธิ์", roman: "phoo", en: "bodhi (in Wat Pho)" },
+  { thai: "ร้อยห้าสิบ", roman: "ráwy-hâa-sìp", en: "a hundred fifty" },
+  { thai: "โอเค", roman: "oo-khee", en: "okay" },
+  { thai: "ไม่แวะ", roman: "mâi wáe", en: "no stops" },
+  { thai: "แวะร้าน", roman: "wáe ráan", en: "stop at a shop" },
+  { thai: "ขึ้นมา", roman: "khûen maa", en: "come up, get in" },
+  { thai: "เลย", roman: "loei", en: "go ahead, right away" },
+  { thai: "ขึ้นมาเลย", roman: "khûen maa loei", en: "hop in" },
+  { thai: "ไกลไหม", roman: "glai mǎi", en: "is it far?" },
+  { thai: "ไม่ไกล", roman: "mâi glai", en: "not far" },
+  { thai: "สิบห้า", roman: "sìp-hâa", en: "fifteen" },
+  { thai: "สิบห้านาที", roman: "sìp-hâa naa-thii", en: "fifteen minutes" },
+  { thai: "ไม่ได้", roman: "mâi dâai", en: "can't" },
+  { thai: "ได้เลย", roman: "dâai loei", en: "go ahead, sure" },
+  { thai: "ตุ๊กตุ๊ก", roman: "dtúk-dtúk", en: "tuk-tuk" },
 ];
 
 export interface Gloss {

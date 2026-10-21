@@ -3279,6 +3279,224 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "tuktuk",
+    "title": "Tuk-tuk",
+    "titleTh": "รถตุ๊กตุ๊ก",
+    "blurb": "Agree a price before you get in, haggle it down, say no shop stops, ask if it's far, and tell the driver where to stop.",
+    "vocab": [
+      "wat",
+      "raan",
+      "wae",
+      "dtaae",
+      "glai-far",
+      "naa-thii",
+      "jawt"
+    ],
+    "lines": [
+      {
+        "id": "tk1",
+        "who": "ton",
+        "en": "Hello. Where to?",
+        "thai": "สวัสดีครับ ไปไหนครับ",
+        "roman": "sà-wàt-dii khráp, bpai nǎi khráp",
+        "note": "ไปไหน (bpai nǎi) = go where. Drivers open with this."
+      },
+      {
+        "id": "tk2",
+        "who": "you",
+        "en": "Wat Pho. How much?",
+        "thai": {
+          "male": "ไปวัดโพธิ์ เท่าไหร่ครับ",
+          "female": "ไปวัดโพธิ์ เท่าไหร่คะ"
+        },
+        "roman": {
+          "male": "bpai wát phoo, thâo-rài khráp",
+          "female": "bpai wát phoo, thâo-rài khá"
+        },
+        "note": "วัด (wát, high) = temple. Ask the price before you get in; tuk-tuks have no meter."
+      },
+      {
+        "id": "tk3",
+        "who": "ton",
+        "en": "Three hundred baht.",
+        "thai": "สามร้อยบาทครับ",
+        "roman": "sǎam-ráwy bàat khráp",
+        "note": "สามร้อย (sǎam-ráwy) = three hundred."
+      },
+      {
+        "id": "tk4",
+        "who": "you",
+        "en": "That's too expensive. Can you do a hundred fifty?",
+        "thai": {
+          "male": "แพงไป ร้อยห้าสิบได้ไหมครับ",
+          "female": "แพงไป ร้อยห้าสิบได้ไหมคะ"
+        },
+        "roman": {
+          "male": "phaaeng bpai, ráwy-hâa-sìp dâai mǎi khráp",
+          "female": "phaaeng bpai, ráwy-hâa-sìp dâai mǎi khá"
+        },
+        "note": "แพงไป (phaaeng bpai) = too expensive. ร้อยห้าสิบ (ráwy-hâa-sìp) = a hundred fifty; people drop the หนึ่ง."
+      },
+      {
+        "id": "tk5",
+        "who": "ton",
+        "en": "I can't do a hundred fifty. Two hundred.",
+        "thai": "ร้อยห้าสิบไม่ได้ครับ สองร้อยครับ",
+        "roman": "ráwy-hâa-sìp mâi dâai khráp, sǎwng-ráwy khráp",
+        "note": "ไม่ได้ (mâi dâai) = can't, no can do. สองร้อย (sǎwng-ráwy) = two hundred."
+      },
+      {
+        "id": "tk6",
+        "who": "you",
+        "en": "Okay, two hundred, but no stopping at shops.",
+        "thai": {
+          "male": "โอเค สองร้อย แต่ไม่แวะร้านนะครับ",
+          "female": "โอเค สองร้อย แต่ไม่แวะร้านนะค่ะ"
+        },
+        "roman": {
+          "male": "oo-khee, sǎwng-ráwy, dtàae mâi wáe ráan ná khráp",
+          "female": "oo-khee, sǎwng-ráwy, dtàae mâi wáe ráan ná khâ"
+        },
+        "note": "แต่ (dtàae, low) = but. แวะ (wáe, high) = to stop off. ร้าน (ráan, high) = shop. Cheap fares often come with a stop at a gem or suit shop."
+      },
+      {
+        "id": "tk7",
+        "who": "ton",
+        "en": "Sure, no stops. Hop in.",
+        "thai": "ได้ครับ ไม่แวะ ขึ้นมาเลยครับ",
+        "roman": "dâai khráp, mâi wáe, khûen maa loei khráp",
+        "note": "ขึ้นมาเลย (khûen maa loei) = come on up, go ahead and get in."
+      },
+      {
+        "id": "tk8",
+        "who": "you",
+        "en": "Is it far?",
+        "thai": {
+          "male": "ไกลไหมครับ",
+          "female": "ไกลไหมคะ"
+        },
+        "roman": {
+          "male": "glai mǎi khráp",
+          "female": "glai mǎi khá"
+        },
+        "note": "ไกล (glai, mid) = far. Careful: ใกล้ (glâi, falling) = close."
+      },
+      {
+        "id": "tk9",
+        "who": "ton",
+        "en": "Not far. About fifteen minutes.",
+        "thai": "ไม่ไกลครับ ประมาณสิบห้านาทีครับ",
+        "roman": "mâi glai khráp, bprà-maan sìp-hâa naa-thii khráp",
+        "note": "ประมาณ (bprà-maan) = about. นาที (naa-thii) = minute."
+      },
+      {
+        "id": "tk10",
+        "who": "you",
+        "en": "You can stop right here.",
+        "thai": {
+          "male": "จอดตรงนี้ได้เลยครับ",
+          "female": "จอดตรงนี้ได้เลยค่ะ"
+        },
+        "roman": {
+          "male": "jàwt dtrong-níi dâai loei khráp",
+          "female": "jàwt dtrong-níi dâai loei khâ"
+        },
+        "note": "จอด (jàwt, low) = to park, pull over. ตรงนี้ (dtrong-níi) = right here."
+      },
+      {
+        "id": "tk11",
+        "who": "ton",
+        "en": "Okay. Two hundred baht.",
+        "thai": "ได้ครับ สองร้อยบาทครับ",
+        "roman": "dâai khráp, sǎwng-ráwy bàat khráp",
+        "note": "Pay the price you agreed. นี่ครับ (nîi khráp) as you hand it over."
+      }
+    ],
+    "drills": [
+      {
+        "id": "tk-l",
+        "kind": "listen",
+        "thai": "ไม่ไกลครับ ประมาณสิบห้านาทีครับ",
+        "roman": "mâi glai khráp, bprà-maan sìp-hâa naa-thii khráp",
+        "en": "Not far. About fifteen minutes.",
+        "options": [
+          "Not far. About fifteen minutes.",
+          "Very close. About five minutes.",
+          "Three hundred baht.",
+          "Hop in."
+        ]
+      },
+      {
+        "id": "tk-r",
+        "kind": "read",
+        "thai": "แพงไป",
+        "roman": "phaaeng bpai",
+        "en": "too expensive",
+        "options": [
+          "too expensive",
+          "too far",
+          "not far",
+          "stop here"
+        ]
+      },
+      {
+        "id": "tk-p",
+        "kind": "pick",
+        "en": "“far”",
+        "options": [
+          "ไกล",
+          "ใกล้",
+          "ไป",
+          "ได้"
+        ],
+        "answer": "ไกล",
+        "roman": "glai"
+      },
+      {
+        "id": "tk-b",
+        "kind": "build",
+        "en": "You can stop right here.",
+        "tiles": [
+          "จอด",
+          "ตรงนี้",
+          "ได้",
+          "เลย",
+          "ครับ",
+          "ค่ะ",
+          "แวะ"
+        ],
+        "answer": {
+          "male": [
+            "จอด",
+            "ตรงนี้",
+            "ได้",
+            "เลย",
+            "ครับ"
+          ],
+          "female": [
+            "จอด",
+            "ตรงนี้",
+            "ได้",
+            "เลย",
+            "ค่ะ"
+          ]
+        },
+        "roman": {
+          "male": "jàwt dtrong-níi dâai loei khráp",
+          "female": "jàwt dtrong-níi dâai loei khâ"
+        }
+      },
+      {
+        "id": "tk-part",
+        "kind": "particle",
+        "en": "You're asking if it's far.",
+        "stem": "ไกลไหม",
+        "stemRoman": "glai mǎi",
+        "particleKind": "question"
+      }
+    ]
+  },
+  {
     "id": "leave",
     "title": "Goodbye",
     "titleTh": "ลาก่อน",

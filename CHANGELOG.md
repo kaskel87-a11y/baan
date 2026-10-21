@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.30.0 — Tuk-tuk scene
+
+- **New scene: Tuk-tuk** (before Goodbye), with Ton the driver. He asks where to (bpai nǎi), you say Wat Pho and ask the price before getting in (bpai wát phoo, thâo-rài), hear three hundred baht, push back (phaaeng bpai, ráwy-hâa-sìp dâai mǎi), settle on two hundred with no shop stops (oo-khee, sǎwng-ráwy, dtàae mâi wáe ráan ná), get told to hop in (khûen maa loei), ask if it's far (glai mǎi), hear about fifteen minutes (bprà-maan sìp-hâa naa-thii), and tell him to stop right here (jàwt dtrong-níi dâai loei). 7 new words (wát, ráan, wáe, dtàae, glai, naa-thii, jàwt), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
+- **Two tip cards:** a describing word plus bpai means too (phaaeng bpai, glai bpai, phèt bpai), and glai (far, mid tone) versus glâi (close, falling), which only the tone tells apart.
+
 ## 0.29.0 — Money exchange scene
 
 - **New scene: Money exchange** (before Goodbye), with Kai at the counter. You say you'd like to change money (yàak lâaek ngern), ask how many baht you get for one dollar today (wan-níi nùeng dawn-lâa dâai gìi bàat), hear thirty-three baht forty satang, change one hundred dollars (lâaek nùeng-ráwy dawn-lâa), hand over your passport when asked (khǎw duu nǎng-sǔe dern-thaang nàwy, nîi khráp), hear the total of three thousand three hundred forty baht and to count it first (náp duu gàwn ná), and ask for smaller notes (khǎw ngern yâwy dûay dâai mǎi). 7 new words (lâaek, ngern, phan, náp, gàwn, bai, nǎng-sǔe dern-thaang), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.

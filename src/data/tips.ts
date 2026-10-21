@@ -475,6 +475,33 @@ export const TIPS: Tip[] = [
       { ...p("ขอดูก่อน", "khǎw duu gàwn"), en: "Let me have a look first." },
     ],
   },
+  // Tuk-tuk
+  {
+    id: "tuktuk-pai-too",
+    sceneId: "tuktuk",
+    afterLine: "tk4",
+    kind: "grammar",
+    title: "phaaeng bpai: adjective + bpai means too",
+    body: "Put bpai (go) right after a describing word to say too much of it: phaaeng bpai (too expensive), glai bpai (too far), phèt bpai (too spicy). It's the easy way to push back on a price before you haggle.",
+    examples: [
+      { ...p("แพงไป", "phaaeng bpai"), en: "Too expensive." },
+      { ...p("ไกลไป", "glai bpai"), en: "Too far." },
+      { ...p("เผ็ดไป", "phèt bpai"), en: "Too spicy." },
+    ],
+  },
+  {
+    id: "tuktuk-glai-glai",
+    sceneId: "tuktuk",
+    afterLine: "tk8",
+    kind: "grammar",
+    title: "glai (far) or glâi (close)",
+    body: "Only the tone tells these apart. glai with a flat mid tone is far. glâi, falling from high to low, is close. Say the question both ways and listen to the difference before you ask a driver.",
+    examples: [
+      { ...p("ไกลไหม", "glai mǎi", "question"), en: "Is it far?" },
+      { ...p("ใกล้ไหม", "glâi mǎi", "question"), en: "Is it close?" },
+      { ...p("ไม่ไกล ใกล้มาก", "mâi glai, glâi mâak"), en: "Not far, very close." },
+    ],
+  },
   // Goodbye
   {
     id: "leave-mai-pen-rai",
