@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.31.0 — New listening story: Changing money, then a tuk-tuk
+
+- **Eighth listening story** (Stories, 08), built from the two newest scenes (Money exchange, Tuk-tuk). Tom changes one hundred dollars at thirty-three baht forty satang (sǎam-sìp-sǎam bàat sìi-sìp sà-dtaang), shows his passport (nǎng-sǔe dern-thaang), counts his 3,340 baht first (náp duu gàwn) and asks for smaller notes (ngern yâwy), then in the afternoon takes a tuk-tuk to Wat Pho, says three hundred is too expensive (phaaeng bpai), and agrees on two hundred with no shop stops (mâi wáe ráan), about fifteen minutes away (mâi glai). Ten sentences, eight English questions (including 3,340 vs 3,430 and 33.40 vs 34.30 to train your ear for numbers), and the full transcript with romanization and English afterwards.
+
 ## 0.30.0 — Tuk-tuk scene
 
 - **New scene: Tuk-tuk** (before Goodbye), with Ton the driver. He asks where to (bpai nǎi), you say Wat Pho and ask the price before getting in (bpai wát phoo, thâo-rài), hear three hundred baht, push back (phaaeng bpai, ráwy-hâa-sìp dâai mǎi), settle on two hundred with no shop stops (oo-khee, sǎwng-ráwy, dtàae mâi wáe ráan ná), get told to hop in (khûen maa loei), ask if it's far (glai mǎi), hear about fifteen minutes (bprà-maan sìp-hâa naa-thii), and tell him to stop right here (jàwt dtrong-níi dâai loei). 7 new words (wát, ráan, wáe, dtàae, glai, naa-thii, jàwt), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
