@@ -173,6 +173,19 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "ไม่ได้", roman: "mâi dâai", en: "can't" },
   { thai: "ได้เลย", roman: "dâai loei", en: "go ahead, sure" },
   { thai: "ตุ๊กตุ๊ก", roman: "dtúk-dtúk", en: "tuk-tuk" },
+  { thai: "สยาม", roman: "sà-yǎam", en: "Siam (area)" },
+  { thai: "ไปสยาม", roman: "bpai sà-yǎam", en: "to Siam" },
+  { thai: "เปิดมิเตอร์", roman: "bpòet mí-dtôe", en: "turn on the meter" },
+  { thai: "ขึ้นทางด่วน", roman: "khûen thaang-dùan", en: "take the expressway" },
+  { thai: "ต้องจ่าย", roman: "dtâwng jàai", en: "have to pay" },
+  { thai: "รถติด", roman: "rót dtìt", en: "traffic jam" },
+  { thai: "ถึงแล้ว", roman: "thǔeng láew", en: "we're here, arrived" },
+  { thai: "ร้อยแปดสิบ", roman: "ráwy-bpàaet-sìp", en: "a hundred eighty" },
+  { thai: "นี่", roman: "nîi", en: "here (handing over)" },
+  { thai: "แท็กซี่", roman: "tháek-sîi", en: "taxi" },
+  { thai: "ต้องรอ", roman: "dtâwng raw", en: "have to wait" },
+  { thai: "ต้องไปแล้ว", roman: "dtâwng bpai láew", en: "have to go now" },
+  { thai: "ไม่กดมิเตอร์", roman: "mâi gòt mí-dtôe", en: "won't use the meter" },
 ];
 
 export interface Gloss {

@@ -908,6 +908,55 @@ export const VOCAB: Vocab[] = [
     "roman": "jàwt",
     "en": "to park, pull over",
     "hint": "Low. Mid-class จ on a long dead syllable (ends in t) is low. จอดตรงนี้ (jàwt dtrong-níi) = stop right here."
+  },
+  {
+    "id": "bpoet",
+    "thai": "เปิด",
+    "roman": "bpòet",
+    "en": "to open, turn on",
+    "hint": "Low. Mid-class ป on a long dead syllable (ends in t) is low. เปิดมิเตอร์ (bpòet mí-dtôe) = turn on the meter."
+  },
+  {
+    "id": "mi-dtoe",
+    "thai": "มิเตอร์",
+    "roman": "mí-dtôe",
+    "en": "taxi meter",
+    "hint": "High, falling. Borrowed from English meter; the ร์ is silent."
+  },
+  {
+    "id": "thaang-duan",
+    "thai": "ทางด่วน",
+    "roman": "thaang-dùan",
+    "en": "expressway",
+    "hint": "Mid, low. ทาง (thaang) = road, ด่วน (dùan) = urgent. Tolls are paid by the passenger."
+  },
+  {
+    "id": "dtit",
+    "thai": "ติด",
+    "roman": "dtìt",
+    "en": "stuck",
+    "hint": "Low. Mid-class ต on a short dead syllable is low. รถติด (rót dtìt) = traffic jam."
+  },
+  {
+    "id": "jaai",
+    "thai": "จ่าย",
+    "roman": "jàai",
+    "en": "to pay",
+    "hint": "Low. Mid-class จ with mai ek is low. จ่ายเท่าไหร่ (jàai thâo-rài) = how much do I pay?"
+  },
+  {
+    "id": "dtawn-nii",
+    "thai": "ตอนนี้",
+    "roman": "dtawn-níi",
+    "en": "now, right now",
+    "hint": "Mid, high. ตอน (dtawn) = time, period; นี้ (níi) = this."
+  },
+  {
+    "id": "thawn",
+    "thai": "ทอน",
+    "roman": "thawn",
+    "en": "to give change",
+    "hint": "Mid. ไม่ต้องทอน (mâi dtâwng thawn) = keep the change."
   }
 ];
 

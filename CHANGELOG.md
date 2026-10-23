@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.32.0 — Taxi scene
+
+- **New scene: Taxi** (before Goodbye), with Mek the driver. You say where you're going (bpai sà-yǎam), hear a flat two hundred baht and ask for the meter instead (bpòet mí-dtôe dâai mǎi), get asked about the expressway (khûen thaang-dùan mǎi), ask what the toll is (khûen thaang-dùan dtâwng jàai thâo-rài), hear fifty baht and that traffic is bad right now (dtawn-níi rót dtìt mâak), take the expressway (khûen thaang-dùan loei), hear a hundred eighty baht on arrival (thǔeng láew, ráwy-bpàaet-sìp bàat), and pay two hundred with keep the change (nîi sǎwng-ráwy, mâi dtâwng thawn). 7 new words (bpòet, mí-dtôe, thaang-dùan, dtìt, jàai, dtawn-níi, thawn), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
+- **Two tip cards:** ask for the meter (and what to do when a driver won't use it), and dtâwng + verb for have to (dtâwng jàai, dtâwng raw, dtâwng bpai láew).
+- Word and tone checks now read มิเตอร์ as mí-dtôe and สยาม as sà-yǎam.
+
 ## 0.31.0 — New listening story: Changing money, then a tuk-tuk
 
 - **Eighth listening story** (Stories, 08), built from the two newest scenes (Money exchange, Tuk-tuk). Tom changes one hundred dollars at thirty-three baht forty satang (sǎam-sìp-sǎam bàat sìi-sìp sà-dtaang), shows his passport (nǎng-sǔe dern-thaang), counts his 3,340 baht first (náp duu gàwn) and asks for smaller notes (ngern yâwy), then in the afternoon takes a tuk-tuk to Wat Pho, says three hundred is too expensive (phaaeng bpai), and agrees on two hundred with no shop stops (mâi wáe ráan), about fifteen minutes away (mâi glai). Ten sentences, eight English questions (including 3,340 vs 3,430 and 33.40 vs 34.30 to train your ear for numbers), and the full transcript with romanization and English afterwards.

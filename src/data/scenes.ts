@@ -3497,6 +3497,216 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "taxi",
+    "title": "Taxi",
+    "titleTh": "แท็กซี่",
+    "blurb": "Ask for the meter, decide on the expressway and its toll, hear about the traffic, and pay with keep the change.",
+    "vocab": [
+      "bpoet",
+      "mi-dtoe",
+      "thaang-duan",
+      "dtit",
+      "jaai",
+      "dtawn-nii",
+      "thawn"
+    ],
+    "lines": [
+      {
+        "id": "tx1",
+        "who": "you",
+        "en": "To Siam, please.",
+        "thai": {
+          "male": "ไปสยามครับ",
+          "female": "ไปสยามค่ะ"
+        },
+        "roman": {
+          "male": "bpai sà-yǎam khráp",
+          "female": "bpai sà-yǎam khâ"
+        },
+        "note": "สยาม (sà-yǎam) = Siam, the big shopping area. Say where you're going before you get in."
+      },
+      {
+        "id": "tx2",
+        "who": "mek",
+        "en": "Sure. Two hundred baht.",
+        "thai": "ได้ครับ สองร้อยบาทครับ",
+        "roman": "dâai khráp, sǎwng-ráwy bàat khráp",
+        "note": "A flat price instead of the meter usually costs more."
+      },
+      {
+        "id": "tx3",
+        "who": "you",
+        "en": "Can you turn on the meter?",
+        "thai": {
+          "male": "เปิดมิเตอร์ได้ไหมครับ",
+          "female": "เปิดมิเตอร์ได้ไหมคะ"
+        },
+        "roman": {
+          "male": "bpòet mí-dtôe dâai mǎi khráp",
+          "female": "bpòet mí-dtôe dâai mǎi khá"
+        },
+        "note": "เปิด (bpòet, low) = open, turn on. มิเตอร์ (mí-dtôe) = meter, borrowed from English."
+      },
+      {
+        "id": "tx4",
+        "who": "mek",
+        "en": "Okay. Take the expressway?",
+        "thai": "ได้ครับ ขึ้นทางด่วนไหมครับ",
+        "roman": "dâai khráp, khûen thaang-dùan mǎi khráp",
+        "note": "ทางด่วน (thaang-dùan) = expressway, literally urgent road. ขึ้น (khûen) = go up onto it."
+      },
+      {
+        "id": "tx5",
+        "who": "you",
+        "en": "How much do I have to pay for the expressway?",
+        "thai": {
+          "male": "ขึ้นทางด่วนต้องจ่ายเท่าไหร่ครับ",
+          "female": "ขึ้นทางด่วนต้องจ่ายเท่าไหร่คะ"
+        },
+        "roman": {
+          "male": "khûen thaang-dùan dtâwng jàai thâo-rài khráp",
+          "female": "khûen thaang-dùan dtâwng jàai thâo-rài khá"
+        },
+        "note": "ต้อง (dtâwng) = have to. จ่าย (jàai, low) = pay."
+      },
+      {
+        "id": "tx6",
+        "who": "mek",
+        "en": "Fifty baht. Traffic is really bad right now.",
+        "thai": "ห้าสิบบาทครับ ตอนนี้รถติดมากครับ",
+        "roman": "hâa-sìp bàat khráp, dtawn-níi rót dtìt mâak khráp",
+        "note": "ตอนนี้ (dtawn-níi) = now. รถติด (rót dtìt) = traffic jam, literally cars stuck."
+      },
+      {
+        "id": "tx7",
+        "who": "you",
+        "en": "Okay, take the expressway.",
+        "thai": {
+          "male": "โอเค ขึ้นทางด่วนเลยครับ",
+          "female": "โอเค ขึ้นทางด่วนเลยค่ะ"
+        },
+        "roman": {
+          "male": "oo-khee, khûen thaang-dùan loei khráp",
+          "female": "oo-khee, khûen thaang-dùan loei khâ"
+        },
+        "note": "เลย (loei) here = go ahead and do it."
+      },
+      {
+        "id": "tx8",
+        "who": "mek",
+        "en": "We're here. A hundred eighty baht.",
+        "thai": "ถึงแล้วครับ ร้อยแปดสิบบาทครับ",
+        "roman": "thǔeng láew khráp, ráwy-bpàaet-sìp bàat khráp",
+        "note": "ถึงแล้ว (thǔeng láew) = we've arrived. ร้อยแปดสิบ (ráwy-bpàaet-sìp) = a hundred eighty."
+      },
+      {
+        "id": "tx9",
+        "who": "you",
+        "en": "Here's two hundred. Keep the change.",
+        "thai": {
+          "male": "นี่สองร้อย ไม่ต้องทอนครับ",
+          "female": "นี่สองร้อย ไม่ต้องทอนค่ะ"
+        },
+        "roman": {
+          "male": "nîi sǎwng-ráwy, mâi dtâwng thawn khráp",
+          "female": "nîi sǎwng-ráwy, mâi dtâwng thawn khâ"
+        },
+        "note": "ทอน (thawn) = give change. ไม่ต้องทอน (mâi dtâwng thawn) = no need for change."
+      },
+      {
+        "id": "tx10",
+        "who": "mek",
+        "en": "Thank you very much.",
+        "thai": "ขอบคุณมากครับ",
+        "roman": "khàwp-khun mâak khráp",
+        "note": "Rounding up to the next twenty or fifty is normal and appreciated."
+      }
+    ],
+    "drills": [
+      {
+        "id": "tx-l",
+        "kind": "listen",
+        "thai": "ห้าสิบบาทครับ ตอนนี้รถติดมากครับ",
+        "roman": "hâa-sìp bàat khráp, dtawn-níi rót dtìt mâak khráp",
+        "en": "Fifty baht. Traffic is really bad right now.",
+        "options": [
+          "Fifty baht. Traffic is really bad right now.",
+          "Fifteen baht. The road is clear now.",
+          "We're here. A hundred eighty baht.",
+          "Take the expressway?"
+        ]
+      },
+      {
+        "id": "tx-r",
+        "kind": "read",
+        "thai": "รถติด",
+        "roman": "rót dtìt",
+        "en": "traffic jam",
+        "options": [
+          "traffic jam",
+          "expressway",
+          "turn on the meter",
+          "keep the change"
+        ]
+      },
+      {
+        "id": "tx-p",
+        "kind": "pick",
+        "en": "“to pay”",
+        "options": [
+          "จ่าย",
+          "ทอน",
+          "ต้อง",
+          "ติด"
+        ],
+        "answer": "จ่าย",
+        "roman": "jàai"
+      },
+      {
+        "id": "tx-b",
+        "kind": "build",
+        "en": "Can you turn on the meter?",
+        "tiles": [
+          "เปิด",
+          "มิเตอร์",
+          "ได้",
+          "ไหม",
+          "ครับ",
+          "คะ",
+          "ทอน"
+        ],
+        "answer": {
+          "male": [
+            "เปิด",
+            "มิเตอร์",
+            "ได้",
+            "ไหม",
+            "ครับ"
+          ],
+          "female": [
+            "เปิด",
+            "มิเตอร์",
+            "ได้",
+            "ไหม",
+            "คะ"
+          ]
+        },
+        "roman": {
+          "male": "bpòet mí-dtôe dâai mǎi khráp",
+          "female": "bpòet mí-dtôe dâai mǎi khá"
+        }
+      },
+      {
+        "id": "tx-part",
+        "kind": "particle",
+        "en": "You're telling the driver to keep the change.",
+        "stem": "ไม่ต้องทอน",
+        "stemRoman": "mâi dtâwng thawn",
+        "particleKind": "statement"
+      }
+    ]
+  },
+  {
     "id": "leave",
     "title": "Goodbye",
     "titleTh": "ลาก่อน",

@@ -502,6 +502,33 @@ export const TIPS: Tip[] = [
       { ...p("ไม่ไกล ใกล้มาก", "mâi glai, glâi mâak"), en: "Not far, very close." },
     ],
   },
+  // Taxi
+  {
+    id: "taxi-meter",
+    sceneId: "taxi",
+    afterLine: "tx3",
+    kind: "culture",
+    title: "Ask for the meter",
+    body: "Bangkok taxis have meters, and the meter is almost always cheaper than a flat price. If the driver quotes a price, ask bpòet mí-dtôe dâai mǎi. If the answer is mâi gòt mí-dtôe (won't use the meter), just wave down the next taxi. Expressway tolls are extra and the passenger pays them.",
+    examples: [
+      { ...p("เปิดมิเตอร์ได้ไหม", "bpòet mí-dtôe dâai mǎi", "question"), en: "Can you turn on the meter?" },
+      { ...p("ไม่กดมิเตอร์", "mâi gòt mí-dtôe"), en: "I won't use the meter." },
+      { ...p("ไม่เป็นไร", "mâi bpen rai"), en: "That's okay, never mind." },
+    ],
+  },
+  {
+    id: "taxi-dtawng",
+    sceneId: "taxi",
+    afterLine: "tx5",
+    kind: "grammar",
+    title: "dtâwng + verb means have to",
+    body: "Put dtâwng in front of a verb to say you have to do it: dtâwng jàai (have to pay), dtâwng raw (have to wait). Add láew at the end for have to now. It's the opposite of mâi dtâwng (no need to).",
+    examples: [
+      { ...p("ต้องจ่ายเท่าไหร่", "dtâwng jàai thâo-rài", "question"), en: "How much do I have to pay?" },
+      { ...p("ต้องรอนานไหม", "dtâwng raw naan mǎi", "question"), en: "Do I have to wait long?" },
+      { ...p("ต้องไปแล้ว", "dtâwng bpai láew"), en: "I have to go now." },
+    ],
+  },
   // Goodbye
   {
     id: "leave-mai-pen-rai",

@@ -176,6 +176,8 @@ special("ไหน", [["n", "ai", true, "", "rising"]]);
 special("เสร็จ", [["s", "e", false, "t", "low"]]); // silent ร
 special("สระ", [["s", "a", false, "", "low"]]); // สระผม (wash hair): one syllable, silent ร
 special("พอแล้ว", [["ph", "aw", true, "", "mid"], ["l", "ae", false, "w", "high"]]);
+special("มิเตอ", [["m", "i", false, "", "high"], ["dt", "oe", true, "", "falling"]]); // loanword (meter), silent ร์
+special("สยาม", [["s", "a", false, "", "low"], ["y", "aa", true, "m", "rising"]]); // ส leads ย: rising
 
 /** Split one Thai word into syllables. */
 export function syllabify(word: string): ThaiSyllable[] {
