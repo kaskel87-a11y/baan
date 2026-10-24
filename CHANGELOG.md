@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.33.0 — Temple visit scene
+
+- **New scene: Temple visit** (before Goodbye), with Aom at the Wat Pho gate. You ask for one ticket (khǎw dtǔa nùeng bai), hear three hundred baht, ask if you can take photos (thàai rûup dâai mǎi), hear to take off your shoes before going inside (thàwt rawng-tháao gàwn khâo bpai khâang-nai), ask if shorts are okay (sài gaang-geeng khǎa-sân dâai mǎi), hear that you have to cover your knees and can borrow a cloth over there (dtâwng bpìt khào, yuem phâa dâai thîi-nân), ask where the Reclining Buddha is (phrá-nawn yùu thîi-nǎi), hear go straight, it's on the left (dtrong bpai, yùu thaang sáai), and ask what time it closes (bpìt gìi moong): half past six (hòk moong khrûeng). 7 new words (dtǔa, thàai rûup, thàwt, rawng-tháao, khào, yuem, bpìt), 5 drills including dtǔa (ticket) vs dtua (counter word), and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
+- **Two tip cards:** the temple dress code (cover shoulders and knees, shoes off, feet away from the Buddha), and dâai mǎi to ask can I, with mâi dâai and hâam (no photos).
+
 ## 0.32.0 — Taxi scene
 
 - **New scene: Taxi** (before Goodbye), with Mek the driver. You say where you're going (bpai sà-yǎam), hear a flat two hundred baht and ask for the meter instead (bpòet mí-dtôe dâai mǎi), get asked about the expressway (khûen thaang-dùan mǎi), ask what the toll is (khûen thaang-dùan dtâwng jàai thâo-rài), hear fifty baht and that traffic is bad right now (dtawn-níi rót dtìt mâak), take the expressway (khûen thaang-dùan loei), hear a hundred eighty baht on arrival (thǔeng láew, ráwy-bpàaet-sìp bàat), and pay two hundred with keep the change (nîi sǎwng-ráwy, mâi dtâwng thawn). 7 new words (bpòet, mí-dtôe, thaang-dùan, dtìt, jàai, dtawn-níi, thawn), 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.

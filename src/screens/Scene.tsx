@@ -35,6 +35,7 @@ const SPEAKERS: Record<Speaker, { th: string; en: string }> = {
   kai: { th: "ไก่", en: "Kai" },
   ton: { th: "ต้น", en: "Ton" },
   mek: { th: "เมฆ", en: "Mek" },
+  aom: { th: "ออม", en: "Aom" },
 };
 
 type Phase = "preview" | "talk" | "drill" | "roleplay" | "listenrespond" | "shadow" | "done";

@@ -186,6 +186,21 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "ต้องรอ", roman: "dtâwng raw", en: "have to wait" },
   { thai: "ต้องไปแล้ว", roman: "dtâwng bpai láew", en: "have to go now" },
   { thai: "ไม่กดมิเตอร์", roman: "mâi gòt mí-dtôe", en: "won't use the meter" },
+  { thai: "ตั๋ว", roman: "dtǔa", en: "ticket" },
+  { thai: "ถ่ายรูป", roman: "thàai rûup", en: "take a photo" },
+  { thai: "ถอดรองเท้า", roman: "thàwt rawng-tháao", en: "take off your shoes" },
+  { thai: "ข้างใน", roman: "khâang-nai", en: "inside" },
+  { thai: "กางเกงขาสั้น", roman: "gaang-geeng khǎa-sân", en: "shorts" },
+  { thai: "ปิดเข่า", roman: "bpìt khào", en: "cover the knees" },
+  { thai: "ยืม", roman: "yuem", en: "borrow" },
+  { thai: "พระนอน", roman: "phrá-nawn", en: "Reclining Buddha" },
+  { thai: "ทางซ้าย", roman: "thaang sáai", en: "on the left" },
+  { thai: "ทางขวา", roman: "thaang khwǎa", en: "on the right" },
+  { thai: "ครึ่ง", roman: "khrûeng", en: "half" },
+  { thai: "หกโมงครึ่ง", roman: "hòk moong khrûeng", en: "half past six (evening)" },
+  { thai: "ที่นั่น", roman: "thîi-nân", en: "over there" },
+  { thai: "เที่ยววัด", roman: "thîao wát", en: "visit a temple" },
+  { thai: "ห้ามถ่ายรูป", roman: "hâam thàai rûup", en: "no photos" },
 ];
 
 export interface Gloss {

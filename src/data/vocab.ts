@@ -957,6 +957,55 @@ export const VOCAB: Vocab[] = [
     "roman": "thawn",
     "en": "to give change",
     "hint": "Mid. ไม่ต้องทอน (mâi dtâwng thawn) = keep the change."
+  },
+  {
+    "id": "dtua-ticket",
+    "thai": "ตั๋ว",
+    "roman": "dtǔa",
+    "en": "ticket",
+    "hint": "Rising. Mid-class ต with mai chattawa is rising. Not ตัว (dtua, mid), the counter for clothes. ขอตั๋วหนึ่งใบ = one ticket, please."
+  },
+  {
+    "id": "thaai-ruup",
+    "thai": "ถ่ายรูป",
+    "roman": "thàai rûup",
+    "en": "to take a photo",
+    "hint": "Low, falling. High-class ถ with mai ek is low; low-class ร on a long dead syllable is falling."
+  },
+  {
+    "id": "thawt",
+    "thai": "ถอด",
+    "roman": "thàwt",
+    "en": "to take off (clothes, shoes)",
+    "hint": "Low. High-class ถ on a long dead syllable is low. ถอดรองเท้า (thàwt rawng-tháao) = take off your shoes."
+  },
+  {
+    "id": "rawng-thaao",
+    "thai": "รองเท้า",
+    "roman": "rawng-tháao",
+    "en": "shoes",
+    "hint": "Mid, high. Low-class ท with mai tho is high. Leave them outside any temple hall or home."
+  },
+  {
+    "id": "khao-knee",
+    "thai": "เข่า",
+    "roman": "khào",
+    "en": "knee",
+    "hint": "Low. High-class ข with mai ek is low. Not ข้าว (khâao, falling) = rice."
+  },
+  {
+    "id": "yuem",
+    "thai": "ยืม",
+    "roman": "yuem",
+    "en": "to borrow",
+    "hint": "Mid. ยืมได้ไหม (yuem dâai mǎi) = can I borrow it?"
+  },
+  {
+    "id": "bpit",
+    "thai": "ปิด",
+    "roman": "bpìt",
+    "en": "to close, to cover",
+    "hint": "Low. Mid-class ป on a short dead syllable is low. Opposite of เปิด (bpòet) = open."
   }
 ];
 

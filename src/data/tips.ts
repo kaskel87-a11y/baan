@@ -529,6 +529,33 @@ export const TIPS: Tip[] = [
       { ...p("ต้องไปแล้ว", "dtâwng bpai láew"), en: "I have to go now." },
     ],
   },
+  // Temple visit
+  {
+    id: "temple-dress",
+    sceneId: "temple",
+    afterLine: "wt6",
+    kind: "culture",
+    title: "Temple dress code",
+    body: "Cover your shoulders and knees at any temple: no shorts, short skirts or tank tops. Big temples lend or rent a cloth at the gate. Take off your shoes before you step into a hall, and never point your feet at a Buddha image when you sit down.",
+    examples: [
+      { ...p("ใส่กางเกงขาสั้นได้ไหม", "sài gaang-geeng khǎa-sân dâai mǎi", "question"), en: "Are shorts okay?" },
+      { ...p("ยืมผ้าได้ไหม", "yuem phâa dâai mǎi", "question"), en: "Can I borrow a cloth?" },
+      { ...p("ถอดรองเท้าตรงนี้ไหม", "thàwt rawng-tháao dtrong-níi mǎi", "question"), en: "Do I take my shoes off here?" },
+    ],
+  },
+  {
+    id: "temple-dai-mai",
+    sceneId: "temple",
+    afterLine: "wt3",
+    kind: "grammar",
+    title: "dâai mǎi asks can I, and mâi dâai says no",
+    body: "Put dâai mǎi after any action to ask if it's allowed: thàai rûup dâai mǎi (can I take photos?). The answer is dâai (yes, you can) or mâi dâai (no, you can't). Signs often say hâam (forbidden): hâam thàai rûup means no photos.",
+    examples: [
+      { ...p("ถ่ายรูปได้ไหม", "thàai rûup dâai mǎi", "question"), en: "Can I take photos?" },
+      { ...p("เข้าไปได้ไหม", "khâo bpai dâai mǎi", "question"), en: "Can I go in?" },
+      { ...p("ห้ามถ่ายรูป", "hâam thàai rûup"), en: "No photos." },
+    ],
+  },
   // Goodbye
   {
     id: "leave-mai-pen-rai",

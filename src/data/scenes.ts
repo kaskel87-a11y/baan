@@ -3707,6 +3707,216 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "temple",
+    "title": "Temple visit",
+    "titleTh": "เที่ยววัด",
+    "blurb": "Buy a ticket at Wat Pho, ask about photos and the dress code, take off your shoes, find the Reclining Buddha, and check closing time.",
+    "vocab": [
+      "dtua-ticket",
+      "thaai-ruup",
+      "thawt",
+      "rawng-thaao",
+      "khao-knee",
+      "yuem",
+      "bpit"
+    ],
+    "lines": [
+      {
+        "id": "wt1",
+        "who": "you",
+        "en": "One ticket, please.",
+        "thai": {
+          "male": "ขอตั๋วหนึ่งใบครับ",
+          "female": "ขอตั๋วหนึ่งใบค่ะ"
+        },
+        "roman": {
+          "male": "khǎw dtǔa nùeng bai khráp",
+          "female": "khǎw dtǔa nùeng bai khâ"
+        },
+        "note": "ตั๋ว (dtǔa, rising) = ticket. ใบ (bai) is the counter word for tickets and paper. Don't mix it up with ตัว (dtua, mid), the counter for clothes and animals."
+      },
+      {
+        "id": "wt2",
+        "who": "aom",
+        "en": "Three hundred baht, please.",
+        "thai": "สามร้อยบาทค่ะ",
+        "roman": "sǎam-ráwy bàat khâ",
+        "note": "Foreigners pay an entry fee at the big temples. Prices change, so listen for the number."
+      },
+      {
+        "id": "wt3",
+        "who": "you",
+        "en": "Can I take photos?",
+        "thai": {
+          "male": "ถ่ายรูปได้ไหมครับ",
+          "female": "ถ่ายรูปได้ไหมคะ"
+        },
+        "roman": {
+          "male": "thàai rûup dâai mǎi khráp",
+          "female": "thàai rûup dâai mǎi khá"
+        },
+        "note": "ถ่ายรูป (thàai rûup) = take a photo, literally copy a picture. Low, then falling."
+      },
+      {
+        "id": "wt4",
+        "who": "aom",
+        "en": "Yes, but take off your shoes before you go inside.",
+        "thai": "ได้ค่ะ แต่ถอดรองเท้าก่อนเข้าไปข้างในนะคะ",
+        "roman": "dâai khâ, dtàae thàwt rawng-tháao gàwn khâo bpai khâang-nai ná khá",
+        "note": "ถอด (thàwt, low) = take off. รองเท้า (rawng-tháao) = shoes. ข้างใน (khâang-nai) = inside."
+      },
+      {
+        "id": "wt5",
+        "who": "you",
+        "en": "Are shorts okay?",
+        "thai": {
+          "male": "ใส่กางเกงขาสั้นได้ไหมครับ",
+          "female": "ใส่กางเกงขาสั้นได้ไหมคะ"
+        },
+        "roman": {
+          "male": "sài gaang-geeng khǎa-sân dâai mǎi khráp",
+          "female": "sài gaang-geeng khǎa-sân dâai mǎi khá"
+        },
+        "note": "ใส่ (sài) = wear. กางเกงขาสั้น (gaang-geeng khǎa-sân) = shorts, literally short-leg trousers."
+      },
+      {
+        "id": "wt6",
+        "who": "aom",
+        "en": "No. You have to cover your knees. You can borrow a cloth over there.",
+        "thai": "ไม่ได้ค่ะ ต้องปิดเข่า ยืมผ้าได้ที่นั่นค่ะ",
+        "roman": "mâi dâai khâ, dtâwng bpìt khào, yuem phâa dâai thîi-nân khâ",
+        "note": "ปิด (bpìt, low) = close, cover. เข่า (khào, low) = knee. ยืม (yuem) = borrow."
+      },
+      {
+        "id": "wt7",
+        "who": "you",
+        "en": "Where's the Reclining Buddha?",
+        "thai": {
+          "male": "พระนอนอยู่ที่ไหนครับ",
+          "female": "พระนอนอยู่ที่ไหนคะ"
+        },
+        "roman": {
+          "male": "phrá-nawn yùu thîi-nǎi khráp",
+          "female": "phrá-nawn yùu thîi-nǎi khá"
+        },
+        "note": "พระนอน (phrá-nawn) = Reclining Buddha, literally lying-down Buddha. Wat Pho's is 46 meters long."
+      },
+      {
+        "id": "wt8",
+        "who": "aom",
+        "en": "Go straight. It's on the left.",
+        "thai": "ตรงไปค่ะ อยู่ทางซ้ายค่ะ",
+        "roman": "dtrong bpai khâ, yùu thaang sáai khâ",
+        "note": "ทางซ้าย (thaang sáai) = on the left side. ทางขวา (thaang khwǎa) = on the right."
+      },
+      {
+        "id": "wt9",
+        "who": "you",
+        "en": "What time do you close?",
+        "thai": {
+          "male": "ปิดกี่โมงครับ",
+          "female": "ปิดกี่โมงคะ"
+        },
+        "roman": {
+          "male": "bpìt gìi moong khráp",
+          "female": "bpìt gìi moong khá"
+        },
+        "note": "Same ปิด (bpìt) as cover: it also means close or shut. Its opposite is เปิด (bpòet) = open."
+      },
+      {
+        "id": "wt10",
+        "who": "aom",
+        "en": "Half past six in the evening.",
+        "thai": "หกโมงครึ่งค่ะ",
+        "roman": "hòk moong khrûeng khâ",
+        "note": "ครึ่ง (khrûeng, falling) = half. หกโมง (hòk moong) = six o'clock in the evening."
+      }
+    ],
+    "drills": [
+      {
+        "id": "wt-l",
+        "kind": "listen",
+        "thai": "ไม่ได้ค่ะ ต้องปิดเข่า ยืมผ้าได้ที่นั่นค่ะ",
+        "roman": "mâi dâai khâ, dtâwng bpìt khào, yuem phâa dâai thîi-nân khâ",
+        "en": "No. You have to cover your knees. You can borrow a cloth over there.",
+        "options": [
+          "No. You have to cover your knees. You can borrow a cloth over there.",
+          "Yes, but take off your shoes before you go inside.",
+          "Go straight. It's on the left.",
+          "Half past six in the evening."
+        ]
+      },
+      {
+        "id": "wt-r",
+        "kind": "read",
+        "thai": "รองเท้า",
+        "roman": "rawng-tháao",
+        "en": "shoes",
+        "options": [
+          "shoes",
+          "ticket",
+          "knee",
+          "shorts"
+        ]
+      },
+      {
+        "id": "wt-p",
+        "kind": "pick",
+        "en": "“ticket”",
+        "options": [
+          "ตั๋ว",
+          "ตัว",
+          "ผ้า",
+          "เข่า"
+        ],
+        "answer": "ตั๋ว",
+        "roman": "dtǔa"
+      },
+      {
+        "id": "wt-b",
+        "kind": "build",
+        "en": "Can I take photos?",
+        "tiles": [
+          "ถ่าย",
+          "รูป",
+          "ได้",
+          "ไหม",
+          "ครับ",
+          "คะ",
+          "ถอด"
+        ],
+        "answer": {
+          "male": [
+            "ถ่าย",
+            "รูป",
+            "ได้",
+            "ไหม",
+            "ครับ"
+          ],
+          "female": [
+            "ถ่าย",
+            "รูป",
+            "ได้",
+            "ไหม",
+            "คะ"
+          ]
+        },
+        "roman": {
+          "male": "thàai rûup dâai mǎi khráp",
+          "female": "thàai rûup dâai mǎi khá"
+        }
+      },
+      {
+        "id": "wt-part",
+        "kind": "particle",
+        "en": "You're asking what time the temple closes.",
+        "stem": "ปิดกี่โมง",
+        "stemRoman": "bpìt gìi moong",
+        "particleKind": "question"
+      }
+    ]
+  },
+  {
     "id": "leave",
     "title": "Goodbye",
     "titleTh": "ลาก่อน",
