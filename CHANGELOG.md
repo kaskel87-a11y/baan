@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.34.0 — New listening story: A taxi to Wat Pho
+
+- **Ninth listening story** (Stories, 09), built from the two newest scenes (Taxi, Temple visit). Tom hears a flat two hundred baht and asks for the meter (khǎw hâi bpòet mí-dtôe), takes the expressway because traffic is bad (rót dtìt mâak), pays the fifty-baht toll (dtâwng jàai hâa-sìp bàat), sees one hundred sixty on the meter and says keep the change (mâi dtâwng thawn), then buys a three-hundred-baht ticket (dtǔa nùeng bai), borrows a cloth to cover his knees because he's in shorts (yuem phâa bpìt khào), takes off his shoes (thàwt rawng-tháao) to see the Reclining Buddha (phrá-nawn), and learns it closes at half past six (hòk moong khrûeng). Ten sentences, eight English questions (including 160 vs 180 vs 116 to train your ear for numbers), and the full transcript with romanization and English afterwards.
+
 ## 0.33.0 — Temple visit scene
 
 - **New scene: Temple visit** (before Goodbye), with Aom at the Wat Pho gate. You ask for one ticket (khǎw dtǔa nùeng bai), hear three hundred baht, ask if you can take photos (thàai rûup dâai mǎi), hear to take off your shoes before going inside (thàwt rawng-tháao gàwn khâo bpai khâang-nai), ask if shorts are okay (sài gaang-geeng khǎa-sân dâai mǎi), hear that you have to cover your knees and can borrow a cloth over there (dtâwng bpìt khào, yuem phâa dâai thîi-nân), ask where the Reclining Buddha is (phrá-nawn yùu thîi-nǎi), hear go straight, it's on the left (dtrong bpai, yùu thaang sáai), and ask what time it closes (bpìt gìi moong): half past six (hòk moong khrûeng). 7 new words (dtǔa, thàai rûup, thàwt, rawng-tháao, khào, yuem, bpìt), 5 drills including dtǔa (ticket) vs dtua (counter word), and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.
