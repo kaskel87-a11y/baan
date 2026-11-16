@@ -2,7 +2,7 @@ import { SCENES } from "../data/scenes";
 import { advanceToday, dayKey, liveStreak, startToday, useStore } from "../lib/store";
 import { navigate } from "../lib/router";
 import { activeToday, planToday, stepLabel, stepMinutes } from "../lib/today";
-import { Button, NoVoiceNotice, PageHeader } from "../components/ui";
+import { AdultMark, Button, NoVoiceNotice, PageHeader } from "../components/ui";
 import { Review } from "./Review";
 import { PairTrainer } from "./Tones";
 import { HearDrill } from "./Numbers";
@@ -81,6 +81,7 @@ function SceneStep({ id, replay }: { id: string; replay: boolean }) {
   return (
     <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
       <p className="text-sm text-muted">{replay ? "Your weakest scene, once more" : "Next scene"}</p>
+      {sc.adult ? <AdultMark /> : null}
       <h2 className="thai text-3xl" lang="th">{sc.titleTh}</h2>
       <p className="font-display text-xl">{sc.title}</p>
       <p className="text-sm text-muted">{sc.blurb}</p>

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.37.0 — Swear words (know them, don't say them)
+
+- **New scene before Goodbye:** คำหยาบ, nine insults you may overhear. The deck, the word cards, the lines, and the Review cards carry an 18+ · rude badge and the note "Learn to recognize these. Don't use them." Your lines in the scene are the refusal (mâi phûut), not the insults. The words themselves still enter Review like every other vocab item.
+- **The nine:** ไอ้บ้า (âi bâa), ตอแหล (dtaw-lǎae), กวนตีน (guan dtiin), เย็ดแม่ (yét mâae), เสือก (sùeak), ชิบหาย (chíp hǎai), ประสาท (bprà-sàat), ไอ้เวร (âi ween), ไอ้ควาย (âi khwaai). None of these were already in the app. Romanization follows Baan's own tones: both syllables of ไอ้บ้า fall, แหล rises, เย็ด is high, เสือก is low, ชิบหาย is high then rising.
+- **Two tip cards:** hear them and leave them alone, and âi in front is a rough "you".
+
 ## 0.36.0 — Six small decks: likes, days, massage, body, looks, desserts
 
 - **Likes and dislikes** (before Goodbye), a scale with Ploy: เกลียด (glìat), ไม่ค่อยชอบ (mâi khâwy châwp), เฉยๆ (chǒei-chǒei), ชอบ (already in the app), ชอบมาก (châwp mâak), รักเลย (rák loei).

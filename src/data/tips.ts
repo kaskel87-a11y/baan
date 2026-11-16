@@ -737,6 +737,31 @@ export const TIPS: Tip[] = [
       { ...p("ทับทิมกรอบ", "tháp-thim gràwp"), en: "Water chestnut rubies." },
     ],
   },
+  // Swear words
+  {
+    id: "swears-dont",
+    sceneId: "swears",
+    afterLine: "rd1",
+    kind: "culture",
+    title: "Hear them, then leave them alone",
+    body: "These are words you will overhear when someone is angry. Knowing them keeps you from freezing when one lands. Saying them at a person can start a fight. The safe line is mâi phûut: I won't say it.",
+    examples: [
+      { ...p("ไม่พูด", "mâi phûut"), en: "I won't say it." },
+      { ...p("ได้ยินได้ อย่าพูด", "dâai-yin dâai, yàa phûut"), en: "You can hear it. Don't say it." },
+    ],
+  },
+  {
+    id: "swears-ai",
+    sceneId: "swears",
+    afterLine: "rd3",
+    kind: "grammar",
+    title: "âi in front is a rough you",
+    body: "âi before a noun turns it into an insult aimed at a person. âi bâa is you lunatic. âi ween is you bastard. âi khwaai compares someone to a buffalo, meaning you idiot. Without âi, khwaai is just the animal.",
+    examples: [
+      { ...p("ไอ้บ้า", "âi bâa"), en: "You lunatic." },
+      { ...p("ไอ้ควาย", "âi khwaai"), en: "You idiot." },
+    ],
+  },
   // Goodbye
   {
     id: "leave-mai-pen-rai",

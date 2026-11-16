@@ -1301,6 +1301,78 @@ export const VOCAB: Vocab[] = [
     "roman": "ai-dtim gà-thí",
     "en": "coconut ice cream",
     "hint": "ไอติม is ice cream, mid then mid: ต is an unpuffed dt. กะทิ is coconut cream, low then high, and ท is th. Often scooped into a slice of bread."
+  },
+  {
+    "id": "ai-baa",
+    "thai": "ไอ้บ้า",
+    "roman": "âi bâa",
+    "en": "crazy, you lunatic",
+    "adult": true,
+    "hint": "Falling, falling. ไอ้ is a rough 'you', not a name. บ้า is crazy. Together it is an insult, not a joke you toss at a friend."
+  },
+  {
+    "id": "dtaw-laae",
+    "thai": "ตอแหล",
+    "roman": "dtaw-lǎae",
+    "en": "liar",
+    "adult": true,
+    "hint": "Mid, then rising. ตอ is mid. แหล rises because ห makes ล high class. You are calling someone a liar, and it is rough."
+  },
+  {
+    "id": "guan-dtiin",
+    "thai": "กวนตีน",
+    "roman": "guan dtiin",
+    "en": "smart-ass, annoying on purpose",
+    "adult": true,
+    "hint": "Mid, mid. The words are 'stir' and 'foot'. It means someone is bothering people on purpose. Rude, even when you are only describing them."
+  },
+  {
+    "id": "yet-maae",
+    "thai": "เย็ดแม่",
+    "roman": "yét mâae",
+    "en": "motherfucker (very vulgar)",
+    "adult": true,
+    "hint": "High, then falling. เย็ด is high: low-class ย on a short dead syllable. แม่ falls. This is the strongest insult in the deck. Know it so you recognize a line being crossed. Do not say it."
+  },
+  {
+    "id": "sueak",
+    "thai": "เสือก",
+    "roman": "sùeak",
+    "en": "nosy, mind your own business",
+    "adult": true,
+    "hint": "Low. High-class ส on a long dead syllable (ends in k) is low. The vowel is เอือ, uea. Snapped at someone, it means stop prying."
+  },
+  {
+    "id": "chip-haai",
+    "thai": "ชิบหาย",
+    "roman": "chíp hǎai",
+    "en": "shit, fuck",
+    "adult": true,
+    "hint": "High, then rising. ชิบ is high: low-class ช on a short dead syllable. หาย rises: high-class ห on a live syllable. A shout when something goes wrong, not a word you aim at a person, and still rude."
+  },
+  {
+    "id": "bpra-saat",
+    "thai": "ประสาท",
+    "roman": "bprà-sàat",
+    "en": "you're nuts",
+    "adult": true,
+    "hint": "Low, low. The plain meaning is nerves. Shouted at someone, it means you are being irrational. Milder than the rest of this deck, and still not polite."
+  },
+  {
+    "id": "ai-ween",
+    "thai": "ไอ้เวร",
+    "roman": "âi ween",
+    "en": "you bastard",
+    "adult": true,
+    "hint": "Falling, then mid. เวร on its own can mean karma or a grudge. With ไอ้ in front it is a personal insult."
+  },
+  {
+    "id": "ai-khwaai",
+    "thai": "ไอ้ควาย",
+    "roman": "âi khwaai",
+    "en": "you idiot",
+    "adult": true,
+    "hint": "Falling, then mid. ควาย is a water buffalo, the same word as in the letter name khaw khwaai. Calling a person one means you think they are stupid."
   }
 ];
 

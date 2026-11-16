@@ -5099,6 +5099,215 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "swears",
+    "title": "Swear words (know them, don't say them)",
+    "titleTh": "คำหยาบ",
+    "blurb": "Learn to recognize these. Don't use them.",
+    "adult": true,
+    "vocab": [
+      "ai-baa",
+      "dtaw-laae",
+      "guan-dtiin",
+      "yet-maae",
+      "sueak",
+      "chip-haai",
+      "bpra-saat",
+      "ai-ween",
+      "ai-khwaai"
+    ],
+    "lines": [
+      {
+        "id": "rd1",
+        "who": "ploy",
+        "en": "You will hear these. Don't say them.",
+        "thai": "ได้ยินได้ อย่าพูดนะคะ",
+        "roman": "dâai-yin dâai, yàa phûut ná khá",
+        "note": "ได้ยินได้ means you are allowed to hear it. อย่าพูด (yàa phûut) is don't say it. That is the whole point of this deck."
+      },
+      {
+        "id": "rd2",
+        "who": "you",
+        "en": "I won't say them.",
+        "thai": {
+          "male": "ไม่พูดครับ",
+          "female": "ไม่พูดค่ะ"
+        },
+        "roman": {
+          "male": "mâi phûut khráp",
+          "female": "mâi phûut khâ"
+        }
+      },
+      {
+        "id": "rd3",
+        "who": "ploy",
+        "en": "Crazy. You lunatic.",
+        "thai": "ไอ้บ้าค่ะ",
+        "roman": "âi bâa khâ",
+        "note": "ไอ้บ้า (âi bâa), both falling. ไอ้ is a rough you. บ้า is crazy. An insult, not a playful nickname."
+      },
+      {
+        "id": "rd4",
+        "who": "ploy",
+        "en": "Liar.",
+        "thai": "ตอแหลค่ะ",
+        "roman": "dtaw-lǎae khâ",
+        "note": "ตอแหล (dtaw-lǎae) calls someone a liar. Mid, then rising."
+      },
+      {
+        "id": "rd5",
+        "who": "ploy",
+        "en": "Annoying on purpose.",
+        "thai": "กวนตีนค่ะ",
+        "roman": "guan dtiin khâ",
+        "note": "กวนตีน (guan dtiin) is literally stirring the feet. It means someone is being a pest on purpose."
+      },
+      {
+        "id": "rd6",
+        "who": "ploy",
+        "en": "This one is very vulgar.",
+        "thai": "เย็ดแม่ค่ะ",
+        "roman": "yét mâae khâ",
+        "note": "เย็ดแม่ (yét mâae) is the strongest thing in this deck. High, then falling. Recognize it. Do not say it."
+      },
+      {
+        "id": "rd7",
+        "who": "you",
+        "en": "I still won't say it.",
+        "thai": {
+          "male": "ไม่พูดครับ",
+          "female": "ไม่พูดค่ะ"
+        },
+        "roman": {
+          "male": "mâi phûut khráp",
+          "female": "mâi phûut khâ"
+        }
+      },
+      {
+        "id": "rd8",
+        "who": "ploy",
+        "en": "Mind your own business.",
+        "thai": "เสือกค่ะ",
+        "roman": "sùeak khâ",
+        "note": "เสือก (sùeak, low) is nosy, snapped at someone who is prying. Mind your own business, and it is rude."
+      },
+      {
+        "id": "rd9",
+        "who": "ploy",
+        "en": "A shout when something goes wrong.",
+        "thai": "ชิบหายค่ะ",
+        "roman": "chíp hǎai khâ",
+        "note": "ชิบหาย (chíp hǎai) is an exclamation, high then rising. It is not aimed at a person the way ไอ้ words are, and it is still rude."
+      },
+      {
+        "id": "rd10",
+        "who": "ploy",
+        "en": "Milder. You're nuts.",
+        "thai": "ประสาทค่ะ",
+        "roman": "bprà-sàat khâ",
+        "note": "ประสาท (bprà-sàat) literally means nerves. As a shout it means you are being irrational. Milder than the rest, and still not polite."
+      },
+      {
+        "id": "rd11",
+        "who": "ploy",
+        "en": "You bastard.",
+        "thai": "ไอ้เวรค่ะ",
+        "roman": "âi ween khâ",
+        "note": "ไอ้เวร (âi ween). เวร can mean a grudge. With ไอ้ it is a personal insult."
+      },
+      {
+        "id": "rd12",
+        "who": "ploy",
+        "en": "You idiot.",
+        "thai": "ไอ้ควายค่ะ",
+        "roman": "âi khwaai khâ",
+        "note": "ไอ้ควาย (âi khwaai). ควาย is a water buffalo. Said of a person, it means you think they are stupid."
+      },
+      {
+        "id": "rd13",
+        "who": "you",
+        "en": "I heard them. I won't use them.",
+        "thai": {
+          "male": "ได้ยินแล้ว ไม่พูดครับ",
+          "female": "ได้ยินแล้ว ไม่พูดค่ะ"
+        },
+        "roman": {
+          "male": "dâai-yin láew, mâi phûut khráp",
+          "female": "dâai-yin láew, mâi phûut khâ"
+        }
+      }
+    ],
+    "drills": [
+      {
+        "id": "rd-l",
+        "kind": "listen",
+        "thai": "เย็ดแม่ค่ะ",
+        "roman": "yét mâae khâ",
+        "en": "This one is very vulgar.",
+        "options": [
+          "This one is very vulgar.",
+          "Liar.",
+          "You idiot.",
+          "Mind your own business."
+        ]
+      },
+      {
+        "id": "rd-r",
+        "kind": "read",
+        "thai": "เสือก",
+        "roman": "sùeak",
+        "en": "nosy, mind your own business",
+        "options": [
+          "nosy, mind your own business",
+          "you're nuts",
+          "you bastard",
+          "smart-ass, annoying on purpose"
+        ]
+      },
+      {
+        "id": "rd-p",
+        "kind": "pick",
+        "en": "“you idiot”",
+        "options": [
+          "ไอ้ควาย",
+          "ไอ้เวร",
+          "ไอ้บ้า",
+          "ตอแหล"
+        ],
+        "answer": "ไอ้ควาย",
+        "roman": "âi khwaai"
+      },
+      {
+        "id": "rd-b",
+        "kind": "build",
+        "en": "I won't say them.",
+        "tiles": [
+          "ไม่",
+          "พูด",
+          "ครับ",
+          "ค่ะ",
+          "ไอ้",
+          "บ้า"
+        ],
+        "answer": {
+          "male": ["ไม่", "พูด", "ครับ"],
+          "female": ["ไม่", "พูด", "ค่ะ"]
+        },
+        "roman": {
+          "male": "mâi phûut khráp",
+          "female": "mâi phûut khâ"
+        }
+      },
+      {
+        "id": "rd-part",
+        "kind": "particle",
+        "en": "You're refusing to say it.",
+        "stem": "ไม่พูด",
+        "stemRoman": "mâi phûut",
+        "particleKind": "statement"
+      }
+    ]
+  },
+  {
     "id": "leave",
     "title": "Goodbye",
     "titleTh": "ลาก่อน",
