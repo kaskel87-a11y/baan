@@ -3917,6 +3917,231 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "everyday",
+    "title": "Everyday words you hear",
+    "titleTh": "คำที่ได้ยินบ่อย",
+    "blurb": "The short phrases friends toss in all day: anything's fine, say that again, really?, just a second, you've got this.",
+    "vocab": [
+      "arai-gor-dai",
+      "chai-bpa",
+      "arai-na",
+      "suay",
+      "naa-rak",
+      "jing-ror",
+      "dai-dai",
+      "bpaep-neung",
+      "mai-pen-rai",
+      "suu-suu"
+    ],
+    "lines": [
+      {
+        "id": "ew1",
+        "who": "ploy",
+        "en": "What do you feel like?",
+        "thai": "อยากได้อะไรคะ",
+        "roman": "yàak dâai à-rai khá",
+        "note": "อยากได้ (yàak dâai) = I'd like, what do you feel like. อะไร (à-rai) = what."
+      },
+      {
+        "id": "ew2",
+        "who": "you",
+        "en": "Anything's fine.",
+        "thai": {
+          "male": "อะไรก็ได้ครับ",
+          "female": "อะไรก็ได้ค่ะ"
+        },
+        "roman": {
+          "male": "à-rai gâw dâai khráp",
+          "female": "à-rai gâw dâai khâ"
+        },
+        "note": "อะไรก็ได้ (à-rai gâw dâai) hands her the choice. A friend who says it has often already got a place in mind."
+      },
+      {
+        "id": "ew3",
+        "who": "ploy",
+        "en": "This café is pretty, right?",
+        "thai": "ร้านนี้สวยใช่ปะคะ",
+        "roman": "ráan níi sǔay châi bpà khá",
+        "note": "สวย (sǔay, rising) = pretty. ใช่ปะ (châi bpà) is the casual right? friends stick on the end. ปะ is low."
+      },
+      {
+        "id": "ew4",
+        "who": "you",
+        "en": "What? Say that again?",
+        "thai": {
+          "male": "อะไรนะครับ",
+          "female": "อะไรนะคะ"
+        },
+        "roman": {
+          "male": "à-rai ná khráp",
+          "female": "à-rai ná khá"
+        },
+        "note": "อะไรนะ (à-rai ná) is for when you didn't catch it. นะ is high. It is not the word for really?"
+      },
+      {
+        "id": "ew5",
+        "who": "ploy",
+        "en": "Pretty. And look, that puppy is so cute.",
+        "thai": "สวยค่ะ ดูหมาตัวนั้นสิ น่ารักมากค่ะ",
+        "roman": "sǔay khâ, duu mǎa dtua nán sì, nâa-rák mâak khâ",
+        "note": "น่ารัก (nâa-rák) = cute, for the puppy. หมา (mǎa, rising) = dog. สวย was the café; น่ารัก is the puppy."
+      },
+      {
+        "id": "ew6",
+        "who": "you",
+        "en": "Really?",
+        "thai": {
+          "male": "จริงหรอครับ",
+          "female": "จริงหรอคะ"
+        },
+        "roman": {
+          "male": "jing rěr khráp",
+          "female": "jing rěr khá"
+        },
+        "note": "จริง (jing, mid) = true. หรอ (rěr, rising) is the short spelling of เหรอ and makes it really?, are you serious?"
+      },
+      {
+        "id": "ew7",
+        "who": "you",
+        "en": "Sure.",
+        "thai": {
+          "male": "ได้ๆครับ",
+          "female": "ได้ๆค่ะ"
+        },
+        "roman": {
+          "male": "dâai-dâai khráp",
+          "female": "dâai-dâai khâ"
+        },
+        "note": "ได้ twice is a quick yes: sure, can do, no problem. One ได้ only means can."
+      },
+      {
+        "id": "ew8",
+        "who": "ploy",
+        "en": "Just a second.",
+        "thai": "แป๊บนึงนะคะ",
+        "roman": "bpáaep nùeng ná khá",
+        "note": "แป๊บนึง (bpáaep nùeng) = just a second. นึง is the casual spelling of หนึ่ง, still low. The wait is often a few minutes."
+      },
+      {
+        "id": "ew9",
+        "who": "you",
+        "en": "No worries.",
+        "thai": {
+          "male": "ไม่เป็นไรครับ",
+          "female": "ไม่เป็นไรค่ะ"
+        },
+        "roman": {
+          "male": "mâi bpen rai khráp",
+          "female": "mâi bpen rai khâ"
+        },
+        "note": "After just a second, or after sorry, ไม่เป็นไร is no worries. After thank you, the same words are you're welcome."
+      },
+      {
+        "id": "ew10",
+        "who": "ploy",
+        "en": "I have an exam tomorrow.",
+        "thai": "พรุ่งนี้มีสอบค่ะ",
+        "roman": "phrûng-níi mii sàwp khâ",
+        "note": "พรุ่งนี้ (phrûng-níi) = tomorrow. สอบ (sàwp, low) = an exam. High-class ส on a long dead syllable is low."
+      },
+      {
+        "id": "ew11",
+        "who": "you",
+        "en": "You've got this.",
+        "thai": {
+          "male": "สู้ๆครับ",
+          "female": "สู้ๆค่ะ"
+        },
+        "roman": {
+          "male": "sûu-sûu khráp",
+          "female": "sûu-sûu khâ"
+        },
+        "note": "สู้ๆ (sûu-sûu, falling falling) cheers her on. ส is high class, and mai tho makes it falling. The polite word still goes at the end."
+      }
+    ],
+    "drills": [
+      {
+        "id": "ew-l",
+        "kind": "listen",
+        "thai": "ร้านนี้สวยใช่ปะคะ",
+        "roman": "ráan níi sǔay châi bpà khá",
+        "en": "This café is pretty, right?",
+        "options": [
+          "This café is pretty, right?",
+          "Anything's fine.",
+          "Just a second.",
+          "You've got this."
+        ]
+      },
+      {
+        "id": "ew-r",
+        "kind": "read",
+        "thai": "น่ารัก",
+        "roman": "nâa-rák",
+        "en": "cute, lovely",
+        "options": [
+          "cute, lovely",
+          "beautiful, pretty",
+          "really? are you serious?",
+          "anything is fine"
+        ]
+      },
+      {
+        "id": "ew-p",
+        "kind": "pick",
+        "en": "“really?”",
+        "options": [
+          "จริงหรอ",
+          "อะไรนะ",
+          "ใช่ปะ",
+          "ได้ๆ"
+        ],
+        "answer": "จริงหรอ",
+        "roman": "jing rěr"
+      },
+      {
+        "id": "ew-b",
+        "kind": "build",
+        "en": "Anything's fine.",
+        "tiles": [
+          "อะไร",
+          "ก็",
+          "ได้",
+          "ครับ",
+          "ค่ะ",
+          "ปะ",
+          "นะ"
+        ],
+        "answer": {
+          "male": [
+            "อะไร",
+            "ก็",
+            "ได้",
+            "ครับ"
+          ],
+          "female": [
+            "อะไร",
+            "ก็",
+            "ได้",
+            "ค่ะ"
+          ]
+        },
+        "roman": {
+          "male": "à-rai gâw dâai khráp",
+          "female": "à-rai gâw dâai khâ"
+        }
+      },
+      {
+        "id": "ew-part",
+        "kind": "particle",
+        "en": "You're cheering someone on.",
+        "stem": "สู้ๆ",
+        "stemRoman": "sûu-sûu",
+        "particleKind": "statement"
+      }
+    ]
+  },
+  {
     "id": "leave",
     "title": "Goodbye",
     "titleTh": "ลาก่อน",

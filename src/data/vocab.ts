@@ -271,7 +271,8 @@ export const VOCAB: Vocab[] = [
     "id": "mai-pen-rai",
     "thai": "ไม่เป็นไร",
     "roman": "mâi bpen rai",
-    "en": "that's all right"
+    "en": "no worries, it's OK, you're welcome",
+    "hint": "Falling, mid, mid. Which one you mean depends on what was just said. After sorry it is no worries, after thanks it is you're welcome, and on its own it is that's fine."
   },
   {
     "id": "laa",
@@ -1006,6 +1007,69 @@ export const VOCAB: Vocab[] = [
     "roman": "bpìt",
     "en": "to close, to cover",
     "hint": "Low. Mid-class ป on a short dead syllable is low. Opposite of เปิด (bpòet) = open."
+  },
+  {
+    "id": "arai-gor-dai",
+    "thai": "อะไรก็ได้",
+    "roman": "à-rai gâw dâai",
+    "en": "anything is fine",
+    "hint": "Low, mid, falling, falling. Hands the choice to the other person. A friend who says it has often already picked something, and is only checking that you will go along."
+  },
+  {
+    "id": "arai-na",
+    "thai": "อะไรนะ",
+    "roman": "à-rai ná",
+    "en": "what? say again?",
+    "hint": "Low, mid, high. Use it when the words went past you and you want them once more. For “are you serious?” the word is จริงหรอ."
+  },
+  {
+    "id": "chai-bpa",
+    "thai": "ใช่ปะ",
+    "roman": "châi bpà",
+    "en": "right? isn't it?",
+    "hint": "Falling, then low. A casual tag stuck on the end of a sentence, the way friends check that you agree. Looser than ใช่ไหม."
+  },
+  {
+    "id": "jing-ror",
+    "thai": "จริงหรอ",
+    "roman": "jing rěr",
+    "en": "really? are you serious?",
+    "hint": "Mid, then rising. จริง is true. หรอ is the short spelling of เหรอ: high-class ห leads ร, the vowel is เ-อ, and a live syllable with no mark rises."
+  },
+  {
+    "id": "dai-dai",
+    "thai": "ได้ๆ",
+    "roman": "dâai-dâai",
+    "en": "sure, can do, no problem",
+    "hint": "Falling, falling. Said twice it is a quick yes: sure, that's easy, go ahead. One ได้ on its own only means can, or to get."
+  },
+  {
+    "id": "naa-rak",
+    "thai": "น่ารัก",
+    "roman": "nâa-rák",
+    "en": "cute, lovely",
+    "hint": "Falling, then high. For a baby, a puppy, or a person you find sweet. สวย is the one for beautiful."
+  },
+  {
+    "id": "suay",
+    "thai": "สวย",
+    "roman": "sǔay",
+    "en": "beautiful, pretty",
+    "hint": "Rising. High-class ส on a live syllable takes a rising tone. For a face, a dress, a view, or a photo you like."
+  },
+  {
+    "id": "bpaep-neung",
+    "thai": "แป๊บนึง",
+    "roman": "bpáaep nùeng",
+    "en": "just a second",
+    "hint": "High, then low. Mid-class ป with mai tri is high, and แ is the long aae of แปด. นึง is the casual spelling of หนึ่ง, and the tone stays low. People say it for a moment, but the wait is often a few minutes."
+  },
+  {
+    "id": "suu-suu",
+    "thai": "สู้ๆ",
+    "roman": "sûu-sûu",
+    "en": "you've got this, keep going",
+    "hint": "Falling, falling. ส is high class, and mai tho on a live syllable makes it falling. Said twice to cheer someone on. ค่ะ or ครับ still goes at the end when you want it polite."
   }
 ];
 
