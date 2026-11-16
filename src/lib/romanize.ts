@@ -155,7 +155,9 @@ function parseOne(w: string, i: number): { syl: ThaiSyllable; next: number } | n
   const liveVowel = long || ["ai", "ao", "am"].includes(vowel);
   const kind: SyllableKind = stop ? (long ? "dead-long" : "dead-short") : fin || liveVowel ? "live" : "dead-short";
   const cls: ConsonantClass = consonantClass(classLetter === "อ" && onset === "y" ? "อ" : classLetter);
-  const tone = toneFromRule(cls, kind, mark) ?? "mid";
+  // ก็ is irregular: mid-class ก plus mai taikhu would come out low, but the word is falling (gâw).
+  let tone = toneFromRule(cls, kind, mark) ?? "mid";
+  if (classLetter === "ก" && sign === "็" && !pre) tone = "falling";
   // app style: long aa + final y is written "aai" (sáai), not "aay"
   const plain = onset + vowel + (vowel === "aa" && fin === "y" ? "i" : fin);
   return { syl: { thai: w.slice(start, j), onset, vowel, long, final: fin, tone, roman: withTone(plain, tone) }, next: j };
@@ -178,6 +180,9 @@ special("สระ", [["s", "a", false, "", "low"]]); // สระผม (wash h
 special("พอแล้ว", [["ph", "aw", true, "", "mid"], ["l", "ae", false, "w", "high"]]);
 special("มิเตอ", [["m", "i", false, "", "high"], ["dt", "oe", true, "", "falling"]]); // loanword (meter), silent ร์
 special("สยาม", [["s", "a", false, "", "low"], ["y", "aa", true, "m", "rising"]]); // ส leads ย: rising
+special("จริง", [["j", "i", false, "ng", "mid"]]); // จร is one syllable; the ร is not its own syllable
+special("หรอ", [["r", "er", true, "", "rising"]]); // casual spelling of เหรอ, same rising เ-อ vowel
+special("นึง", [["n", "ue", false, "ng", "low"]]); // casual spelling of หนึ่ง; same low tone
 
 /** Split one Thai word into syllables. */
 export function syllabify(word: string): ThaiSyllable[] {

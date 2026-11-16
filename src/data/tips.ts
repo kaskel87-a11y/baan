@@ -556,6 +556,36 @@ export const TIPS: Tip[] = [
       { ...p("ห้ามถ่ายรูป", "hâam thàai rûup"), en: "No photos." },
     ],
   },
+  // Everyday words you hear
+  {
+    id: "everyday-chai-bpa",
+    sceneId: "everyday",
+    afterLine: "ew3",
+    kind: "grammar",
+    title: "châi bpà is a casual right?",
+    body: "Friends tack châi bpà onto the end of a sentence to mean right, or isn't it. It is looser than châi mǎi, and you hear it all the time in chat. With someone you just met, châi mǎi is the safer one.",
+    examples: [
+      { ...p("ร้านนี้สวยใช่ปะ", "ráan níi sǔay châi bpà", "question"), en: "This café is pretty, right?" },
+      { ...p("น่ารักใช่ปะ", "nâa-rák châi bpà", "question"), en: "Cute, right?" },
+      { ...p("อร่อยใช่ปะ", "à-ròi châi bpà", "question"), en: "Tasty, right?" },
+    ],
+  },
+  {
+    id: "everyday-bpaep",
+    sceneId: "everyday",
+    afterLine: "ew8",
+    kind: "culture",
+    title: "bpáaep nùeng is not one second",
+    body: "bpáaep nùeng is what people say for just a second. Don't count it out. The way one sec works in English, it often stretches to a few minutes while they find a bag or finish a message.",
+    examples: [
+      { ...p("แป๊บนึงนะ", "bpáaep nùeng ná", "question"), en: "Just a second." },
+      {
+        thai: { male: "ขอโทษนะครับ แป๊บนึง", female: "ขอโทษนะคะ แป๊บนึง" },
+        roman: { male: "khǎw-thôot ná khráp, bpáaep nùeng", female: "khǎw-thôot ná khá, bpáaep nùeng" },
+        en: "Sorry, just a second.",
+      },
+    ],
+  },
   // Goodbye
   {
     id: "leave-mai-pen-rai",
