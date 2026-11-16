@@ -183,6 +183,7 @@ special("สยาม", [["s", "a", false, "", "low"], ["y", "aa", true, "m", "r
 special("จริง", [["j", "i", false, "ng", "mid"]]); // จร is one syllable; the ร is not its own syllable
 special("หรอ", [["r", "er", true, "", "rising"]]); // casual spelling of เหรอ, same rising เ-อ vowel
 special("นึง", [["n", "ue", false, "ng", "low"]]); // casual spelling of หนึ่ง; same low tone
+special("ขนม", [["kh", "a", false, "", "low"], ["n", "o", false, "m", "rising"]]); // irregular: khà-nǒm, not what the spelling suggests
 
 /** Split one Thai word into syllables. */
 export function syllabify(word: string): ThaiSyllable[] {
@@ -192,6 +193,10 @@ export function syllabify(word: string): ThaiSyllable[] {
     const rest = word.slice(word.indexOf("ๆ") + 1);
     const b = syllabify(base);
     return [...b, ...b, ...(rest ? syllabify(rest) : [])];
+  }
+  // ขนม is irregular and the น belongs to the second syllable, even inside ขนมครก.
+  if (word.startsWith("ขนม") && word.length > "ขนม".length) {
+    return [...syllabify("ขนม"), ...syllabify(word.slice("ขนม".length))];
   }
   const w = word.replace(/[ก-ฮ][ิุ]?์/g, "");
   if (SPECIAL[w]) return SPECIAL[w]!;
@@ -228,7 +233,27 @@ function thaiWords(text: string): string[] {
     else if (/^[ก-ฮ]$/.test(w) && w !== "ณ" && out.length && /[ก-๛]$/.test(out[out.length - 1]!)) out[out.length - 1] += w;
     else out.push(w);
   }
-  return out;
+  // ไอติม (ice cream) is often cut as ไอ + ติ + ม…, and the ม sticks to the next word.
+  const fixed: string[] = [];
+  for (let i = 0; i < out.length; i++) {
+    const a = out[i] ?? "";
+    const b = out[i + 1] ?? "";
+    const c = out[i + 2] ?? "";
+    if (a === "ไอ" && b === "ติ" && c.startsWith("ม")) {
+      fixed.push("ไอติม");
+      if (c.length > 1) fixed.push(c.slice(1));
+      i += 2;
+      continue;
+    }
+    // เหรอ is often cut as เห + รอ once another word sits in front of it.
+    if (a === "เห" && b === "รอ") {
+      fixed.push("เหรอ");
+      i += 1;
+      continue;
+    }
+    fixed.push(a);
+  }
+  return fixed;
 }
 
 /** "ฮัดเต้ย" → "hát-dtôei". Non-Thai text passes through unchanged. */

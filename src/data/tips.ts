@@ -586,6 +586,157 @@ export const TIPS: Tip[] = [
       },
     ],
   },
+  // Likes and dislikes
+  {
+    id: "likes-scale",
+    sceneId: "likes",
+    afterLine: "lk1",
+    kind: "grammar",
+    title: "A scale from glìat up to rák loei",
+    body: "These six sit in order. glìat is hate. mâi khâwy châwp is a soft don't really like. chǒei-chǒei is so-so. châwp is like. châwp mâak is like a lot. rák loei is love it. Pick the step you mean instead of only yes and no.",
+    examples: [
+      { ...p("เกลียด", "glìat"), en: "I hate it." },
+      { ...p("เฉยๆ", "chǒei-chǒei"), en: "So-so." },
+      { ...p("รักเลย", "rák loei"), en: "I love it." },
+    ],
+  },
+  {
+    id: "likes-choei",
+    sceneId: "likes",
+    afterLine: "lk4",
+    kind: "culture",
+    title: "chǒei-chǒei keeps it polite",
+    body: "chǒei-chǒei is how you say you are not keen without sounding harsh. It is a shrug, not an insult. Save glìat for when you really mean hate.",
+    examples: [
+      { ...p("เฉยๆ", "chǒei-chǒei"), en: "So-so." },
+      { ...p("ไม่ค่อยชอบ", "mâi khâwy châwp"), en: "I don't really like it." },
+    ],
+  },
+  // Days
+  {
+    id: "days-direction",
+    sceneId: "days",
+    afterLine: "dy1",
+    kind: "grammar",
+    title: "thîi láew looks back, ìik looks ahead",
+    body: "Put thîi láew after a length of time for ago: sǎam wan thîi láew, three days ago. Put ìik in front for from now: ìik sǎam wan, in three days. Today, wan-níi, sits between them.",
+    examples: [
+      { ...p("สามวันที่แล้ว", "sǎam wan thîi láew"), en: "Three days ago." },
+      { ...p("อีกสามวัน", "ìik sǎam wan"), en: "In three days." },
+    ],
+  },
+  {
+    id: "days-pair",
+    sceneId: "days",
+    afterLine: "dy2",
+    kind: "culture",
+    title: "Two back and two ahead are easy to swap",
+    body: "mûea-waan-suuen is the day before yesterday, two back. má-ruuen-níi is the day after tomorrow, two ahead. They are not a pair you can guess from the sound. Learn them as opposites.",
+    examples: [
+      { ...p("เมื่อวานซืน", "mûea-waan-suuen"), en: "The day before yesterday." },
+      { ...p("มะรืนนี้", "má-ruuen-níi"), en: "The day after tomorrow." },
+    ],
+  },
+  // At the massage shop
+  {
+    id: "shop-iik-nit",
+    sceneId: "massage-shop",
+    afterLine: "rs4",
+    kind: "grammar",
+    title: "ìik nít is one notch",
+    body: "ìik nít means a little more of the thing you just named. khǎw bao ìik nít is a bit softer. khǎw raeng ìik nít is a bit harder. It is a small adjustment, not a new request from scratch.",
+    examples: [
+      { ...p("ขอเบาอีกนิด", "khǎw bao ìik nít"), en: "A little softer, please." },
+      { ...p("ขอแรงอีกนิด", "khǎw raeng ìik nít"), en: "A little harder, please." },
+    ],
+  },
+  {
+    id: "shop-mai",
+    sceneId: "massage-shop",
+    afterLine: "rs1",
+    kind: "culture",
+    title: "mǎi is often said high, and written máy",
+    body: "Baan writes the question word as ไหม, mǎi, rising, the same as everywhere else. In a shop you will often hear it high, and see the casual spelling มั้ย, which the letters read as máy. Same job: turn the sentence into a yes-no question. Saying jèp when it hurts is expected, not rude.",
+    examples: [
+      { ...p("เจ็บไหม", "jèp mǎi", "question"), en: "Does it hurt?" },
+      { thai: "เจ็บมั้ย", roman: "jèp máy", en: "Does it hurt? (casual spelling)" },
+    ],
+  },
+  // Body types
+  {
+    id: "body-blunt",
+    sceneId: "body",
+    afterLine: "bt4",
+    kind: "culture",
+    title: "ûan is blunt, ùap is kinder",
+    body: "ûan means fat and it is blunt. People use it about themselves. For someone else, ùap (curvy, soft) is the gentler choice. lâm is stocky, a build word, and phǎwm is simply thin.",
+    examples: [
+      { ...p("อวบ", "ùap"), en: "Curvy." },
+      { ...p("ไม่อ้วน", "mâi ûan"), en: "Not fat." },
+    ],
+  },
+  {
+    id: "body-mii",
+    sceneId: "body",
+    afterLine: "bt2",
+    kind: "grammar",
+    title: "mii plus a noun means has",
+    body: "mii glàm is has muscle, so muscular. The same mii you use for there is. glàm itself is low: mid-class ก with mai ek, and the vowel is the am of ทำ.",
+    examples: [
+      { ...p("มีกล่ำ", "mii glàm"), en: "Muscular." },
+    ],
+  },
+  // Looks
+  {
+    id: "looks-spec",
+    sceneId: "looks",
+    afterLine: "ty1",
+    kind: "grammar",
+    title: "sà-bpèek khun khuue à-rai asks your type",
+    body: "สเปค is spec, borrowed from English, low then low. khun is you, khuue is is, à-rai is what. Together: what's your type? Answer with one describing word.",
+    examples: [
+      { ...p("สเปคคุณคืออะไร", "sà-bpèek khun khuue à-rai", "question"), en: "What's your type?" },
+      { ...p("ดูดี", "duu dii"), en: "Good-looking." },
+    ],
+  },
+  {
+    id: "looks-naa",
+    sceneId: "looks",
+    afterLine: "ty4",
+    kind: "culture",
+    title: "làw is handsome, nâa words fit anyone",
+    body: "làw is the usual word for a handsome man. nâa-dtaa dii, nâa khom, and nâa wǎan describe a face and work for anyone. nâa khom is sharp lines. nâa wǎan is a soft, sweet face, using the same wǎan as sweet.",
+    examples: [
+      { ...p("หล่อ", "làw"), en: "Handsome." },
+      { ...p("หน้าคม", "nâa khom"), en: "Sharp-featured." },
+      { ...p("หน้าหวาน", "nâa wǎan"), en: "Sweet-faced." },
+    ],
+  },
+  // Thai desserts
+  {
+    id: "sweets-point",
+    sceneId: "sweets",
+    afterLine: "sw1",
+    kind: "culture",
+    title: "Point, then name the tray",
+    body: "Dessert stalls set the cups and pans out where you can see them. Name the one you want, or point and add the name. khà-nǒm thûay is the custard cup. khà-nǒm-khrók is the coconut pancake. tháp-thim gràwp is the red chestnut in coconut milk.",
+    examples: [
+      { ...p("ขนมถ้วย", "khà-nǒm thûay"), en: "Coconut custard cups." },
+      { ...p("ขนมครก", "khà-nǒm-khrók"), en: "Coconut pancakes." },
+    ],
+  },
+  {
+    id: "sweets-icecream",
+    sceneId: "sweets",
+    afterLine: "sw4",
+    kind: "grammar",
+    title: "khǎw plus the dessert is the order",
+    body: "khǎw in front is may I have, the same way you order a drink. ai-dtim gà-thí is coconut ice cream. A lot of stalls press the scoop into a slice of bread and hand it over like a sandwich.",
+    examples: [
+      { ...p("ขอไอติมกะทิ", "khǎw ai-dtim gà-thí"), en: "Coconut ice cream, please." },
+      { ...p("ทับทิมกรอบ", "tháp-thim gràwp"), en: "Water chestnut rubies." },
+    ],
+  },
   // Goodbye
   {
     id: "leave-mai-pen-rai",
