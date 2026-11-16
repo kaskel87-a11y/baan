@@ -4142,6 +4142,963 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "likes",
+    "title": "Likes and dislikes",
+    "titleTh": "ชอบไม่ชอบ",
+    "blurb": "A scale you can actually use: hate, don't really like, so-so, like, like a lot, love it.",
+    "vocab": [
+      "gliat",
+      "mai-khawy-chawp",
+      "choei-choei",
+      "chawp",
+      "chawp-maak",
+      "rak-loei"
+    ],
+    "lines": [
+      {
+        "id": "lk1",
+        "who": "ploy",
+        "en": "Do you like this café?",
+        "thai": "ชอบร้านนี้ไหมคะ",
+        "roman": "châwp ráan níi mǎi khá",
+        "note": "ชอบ (châwp, falling) sits in the middle of the scale. ไหม makes it a yes-no question."
+      },
+      {
+        "id": "lk2",
+        "who": "you",
+        "en": "I love it.",
+        "thai": {
+          "male": "รักเลยครับ",
+          "female": "รักเลยค่ะ"
+        },
+        "roman": {
+          "male": "rák loei khráp",
+          "female": "rák loei khâ"
+        },
+        "note": "รักเลย (rák loei) is the top. เลย here means you really mean it."
+      },
+      {
+        "id": "lk3",
+        "who": "ploy",
+        "en": "And the coffee?",
+        "thai": "กาแฟล่ะคะ",
+        "roman": "gaa-faae lâ khá",
+        "note": "ล่ะ (lâ, falling) is 'and what about'. She is moving to the next thing."
+      },
+      {
+        "id": "lk4",
+        "who": "you",
+        "en": "So-so.",
+        "thai": {
+          "male": "เฉยๆครับ",
+          "female": "เฉยๆค่ะ"
+        },
+        "roman": {
+          "male": "chǒei-chǒei khráp",
+          "female": "chǒei-chǒei khâ"
+        },
+        "note": "เฉยๆ (chǒei-chǒei, rising rising) is the neutral step. Not a compliment, not a complaint."
+      },
+      {
+        "id": "lk5",
+        "who": "ploy",
+        "en": "You don't really like it?",
+        "thai": "ไม่ค่อยชอบเหรอคะ",
+        "roman": "mâi khâwy châwp rěr khá",
+        "note": "ไม่ค่อยชอบ (mâi khâwy châwp) is a soft no. All three syllables fall."
+      },
+      {
+        "id": "lk6",
+        "who": "you",
+        "en": "I like tea a lot.",
+        "thai": {
+          "male": "ชอบชามากครับ",
+          "female": "ชอบชามากค่ะ"
+        },
+        "roman": {
+          "male": "châwp chaa mâak khráp",
+          "female": "châwp chaa mâak khâ"
+        },
+        "note": "ชอบมาก (châwp mâak) is one step up from plain ชอบ. ชา (chaa) is tea."
+      },
+      {
+        "id": "lk7",
+        "who": "you",
+        "en": "The sweet one, I hate.",
+        "thai": {
+          "male": "อันหวานเกลียดครับ",
+          "female": "อันหวานเกลียดค่ะ"
+        },
+        "roman": {
+          "male": "an wǎan glìat khráp",
+          "female": "an wǎan glìat khâ"
+        },
+        "note": "เกลียด (glìat, low) is the bottom of the scale. Stronger than ไม่ค่อยชอบ."
+      }
+    ],
+    "drills": [
+      {
+        "id": "lk-l",
+        "kind": "listen",
+        "thai": "ไม่ค่อยชอบเหรอคะ",
+        "roman": "mâi khâwy châwp rěr khá",
+        "en": "You don't really like it?",
+        "options": [
+          "You don't really like it?",
+          "I love it.",
+          "So-so.",
+          "The sweet one, I hate."
+        ]
+      },
+      {
+        "id": "lk-r",
+        "kind": "read",
+        "thai": "เกลียด",
+        "roman": "glìat",
+        "en": "to hate",
+        "options": [
+          "to hate",
+          "so-so",
+          "like a lot",
+          "love it"
+        ]
+      },
+      {
+        "id": "lk-p",
+        "kind": "pick",
+        "en": "“so-so”",
+        "options": [
+          "เฉยๆ",
+          "เกลียด",
+          "ชอบมาก",
+          "รักเลย"
+        ],
+        "answer": "เฉยๆ",
+        "roman": "chǒei-chǒei"
+      },
+      {
+        "id": "lk-b",
+        "kind": "build",
+        "en": "I love it.",
+        "tiles": [
+          "รัก",
+          "เลย",
+          "ครับ",
+          "ค่ะ",
+          "ไม่",
+          "ชอบ"
+        ],
+        "answer": {
+          "male": ["รัก", "เลย", "ครับ"],
+          "female": ["รัก", "เลย", "ค่ะ"]
+        },
+        "roman": {
+          "male": "rák loei khráp",
+          "female": "rák loei khâ"
+        }
+      },
+      {
+        "id": "lk-part",
+        "kind": "particle",
+        "en": "You're saying you like it a lot.",
+        "stem": "ชอบมาก",
+        "stemRoman": "châwp mâak",
+        "particleKind": "statement"
+      }
+    ]
+  },
+  {
+    "id": "days",
+    "title": "Days",
+    "titleTh": "วันไหน",
+    "blurb": "Seven stops in a row, from three days back to three days ahead. Today sits in the middle.",
+    "vocab": [
+      "saam-wan-thii-laew",
+      "meua-waan-suuen",
+      "meua-waan",
+      "today",
+      "phrung-nii",
+      "ma-ruuen-nii",
+      "iik-saam-wan"
+    ],
+    "lines": [
+      {
+        "id": "dy1",
+        "who": "you",
+        "en": "I got here three days ago.",
+        "thai": {
+          "male": "มาสามวันที่แล้วครับ",
+          "female": "มาสามวันที่แล้วค่ะ"
+        },
+        "roman": {
+          "male": "maa sǎam wan thîi láew khráp",
+          "female": "maa sǎam wan thîi láew khâ"
+        },
+        "note": "สามวันที่แล้ว is three back. ที่แล้ว after a length of time means ago."
+      },
+      {
+        "id": "dy2",
+        "who": "dao",
+        "en": "The day before yesterday?",
+        "thai": "เมื่อวานซืนเหรอคะ",
+        "roman": "mûea-waan-suuen rěr khá",
+        "note": "เมื่อวานซืน (mûea-waan-suuen) is two back. Don't swap it with มะรืนนี้, which is two ahead."
+      },
+      {
+        "id": "dy3",
+        "who": "you",
+        "en": "Yesterday I went to the temple.",
+        "thai": {
+          "male": "เมื่อวานไปวัดครับ",
+          "female": "เมื่อวานไปวัดค่ะ"
+        },
+        "roman": {
+          "male": "mûea-waan bpai wát khráp",
+          "female": "mûea-waan bpai wát khâ"
+        },
+        "note": "เมื่อวาน (mûea-waan) is one back. วัด (wát) is a temple."
+      },
+      {
+        "id": "dy4",
+        "who": "dao",
+        "en": "And today?",
+        "thai": "แล้ววันนี้ล่ะคะ",
+        "roman": "láew wan-níi lâ khá",
+        "note": "วันนี้ (wan-níi) is the middle of the line, the day you are in."
+      },
+      {
+        "id": "dy5",
+        "who": "you",
+        "en": "Tomorrow I go out.",
+        "thai": {
+          "male": "พรุ่งนี้ไปครับ",
+          "female": "พรุ่งนี้ไปค่ะ"
+        },
+        "roman": {
+          "male": "phrûng-níi bpai khráp",
+          "female": "phrûng-níi bpai khâ"
+        },
+        "note": "พรุ่งนี้ (phrûng-níi) is one ahead. พ is ph, and the first syllable falls."
+      },
+      {
+        "id": "dy6",
+        "who": "dao",
+        "en": "And the day after tomorrow?",
+        "thai": "มะรืนนี้ล่ะคะ",
+        "roman": "má-ruuen-níi lâ khá",
+        "note": "มะรืนนี้ (má-ruuen-níi) is two ahead. High, mid, high."
+      },
+      {
+        "id": "dy7",
+        "who": "you",
+        "en": "In three days I leave.",
+        "thai": {
+          "male": "อีกสามวันจะไปครับ",
+          "female": "อีกสามวันจะไปค่ะ"
+        },
+        "roman": {
+          "male": "ìik sǎam wan jà bpai khráp",
+          "female": "ìik sǎam wan jà bpai khâ"
+        },
+        "note": "อีกสามวัน is three ahead. อีก points forward. จะ (jà, low) marks a plan."
+      }
+    ],
+    "drills": [
+      {
+        "id": "dy-l",
+        "kind": "listen",
+        "thai": "เมื่อวานซืนเหรอคะ",
+        "roman": "mûea-waan-suuen rěr khá",
+        "en": "The day before yesterday?",
+        "options": [
+          "The day before yesterday?",
+          "And the day after tomorrow?",
+          "And today?",
+          "In three days I leave."
+        ]
+      },
+      {
+        "id": "dy-r",
+        "kind": "read",
+        "thai": "มะรืนนี้",
+        "roman": "má-ruuen-níi",
+        "en": "the day after tomorrow",
+        "options": [
+          "the day after tomorrow",
+          "the day before yesterday",
+          "yesterday",
+          "in 3 days"
+        ]
+      },
+      {
+        "id": "dy-p",
+        "kind": "pick",
+        "en": "“yesterday”",
+        "options": [
+          "เมื่อวาน",
+          "มะรืนนี้",
+          "วันนี้",
+          "พรุ่งนี้"
+        ],
+        "answer": "เมื่อวาน",
+        "roman": "mûea-waan"
+      },
+      {
+        "id": "dy-b",
+        "kind": "build",
+        "en": "In three days I leave.",
+        "tiles": [
+          "อีก",
+          "สาม",
+          "วัน",
+          "จะ",
+          "ไป",
+          "ครับ",
+          "ค่ะ",
+          "แล้ว"
+        ],
+        "answer": {
+          "male": ["อีก", "สาม", "วัน", "จะ", "ไป", "ครับ"],
+          "female": ["อีก", "สาม", "วัน", "จะ", "ไป", "ค่ะ"]
+        },
+        "roman": {
+          "male": "ìik sǎam wan jà bpai khráp",
+          "female": "ìik sǎam wan jà bpai khâ"
+        }
+      },
+      {
+        "id": "dy-part",
+        "kind": "particle",
+        "en": "You're saying you got here three days ago.",
+        "stem": "มาสามวันที่แล้ว",
+        "stemRoman": "maa sǎam wan thîi láew",
+        "particleKind": "statement"
+      }
+    ]
+  },
+  {
+    "id": "massage-shop",
+    "title": "At the massage shop",
+    "titleTh": "ที่ร้านนวด",
+    "blurb": "Ask for harder or softer, point to the spot, and get a blanket or a pillow.",
+    "vocab": [
+      "khaw-raeng-raeng",
+      "bao-bao",
+      "khaw-bao-iik-nit",
+      "khaw-raeng-iik-nit",
+      "dtrong-nii",
+      "khaw-phaa-hom",
+      "khaw-mawn",
+      "jep-mai",
+      "jep"
+    ],
+    "lines": [
+      {
+        "id": "rs1",
+        "who": "ning",
+        "en": "Does it hurt?",
+        "thai": "เจ็บไหมคะ",
+        "roman": "jèp mǎi khá",
+        "note": "เจ็บไหม (jèp mǎi) is her check-in. In speech the ไหม is often high, and written มั้ย."
+      },
+      {
+        "id": "rs2",
+        "who": "you",
+        "en": "Right here. It hurts.",
+        "thai": {
+          "male": "ตรงนี้ครับ เจ็บครับ",
+          "female": "ตรงนี้ค่ะ เจ็บค่ะ"
+        },
+        "roman": {
+          "male": "dtrong-níi khráp, jèp khráp",
+          "female": "dtrong-níi khâ, jèp khâ"
+        },
+        "note": "ตรงนี้ (dtrong-níi) plus a point. เจ็บ (jèp, low) is the word you already have for it hurts."
+      },
+      {
+        "id": "rs3",
+        "who": "you",
+        "en": "Gently, please.",
+        "thai": {
+          "male": "เบาๆครับ",
+          "female": "เบาๆค่ะ"
+        },
+        "roman": {
+          "male": "bao-bao khráp",
+          "female": "bao-bao khâ"
+        },
+        "note": "เบาๆ (bao-bao) is the gentle setting. Twice, mid mid."
+      },
+      {
+        "id": "rs4",
+        "who": "you",
+        "en": "A little softer, please.",
+        "thai": {
+          "male": "ขอเบาอีกนิดครับ",
+          "female": "ขอเบาอีกนิดค่ะ"
+        },
+        "roman": {
+          "male": "khǎw bao ìik nít khráp",
+          "female": "khǎw bao ìik nít khâ"
+        },
+        "note": "อีกนิด (ìik nít) is one notch, not a new massage. นิด is high."
+      },
+      {
+        "id": "rs5",
+        "who": "you",
+        "en": "Harder, please.",
+        "thai": {
+          "male": "ขอแรงๆครับ",
+          "female": "ขอแรงๆค่ะ"
+        },
+        "roman": {
+          "male": "khǎw raeng-raeng khráp",
+          "female": "khǎw raeng-raeng khâ"
+        },
+        "note": "ขอแรงๆ asks for more pressure. แรง is the same mid-tone word as on the earlier massage card."
+      },
+      {
+        "id": "rs6",
+        "who": "you",
+        "en": "A little harder, please.",
+        "thai": {
+          "male": "ขอแรงอีกนิดครับ",
+          "female": "ขอแรงอีกนิดค่ะ"
+        },
+        "roman": {
+          "male": "khǎw raeng ìik nít khráp",
+          "female": "khǎw raeng ìik nít khâ"
+        },
+        "note": "Same อีกนิด frame, with แรง instead of เบา. A small step up."
+      },
+      {
+        "id": "rs7",
+        "who": "you",
+        "en": "Could I have an extra blanket?",
+        "thai": {
+          "male": "ขอผ้าห่มเพิ่มได้ไหมครับ",
+          "female": "ขอผ้าห่มเพิ่มได้ไหมคะ"
+        },
+        "roman": {
+          "male": "khǎw phâa-hòm phêrm dâai mǎi khráp",
+          "female": "khǎw phâa-hòm phêrm dâai mǎi khá"
+        },
+        "note": "ผ้าห่ม (phâa-hòm) is a blanket. เพิ่ม (phêrm, falling) means extra, on top of what you have."
+      },
+      {
+        "id": "rs8",
+        "who": "ning",
+        "en": "Yes. A pillow too?",
+        "thai": "ได้ค่ะ หมอนด้วยไหมคะ",
+        "roman": "dâai khâ, mǎwn dûay mǎi khá",
+        "note": "หมอน (mǎwn, rising) is a pillow. ด้วย (dûay) is too."
+      },
+      {
+        "id": "rs9",
+        "who": "you",
+        "en": "Could I have an extra pillow?",
+        "thai": {
+          "male": "ขอหมอนเพิ่มได้ไหมครับ",
+          "female": "ขอหมอนเพิ่มได้ไหมคะ"
+        },
+        "roman": {
+          "male": "khǎw mǎwn phêrm dâai mǎi khráp",
+          "female": "khǎw mǎwn phêrm dâai mǎi khá"
+        },
+        "note": "Same request shape as the blanket. Swap ผ้าห่ม for หมอน."
+      }
+    ],
+    "drills": [
+      {
+        "id": "rs-l",
+        "kind": "listen",
+        "thai": "ขอผ้าห่มเพิ่มได้ไหมคะ",
+        "roman": "khǎw phâa-hòm phêrm dâai mǎi khá",
+        "en": "Could I have an extra blanket?",
+        "options": [
+          "Could I have an extra blanket?",
+          "Could I have an extra pillow?",
+          "A little softer, please.",
+          "Does it hurt?"
+        ]
+      },
+      {
+        "id": "rs-r",
+        "kind": "read",
+        "thai": "เบาๆ",
+        "roman": "bao-bao",
+        "en": "gently",
+        "options": [
+          "gently",
+          "harder, please",
+          "right here",
+          "does it hurt?"
+        ]
+      },
+      {
+        "id": "rs-p",
+        "kind": "pick",
+        "en": "“right here”",
+        "options": [
+          "ตรงนี้",
+          "เบาๆ",
+          "เจ็บไหม",
+          "ขอแรงๆ"
+        ],
+        "answer": "ตรงนี้",
+        "roman": "dtrong-níi"
+      },
+      {
+        "id": "rs-b",
+        "kind": "build",
+        "en": "A little harder, please.",
+        "tiles": [
+          "ขอ",
+          "แรง",
+          "อีก",
+          "นิด",
+          "ครับ",
+          "ค่ะ",
+          "เบา",
+          "ไหม"
+        ],
+        "answer": {
+          "male": ["ขอ", "แรง", "อีก", "นิด", "ครับ"],
+          "female": ["ขอ", "แรง", "อีก", "นิด", "ค่ะ"]
+        },
+        "roman": {
+          "male": "khǎw raeng ìik nít khráp",
+          "female": "khǎw raeng ìik nít khâ"
+        }
+      },
+      {
+        "id": "rs-part",
+        "kind": "particle",
+        "en": "You're asking for an extra pillow.",
+        "stem": "ขอหมอนเพิ่มได้ไหม",
+        "stemRoman": "khǎw mǎwn phêrm dâai mǎi",
+        "particleKind": "question"
+      }
+    ]
+  },
+  {
+    "id": "body",
+    "title": "Body types",
+    "titleTh": "รูปร่าง",
+    "blurb": "Thin, curvy, stocky, muscular, and the blunt word for fat.",
+    "vocab": [
+      "phawm",
+      "uap",
+      "uan",
+      "lam",
+      "mii-glam"
+    ],
+    "lines": [
+      {
+        "id": "bt1",
+        "who": "kaew",
+        "en": "Thin, or a bit curvy?",
+        "thai": "ผอมหรืออวบคะ",
+        "roman": "phǎwm rǔue ùap khá",
+        "note": "ผอม (phǎwm, rising) is thin. อวบ (ùap, low) is curvy, the gentler word."
+      },
+      {
+        "id": "bt2",
+        "who": "you",
+        "en": "Muscular.",
+        "thai": {
+          "male": "มีกล่ำครับ",
+          "female": "มีกล่ำค่ะ"
+        },
+        "roman": {
+          "male": "mii glàm khráp",
+          "female": "mii glàm khâ"
+        },
+        "note": "มีกล่ำ (mii glàm) is has muscle. The second syllable is low, not falling."
+      },
+      {
+        "id": "bt3",
+        "who": "kaew",
+        "en": "This cut is for a stocky build.",
+        "thai": "ตัวนี้ล่ำค่ะ",
+        "roman": "dtua níi lâm khâ",
+        "note": "ล่ำ (lâm, falling) is stocky and solid. A build word, not a jab."
+      },
+      {
+        "id": "bt4",
+        "who": "you",
+        "en": "Not fat.",
+        "thai": {
+          "male": "ไม่อ้วนครับ",
+          "female": "ไม่อ้วนค่ะ"
+        },
+        "roman": {
+          "male": "mâi ûan khráp",
+          "female": "mâi ûan khâ"
+        },
+        "note": "อ้วน (ûan, falling) is blunt. Fine about yourself. For someone else, reach for อวบ."
+      },
+      {
+        "id": "bt5",
+        "who": "kaew",
+        "en": "Curvy, then.",
+        "thai": "อวบค่ะ",
+        "roman": "ùap khâ",
+        "note": "She picks the kinder word on purpose."
+      }
+    ],
+    "drills": [
+      {
+        "id": "bt-l",
+        "kind": "listen",
+        "thai": "ผอมหรืออวบคะ",
+        "roman": "phǎwm rǔue ùap khá",
+        "en": "Thin, or a bit curvy?",
+        "options": [
+          "Thin, or a bit curvy?",
+          "This cut is for a stocky build.",
+          "Muscular.",
+          "Not fat."
+        ]
+      },
+      {
+        "id": "bt-r",
+        "kind": "read",
+        "thai": "อ้วน",
+        "roman": "ûan",
+        "en": "fat",
+        "options": [
+          "fat",
+          "thin",
+          "stocky, bulky",
+          "muscular"
+        ]
+      },
+      {
+        "id": "bt-p",
+        "kind": "pick",
+        "en": "“muscular”",
+        "options": [
+          "มีกล่ำ",
+          "ผอม",
+          "อวบ",
+          "ล่ำ"
+        ],
+        "answer": "มีกล่ำ",
+        "roman": "mii glàm"
+      },
+      {
+        "id": "bt-b",
+        "kind": "build",
+        "en": "Not fat.",
+        "tiles": [
+          "ไม่",
+          "อ้วน",
+          "ครับ",
+          "ค่ะ",
+          "ผอม",
+          "อวบ"
+        ],
+        "answer": {
+          "male": ["ไม่", "อ้วน", "ครับ"],
+          "female": ["ไม่", "อ้วน", "ค่ะ"]
+        },
+        "roman": {
+          "male": "mâi ûan khráp",
+          "female": "mâi ûan khâ"
+        }
+      },
+      {
+        "id": "bt-part",
+        "kind": "particle",
+        "en": "You're saying muscular.",
+        "stem": "มีกล่ำ",
+        "stemRoman": "mii glàm",
+        "particleKind": "statement"
+      }
+    ]
+  },
+  {
+    "id": "looks",
+    "title": "Looks and your type",
+    "titleTh": "หน้าตา",
+    "blurb": "Handsome, good-looking, attractive, sharp, sweet-faced, and how you ask someone's type.",
+    "vocab": [
+      "sa-bpeek",
+      "law",
+      "duu-dii",
+      "naa-dtaa-dii",
+      "naa-khom",
+      "naa-waan"
+    ],
+    "lines": [
+      {
+        "id": "ty1",
+        "who": "joy",
+        "en": "What's your type?",
+        "thai": "สเปคคุณคืออะไรคะ",
+        "roman": "sà-bpèek khun khuue à-rai khá",
+        "note": "สเปค (sà-bpèek) is spec, borrowed from English. คือ (khuue) is 'is'. คุณ (khun) is you."
+      },
+      {
+        "id": "ty2",
+        "who": "you",
+        "en": "Good-looking.",
+        "thai": {
+          "male": "ดูดีครับ",
+          "female": "ดูดีค่ะ"
+        },
+        "roman": {
+          "male": "duu dii khráp",
+          "female": "duu dii khâ"
+        },
+        "note": "ดูดี (duu dii) is a wide compliment: looks good, put-together."
+      },
+      {
+        "id": "ty3",
+        "who": "joy",
+        "en": "Handsome?",
+        "thai": "หล่อไหมคะ",
+        "roman": "làw mǎi khá",
+        "note": "หล่อ (làw, low) is handsome. The vowel is aw, and ห plus mai ek makes it low."
+      },
+      {
+        "id": "ty4",
+        "who": "you",
+        "en": "Attractive. Sharp-featured.",
+        "thai": {
+          "male": "หน้าตาดี หน้าคมครับ",
+          "female": "หน้าตาดี หน้าคมค่ะ"
+        },
+        "roman": {
+          "male": "nâa-dtaa dii, nâa khom khráp",
+          "female": "nâa-dtaa dii, nâa khom khâ"
+        },
+        "note": "หน้าตาดี is the whole face. หน้าคม (nâa khom) is the cut of the features. คม starts with a puffed kh."
+      },
+      {
+        "id": "ty5",
+        "who": "joy",
+        "en": "Or sweet-faced?",
+        "thai": "หน้าหวานล่ะคะ",
+        "roman": "nâa wǎan lâ khá",
+        "note": "หน้าหวาน (nâa wǎan) uses the same หวาน as sweet. Soft features, not sharp."
+      },
+      {
+        "id": "ty6",
+        "who": "you",
+        "en": "Sweet-faced.",
+        "thai": {
+          "male": "หน้าหวานครับ",
+          "female": "หน้าหวานค่ะ"
+        },
+        "roman": {
+          "male": "nâa wǎan khráp",
+          "female": "nâa wǎan khâ"
+        }
+      }
+    ],
+    "drills": [
+      {
+        "id": "ty-l",
+        "kind": "listen",
+        "thai": "สเปคคุณคืออะไรคะ",
+        "roman": "sà-bpèek khun khuue à-rai khá",
+        "en": "What's your type?",
+        "options": [
+          "What's your type?",
+          "Handsome?",
+          "Or sweet-faced?",
+          "Good-looking."
+        ]
+      },
+      {
+        "id": "ty-r",
+        "kind": "read",
+        "thai": "หล่อ",
+        "roman": "làw",
+        "en": "handsome",
+        "options": [
+          "handsome",
+          "good-looking",
+          "sharp-featured",
+          "sweet-faced"
+        ]
+      },
+      {
+        "id": "ty-p",
+        "kind": "pick",
+        "en": "“sharp-featured”",
+        "options": [
+          "หน้าคม",
+          "หน้าหวาน",
+          "หล่อ",
+          "ดูดี"
+        ],
+        "answer": "หน้าคม",
+        "roman": "nâa khom"
+      },
+      {
+        "id": "ty-b",
+        "kind": "build",
+        "en": "Good-looking.",
+        "tiles": [
+          "ดู",
+          "ดี",
+          "ครับ",
+          "ค่ะ",
+          "หน้า",
+          "หวาน"
+        ],
+        "answer": {
+          "male": ["ดู", "ดี", "ครับ"],
+          "female": ["ดู", "ดี", "ค่ะ"]
+        },
+        "roman": {
+          "male": "duu dii khráp",
+          "female": "duu dii khâ"
+        }
+      },
+      {
+        "id": "ty-part",
+        "kind": "particle",
+        "en": "You're saying sweet-faced.",
+        "stem": "หน้าหวาน",
+        "stemRoman": "nâa wǎan",
+        "particleKind": "statement"
+      }
+    ]
+  },
+  {
+    "id": "sweets",
+    "title": "Thai desserts",
+    "titleTh": "ขนมไทย",
+    "blurb": "Four things you can point at: custard cups, coconut pancakes, chestnut rubies, coconut ice cream.",
+    "vocab": [
+      "khanom-thuay",
+      "khanom-khrok",
+      "thap-thim-krawp",
+      "ai-dtim-gathi"
+    ],
+    "lines": [
+      {
+        "id": "sw1",
+        "who": "pim",
+        "en": "Coconut custard cups?",
+        "thai": "ขนมถ้วยไหมคะ",
+        "roman": "khà-nǒm thûay mǎi khá",
+        "note": "ขนมถ้วย (khà-nǒm thûay) is custard steamed in little cups. ขนม is khà-nǒm, not the tone the spelling suggests."
+      },
+      {
+        "id": "sw2",
+        "who": "you",
+        "en": "And coconut pancakes.",
+        "thai": {
+          "male": "เอาขนมครกด้วยครับ",
+          "female": "เอาขนมครกด้วยค่ะ"
+        },
+        "roman": {
+          "male": "ao khà-nǒm-khrók dûay khráp",
+          "female": "ao khà-nǒm-khrók dûay khâ"
+        },
+        "note": "ขนมครก (khà-nǒm-khrók) is the crisp coconut pancake from a dimpled pan. ครก is high."
+      },
+      {
+        "id": "sw3",
+        "who": "pim",
+        "en": "Water chestnut rubies too?",
+        "thai": "ทับทิมกรอบด้วยไหมคะ",
+        "roman": "tháp-thim gràwp dûay mǎi khá",
+        "note": "ทับทิมกรอบ (tháp-thim gràwp) is red chestnut cubes in coconut milk. กรอบ on its own means crisp."
+      },
+      {
+        "id": "sw4",
+        "who": "you",
+        "en": "Coconut ice cream, please.",
+        "thai": {
+          "male": "ขอไอติมกะทิครับ",
+          "female": "ขอไอติมกะทิค่ะ"
+        },
+        "roman": {
+          "male": "khǎw ai-dtim gà-thí khráp",
+          "female": "khǎw ai-dtim gà-thí khâ"
+        },
+        "note": "ไอติมกะทิ (ai-dtim gà-thí) is coconut ice cream. Stalls often press it into a piece of bread."
+      }
+    ],
+    "drills": [
+      {
+        "id": "sw-l",
+        "kind": "listen",
+        "thai": "ทับทิมกรอบด้วยไหมคะ",
+        "roman": "tháp-thim gràwp dûay mǎi khá",
+        "en": "Water chestnut rubies too?",
+        "options": [
+          "Water chestnut rubies too?",
+          "Coconut custard cups?",
+          "Coconut ice cream, please.",
+          "And coconut pancakes."
+        ]
+      },
+      {
+        "id": "sw-r",
+        "kind": "read",
+        "thai": "ขนมถ้วย",
+        "roman": "khà-nǒm thûay",
+        "en": "coconut custard cups",
+        "options": [
+          "coconut custard cups",
+          "coconut pancakes",
+          "coconut ice cream",
+          "water chestnut rubies in coconut milk"
+        ]
+      },
+      {
+        "id": "sw-p",
+        "kind": "pick",
+        "en": "“coconut pancakes”",
+        "options": [
+          "ขนมครก",
+          "ขนมถ้วย",
+          "ไอติมกะทิ",
+          "ทับทิมกรอบ"
+        ],
+        "answer": "ขนมครก",
+        "roman": "khà-nǒm-khrók"
+      },
+      {
+        "id": "sw-b",
+        "kind": "build",
+        "en": "Coconut ice cream, please.",
+        "tiles": [
+          "ขอ",
+          "ไอติม",
+          "กะทิ",
+          "ครับ",
+          "ค่ะ",
+          "ถ้วย",
+          "ครก"
+        ],
+        "answer": {
+          "male": ["ขอ", "ไอติม", "กะทิ", "ครับ"],
+          "female": ["ขอ", "ไอติม", "กะทิ", "ค่ะ"]
+        },
+        "roman": {
+          "male": "khǎw ai-dtim gà-thí khráp",
+          "female": "khǎw ai-dtim gà-thí khâ"
+        }
+      },
+      {
+        "id": "sw-part",
+        "kind": "particle",
+        "en": "You're asking for coconut pancakes too.",
+        "stem": "เอาขนมครกด้วย",
+        "stemRoman": "ao khà-nǒm-khrók dûay",
+        "particleKind": "statement"
+      }
+    ]
+  },
+  {
     "id": "leave",
     "title": "Goodbye",
     "titleTh": "ลาก่อน",

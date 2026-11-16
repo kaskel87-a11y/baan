@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.36.0 — Six small decks: likes, days, massage, body, looks, desserts
+
+- **Likes and dislikes** (before Goodbye), a scale with Ploy: เกลียด (glìat), ไม่ค่อยชอบ (mâi khâwy châwp), เฉยๆ (chǒei-chǒei), ชอบ (already in the app), ชอบมาก (châwp mâak), รักเลย (rák loei).
+- **Days**, seven stops from three back to three ahead: สามวันที่แล้ว, เมื่อวานซืน (mûea-waan-suuen), เมื่อวาน, วันนี้ and พรุ่งนี้ (both already in the app), มะรืนนี้ (má-ruuen-níi), อีกสามวัน (ìik sǎam wan).
+- **At the massage shop**, with Ning: harder, gently, a notch softer or harder, right here, an extra blanket, an extra pillow, does it hurt, and เจ็บ which the app already had. A tip on มั้ย, the casual high-tone spelling of ไหม.
+- **Body types**, with Kaew: ผอม (phǎwm), อวบ (ùap), อ้วน (ûan, and it is blunt), ล่ำ (lâm), มีกล้าม (mii glàm, low, not falling).
+- **Looks and your type**, with Joy: สเปคคุณคืออะไร (sà-bpèek khun khuue à-rai), หล่อ (làw), ดูดี, หน้าตาดี, หน้าคม (nâa khom), หน้าหวาน (nâa wǎan). สวย and น่ารัก stay in Everyday words and are not repeated.
+- **Thai desserts**, with Pim: ขนมถ้วย (khà-nǒm thûay), ขนมครก (khà-nǒm-khrók), ทับทิมกรอบ (tháp-thim gràwp), ไอติมกะทิ (ai-dtim gà-thí).
+- **Romanizer:** ขนม is the irregular khà-nǒm even inside ขนมครก. ไอติม stays one word when a stall name follows it. เหรอ stays rěr when another word sits in front of it. Each deck feeds Review, Role-play, Listen & respond and Shadowing like every scene.
+
 ## 0.35.0 — Everyday words you hear
 
 - **New scene: Everyday words you hear** (before Goodbye), with Ploy. She asks what you feel like and you say anything's fine (à-rai gâw dâai), she calls the café pretty with the casual tag châi bpà, you ask her to say it again (à-rai ná), she points out a cute puppy (nâa-rák) after calling the place beautiful (sǔay), you react with really? (jing rěr) and sure (dâai-dâai), she says just a second (bpáaep nùeng), you answer no worries (mâi bpen rai), and you send her into tomorrow's exam with sûu-sûu. 9 new phrases plus the phrase the app already had. 5 drills, and it feeds Review, Role-play, Listen & respond and Shadowing like every scene.

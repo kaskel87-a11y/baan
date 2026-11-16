@@ -1070,6 +1070,237 @@ export const VOCAB: Vocab[] = [
     "roman": "sûu-sûu",
     "en": "you've got this, keep going",
     "hint": "Falling, falling. ส is high class, and mai tho on a live syllable makes it falling. Said twice to cheer someone on. ค่ะ or ครับ still goes at the end when you want it polite."
+  },
+  {
+    "id": "gliat",
+    "thai": "เกลียด",
+    "roman": "glìat",
+    "en": "to hate",
+    "hint": "Low. Mid-class ก on a long dead syllable (ends in t) is low. The vowel is ia, the same shape as the end of ออสเตรเลีย. This is the bottom of the like scale, stronger than just not liking something."
+  },
+  {
+    "id": "mai-khawy-chawp",
+    "thai": "ไม่ค่อยชอบ",
+    "roman": "mâi khâwy châwp",
+    "en": "don't really like",
+    "hint": "Falling, falling, falling. ค่อย is khâwy, the same awy as น้อย. Put it between ไม่ and ชอบ when you want to soften a no without saying you hate it."
+  },
+  {
+    "id": "choei-choei",
+    "thai": "เฉยๆ",
+    "roman": "chǒei-chǒei",
+    "en": "so-so",
+    "hint": "Rising, rising. ฉ is high class, and a live syllable with no mark rises. Said twice it means you could take it or leave it. A polite middle step, not a compliment."
+  },
+  {
+    "id": "chawp-maak",
+    "thai": "ชอบมาก",
+    "roman": "châwp mâak",
+    "en": "like a lot",
+    "hint": "Falling, falling. ชอบ on its own is already 'like'. มาก on the end is how you turn it up. Still a step below รักเลย."
+  },
+  {
+    "id": "rak-loei",
+    "thai": "รักเลย",
+    "roman": "rák loei",
+    "en": "love it",
+    "hint": "High, then mid. รัก is high because low-class ร on a short dead syllable is high. เลย on the end means you mean it, the top of the scale."
+  },
+  {
+    "id": "saam-wan-thii-laew",
+    "thai": "สามวันที่แล้ว",
+    "roman": "sǎam wan thîi láew",
+    "en": "3 days ago",
+    "hint": "Three back from today. ที่แล้ว after a time word means ago. ที่ is thîi, falling, the same ที่ as ที่นี่."
+  },
+  {
+    "id": "meua-waan-suuen",
+    "thai": "เมื่อวานซืน",
+    "roman": "mûea-waan-suuen",
+    "en": "the day before yesterday",
+    "hint": "Two back. เมื่อ is mûea, falling, the same syllable as in เมื่อไหร่. ซืน is suuen, mid: the vowel is uue, not a short eu."
+  },
+  {
+    "id": "meua-waan",
+    "thai": "เมื่อวาน",
+    "roman": "mûea-waan",
+    "en": "yesterday",
+    "hint": "One back. Falling, then mid. Drop ซืน and you land on yesterday."
+  },
+  {
+    "id": "ma-ruuen-nii",
+    "thai": "มะรืนนี้",
+    "roman": "má-ruuen-níi",
+    "en": "the day after tomorrow",
+    "hint": "Two ahead. มะ is high (low-class ม on a short dead syllable). รืน is ruuen, mid, with the long uue. นี้ is high, as in วันนี้."
+  },
+  {
+    "id": "iik-saam-wan",
+    "thai": "อีกสามวัน",
+    "roman": "ìik sǎam wan",
+    "en": "in 3 days",
+    "hint": "Three ahead. อีก is ìik, low: mid-class อ on a long dead syllable (ends in k). อีก in front of a time word means from now, the opposite of ที่แล้ว."
+  },
+  {
+    "id": "khaw-raeng-raeng",
+    "thai": "ขอแรงๆ",
+    "roman": "khǎw raeng-raeng",
+    "en": "harder, please",
+    "hint": "Rising, then mid, mid. ขอ is how you ask. แรง twice means more pressure. The single word แรง is already on the massage card."
+  },
+  {
+    "id": "bao-bao",
+    "thai": "เบาๆ",
+    "roman": "bao-bao",
+    "en": "gently",
+    "hint": "Mid, mid. Saying เบา twice is the gentle setting. One เบา is the describing word; the double is what you actually say to the therapist."
+  },
+  {
+    "id": "khaw-bao-iik-nit",
+    "thai": "ขอเบาอีกนิด",
+    "roman": "khǎw bao ìik nít",
+    "en": "a little softer, please",
+    "hint": "A notch down from whatever they are doing now. อีกนิด is 'a bit more'. นิด is high: low-class น on a short dead syllable."
+  },
+  {
+    "id": "khaw-raeng-iik-nit",
+    "thai": "ขอแรงอีกนิด",
+    "roman": "khǎw raeng ìik nít",
+    "en": "a little harder, please",
+    "hint": "A notch up, not a whole new setting. Same อีกนิด as the softer request, with แรง in the middle."
+  },
+  {
+    "id": "dtrong-nii",
+    "thai": "ตรงนี้",
+    "roman": "dtrong-níi",
+    "en": "right here",
+    "hint": "Mid, then high. Point as you say it. นี้ is the high 'this', not the falling นี่ of ที่นี่."
+  },
+  {
+    "id": "khaw-phaa-hom",
+    "thai": "ขอผ้าห่มเพิ่มได้ไหม",
+    "roman": "khǎw phâa-hòm phêrm dâai mǎi",
+    "en": "could I have an extra blanket?",
+    "hint": "ผ้าห่ม is the blanket, falling then low. เพิ่ม is phêrm, falling: low-class พ with mai ek. Shops are cold. Asking is normal."
+  },
+  {
+    "id": "khaw-mawn",
+    "thai": "ขอหมอนเพิ่มได้ไหม",
+    "roman": "khǎw mǎwn phêrm dâai mǎi",
+    "en": "could I have an extra pillow?",
+    "hint": "หมอน is mǎwn, rising: ห makes ม high class, and a live syllable with no mark rises. Same ขอ … เพิ่มได้ไหม frame as the blanket."
+  },
+  {
+    "id": "jep-mai",
+    "thai": "เจ็บไหม",
+    "roman": "jèp mǎi",
+    "en": "does it hurt?",
+    "hint": "Low, then rising. The therapist asks this, and you can ask it back. In a shop you will also hear มั้ย, the casual spelling, said high."
+  },
+  {
+    "id": "phawm",
+    "thai": "ผอม",
+    "roman": "phǎwm",
+    "en": "thin",
+    "hint": "Rising. ผ is a puffed ph, high class, so a live syllable with no mark rises. The vowel is aw, as in ร้อน, not a plain o."
+  },
+  {
+    "id": "uap",
+    "thai": "อวบ",
+    "roman": "ùap",
+    "en": "chubby, curvy",
+    "hint": "Low. Mid-class อ on a long dead syllable (ends in p) is low. This is the kinder word when you mean someone is soft and rounded."
+  },
+  {
+    "id": "uan",
+    "thai": "อ้วน",
+    "roman": "ûan",
+    "en": "fat",
+    "hint": "Falling. Mid-class อ with mai tho is falling. It is blunt. People say it about themselves; for someone else, อวบ lands more gently."
+  },
+  {
+    "id": "lam",
+    "thai": "ล่ำ",
+    "roman": "lâm",
+    "en": "stocky, bulky",
+    "hint": "Falling. Low-class ล with mai ek is falling. The vowel is am, the same –ำ as ทำ. Broad and solid, a build word rather than an insult."
+  },
+  {
+    "id": "mii-glam",
+    "thai": "มีกล่ำ",
+    "roman": "mii glàm",
+    "en": "muscular",
+    "hint": "Mid, then low. กล่ำ is muscle, low: mid-class ก with mai ek. มี in front is 'has', so the phrase is 'has muscle'."
+  },
+  {
+    "id": "sa-bpeek",
+    "thai": "สเปคคุณคืออะไร",
+    "roman": "sà-bpèek khun khuue à-rai",
+    "en": "what's your type?",
+    "hint": "สเปค is the English word spec, low then low. คุณ is khun, mid, not a plain k. คือ is khuue, mid, the same uue as in ชื่อ. Then อะไร, what."
+  },
+  {
+    "id": "law",
+    "thai": "หล่อ",
+    "roman": "làw",
+    "en": "handsome",
+    "hint": "Low. ห makes ล high class, and mai ek on a high-class letter is low. The vowel is aw, as in รอ, not a long oo."
+  },
+  {
+    "id": "duu-dii",
+    "thai": "ดูดี",
+    "roman": "duu dii",
+    "en": "good-looking",
+    "hint": "Mid, mid. ดู is look, ดี is good. A broad compliment for a face, an outfit, or the way someone carries themselves."
+  },
+  {
+    "id": "naa-dtaa-dii",
+    "thai": "หน้าตาดี",
+    "roman": "nâa-dtaa dii",
+    "en": "attractive",
+    "hint": "Falling, mid, mid. หน้า is the face, ตา is the eyes, ดี is good. You are talking about the whole face, not one feature."
+  },
+  {
+    "id": "naa-khom",
+    "thai": "หน้าคม",
+    "roman": "nâa khom",
+    "en": "sharp-featured",
+    "hint": "Falling, then mid. คม is khom: ค is a puffed kh, not a plain k. A face with clear lines, nose and jaw cut clean."
+  },
+  {
+    "id": "naa-waan",
+    "thai": "หน้าหวาน",
+    "roman": "nâa wǎan",
+    "en": "sweet-faced",
+    "hint": "Falling, then rising. หวาน is the same rising word as sweet in a drink. On a face it means soft and sweet, not sugary."
+  },
+  {
+    "id": "khanom-thuay",
+    "thai": "ขนมถ้วย",
+    "roman": "khà-nǒm thûay",
+    "en": "coconut custard cups",
+    "hint": "ขนม is irregular: khà-nǒm, low then rising, not what the letters suggest. ถ้วย is thûay, falling: high-class ถ with mai tho. Little steamed cups of coconut custard."
+  },
+  {
+    "id": "khanom-khrok",
+    "thai": "ขนมครก",
+    "roman": "khà-nǒm-khrók",
+    "en": "coconut pancakes",
+    "hint": "ครก is khrók, high: low-class ค on a short dead syllable is high. Small crisp-edged coconut pancakes, cooked in a dimpled pan."
+  },
+  {
+    "id": "thap-thim-krawp",
+    "thai": "ทับทิมกรอบ",
+    "roman": "tháp-thim gràwp",
+    "en": "water chestnut rubies in coconut milk",
+    "hint": "ทับ is tháp, high, and ทิม is thim, mid: ท is a puffed th. กรอบ is gràwp, low, the word for crisp. Chestnut cubes dyed red, in iced coconut milk."
+  },
+  {
+    "id": "ai-dtim-gathi",
+    "thai": "ไอติมกะทิ",
+    "roman": "ai-dtim gà-thí",
+    "en": "coconut ice cream",
+    "hint": "ไอติม is ice cream, mid then mid: ต is an unpuffed dt. กะทิ is coconut cream, low then high, and ท is th. Often scooped into a slice of bread."
   }
 ];
 
