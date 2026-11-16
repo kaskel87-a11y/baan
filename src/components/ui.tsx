@@ -20,6 +20,18 @@ export function ToneShape({ tone, className = "h-10 w-16" }: { tone: Tone; class
   );
 }
 
+/** 18+ badge plus the one-line warning used on the rude deck and every card from it. */
+export function AdultMark() {
+  return (
+    <div className="grid gap-1">
+      <span className="inline-flex w-fit items-center rounded-full border border-miss px-2 py-0.5 text-xs font-semibold text-miss">
+        18+ · rude
+      </span>
+      <p className="text-sm text-muted">Learn to recognize these. Don't use them.</p>
+    </div>
+  );
+}
+
 type Variant = "primary" | "quiet" | "ghost";
 export function Button({
   variant = "quiet",

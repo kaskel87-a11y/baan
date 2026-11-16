@@ -18,6 +18,8 @@ export interface ReviewCard {
   /** Used to avoid back-to-back cards from the same dialogue line. */
   group: string;
   sceneId?: string;
+  /** Rude language from an 18+ deck. */
+  adult?: boolean;
 }
 
 const KINDS: CardKind[] = ["listen", "read", "produce"];
@@ -59,6 +61,7 @@ function renderYouLine(lineId: string, voice: Voice, name: string): ReviewCard[]
       hint: line.note,
       group: `line:${lineId}`,
       sceneId: scene.id,
+      adult: scene.adult,
     }));
   }
   return null;
@@ -82,6 +85,7 @@ export function resolveCard(id: string, voice: Voice, name: string): ReviewCard 
       hint: v.hint,
       group: `vocab:${v.id}`,
       sceneId: scene?.id,
+      adult: v.adult || scene?.adult,
     };
   }
   const cards = renderYouLine(parsed.sourceId, voice, name);

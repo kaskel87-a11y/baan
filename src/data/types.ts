@@ -14,6 +14,8 @@ export interface Vocab {
   roman: string;
   en: string;
   hint?: string;
+  /** Rude language: recognize it, don't use it. */
+  adult?: boolean;
 }
 
 export type Speaker = "you" | "nid" | "lung" | "wit" | "pla" | "fon" | "bee" | "joy" | "ning" | "ploy" | "dao" | "kaew" | "pim" | "nok" | "som" | "fah" | "kai" | "ton" | "mek" | "aom";
@@ -41,6 +43,8 @@ export interface Scene {
   vocab: string[];
   lines: Line[];
   drills: Drill[];
+  /** Rude language: recognize it, don't use it. */
+  adult?: boolean;
 }
 
 export interface ToneWord {

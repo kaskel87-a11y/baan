@@ -10,7 +10,7 @@ import { cardsForMiss } from "../lib/cards";
 import { NORMAL_RATE, SLOW_RATE, slowChunks, speak, speakSequence, stopSpeech } from "../lib/audio";
 import { particle, particleNote, pick, shuffle } from "../lib/thai";
 import { navigate } from "../lib/router";
-import { AnswerLine, Button, HearButton, NoVoiceNotice, RomanKey, SayIt } from "../components/ui";
+import { AdultMark, AnswerLine, Button, HearButton, NoVoiceNotice, RomanKey, SayIt } from "../components/ui";
 import { gloss, meaningOf } from "../data/glossary";
 import { tipAfterLine, tipsForScene } from "../data/tips";
 import { TipCard } from "../components/TipCard";
@@ -172,6 +172,7 @@ export function SceneScreen({ id }: { id: string }) {
         </p>
       </div>
       <header className="grid gap-1">
+        {scene.adult ? <AdultMark /> : null}
         <p className="thai text-2xl" lang="th">{scene.titleTh}</p>
         <h1 className="font-display text-3xl">{scene.title}</h1>
         <p className="text-muted">{scene.blurb}</p>
@@ -262,6 +263,7 @@ function Preview({ words, index, roman, onIndex, onStart }: { words: Vocab[]; in
     <section className="grid gap-4">
       <p className="text-sm text-muted">Meet the words first, then hear them in the conversation.</p>
       <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
+        {w.adult ? <AdultMark /> : null}
         <p className="text-sm text-muted tabular-nums">Word {index + 1} of {words.length}</p>
         <p className="thai text-4xl" lang="th">{w.thai}</p>
         {roman ? <p className="text-lg text-muted">{w.roman}</p> : null}
@@ -333,6 +335,7 @@ function Talk({
       </div>
       {roman ? <RomanKey /> : null}
       <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
+        {scene.adult ? <AdultMark /> : null}
         <p className="text-sm font-medium">
           <span lang="th">{who.th}</span>
           <span className="text-muted"> · {who.en}</span>

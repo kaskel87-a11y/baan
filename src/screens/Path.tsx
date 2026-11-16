@@ -4,7 +4,7 @@ import { dayKey, dueIds, liveStreak, useStore } from "../lib/store";
 import { activeToday, planToday, stepMinutes } from "../lib/today";
 import { StreakDots } from "../components/StreakDots";
 import { navigate } from "../lib/router";
-import { Button } from "../components/ui";
+import { AdultMark, Button } from "../components/ui";
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
@@ -79,6 +79,7 @@ export function Path() {
       </article>
       <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
         <p className="text-sm text-muted">{done === SCENES.length ? "Walk it again" : "Continue"}</p>
+        {next.adult ? <AdultMark /> : null}
         <h2 className="thai text-3xl" lang="th">{next.titleTh}</h2>
         <p className="font-display text-xl">{next.title}</p>
         <p className="text-sm text-muted">{next.blurb}</p>
@@ -98,6 +99,7 @@ export function Path() {
               >
                 <span className="text-sm tabular-nums text-muted">{String(i + 1).padStart(2, "0")}</span>
                 <span>
+                  {sc.adult ? <span className="mb-2 block"><AdultMark /></span> : null}
                   <span className="thai block text-xl" lang="th">{sc.titleTh}</span>
                   <span className="block">{sc.title}</span>
                   <span className="mt-1 block text-sm text-muted">
