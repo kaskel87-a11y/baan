@@ -740,8 +740,8 @@ function ToneChart({ syllables, result, hideTarget }: { syllables: TargetSyllabl
     }
   }
   return (
-    <div className="mt-1 rounded-xl border border-line bg-card p-2" data-tone-chart>
-      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="block h-24 w-full" role="img" aria-label="Target tone shapes and your pitch curve">
+    <div className="mt-1 min-w-0 max-w-full overflow-hidden rounded-xl border border-line bg-card p-2" data-tone-chart>
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="block h-24 w-full min-w-0 max-w-full" role="img" aria-label="Target tone shapes and your pitch curve">
         <line x1="0" x2={W} y1={H / 2} y2={H / 2} stroke="currentColor" strokeOpacity="0.12" strokeDasharray="4 4" vectorEffect="non-scaling-stroke" />
         {syllables.map((s, i) => {
           // TONE_PATH lives in a 64 × 42 box; stretch it into this syllable's slot
@@ -760,7 +760,7 @@ function ToneChart({ syllables, result, hideTarget }: { syllables: TargetSyllabl
           <path key={i} d={d} fill="none" stroke="var(--color-accent)" strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" vectorEffect="non-scaling-stroke" data-user-curve />
         ))}
       </svg>
-      <div className="flex text-[11px] leading-tight text-muted" aria-hidden="true">
+      <div className="flex min-w-0 max-w-full overflow-hidden text-[11px] leading-tight text-muted" aria-hidden="true">
         {syllables.map((s, i) => (
           <span key={i} className="min-w-0 flex-1 truncate text-center">
             {hideTarget ? TONE_LABEL[s.tone].toLowerCase() : `${s.roman} · ${TONE_LABEL[s.tone].toLowerCase()}`}

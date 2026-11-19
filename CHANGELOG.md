@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.38.5 — Swear lines fit the phone
+
+- Long Thai, including ได้ยินได้ อย่าพูดนะคะ, wraps and scales down on a narrow screen instead of running off the right edge. The deck title wraps with it. The page no longer scrolls sideways on an iPhone.
+
 ## 0.38.4 — Chilies on every swear card
 
 - The chili rating, the “you'd hear it when…” line, and the mother-in-law warning at five chilies now sit right under the 18+ badge on the conversation line, the word card, and Review. Ploy's lines (ชิบหายค่ะ, เย็ดแม่ค่ะ, กวนตีนค่ะ, and the rest) pick the longest matching swear, so ไอ้บ้า stays ruder than บ้า.
