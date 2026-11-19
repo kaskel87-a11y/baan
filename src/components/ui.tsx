@@ -20,6 +20,22 @@ export function ToneShape({ tone, className = "h-10 w-16" }: { tone: Tone; class
   );
 }
 
+const HEAT_LABEL = ["", "friends joking", "cheeky", "rude", "nasty", "fighting words"] as const;
+
+/** 1–5 chili rating for a swear. Five also flags “don’t say this to your mother-in-law”. */
+export function ChiliHeat({ heat }: { heat: number }) {
+  const label = HEAT_LABEL[heat] ?? "";
+  return (
+    <div className="grid gap-1">
+      <p className="text-sm font-medium" aria-label={`Severity ${heat} of 5, ${label}`}>
+        <span aria-hidden="true">{Array.from({ length: 5 }, (_, i) => (i < heat ? "🌶️" : "○")).join("")}</span>
+        <span className="ml-2 text-muted">{heat}/5 · {label}</span>
+      </p>
+      {heat >= 5 ? <p className="text-sm text-miss">Don't say this to your mother-in-law.</p> : null}
+    </div>
+  );
+}
+
 /** 18+ badge plus the one-line warning used on the rude deck and every card from it. */
 export function AdultMark() {
   return (

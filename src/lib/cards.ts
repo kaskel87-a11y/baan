@@ -20,6 +20,8 @@ export interface ReviewCard {
   sceneId?: string;
   /** Rude language from an 18+ deck. */
   adult?: boolean;
+  /** 1–5 chili severity, when this card is a swear. */
+  heat?: number;
 }
 
 const KINDS: CardKind[] = ["listen", "read", "produce"];
@@ -86,6 +88,7 @@ export function resolveCard(id: string, voice: Voice, name: string): ReviewCard 
       group: `vocab:${v.id}`,
       sceneId: scene?.id,
       adult: v.adult || scene?.adult,
+      heat: v.heat,
     };
   }
   const cards = renderYouLine(parsed.sourceId, voice, name);

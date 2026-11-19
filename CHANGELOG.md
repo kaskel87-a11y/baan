@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.38.3 — More swears, with a chili rating
+
+- **Twenty more words** in the swear deck (29 in all). Skipped ไอ้ควาย, ชิบหาย, and ไอ้เวร, which were already there. New ones run from friends joking (บ้า, กวนโอ๊ย, แสบ, บัดซบ) up to fighting words (ควย, หี, ไปตายซะ). Each card has the literal English, Baan's romanization, one to five chilies, and a one-line "you'd hear it when…". Five chilies add "Don't say this to your mother-in-law."
+- **How bad is it?** Four quiz items at the end of the drills: hear or read a word, guess the chili rating.
+- Romanizer: ชาติ is one syllable, châat, falling. หัวหมอ keeps หมอ rising.
+
 ## 0.38.2 — Swear cards show the real English
 
 - The main English on each swear card is the literal meaning. เย็ดแม่ is "fuck (your) mother" (like "motherfucker"), not "this one is very vulgar". ค่ะ or ครับ on the end is the polite particle, and on these lines it sounds sarcastic. How strong it is, and what not to do with it, sits in the smaller note.

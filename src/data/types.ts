@@ -16,6 +16,8 @@ export interface Vocab {
   hint?: string;
   /** Rude language: recognize it, don't use it. */
   adult?: boolean;
+  /** 1 friends joking … 5 fighting words. */
+  heat?: 1 | 2 | 3 | 4 | 5;
 }
 
 export type Speaker = "you" | "nid" | "lung" | "wit" | "pla" | "fon" | "bee" | "joy" | "ning" | "ploy" | "dao" | "kaew" | "pim" | "nok" | "som" | "fah" | "kai" | "ton" | "mek" | "aom";
@@ -30,7 +32,7 @@ export interface Line {
 }
 
 export type Drill =
-  | { id: string; kind: "listen" | "read"; thai: Gendered; roman: Gendered; en: string; options: string[] }
+  | { id: string; kind: "listen" | "read"; thai: Gendered; roman: Gendered; en: string; options: string[]; cue?: string }
   | { id: string; kind: "pick"; en: string; options: string[]; answer: Gendered; roman: Gendered }
   | { id: string; kind: "build"; en: string; tiles: string[]; answer: Gendered<string[]>; roman: Gendered }
   | { id: string; kind: "particle"; en: string; stem: string; stemRoman: string; particleKind: "statement" | "question" };
