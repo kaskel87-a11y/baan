@@ -10,6 +10,7 @@ import { cardsForMiss } from "../lib/cards";
 import { NORMAL_RATE, SLOW_RATE, slowChunks, speak, speakSequence, stopSpeech } from "../lib/audio";
 import { particle, particleNote, pick, shuffle } from "../lib/thai";
 import { navigate } from "../lib/router";
+import { SceneArt } from "../components/SceneArt";
 import { AdultMark, AnswerLine, Button, HearButton, NoVoiceNotice, RomanKey, SayIt } from "../components/ui";
 import { gloss, meaningOf } from "../data/glossary";
 import { tipAfterLine, tipsForScene } from "../data/tips";
@@ -171,6 +172,7 @@ export function SceneScreen({ id }: { id: string }) {
           {String(idx + 1).padStart(2, "0")} / {String(SCENES.length).padStart(2, "0")}
         </p>
       </div>
+      <SceneArt id={scene.id} />
       <header className="grid gap-1">
         {scene.adult ? <AdultMark /> : null}
         <p className="thai text-2xl" lang="th">{scene.titleTh}</p>
