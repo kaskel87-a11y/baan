@@ -10,6 +10,39 @@ import "@fontsource/noto-serif-thai/700.css";
 import "./index.css";
 import App from "./App";
 
+function listenForAppUpdate() {
+  if (!("serviceWorker" in navigator)) return;
+  const had = !!navigator.serviceWorker.controller;
+  let reloading = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (!had || reloading) return;
+    reloading = true;
+    window.location.reload();
+  });
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("./sw.js", { updateViaCache: "none" })
+      .then((reg) => {
+        const ask = () => {
+          reg.update().catch(() => {});
+          if (reg.waiting && navigator.serviceWorker.controller) reg.waiting.postMessage("SKIP_WAITING");
+        };
+        ask();
+        document.addEventListener("visibilitychange", () => {
+          if (document.visibilityState === "visible") ask();
+        });
+        reg.addEventListener("updatefound", () => {
+          const next = reg.installing;
+          next?.addEventListener("statechange", () => {
+            if (next.state === "installed" && navigator.serviceWorker.controller) next.postMessage("SKIP_WAITING");
+          });
+        });
+      })
+      .catch(() => {});
+  });
+}
+listenForAppUpdate();
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />

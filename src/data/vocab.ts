@@ -1309,6 +1309,7 @@ export const VOCAB: Vocab[] = [
     "en": "you crazy",
     "adult": true,
     "heat": 3,
+    "when": "You'd hear it when a friend does something reckless and the whole table yells.",
     "hint": "Like 'you lunatic'. Falling, falling. ไอ้ is a rough 'you'. บ้า is crazy. Insulting. ค่ะ or ครับ on the end is the polite particle, and here it sounds sarcastic."
   },
   {
@@ -1318,6 +1319,7 @@ export const VOCAB: Vocab[] = [
     "en": "bullshitter",
     "adult": true,
     "heat": 3,
+    "when": "You'd hear it when a story grows one lie too many.",
     "hint": "Like 'liar', but crude. Mid, then rising. ตอ is mid. แหล rises because ห makes ล high class. ค่ะ or ครับ after it sounds sarcastic."
   },
   {
@@ -1327,6 +1329,7 @@ export const VOCAB: Vocab[] = [
     "en": "pain in the ass",
     "adult": true,
     "heat": 3,
+    "when": "You'd hear it when someone keeps poking after you've said stop.",
     "hint": "Literally 'stir the foot'. ตีน is the rude word for foot, not เท้า. Mid, mid. Like 'smart-ass', someone annoying on purpose. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
@@ -1336,6 +1339,7 @@ export const VOCAB: Vocab[] = [
     "en": "fuck (your) mother",
     "adult": true,
     "heat": 5,
+    "when": "You'd hear it when a fight has already turned ugly.",
     "hint": "Like 'motherfucker'. Very vulgar. เย็ด is 'fuck', high: low-class ย on a short dead syllable. แม่ is 'mother', falling. ค่ะ or ครับ after it is the polite particle, which makes the insult sound sarcastic. Do not say it."
   },
   {
@@ -1345,6 +1349,7 @@ export const VOCAB: Vocab[] = [
     "en": "mind your own fucking business",
     "adult": true,
     "heat": 3,
+    "when": "You'd hear it when someone leans into a conversation that isn't theirs.",
     "hint": "Nosy, butting in. Rude. Low: high-class ส on a long dead syllable (ends in k). The vowel is เอือ, uea. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
@@ -1354,6 +1359,7 @@ export const VOCAB: Vocab[] = [
     "en": "shit",
     "adult": true,
     "heat": 3,
+    "when": "You'd hear it when a phone hits the floor and the screen is gone.",
     "hint": "An exclamation, also like 'fuck!' when something is ruined. High, then rising. ชิบ is high: low-class ช on a short dead syllable. หาย is 'gone, ruined', rising. Not usually aimed at a person. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
@@ -1363,6 +1369,7 @@ export const VOCAB: Vocab[] = [
     "en": "you're nuts",
     "adult": true,
     "heat": 2,
+    "when": "You'd hear it when a friend spirals over something small.",
     "hint": "Literally 'nerves'. Milder than the rest of this deck, and still rude. Low, low. Shouted at someone, it means you are being irrational. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
@@ -1372,6 +1379,7 @@ export const VOCAB: Vocab[] = [
     "en": "you bastard",
     "adult": true,
     "heat": 4,
+    "when": "You'd hear it when someone cuts the queue and will not move.",
     "hint": "Also like 'asshole'. Falling, then mid. เวร on its own is karma or a grudge. ไอ้ makes it 'you'. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
@@ -1381,6 +1389,7 @@ export const VOCAB: Vocab[] = [
     "en": "you idiot",
     "adult": true,
     "heat": 3,
+    "when": "You'd hear it when a teammate misses a step everyone else saw.",
     "hint": "Literally 'you buffalo'. ควาย is a water buffalo, the same word as in the letter name khaw khwaai. Falling, then mid. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
@@ -1390,7 +1399,8 @@ export const VOCAB: Vocab[] = [
     "en": "crazy",
     "adult": true,
     "heat": 1,
-    "hint": "A friend's shout, not ไอ้บ้า aimed at a person. Falling. You'd hear it when the group chat sends a ridiculous photo."
+    "when": "You'd hear it when the group chat sends a ridiculous photo.",
+    "hint": "A friend's shout, not ไอ้บ้า aimed at a person. Falling."
   },
   {
     "id": "guan-ooi",
@@ -1399,7 +1409,8 @@ export const VOCAB: Vocab[] = [
     "en": "you little pest",
     "adult": true,
     "heat": 1,
-    "hint": "The playful cousin of กวนตีน. โอ๊ย is high. You'd hear it when a friend hides your phone and grins."
+    "when": "You'd hear it when a friend hides your phone and grins.",
+    "hint": "The playful cousin of กวนตีน. โอ๊ย is high."
   },
   {
     "id": "saaep",
@@ -1408,7 +1419,8 @@ export const VOCAB: Vocab[] = [
     "en": "rascal",
     "adult": true,
     "heat": 1,
-    "hint": "Cheeky, often said with a smile. Low: high-class ส on a long dead syllable. You'd hear it when a nephew draws on the wall and looks proud."
+    "when": "You'd hear it when a nephew draws on the wall and looks proud.",
+    "hint": "Cheeky, often said with a smile. Low: high-class ส on a long dead syllable."
   },
   {
     "id": "bat-sop",
@@ -1417,7 +1429,8 @@ export const VOCAB: Vocab[] = [
     "en": "darn",
     "adult": true,
     "heat": 1,
-    "hint": "Old-fashioned. Low, then high. You'd hear it when the fan dies and someone over sixty is in the room."
+    "when": "You'd hear it when the fan dies and someone over sixty is in the room.",
+    "hint": "Old-fashioned. Low, then high."
   },
   {
     "id": "suay-luck",
@@ -1426,7 +1439,8 @@ export const VOCAB: Vocab[] = [
     "en": "screwed",
     "adult": true,
     "heat": 2,
-    "hint": "Unlucky, mid. Not สวย (sǔay, rising), which is beautiful. You'd hear it when you miss the last train by one minute."
+    "when": "You'd hear it when you miss the last train by one minute.",
+    "hint": "Unlucky, mid. Not สวย (sǔay, rising), which is beautiful."
   },
   {
     "id": "maaeng",
@@ -1435,7 +1449,8 @@ export const VOCAB: Vocab[] = [
     "en": "damn",
     "adult": true,
     "heat": 2,
-    "hint": "A minced แม่, falling. Everyday, not a fight. You'd hear it when coffee spills on a white shirt."
+    "when": "You'd hear it when coffee spills on a white shirt.",
+    "hint": "A minced แม่, falling. Everyday, not a fight."
   },
   {
     "id": "chaang-maaeng",
@@ -1444,7 +1459,8 @@ export const VOCAB: Vocab[] = [
     "en": "fuck it",
     "adult": true,
     "heat": 2,
-    "hint": "ช่าง is 'let it be', both syllables fall. Like 'whatever'. You'd hear it when the plan falls apart and nobody wants to fix it."
+    "when": "You'd hear it when the plan falls apart and nobody wants to fix it.",
+    "hint": "ช่าง is 'let it be', both syllables fall. Like 'whatever'."
   },
   {
     "id": "hua-maw",
@@ -1453,7 +1469,8 @@ export const VOCAB: Vocab[] = [
     "en": "sly devil",
     "adult": true,
     "heat": 2,
-    "hint": "Literally 'doctor-head', a schemer. Both syllables rise. You'd hear it when a friend talks the waiter into a free dessert."
+    "when": "You'd hear it when a friend talks the waiter into a free dessert.",
+    "hint": "Literally 'doctor-head', a schemer. Both syllables rise."
   },
   {
     "id": "ngoo",
@@ -1462,7 +1479,8 @@ export const VOCAB: Vocab[] = [
     "en": "stupid",
     "adult": true,
     "heat": 2,
-    "hint": "Falling. Blunt, and people say it to themselves. You'd hear it when someone locks the keys in the car."
+    "when": "You'd hear it when someone locks the keys in the car.",
+    "hint": "Falling. Blunt, and people say it to themselves."
   },
   {
     "id": "naa-daan",
@@ -1471,7 +1489,8 @@ export const VOCAB: Vocab[] = [
     "en": "shameless",
     "adult": true,
     "heat": 3,
-    "hint": "Literally 'thick face'. Both falling. You'd hear it when someone cuts the line and then smiles."
+    "when": "You'd hear it when someone cuts the line and then smiles.",
+    "hint": "Literally 'thick face'. Both falling."
   },
   {
     "id": "hia",
@@ -1480,7 +1499,8 @@ export const VOCAB: Vocab[] = [
     "en": "asshole",
     "adult": true,
     "heat": 4,
-    "hint": "Literally a water monitor lizard. Falling: high-class ห with mai tho. Nasty. Close friends sometimes bark it as a rough joke. You'd hear it when a motorbike cuts you off and doesn't look back."
+    "when": "You'd hear it when a motorbike cuts you off and doesn't look back.",
+    "hint": "Literally a water monitor lizard. Falling: high-class ห with mai tho. Nasty. Close friends sometimes bark it as a rough joke."
   },
   {
     "id": "ai-sat",
@@ -1489,7 +1509,8 @@ export const VOCAB: Vocab[] = [
     "en": "you animal",
     "adult": true,
     "heat": 3,
-    "hint": "ไอ้ falls, สัตว์ is low. Like 'you beast'. You'd hear it when someone eats the last mango and leaves the pit."
+    "when": "You'd hear it when someone eats the last mango and leaves the pit.",
+    "hint": "ไอ้ falls, สัตว์ is low. Like 'you beast'."
   },
   {
     "id": "son-dtiin",
@@ -1498,7 +1519,8 @@ export const VOCAB: Vocab[] = [
     "en": "you piece of shit",
     "adult": true,
     "heat": 4,
-    "hint": "Literally 'heel of the foot'. ส้น falls. ตีน is the rude word for foot, mid. Nasty. You'd hear it when a stranger kicks a bag and keeps walking."
+    "when": "You'd hear it when a stranger kicks a bag and keeps walking.",
+    "hint": "Literally 'heel of the foot'. ส้น falls. ตีน is the rude word for foot, mid. Nasty."
   },
   {
     "id": "jan-rai",
@@ -1507,7 +1529,8 @@ export const VOCAB: Vocab[] = [
     "en": "you accursed thing",
     "adult": true,
     "heat": 3,
-    "hint": "Old-fashioned and colorful. Mid, mid. You'd hear it at the mosquito that bit someone all night and is still in the room."
+    "when": "You'd hear it when someone swats the mosquito that bit them all night.",
+    "hint": "Old-fashioned and colorful. Mid, mid."
   },
   {
     "id": "sai-hua",
@@ -1516,7 +1539,8 @@ export const VOCAB: Vocab[] = [
     "en": "get the hell out",
     "adult": true,
     "heat": 3,
-    "hint": "Literally 'move your head out'. Both rising. A dismissal. You'd hear it when a drunk won't leave the shop at closing."
+    "when": "You'd hear it when a drunk won't leave the shop at closing.",
+    "hint": "Literally 'move your head out'. Both rising. A dismissal."
   },
   {
     "id": "khuay",
@@ -1525,7 +1549,8 @@ export const VOCAB: Vocab[] = [
     "en": "dick",
     "adult": true,
     "heat": 5,
-    "hint": "Fighting words. The vulgar word for a penis, mid tone, also thrown at a person like 'dickhead'. You mostly hear it in a fight, or in a movie that wants one. Do not say it."
+    "when": "You'd hear it in a fight, or in a movie that wants one.",
+    "hint": "Fighting words. The vulgar word for a penis, mid tone, also thrown at a person like 'dickhead'. Do not say it."
   },
   {
     "id": "chaat-chua",
@@ -1534,7 +1559,8 @@ export const VOCAB: Vocab[] = [
     "en": "scumbag",
     "adult": true,
     "heat": 4,
-    "hint": "Literally 'evil birth'. ชาติ is one syllable, châat, falling (the ิ is not said). ชั่ว falls. Nasty. You'd hear it when someone scams an old vendor and the whole soi knows."
+    "when": "You'd hear it when someone scams an old vendor and the whole soi knows.",
+    "hint": "Literally 'evil birth'. ชาติ is one syllable, châat, falling (the ิ is not said). ชั่ว falls. Nasty."
   },
   {
     "id": "dtaai-haa",
@@ -1543,7 +1569,8 @@ export const VOCAB: Vocab[] = [
     "en": "drop dead",
     "adult": true,
     "heat": 4,
-    "hint": "Literally 'die of the plague'. ตาย is mid, ห่า is low. A curse, not a joke. You'd hear it when a driver almost hits a kid."
+    "when": "You'd hear it when a driver almost hits a kid.",
+    "hint": "Literally 'die of the plague'. ตาย is mid, ห่า is low. A curse, not a joke."
   },
   {
     "id": "bpai-dtaai",
@@ -1552,7 +1579,8 @@ export const VOCAB: Vocab[] = [
     "en": "go die",
     "adult": true,
     "heat": 5,
-    "hint": "Fighting words. ไป and ตาย are mid, ซะ is high. A wish that someone die, not banter. You'd hear it at the end of a real argument. Do not say it."
+    "when": "You'd hear it at the end of a real argument.",
+    "hint": "Fighting words. ไป and ตาย are mid, ซะ is high. A wish that someone die, not banter. Do not say it."
   },
   {
     "id": "hii",
@@ -1561,7 +1589,8 @@ export const VOCAB: Vocab[] = [
     "en": "cunt",
     "adult": true,
     "heat": 5,
-    "hint": "Fighting words. Rising: high-class ห on a live syllable. The vulgar word for a vagina, also thrown as an insult. Almost never a joke. If you hear it, a fight is already on. Do not say it."
+    "when": "You'd hear it when a fight is already on.",
+    "hint": "Fighting words. Rising: high-class ห on a live syllable. The vulgar word for a vagina, also thrown as an insult. Almost never a joke. Do not say it."
   }
 ];
 

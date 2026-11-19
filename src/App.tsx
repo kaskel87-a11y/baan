@@ -11,6 +11,7 @@ import { Settings } from "./screens/Settings";
 import { Numbers } from "./screens/Numbers";
 import { Today } from "./screens/Today";
 import { Stories } from "./screens/Stories";
+import { UpdateBanner } from "./components/UpdateBanner";
 
 type Tab = "path" | "tones" | "letters" | "review";
 const TABS: { id: Tab; label: string; icon: LucideIcon }[] = [
@@ -29,6 +30,7 @@ export default function App() {
 
   return (
     <div className="app-shell">
+      <UpdateBanner />
       <aside className="hidden border-r border-line md:flex md:flex-col md:gap-6 md:p-5 md:sticky md:top-0 md:h-dvh">
         <div>
           <p className="thai text-3xl" lang="th">บ้าน</p>

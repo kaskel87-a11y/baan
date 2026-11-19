@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.38.4 — Chilies on every swear card
+
+- The chili rating, the “you'd hear it when…” line, and the mother-in-law warning at five chilies now sit right under the 18+ badge on the conversation line, the word card, and Review. Ploy's lines (ชิบหายค่ะ, เย็ดแม่ค่ะ, กวนตีนค่ะ, and the rest) pick the longest matching swear, so ไอ้บ้า stays ruder than บ้า.
+- A returning phone checks for a new bundle. The service worker skips the wait, drops old caches, and reloads. If the page itself is newer, a “Tap to load it” bar shows up.
+
 ## 0.38.3 — More swears, with a chili rating
 
 - **Twenty more words** in the swear deck (29 in all). Skipped ไอ้ควาย, ชิบหาย, and ไอ้เวร, which were already there. New ones run from friends joking (บ้า, กวนโอ๊ย, แสบ, บัดซบ) up to fighting words (ควย, หี, ไปตายซะ). Each card has the literal English, Baan's romanization, one to five chilies, and a one-line "you'd hear it when…". Five chilies add "Don't say this to your mother-in-law."

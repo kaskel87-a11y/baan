@@ -22,6 +22,8 @@ export interface ReviewCard {
   adult?: boolean;
   /** 1–5 chili severity, when this card is a swear. */
   heat?: number;
+  /** When you'd hear this swear. */
+  when?: string;
 }
 
 const KINDS: CardKind[] = ["listen", "read", "produce"];
@@ -89,6 +91,7 @@ export function resolveCard(id: string, voice: Voice, name: string): ReviewCard 
       sceneId: scene?.id,
       adult: v.adult || scene?.adult,
       heat: v.heat,
+      when: v.when,
     };
   }
   const cards = renderYouLine(parsed.sourceId, voice, name);

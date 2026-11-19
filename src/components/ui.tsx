@@ -27,11 +27,30 @@ export function ChiliHeat({ heat }: { heat: number }) {
   const label = HEAT_LABEL[heat] ?? "";
   return (
     <div className="grid gap-1">
-      <p className="text-sm font-medium" aria-label={`Severity ${heat} of 5, ${label}`}>
-        <span aria-hidden="true">{Array.from({ length: 5 }, (_, i) => (i < heat ? "🌶️" : "○")).join("")}</span>
-        <span className="ml-2 text-muted">{heat}/5 · {label}</span>
+      <p className="flex items-center gap-1.5" aria-label={`Severity ${heat} of 5, ${label}`}>
+        <span aria-hidden="true" className="inline-flex items-center gap-1">
+          {Array.from({ length: 5 }, (_, i) =>
+            i < heat ? (
+              <span key={i} className="text-4xl leading-none">🌶️</span>
+            ) : (
+              <span key={i} className="text-2xl leading-none text-muted opacity-40">○</span>
+            ),
+          )}
+        </span>
       </p>
-      {heat >= 5 ? <p className="text-sm text-miss">Don't say this to your mother-in-law.</p> : null}
+      <p className="text-base font-medium">{heat}/5 · {label}</p>
+      {heat >= 5 ? <p className="text-base font-semibold text-miss">Don't say this to your mother-in-law.</p> : null}
+    </div>
+  );
+}
+
+/** Chilies, the one-line “you’d hear it”, and the mother-in-law line at five. Renders nothing when there is no rating. */
+export function SwearFacts({ heat, when }: { heat?: number; when?: string }) {
+  if (!heat) return null;
+  return (
+    <div className="grid gap-1">
+      <ChiliHeat heat={heat} />
+      {when ? <p className="text-base">{when}</p> : null}
     </div>
   );
 }

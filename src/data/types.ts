@@ -18,6 +18,8 @@ export interface Vocab {
   adult?: boolean;
   /** 1 friends joking … 5 fighting words. */
   heat?: 1 | 2 | 3 | 4 | 5;
+  /** One line: when you'd actually hear this swear. */
+  when?: string;
 }
 
 export type Speaker = "you" | "nid" | "lung" | "wit" | "pla" | "fon" | "bee" | "joy" | "ning" | "ploy" | "dao" | "kaew" | "pim" | "nok" | "som" | "fah" | "kai" | "ton" | "mek" | "aom";
