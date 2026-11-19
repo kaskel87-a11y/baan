@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.38.1 — Home Screen icon
+
+- **Add to Home Screen gets a real icon.** A Thai stilt house, original, at 180×180 for iPhone, plus 192 and 512 icons for the manifest, including maskable versions that keep the house inside the safe circle. The page now points at the touch icon, asks to open as an app, and uses a light status bar so the cream page stays readable.
+
 ## 0.38.0 — A picture for every scenario
 
 - **A flat cartoon at the top of every scenario.** Original drawings, one per scene, on the lesson screen and on each card in the path. Short enough that the title and the first words still fit on an iPhone. Each picture has alt text.
