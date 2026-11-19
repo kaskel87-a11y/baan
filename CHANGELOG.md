@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.38.6 — Home Screen icon for Chrome on iPhone
+
+- Chrome on iPhone was still drawing a letter B. The touch icon link was relative (`./apple-touch-icon.png`), and the manifest offered an SVG first, which that browser will not use for a home-screen icon. The page now points at `/baan/apple-touch-icon.png` (plain and precomposed, 180×180), and the manifest lists only the PNG house icons at absolute paths. The service worker fetches those icons from the network and does not keep a cached miss. Delete the old shortcut and add it again.
+
 ## 0.38.5 — Swear lines fit the phone
 
 - Long Thai, including ได้ยินได้ อย่าพูดนะคะ, wraps and scales down on a narrow screen instead of running off the right edge. The deck title wraps with it. The page no longer scrolls sideways on an iPhone.
