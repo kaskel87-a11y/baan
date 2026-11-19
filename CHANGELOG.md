@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.38.0 — A picture for every scenario
+
+- **A flat cartoon at the top of every scenario.** Original drawings, one per scene, on the lesson screen and on each card in the path. Short enough that the title and the first words still fit on an iPhone. Each picture has alt text.
+- The swear-words deck gets a tame comic: someone smiling and waving away an empty burst, with the 18+ badge still in place.
+
 ## 0.37.0 — Swear words (know them, don't say them)
 
 - **New scene before Goodbye:** คำหยาบ, nine insults you may overhear. The deck, the word cards, the lines, and the Review cards carry an 18+ · rude badge and the note "Learn to recognize these. Don't use them." Your lines in the scene are the refusal (mâi phûut), not the insults. The words themselves still enter Review like every other vocab item.

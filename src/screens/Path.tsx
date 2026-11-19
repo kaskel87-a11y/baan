@@ -4,6 +4,7 @@ import { dayKey, dueIds, liveStreak, useStore } from "../lib/store";
 import { activeToday, planToday, stepMinutes } from "../lib/today";
 import { StreakDots } from "../components/StreakDots";
 import { navigate } from "../lib/router";
+import { SceneArt } from "../components/SceneArt";
 import { AdultMark, Button } from "../components/ui";
 
 function Stat({ label, value }: { label: string; value: string }) {
@@ -79,6 +80,7 @@ export function Path() {
       </article>
       <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
         <p className="text-sm text-muted">{done === SCENES.length ? "Walk it again" : "Continue"}</p>
+        <SceneArt id={next.id} />
         {next.adult ? <AdultMark /> : null}
         <h2 className="thai text-3xl" lang="th">{next.titleTh}</h2>
         <p className="font-display text-xl">{next.title}</p>
@@ -95,8 +97,10 @@ export function Path() {
               <button
                 type="button"
                 onClick={() => open(sc.id)}
-                className="grid w-full grid-cols-[auto_1fr] gap-3 rounded-xl border border-line bg-card p-4 text-left"
+                className="w-full overflow-hidden rounded-xl border border-line bg-card text-left"
               >
+                <SceneArt id={sc.id} variant="card" />
+                <span className="grid grid-cols-[auto_1fr] gap-3 p-4">
                 <span className="text-sm tabular-nums text-muted">{String(i + 1).padStart(2, "0")}</span>
                 <span>
                   {sc.adult ? <span className="mb-2 block"><AdultMark /></span> : null}
@@ -106,6 +110,7 @@ export function Path() {
                     {sc.blurb}
                     {rec?.completed ? ` · last ${rec.last}` : ""}
                   </span>
+                </span>
                 </span>
               </button>
             </li>

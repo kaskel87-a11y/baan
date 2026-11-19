@@ -7,6 +7,7 @@ import { EAR_POOL, MAI_SET, TONE_ANCHORS } from "../src/data/tones";
 import { TONE_SETS } from "../src/data/toneSets";
 import { toneFromRoman } from "../src/lib/thai";
 import { AVAILABLE_PAIRS, makeTrial } from "../src/lib/toneTrainer";
+import { SCENE_ART_ALT } from "../src/data/sceneArt";
 
 let fail = 0;
 const err = (m: string) => {
@@ -18,6 +19,11 @@ for (const w of [...EAR_POOL, ...MAI_SET, ...TONE_ANCHORS, ...TONE_SETS.flatMap(
   if (toneFromRoman(w.roman) !== w.tone) err(`${w.thai} ${w.roman}: tone field ${w.tone} but roman says ${toneFromRoman(w.roman)}`);
 
 for (const s of SCENES) for (const v of s.vocab) if (!VOCAB_BY_ID.has(v)) err(`scene ${s.id} missing vocab ${v}`);
+for (const s of SCENES) {
+  const alt = SCENE_ART_ALT[s.id as keyof typeof SCENE_ART_ALT];
+  if (!alt) err(`scene ${s.id} has no picture`);
+  else if (alt.length < 8) err(`scene ${s.id} picture alt text is too short`);
+}
 // Duplicate ids silently shadow each other in VOCAB_BY_ID (0.20.0 shipped two "khuen" words).
 {
   const seen = new Set<string>();
