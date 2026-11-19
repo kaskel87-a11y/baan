@@ -5127,7 +5127,7 @@ export const SCENES: Scene[] = [
       {
         "id": "rd2",
         "who": "you",
-        "en": "I won't say them.",
+        "en": "I won't say it.",
         "thai": {
           "male": "ไม่พูดครับ",
           "female": "ไม่พูดค่ะ"
@@ -5140,39 +5140,39 @@ export const SCENES: Scene[] = [
       {
         "id": "rd3",
         "who": "ploy",
-        "en": "Crazy. You lunatic.",
+        "en": "You crazy.",
         "thai": "ไอ้บ้าค่ะ",
         "roman": "âi bâa khâ",
-        "note": "ไอ้บ้า (âi bâa), both falling. ไอ้ is a rough you. บ้า is crazy. An insult, not a playful nickname."
+        "note": "Like 'you lunatic'. Insulting. Both syllables fall. ค่ะ is the polite particle, and here it sounds sarcastic."
       },
       {
         "id": "rd4",
         "who": "ploy",
-        "en": "Liar.",
+        "en": "Bullshitter.",
         "thai": "ตอแหลค่ะ",
         "roman": "dtaw-lǎae khâ",
-        "note": "ตอแหล (dtaw-lǎae) calls someone a liar. Mid, then rising."
+        "note": "Like 'liar', but crude. Mid, then rising. ค่ะ is the polite particle, and here it sounds sarcastic."
       },
       {
         "id": "rd5",
         "who": "ploy",
-        "en": "Annoying on purpose.",
+        "en": "Pain in the ass.",
         "thai": "กวนตีนค่ะ",
         "roman": "guan dtiin khâ",
-        "note": "กวนตีน (guan dtiin) is literally stirring the feet. It means someone is being a pest on purpose."
+        "note": "Literally 'stir the foot'. Like 'smart-ass', annoying on purpose. ตีน is the rude word for foot. Mid, mid. ค่ะ sounds sarcastic here."
       },
       {
         "id": "rd6",
         "who": "ploy",
-        "en": "This one is very vulgar.",
+        "en": "Fuck (your) mother.",
         "thai": "เย็ดแม่ค่ะ",
         "roman": "yét mâae khâ",
-        "note": "เย็ดแม่ (yét mâae) is the strongest thing in this deck. High, then falling. Recognize it. Do not say it."
+        "note": "Like 'motherfucker'. Very vulgar. เย็ด is 'fuck', high. แม่ is 'mother', falling. ค่ะ is the polite particle, which makes it sound sarcastic. Do not say it."
       },
       {
         "id": "rd7",
         "who": "you",
-        "en": "I still won't say it.",
+        "en": "I won't say it.",
         "thai": {
           "male": "ไม่พูดครับ",
           "female": "ไม่พูดค่ะ"
@@ -5185,26 +5185,26 @@ export const SCENES: Scene[] = [
       {
         "id": "rd8",
         "who": "ploy",
-        "en": "Mind your own business.",
+        "en": "Mind your own fucking business.",
         "thai": "เสือกค่ะ",
         "roman": "sùeak khâ",
-        "note": "เสือก (sùeak, low) is nosy, snapped at someone who is prying. Mind your own business, and it is rude."
+        "note": "Nosy, butting in. Rude. Low tone. ค่ะ is the polite particle, and here it sounds sarcastic."
       },
       {
         "id": "rd9",
         "who": "ploy",
-        "en": "A shout when something goes wrong.",
+        "en": "Shit!",
         "thai": "ชิบหายค่ะ",
         "roman": "chíp hǎai khâ",
-        "note": "ชิบหาย (chíp hǎai) is an exclamation, high then rising. It is not aimed at a person the way ไอ้ words are, and it is still rude."
+        "note": "Also like 'fuck!' when something is ruined. An exclamation, high then rising, not usually aimed at a person. ค่ะ sounds sarcastic here."
       },
       {
         "id": "rd10",
         "who": "ploy",
-        "en": "Milder. You're nuts.",
+        "en": "You're nuts.",
         "thai": "ประสาทค่ะ",
         "roman": "bprà-sàat khâ",
-        "note": "ประสาท (bprà-sàat) literally means nerves. As a shout it means you are being irrational. Milder than the rest, and still not polite."
+        "note": "Literally 'nerves'. Milder than the rest of this deck, and still rude. Low, low. ค่ะ sounds sarcastic here."
       },
       {
         "id": "rd11",
@@ -5212,7 +5212,7 @@ export const SCENES: Scene[] = [
         "en": "You bastard.",
         "thai": "ไอ้เวรค่ะ",
         "roman": "âi ween khâ",
-        "note": "ไอ้เวร (âi ween). เวร can mean a grudge. With ไอ้ it is a personal insult."
+        "note": "Also like 'asshole'. เวร on its own is karma or a grudge. ไอ้ makes it 'you'. Falling, then mid. ค่ะ sounds sarcastic here."
       },
       {
         "id": "rd12",
@@ -5220,12 +5220,12 @@ export const SCENES: Scene[] = [
         "en": "You idiot.",
         "thai": "ไอ้ควายค่ะ",
         "roman": "âi khwaai khâ",
-        "note": "ไอ้ควาย (âi khwaai). ควาย is a water buffalo. Said of a person, it means you think they are stupid."
+        "note": "Literally 'you buffalo'. ควาย is a water buffalo. Falling, then mid. ค่ะ is the polite particle, and here it sounds sarcastic."
       },
       {
         "id": "rd13",
         "who": "you",
-        "en": "I heard them. I won't use them.",
+        "en": "I've heard it. I won't say it.",
         "thai": {
           "male": "ได้ยินแล้ว ไม่พูดครับ",
           "female": "ได้ยินแล้ว ไม่พูดค่ะ"
@@ -5242,12 +5242,12 @@ export const SCENES: Scene[] = [
         "kind": "listen",
         "thai": "เย็ดแม่ค่ะ",
         "roman": "yét mâae khâ",
-        "en": "This one is very vulgar.",
+        "en": "Fuck (your) mother.",
         "options": [
-          "This one is very vulgar.",
-          "Liar.",
+          "Fuck (your) mother.",
+          "Bullshitter.",
           "You idiot.",
-          "Mind your own business."
+          "Mind your own fucking business."
         ]
       },
       {
@@ -5255,12 +5255,12 @@ export const SCENES: Scene[] = [
         "kind": "read",
         "thai": "เสือก",
         "roman": "sùeak",
-        "en": "nosy, mind your own business",
+        "en": "mind your own fucking business",
         "options": [
-          "nosy, mind your own business",
+          "mind your own fucking business",
           "you're nuts",
           "you bastard",
-          "smart-ass, annoying on purpose"
+          "pain in the ass"
         ]
       },
       {
@@ -5279,7 +5279,7 @@ export const SCENES: Scene[] = [
       {
         "id": "rd-b",
         "kind": "build",
-        "en": "I won't say them.",
+        "en": "I won't say it.",
         "tiles": [
           "ไม่",
           "พูด",

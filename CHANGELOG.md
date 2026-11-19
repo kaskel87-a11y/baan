@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.38.2 — Swear cards show the real English
+
+- The main English on each swear card is the literal meaning. เย็ดแม่ is "fuck (your) mother" (like "motherfucker"), not "this one is very vulgar". ค่ะ or ครับ on the end is the polite particle, and on these lines it sounds sarcastic. How strong it is, and what not to do with it, sits in the smaller note.
+
 ## 0.38.1 — Home Screen icon
 
 - **Add to Home Screen gets a real icon.** A Thai stilt house, original, at 180×180 for iPhone, plus 192 and 512 icons for the manifest, including maskable versions that keep the house inside the safe circle. The page now points at the touch icon, asks to open as an app, and uses a light status bar so the cream page stays readable.
