@@ -1306,49 +1306,49 @@ export const VOCAB: Vocab[] = [
     "id": "ai-baa",
     "thai": "ไอ้บ้า",
     "roman": "âi bâa",
-    "en": "crazy, you lunatic",
+    "en": "you crazy",
     "adult": true,
-    "hint": "Falling, falling. ไอ้ is a rough 'you', not a name. บ้า is crazy. Together it is an insult, not a joke you toss at a friend."
+    "hint": "Like 'you lunatic'. Falling, falling. ไอ้ is a rough 'you'. บ้า is crazy. Insulting. ค่ะ or ครับ on the end is the polite particle, and here it sounds sarcastic."
   },
   {
     "id": "dtaw-laae",
     "thai": "ตอแหล",
     "roman": "dtaw-lǎae",
-    "en": "liar",
+    "en": "bullshitter",
     "adult": true,
-    "hint": "Mid, then rising. ตอ is mid. แหล rises because ห makes ล high class. You are calling someone a liar, and it is rough."
+    "hint": "Like 'liar', but crude. Mid, then rising. ตอ is mid. แหล rises because ห makes ล high class. ค่ะ or ครับ after it sounds sarcastic."
   },
   {
     "id": "guan-dtiin",
     "thai": "กวนตีน",
     "roman": "guan dtiin",
-    "en": "smart-ass, annoying on purpose",
+    "en": "pain in the ass",
     "adult": true,
-    "hint": "Mid, mid. The words are 'stir' and 'foot'. It means someone is bothering people on purpose. Rude, even when you are only describing them."
+    "hint": "Literally 'stir the foot'. ตีน is the rude word for foot, not เท้า. Mid, mid. Like 'smart-ass', someone annoying on purpose. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
     "id": "yet-maae",
     "thai": "เย็ดแม่",
     "roman": "yét mâae",
-    "en": "motherfucker (very vulgar)",
+    "en": "fuck (your) mother",
     "adult": true,
-    "hint": "High, then falling. เย็ด is high: low-class ย on a short dead syllable. แม่ falls. This is the strongest insult in the deck. Know it so you recognize a line being crossed. Do not say it."
+    "hint": "Like 'motherfucker'. Very vulgar. เย็ด is 'fuck', high: low-class ย on a short dead syllable. แม่ is 'mother', falling. ค่ะ or ครับ after it is the polite particle, which makes the insult sound sarcastic. Do not say it."
   },
   {
     "id": "sueak",
     "thai": "เสือก",
     "roman": "sùeak",
-    "en": "nosy, mind your own business",
+    "en": "mind your own fucking business",
     "adult": true,
-    "hint": "Low. High-class ส on a long dead syllable (ends in k) is low. The vowel is เอือ, uea. Snapped at someone, it means stop prying."
+    "hint": "Nosy, butting in. Rude. Low: high-class ส on a long dead syllable (ends in k). The vowel is เอือ, uea. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
     "id": "chip-haai",
     "thai": "ชิบหาย",
     "roman": "chíp hǎai",
-    "en": "shit, fuck",
+    "en": "shit",
     "adult": true,
-    "hint": "High, then rising. ชิบ is high: low-class ช on a short dead syllable. หาย rises: high-class ห on a live syllable. A shout when something goes wrong, not a word you aim at a person, and still rude."
+    "hint": "An exclamation, also like 'fuck!' when something is ruined. High, then rising. ชิบ is high: low-class ช on a short dead syllable. หาย is 'gone, ruined', rising. Not usually aimed at a person. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
     "id": "bpra-saat",
@@ -1356,7 +1356,7 @@ export const VOCAB: Vocab[] = [
     "roman": "bprà-sàat",
     "en": "you're nuts",
     "adult": true,
-    "hint": "Low, low. The plain meaning is nerves. Shouted at someone, it means you are being irrational. Milder than the rest of this deck, and still not polite."
+    "hint": "Literally 'nerves'. Milder than the rest of this deck, and still rude. Low, low. Shouted at someone, it means you are being irrational. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
     "id": "ai-ween",
@@ -1364,7 +1364,7 @@ export const VOCAB: Vocab[] = [
     "roman": "âi ween",
     "en": "you bastard",
     "adult": true,
-    "hint": "Falling, then mid. เวร on its own can mean karma or a grudge. With ไอ้ in front it is a personal insult."
+    "hint": "Also like 'asshole'. Falling, then mid. เวร on its own is karma or a grudge. ไอ้ makes it 'you'. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
     "id": "ai-khwaai",
@@ -1372,7 +1372,7 @@ export const VOCAB: Vocab[] = [
     "roman": "âi khwaai",
     "en": "you idiot",
     "adult": true,
-    "hint": "Falling, then mid. ควาย is a water buffalo, the same word as in the letter name khaw khwaai. Calling a person one means you think they are stupid."
+    "hint": "Literally 'you buffalo'. ควาย is a water buffalo, the same word as in the letter name khaw khwaai. Falling, then mid. ค่ะ or ครับ on the end sounds sarcastic."
   }
 ];
 

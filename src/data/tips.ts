@@ -756,9 +756,9 @@ export const TIPS: Tip[] = [
     afterLine: "rd3",
     kind: "grammar",
     title: "âi in front is a rough you",
-    body: "âi before a noun turns it into an insult aimed at a person. âi bâa is you lunatic. âi ween is you bastard. âi khwaai compares someone to a buffalo, meaning you idiot. Without âi, khwaai is just the animal.",
+    body: "âi before a noun turns it into an insult aimed at a person. âi bâa is you crazy. âi ween is you bastard. âi khwaai is you buffalo, like you idiot. Without âi, khwaai is just the animal. ค่ะ or ครับ after one of these is the polite particle, and it sounds sarcastic.",
     examples: [
-      { ...p("ไอ้บ้า", "âi bâa"), en: "You lunatic." },
+      { ...p("ไอ้บ้า", "âi bâa"), en: "You crazy." },
       { ...p("ไอ้ควาย", "âi khwaai"), en: "You idiot." },
     ],
   },
