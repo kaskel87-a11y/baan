@@ -10,7 +10,7 @@ import {
   useStore,
   type Grade,
 } from "../lib/store";
-import { AdultMark, Button, ChiliHeat, HearButton, PageHeader, SayIt } from "../components/ui";
+import { AdultMark, Button, HearButton, PageHeader, SayIt, SwearFacts } from "../components/ui";
 import type { Verdict } from "../lib/thai";
 
 const KIND_LABEL: Record<CardKind, string> = {
@@ -76,7 +76,7 @@ export function Review({ preset, onDone }: { preset?: string[]; onDone?: (graded
   const cardView = card ? (
         <article className="rounded-4xl border border-line bg-card p-5 grid gap-4">
           {card.adult ? <AdultMark /> : null}
-          {card.heat ? <ChiliHeat heat={card.heat} /> : null}
+          <SwearFacts heat={card.heat} when={card.when} />
           <div className="flex items-center justify-between gap-3 text-sm text-muted">
             <p className="tabular-nums">
               {i + 1} of {q.length}

@@ -41,6 +41,11 @@ for (const s of SCENES) {
     if (new Set(ids).size !== ids.length) err(`scene ${s.id} has duplicate line or drill ids`);
   }
 }
+for (const v of VOCAB) {
+  if (v.heat && !v.when) err(`vocab ${v.id} has a chili rating but no “you'd hear it” line`);
+  if (v.when && !v.heat) err(`vocab ${v.id} has a “you'd hear it” line but no chili rating`);
+}
+
 for (const [id, thai] of [["khuen", "ขึ้น"], ["khuen-night", "คืน"]] as const)
   if (VOCAB_BY_ID.get(id)?.thai !== thai) err(`vocab ${id} should be ${thai}`);
 

@@ -11,7 +11,8 @@ import { NORMAL_RATE, SLOW_RATE, slowChunks, speak, speakSequence, stopSpeech } 
 import { particle, particleNote, pick, shuffle } from "../lib/thai";
 import { navigate } from "../lib/router";
 import { SceneArt } from "../components/SceneArt";
-import { AdultMark, AnswerLine, Button, ChiliHeat, HearButton, NoVoiceNotice, RomanKey, SayIt } from "../components/ui";
+import { AdultMark, AnswerLine, Button, HearButton, NoVoiceNotice, RomanKey, SayIt, SwearFacts } from "../components/ui";
+import { swearInThai } from "../lib/swear";
 import { gloss, meaningOf } from "../data/glossary";
 import { tipAfterLine, tipsForScene } from "../data/tips";
 import { TipCard } from "../components/TipCard";
@@ -257,6 +258,18 @@ export function SceneScreen({ id }: { id: string }) {
   );
 }
 
+/** Chili rating for the swear inside a spoken line. `badge` adds the 18+ mark on views that don't already show it. */
+function LineSwear({ scene, thai, badge = false }: { scene: SceneT; thai: string; badge?: boolean }) {
+  const v = swearInThai(thai, scene.vocab);
+  if (!v?.heat) return null;
+  return (
+    <>
+      {badge ? <AdultMark /> : null}
+      <SwearFacts heat={v.heat} when={v.when} />
+    </>
+  );
+}
+
 function Preview({ words, index, roman, onIndex, onStart }: { words: Vocab[]; index: number; roman: boolean; onIndex: (i: number) => void; onStart: () => void }) {
   const w = words[index] ?? words[0];
   if (!w) return null;
@@ -266,11 +279,11 @@ function Preview({ words, index, roman, onIndex, onStart }: { words: Vocab[]; in
       <p className="text-sm text-muted">Meet the words first, then hear them in the conversation.</p>
       <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
         {w.adult ? <AdultMark /> : null}
+        <SwearFacts heat={w.heat} when={w.when} />
         <p className="text-sm text-muted tabular-nums">Word {index + 1} of {words.length}</p>
         <p className="thai text-4xl" lang="th">{w.thai}</p>
         {roman ? <p className="text-lg text-muted">{w.roman}</p> : null}
         <p>{w.en}</p>
-        {w.heat ? <ChiliHeat heat={w.heat} /> : null}
         {w.hint ? <p className="text-sm text-muted">{annotateThai(w.hint)}</p> : null}
         <div className="flex flex-wrap gap-2">
           <HearButton text={w.thai} />
@@ -339,6 +352,7 @@ function Talk({
       {roman ? <RomanKey /> : null}
       <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
         {scene.adult ? <AdultMark /> : null}
+        <LineSwear scene={scene} thai={r.thai} />
         <p className="text-sm font-medium">
           <span lang="th">{who.th}</span>
           <span className="text-muted"> · {who.en}</span>
@@ -738,6 +752,7 @@ function RolePlay({ scene, voice, name, onExit }: { scene: SceneT; voice: Voice;
         </p>
       ) : null}
       <article className={`rounded-4xl border bg-card p-5 grid gap-3 ${mine ? "border-accent" : "border-line"}`}>
+        <LineSwear scene={scene} thai={r.thai} badge />
         <p className="text-sm text-muted">{mine ? "Your turn. Say it out loud." : `${who.en} says`}</p>
         <p className="font-display text-2xl">“{line.en}”</p>
         {mine ? (
@@ -880,6 +895,7 @@ function ListenRespond({ scene, voice, name, onExit }: { scene: SceneT; voice: V
       </div>
 
       <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
+        <LineSwear scene={scene} thai={cueR.thai} badge />
         <p className="text-sm text-muted">{who.en} is speaking. Listen first.</p>
         {revealed ? (
           <>
@@ -1150,6 +1166,7 @@ function Shadow({ scene, voice, name, onExit }: { scene: SceneT; voice: Voice; n
         ))}
       </div>
       <article className={`rounded-4xl border bg-card p-5 grid gap-3 ${mine ? "border-accent" : "border-line"}`}>
+        <LineSwear scene={scene} thai={r.thai} badge />
         <p className="text-sm text-muted">{mine ? "Your line" : `${who.en} says`}</p>
         <p className="font-display text-2xl">“{line.en}”</p>
         <p className="text-xl">{r.roman}</p>
