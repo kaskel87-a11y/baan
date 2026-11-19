@@ -184,6 +184,8 @@ special("จริง", [["j", "i", false, "ng", "mid"]]); // จร is one syll
 special("หรอ", [["r", "er", true, "", "rising"]]); // casual spelling of เหรอ, same rising เ-อ vowel
 special("นึง", [["n", "ue", false, "ng", "low"]]); // casual spelling of หนึ่ง; same low tone
 special("ขนม", [["kh", "a", false, "", "low"], ["n", "o", false, "m", "rising"]]); // irregular: khà-nǒm, not what the spelling suggests
+special("ชาติ", [["ch", "aa", true, "t", "falling"]]); // one syllable; the ิ on ต is not said
+special("หัวหมอ", [["h", "ua", true, "", "rising"], ["m", "aw", true, "", "rising"]]); // หมอ stays rising; the ห is not a final
 
 /** Split one Thai word into syllables. */
 export function syllabify(word: string): ThaiSyllable[] {

@@ -11,7 +11,7 @@ import { NORMAL_RATE, SLOW_RATE, slowChunks, speak, speakSequence, stopSpeech } 
 import { particle, particleNote, pick, shuffle } from "../lib/thai";
 import { navigate } from "../lib/router";
 import { SceneArt } from "../components/SceneArt";
-import { AdultMark, AnswerLine, Button, HearButton, NoVoiceNotice, RomanKey, SayIt } from "../components/ui";
+import { AdultMark, AnswerLine, Button, ChiliHeat, HearButton, NoVoiceNotice, RomanKey, SayIt } from "../components/ui";
 import { gloss, meaningOf } from "../data/glossary";
 import { tipAfterLine, tipsForScene } from "../data/tips";
 import { TipCard } from "../components/TipCard";
@@ -270,6 +270,7 @@ function Preview({ words, index, roman, onIndex, onStart }: { words: Vocab[]; in
         <p className="thai text-4xl" lang="th">{w.thai}</p>
         {roman ? <p className="text-lg text-muted">{w.roman}</p> : null}
         <p>{w.en}</p>
+        {w.heat ? <ChiliHeat heat={w.heat} /> : null}
         {w.hint ? <p className="text-sm text-muted">{annotateThai(w.hint)}</p> : null}
         <div className="flex flex-wrap gap-2">
           <HearButton text={w.thai} />
@@ -445,7 +446,7 @@ function Drills({
       <p className="text-sm text-muted tabular-nums">Recall {session.index + 1} of {scene.drills.length}</p>
       <article className="rounded-4xl border border-line bg-card p-5 grid gap-4">
         <p className="text-sm font-medium text-muted">
-          {d.kind === "listen" ? "Listen, then choose." : d.kind === "read" ? "Read, then choose." : d.en}
+          {d.kind === "listen" ? (d.cue ?? "Listen, then choose.") : d.kind === "read" ? (d.cue ?? "Read, then choose.") : d.en}
         </p>
         {d.kind === "listen" ? (
           <div className="grid gap-3">

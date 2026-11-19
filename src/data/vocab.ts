@@ -1308,6 +1308,7 @@ export const VOCAB: Vocab[] = [
     "roman": "âi bâa",
     "en": "you crazy",
     "adult": true,
+    "heat": 3,
     "hint": "Like 'you lunatic'. Falling, falling. ไอ้ is a rough 'you'. บ้า is crazy. Insulting. ค่ะ or ครับ on the end is the polite particle, and here it sounds sarcastic."
   },
   {
@@ -1316,6 +1317,7 @@ export const VOCAB: Vocab[] = [
     "roman": "dtaw-lǎae",
     "en": "bullshitter",
     "adult": true,
+    "heat": 3,
     "hint": "Like 'liar', but crude. Mid, then rising. ตอ is mid. แหล rises because ห makes ล high class. ค่ะ or ครับ after it sounds sarcastic."
   },
   {
@@ -1324,6 +1326,7 @@ export const VOCAB: Vocab[] = [
     "roman": "guan dtiin",
     "en": "pain in the ass",
     "adult": true,
+    "heat": 3,
     "hint": "Literally 'stir the foot'. ตีน is the rude word for foot, not เท้า. Mid, mid. Like 'smart-ass', someone annoying on purpose. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
@@ -1332,6 +1335,7 @@ export const VOCAB: Vocab[] = [
     "roman": "yét mâae",
     "en": "fuck (your) mother",
     "adult": true,
+    "heat": 5,
     "hint": "Like 'motherfucker'. Very vulgar. เย็ด is 'fuck', high: low-class ย on a short dead syllable. แม่ is 'mother', falling. ค่ะ or ครับ after it is the polite particle, which makes the insult sound sarcastic. Do not say it."
   },
   {
@@ -1340,6 +1344,7 @@ export const VOCAB: Vocab[] = [
     "roman": "sùeak",
     "en": "mind your own fucking business",
     "adult": true,
+    "heat": 3,
     "hint": "Nosy, butting in. Rude. Low: high-class ส on a long dead syllable (ends in k). The vowel is เอือ, uea. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
@@ -1348,6 +1353,7 @@ export const VOCAB: Vocab[] = [
     "roman": "chíp hǎai",
     "en": "shit",
     "adult": true,
+    "heat": 3,
     "hint": "An exclamation, also like 'fuck!' when something is ruined. High, then rising. ชิบ is high: low-class ช on a short dead syllable. หาย is 'gone, ruined', rising. Not usually aimed at a person. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
@@ -1356,6 +1362,7 @@ export const VOCAB: Vocab[] = [
     "roman": "bprà-sàat",
     "en": "you're nuts",
     "adult": true,
+    "heat": 2,
     "hint": "Literally 'nerves'. Milder than the rest of this deck, and still rude. Low, low. Shouted at someone, it means you are being irrational. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
@@ -1364,6 +1371,7 @@ export const VOCAB: Vocab[] = [
     "roman": "âi ween",
     "en": "you bastard",
     "adult": true,
+    "heat": 4,
     "hint": "Also like 'asshole'. Falling, then mid. เวร on its own is karma or a grudge. ไอ้ makes it 'you'. ค่ะ or ครับ on the end sounds sarcastic."
   },
   {
@@ -1372,7 +1380,188 @@ export const VOCAB: Vocab[] = [
     "roman": "âi khwaai",
     "en": "you idiot",
     "adult": true,
+    "heat": 3,
     "hint": "Literally 'you buffalo'. ควาย is a water buffalo, the same word as in the letter name khaw khwaai. Falling, then mid. ค่ะ or ครับ on the end sounds sarcastic."
+  },
+  {
+    "id": "baa",
+    "thai": "บ้า",
+    "roman": "bâa",
+    "en": "crazy",
+    "adult": true,
+    "heat": 1,
+    "hint": "A friend's shout, not ไอ้บ้า aimed at a person. Falling. You'd hear it when the group chat sends a ridiculous photo."
+  },
+  {
+    "id": "guan-ooi",
+    "thai": "กวนโอ๊ย",
+    "roman": "guan óoy",
+    "en": "you little pest",
+    "adult": true,
+    "heat": 1,
+    "hint": "The playful cousin of กวนตีน. โอ๊ย is high. You'd hear it when a friend hides your phone and grins."
+  },
+  {
+    "id": "saaep",
+    "thai": "แสบ",
+    "roman": "sàaep",
+    "en": "rascal",
+    "adult": true,
+    "heat": 1,
+    "hint": "Cheeky, often said with a smile. Low: high-class ส on a long dead syllable. You'd hear it when a nephew draws on the wall and looks proud."
+  },
+  {
+    "id": "bat-sop",
+    "thai": "บัดซบ",
+    "roman": "bàt-sóp",
+    "en": "darn",
+    "adult": true,
+    "heat": 1,
+    "hint": "Old-fashioned. Low, then high. You'd hear it when the fan dies and someone over sixty is in the room."
+  },
+  {
+    "id": "suay-luck",
+    "thai": "ซวย",
+    "roman": "suay",
+    "en": "screwed",
+    "adult": true,
+    "heat": 2,
+    "hint": "Unlucky, mid. Not สวย (sǔay, rising), which is beautiful. You'd hear it when you miss the last train by one minute."
+  },
+  {
+    "id": "maaeng",
+    "thai": "แม่ง",
+    "roman": "mâaeng",
+    "en": "damn",
+    "adult": true,
+    "heat": 2,
+    "hint": "A minced แม่, falling. Everyday, not a fight. You'd hear it when coffee spills on a white shirt."
+  },
+  {
+    "id": "chaang-maaeng",
+    "thai": "ช่างแม่ง",
+    "roman": "châang mâaeng",
+    "en": "fuck it",
+    "adult": true,
+    "heat": 2,
+    "hint": "ช่าง is 'let it be', both syllables fall. Like 'whatever'. You'd hear it when the plan falls apart and nobody wants to fix it."
+  },
+  {
+    "id": "hua-maw",
+    "thai": "หัวหมอ",
+    "roman": "hǔa-mǎw",
+    "en": "sly devil",
+    "adult": true,
+    "heat": 2,
+    "hint": "Literally 'doctor-head', a schemer. Both syllables rise. You'd hear it when a friend talks the waiter into a free dessert."
+  },
+  {
+    "id": "ngoo",
+    "thai": "โง่",
+    "roman": "ngôo",
+    "en": "stupid",
+    "adult": true,
+    "heat": 2,
+    "hint": "Falling. Blunt, and people say it to themselves. You'd hear it when someone locks the keys in the car."
+  },
+  {
+    "id": "naa-daan",
+    "thai": "หน้าด้าน",
+    "roman": "nâa dâan",
+    "en": "shameless",
+    "adult": true,
+    "heat": 3,
+    "hint": "Literally 'thick face'. Both falling. You'd hear it when someone cuts the line and then smiles."
+  },
+  {
+    "id": "hia",
+    "thai": "เหี้ย",
+    "roman": "hîa",
+    "en": "asshole",
+    "adult": true,
+    "heat": 4,
+    "hint": "Literally a water monitor lizard. Falling: high-class ห with mai tho. Nasty. Close friends sometimes bark it as a rough joke. You'd hear it when a motorbike cuts you off and doesn't look back."
+  },
+  {
+    "id": "ai-sat",
+    "thai": "ไอ้สัตว์",
+    "roman": "âi sàt",
+    "en": "you animal",
+    "adult": true,
+    "heat": 3,
+    "hint": "ไอ้ falls, สัตว์ is low. Like 'you beast'. You'd hear it when someone eats the last mango and leaves the pit."
+  },
+  {
+    "id": "son-dtiin",
+    "thai": "ส้นตีน",
+    "roman": "sôn dtiin",
+    "en": "you piece of shit",
+    "adult": true,
+    "heat": 4,
+    "hint": "Literally 'heel of the foot'. ส้น falls. ตีน is the rude word for foot, mid. Nasty. You'd hear it when a stranger kicks a bag and keeps walking."
+  },
+  {
+    "id": "jan-rai",
+    "thai": "จัญไร",
+    "roman": "jan-rai",
+    "en": "you accursed thing",
+    "adult": true,
+    "heat": 3,
+    "hint": "Old-fashioned and colorful. Mid, mid. You'd hear it at the mosquito that bit someone all night and is still in the room."
+  },
+  {
+    "id": "sai-hua",
+    "thai": "ไสหัว",
+    "roman": "sǎi hǔa",
+    "en": "get the hell out",
+    "adult": true,
+    "heat": 3,
+    "hint": "Literally 'move your head out'. Both rising. A dismissal. You'd hear it when a drunk won't leave the shop at closing."
+  },
+  {
+    "id": "khuay",
+    "thai": "ควย",
+    "roman": "khuay",
+    "en": "dick",
+    "adult": true,
+    "heat": 5,
+    "hint": "Fighting words. The vulgar word for a penis, mid tone, also thrown at a person like 'dickhead'. You mostly hear it in a fight, or in a movie that wants one. Do not say it."
+  },
+  {
+    "id": "chaat-chua",
+    "thai": "ชาติชั่ว",
+    "roman": "châat chûa",
+    "en": "scumbag",
+    "adult": true,
+    "heat": 4,
+    "hint": "Literally 'evil birth'. ชาติ is one syllable, châat, falling (the ิ is not said). ชั่ว falls. Nasty. You'd hear it when someone scams an old vendor and the whole soi knows."
+  },
+  {
+    "id": "dtaai-haa",
+    "thai": "ตายห่า",
+    "roman": "dtaai hàa",
+    "en": "drop dead",
+    "adult": true,
+    "heat": 4,
+    "hint": "Literally 'die of the plague'. ตาย is mid, ห่า is low. A curse, not a joke. You'd hear it when a driver almost hits a kid."
+  },
+  {
+    "id": "bpai-dtaai",
+    "thai": "ไปตายซะ",
+    "roman": "bpai dtaai sá",
+    "en": "go die",
+    "adult": true,
+    "heat": 5,
+    "hint": "Fighting words. ไป and ตาย are mid, ซะ is high. A wish that someone die, not banter. You'd hear it at the end of a real argument. Do not say it."
+  },
+  {
+    "id": "hii",
+    "thai": "หี",
+    "roman": "hǐi",
+    "en": "cunt",
+    "adult": true,
+    "heat": 5,
+    "hint": "Fighting words. Rising: high-class ห on a live syllable. The vulgar word for a vagina, also thrown as an insult. Almost never a joke. If you hear it, a fight is already on. Do not say it."
   }
 ];
 

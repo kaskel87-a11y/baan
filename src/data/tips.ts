@@ -744,7 +744,7 @@ export const TIPS: Tip[] = [
     afterLine: "rd1",
     kind: "culture",
     title: "Hear them, then leave them alone",
-    body: "These are words you will overhear when someone is angry. Knowing them keeps you from freezing when one lands. Saying them at a person can start a fight. The safe line is mâi phûut: I won't say it.",
+    body: "The chilies are how bad it is. One is friends joking. Five is fighting words, and those say don't say this to your mother-in-law. Knowing a word keeps you from freezing when it lands. Saying it at a person can start a fight. The safe line is mâi phûut: I won't say it.",
     examples: [
       { ...p("ไม่พูด", "mâi phûut"), en: "I won't say it." },
       { ...p("ได้ยินได้ อย่าพูด", "dâai-yin dâai, yàa phûut"), en: "You can hear it. Don't say it." },

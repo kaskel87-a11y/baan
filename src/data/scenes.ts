@@ -5102,18 +5102,38 @@ export const SCENES: Scene[] = [
     "id": "swears",
     "title": "Swear words (know them, don't say them)",
     "titleTh": "คำหยาบ",
-    "blurb": "Learn to recognize these. Don't use them.",
+    "blurb": "Twenty-nine words, from a friend's joke up to a fight. Learn to recognize these. Don't use them.",
     "adult": true,
     "vocab": [
+      "baa",
+      "guan-ooi",
+      "saaep",
+      "bat-sop",
+      "suay-luck",
+      "maaeng",
+      "chaang-maaeng",
+      "hua-maw",
+      "ngoo",
+      "bpra-saat",
       "ai-baa",
       "dtaw-laae",
       "guan-dtiin",
-      "yet-maae",
       "sueak",
       "chip-haai",
-      "bpra-saat",
+      "naa-daan",
+      "ai-sat",
+      "jan-rai",
+      "sai-hua",
+      "ai-khwaai",
+      "hia",
+      "son-dtiin",
       "ai-ween",
-      "ai-khwaai"
+      "chaat-chua",
+      "dtaai-haa",
+      "khuay",
+      "hii",
+      "yet-maae",
+      "bpai-dtaai"
     ],
     "lines": [
       {
@@ -5234,6 +5254,68 @@ export const SCENES: Scene[] = [
           "male": "dâai-yin láew, mâi phûut khráp",
           "female": "dâai-yin láew, mâi phûut khâ"
         }
+      },
+      {
+        "id": "rd14",
+        "who": "ploy",
+        "en": "Crazy!",
+        "thai": "บ้าค่ะ",
+        "roman": "bâa khâ",
+        "note": "One chili, friends joking. บ้า alone is the exclamation. ไอ้บ้า aims it at a person. You'd hear บ้า when a story in the group chat is ridiculous."
+      },
+      {
+        "id": "rd15",
+        "who": "ploy",
+        "en": "You little pest.",
+        "thai": "กวนโอ๊ยค่ะ",
+        "roman": "guan óoy khâ",
+        "note": "One chili. The playful cousin of กวนตีน. You'd hear it when a friend hides your phone and grins. โอ๊ย is high."
+      },
+      {
+        "id": "rd16",
+        "who": "ploy",
+        "en": "Asshole.",
+        "thai": "เหี้ยค่ะ",
+        "roman": "hîa khâ",
+        "note": "Four chilies, nasty. Literally a water monitor lizard. Falling. You'd hear it when a motorbike cuts someone off. ค่ะ sounds sarcastic."
+      },
+      {
+        "id": "rd17",
+        "who": "ploy",
+        "en": "You animal.",
+        "thai": "ไอ้สัตว์ค่ะ",
+        "roman": "âi sàt khâ",
+        "note": "Three chilies. Like 'you beast'. You'd hear it when someone eats the last mango and leaves the pit."
+      },
+      {
+        "id": "rd18",
+        "who": "ploy",
+        "en": "You piece of shit.",
+        "thai": "ส้นตีนค่ะ",
+        "roman": "sôn dtiin khâ",
+        "note": "Four chilies. Literally 'heel of the foot'. ส้น falls. ตีน is the rude word for foot. You'd hear it when a stranger kicks a bag and walks on."
+      },
+      {
+        "id": "rd19",
+        "who": "ploy",
+        "en": "Dick.",
+        "thai": "ควยค่ะ",
+        "roman": "khuay khâ",
+        "note": "Five chilies. Fighting words. Don't say this to your mother-in-law. Don't say it to anyone. Mid tone. ค่ะ makes it sound sarcastic."
+      },
+      {
+        "id": "rd20",
+        "who": "you",
+        "en": "I won't say that one either.",
+        "thai": {
+          "male": "อันนั้นก็ไม่พูดครับ",
+          "female": "อันนั้นก็ไม่พูดค่ะ"
+        },
+        "roman": {
+          "male": "an-nán gâw mâi phûut khráp",
+          "female": "an-nán gâw mâi phûut khâ"
+        },
+        "note": "อันนั้น is 'that one'. ก็ is falling. The refusal, not the swear."
       }
     ],
     "drills": [
@@ -5304,6 +5386,62 @@ export const SCENES: Scene[] = [
         "stem": "ไม่พูด",
         "stemRoman": "mâi phûut",
         "particleKind": "statement"
+      },
+      {
+        "id": "rd-heat-bat",
+        "kind": "read",
+        "cue": "How bad is it?",
+        "thai": "บัดซบ",
+        "roman": "bàt-sóp",
+        "en": "1 — friends joking",
+        "options": [
+          "1 — friends joking",
+          "3 — rude",
+          "4 — nasty",
+          "5 — fighting words"
+        ]
+      },
+      {
+        "id": "rd-heat-hia",
+        "kind": "read",
+        "cue": "How bad is it?",
+        "thai": "เหี้ย",
+        "roman": "hîa",
+        "en": "4 — nasty",
+        "options": [
+          "1 — friends joking",
+          "2 — cheeky",
+          "4 — nasty",
+          "5 — fighting words"
+        ]
+      },
+      {
+        "id": "rd-heat-mother",
+        "kind": "read",
+        "cue": "How bad is it?",
+        "thai": "เย็ดแม่",
+        "roman": "yét mâae",
+        "en": "5 — fighting words",
+        "options": [
+          "2 — cheeky",
+          "3 — rude",
+          "4 — nasty",
+          "5 — fighting words"
+        ]
+      },
+      {
+        "id": "rd-heat-ooi",
+        "kind": "listen",
+        "cue": "How bad is it?",
+        "thai": "กวนโอ๊ย",
+        "roman": "guan óoy",
+        "en": "1 — friends joking",
+        "options": [
+          "1 — friends joking",
+          "3 — rude",
+          "4 — nasty",
+          "5 — fighting words"
+        ]
       }
     ]
   },
