@@ -31,9 +31,13 @@ html {
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 100%;
+  overflow-x: clip;
 }
 body {
   min-height: 100dvh;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 @layer components {
@@ -42,12 +46,28 @@ body {
     padding-block: 0.08em;
     font-weight: 600;
     line-height: 1.65;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
   .font-display {
     font-family: var(--font-display);
   }
   .enter {
     animation: rise var(--motion-fast) var(--ease-smooth-out);
+    min-width: 0;
+    max-width: 100%;
+  }
+  .enter > *,
+  .enter article,
+  .enter header,
+  .enter section {
+    min-width: 0;
+    max-width: 100%;
+  }
+  /* A single auto column sizes to the longest word and can stick out of the card. */
+  .enter .grid:not([class*="grid-cols-"]) {
+    grid-template-columns: minmax(0, 1fr);
   }
   .app-shell {
     background: var(--color-paper);
@@ -84,4 +104,29 @@ body {
 @keyframes baan-shrink {
   from { transform: scaleX(1); }
   to { transform: scaleX(0); }
+}
+
+/* Unlayered so it wins over the text-3xl / text-4xl utilities. Long Thai and titles wrap
+   inside the phone instead of widening the page. anywhere (not just break-word) lets a
+   grid item's minimum size shrink, which is what stops the card from growing past the screen. */
+h1,
+p,
+.font-display,
+.thai {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+@media (max-width: 480px) {
+  .thai.text-4xl {
+    font-size: clamp(1.65rem, 8.2vw, 2.25rem);
+  }
+  .thai.text-3xl {
+    font-size: clamp(1.4rem, 6.8vw, 1.85rem);
+  }
+  h1.font-display,
+  h1.text-3xl {
+    font-size: clamp(1.45rem, 6.6vw, 1.85rem);
+  }
 }

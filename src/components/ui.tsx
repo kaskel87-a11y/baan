@@ -27,7 +27,7 @@ export function ChiliHeat({ heat }: { heat: number }) {
   const label = HEAT_LABEL[heat] ?? "";
   return (
     <div className="grid gap-1">
-      <p className="flex items-center gap-1.5" aria-label={`Severity ${heat} of 5, ${label}`}>
+      <p className="flex max-w-full flex-wrap items-center gap-1.5" aria-label={`Severity ${heat} of 5, ${label}`}>
         <span aria-hidden="true" className="inline-flex items-center gap-1">
           {Array.from({ length: 5 }, (_, i) =>
             i < heat ? (
