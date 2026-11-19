@@ -1,6 +1,6 @@
 # Roadmap
 
-Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-11-19 (0.38.5). Babbel research: `docs/BABBEL-NOTES.md`.
+Spec: `/workspace/baan/REVIEW.md` (sections 2–4). Status as of 2026-11-19 (0.38.6). Babbel research: `docs/BABBEL-NOTES.md`.
 
 **Priority (Collin, 2026-10-15): speaking and listening first. No reading/writing quizzes. Letters stays as optional reference only. Romanization stays prominent and never fades.**
 
