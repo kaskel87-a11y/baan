@@ -10,13 +10,16 @@ export type Route =
   | { name: "settings" }
   | { name: "numbers" }
   | { name: "today" }
-  | { name: "stories" };
+  | { name: "stories" }
+  | { name: "word"; id: string };
 
 export function parseHash(hash: string): Route {
   const parts = hash.replace(/^#\/?/, "").split("/").filter(Boolean);
   switch (parts[0]) {
     case "scene":
       return parts[1] ? { name: "scene", id: decodeURIComponent(parts[1]) } : { name: "path" };
+    case "word":
+      return parts[1] ? { name: "word", id: decodeURIComponent(parts[1]) } : { name: "path" };
     case "tones":
     case "letters":
     case "review":
@@ -31,7 +34,9 @@ export function parseHash(hash: string): Route {
 }
 
 export function href(r: Route) {
-  return r.name === "scene" ? `#/scene/${encodeURIComponent(r.id)}` : `#/${r.name}`;
+  if (r.name === "scene") return `#/scene/${encodeURIComponent(r.id)}`;
+  if (r.name === "word") return `#/word/${encodeURIComponent(r.id)}`;
+  return `#/${r.name}`;
 }
 
 export function navigate(r: Route) {

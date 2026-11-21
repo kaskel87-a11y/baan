@@ -1,4 +1,5 @@
 import { AudioLines, BookOpen, Languages, RotateCcw, Settings as SettingsIcon, type LucideIcon } from "lucide-react";
+import { useEffect } from "react";
 import { useStore } from "./lib/store";
 import { navigate, useRoute, type Route } from "./lib/router";
 import { Onboarding } from "./screens/Onboarding";
@@ -12,6 +13,7 @@ import { Numbers } from "./screens/Numbers";
 import { Today } from "./screens/Today";
 import { Stories } from "./screens/Stories";
 import { UpdateBanner } from "./components/UpdateBanner";
+import { WordScreen } from "./screens/Word";
 
 type Tab = "path" | "tones" | "letters" | "review";
 const TABS: { id: Tab; label: string; icon: LucideIcon }[] = [
@@ -24,8 +26,17 @@ const TABS: { id: Tab; label: string; icon: LucideIcon }[] = [
 export default function App() {
   const s = useStore();
   const route = useRoute();
+  useEffect(() => {
+    if (!("serviceWorker" in navigator)) return;
+    const on = (e: MessageEvent) => {
+      const data = e.data as { type?: string; id?: string } | null;
+      if (data?.type === "open-word" && data.id) navigate({ name: "word", id: data.id });
+    };
+    navigator.serviceWorker.addEventListener("message", on);
+    return () => navigator.serviceWorker.removeEventListener("message", on);
+  }, []);
   if (!s.voice) return <Onboarding />;
-  const active: Route["name"] = route.name === "scene" || route.name === "numbers" || route.name === "today" || route.name === "stories" ? "path" : route.name;
+  const active: Route["name"] = route.name === "scene" || route.name === "numbers" || route.name === "today" || route.name === "stories" || route.name === "word" ? "path" : route.name;
   const go = (id: Tab | "settings") => navigate({ name: id } as Route);
 
   return (
@@ -78,6 +89,7 @@ export default function App() {
           {route.name === "today" ? <Today /> : null}
           {route.name === "stories" ? <Stories /> : null}
           {route.name === "settings" ? <Settings /> : null}
+          {route.name === "word" ? <WordScreen key={route.id} id={route.id} /> : null}
         </main>
         <nav className="dock fixed inset-x-0 bottom-0 z-10 border-t border-line bg-paper md:hidden" aria-label="Main">
           <ul className="grid grid-cols-4">

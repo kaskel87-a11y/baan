@@ -58,6 +58,8 @@ export interface BaanState {
   stories?: Record<string, StoryRecord>;
   /** Thai-script reading cards in Review. Off by default (speaking and listening first). */
   readCards?: boolean;
+  /** How many word notifications a day: 1, 3, or 5. New York time. */
+  pushPerDay?: 1 | 3 | 5;
 }
 
 export interface StoryRecord {
@@ -159,6 +161,7 @@ function migrateLoaded(t: Partial<BaanState>): BaanState {
     srsNewCount: t.srsNewCount ?? 0,
     numbers: migrateNumbers(t.numbers),
     dailyGoal: t.dailyGoal && t.dailyGoal > 0 ? t.dailyGoal : 15,
+    pushPerDay: t.pushPerDay === 1 || t.pushPerDay === 5 ? t.pushPerDay : 3,
     history: t.history ?? {},
   };
 }
@@ -238,6 +241,9 @@ export function logItems(n = 1) {
   update((s) => addItems(s, n));
 }
 
+export function setPushPerDay(n: 1 | 3 | 5) {
+  update((s) => ({ ...s, pushPerDay: n }));
+}
 export function setDailyGoal(goal: number) {
   update((s) => {
     const next = { ...s, dailyGoal: goal };
