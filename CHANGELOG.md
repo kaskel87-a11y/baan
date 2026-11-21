@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.39.0 — Word notifications
+
+- **Word notifications** in Settings. On the Home Screen app, the switch asks for permission and subscribes this phone. In a normal browser tab it only says to open Baan from the Home Screen icon.
+- Default is 3 a day, at 9:00 AM, 1:00 PM, and 7:00 PM New York time. Settings can switch that to 1 or 5. Each notification is a Baan vocab word (not the swear deck): Thai as the title, then the romanization and English. A tap opens that word, plays it, and puts it in Review.
+- A GitHub Action sends them. It needs two Actions secrets this agent cannot create: `VAPID_PRIVATE_KEY` (the pair of the public key in the app) and `PUSH_SUBS` (the subscription JSON the switch copies).
+
 ## 0.38.6 — Home Screen icon for Chrome on iPhone
 
 - Chrome on iPhone was still drawing a letter B. The touch icon link was relative (`./apple-touch-icon.png`), and the manifest offered an SVG first, which that browser will not use for a home-screen icon. The page now points at `/baan/apple-touch-icon.png` (plain and precomposed, 180×180), and the manifest lists only the PNG house icons at absolute paths. The service worker fetches those icons from the network and does not keep a cached miss. Delete the old shortcut and add it again.

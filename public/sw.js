@@ -33,3 +33,39 @@ self.addEventListener("fetch", (event) => {
   if (!shell) return;
   event.respondWith(fetch(req, { cache: "no-store" }));
 });
+
+self.addEventListener("push", (event) => {
+  let data = {};
+  try {
+    data = event.data ? event.data.json() : {};
+  } catch {
+    data = { title: "Baan", body: event.data ? event.data.text() : "" };
+  }
+  const title = data.title || "Baan";
+  const options = {
+    body: data.body || "",
+    icon: "/baan/apple-touch-icon.png",
+    badge: "/baan/apple-touch-icon.png",
+    data: data.data || {},
+    lang: "th",
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+self.addEventListener("notificationclick", (event) => {
+  const id = (event.notification.data && event.notification.data.id) || "";
+  event.notification.close();
+  const url = new URL(self.registration.scope);
+  url.hash = id ? `/word/${encodeURIComponent(id)}` : "/path";
+  event.waitUntil((async () => {
+    const all = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+    for (const client of all) {
+      if ("focus" in client) {
+        await client.focus();
+        client.postMessage({ type: "open-word", id });
+        return;
+      }
+    }
+    await self.clients.openWindow(url.href);
+  })());
+});
