@@ -1,0 +1,5 @@
+voices/
+out_*/
+*.mp4
+*.wav
+.venv/

@@ -16,6 +16,8 @@ import { swearInThai } from "../lib/swear";
 import { gloss, meaningOf } from "../data/glossary";
 import { tipAfterLine, tipsForScene } from "../data/tips";
 import { TipCard } from "../components/TipCard";
+import { WatchScene } from "../components/WatchScene";
+import { cartoonsForScene } from "../data/cartoons";
 
 const SPEAKERS: Record<Speaker, { th: string; en: string }> = {
   you: { th: "คุณ", en: "You" },
@@ -181,6 +183,9 @@ export function SceneScreen({ id }: { id: string }) {
         <p className="text-muted">{scene.blurb}</p>
       </header>
       <NoVoiceNotice />
+      {session.phase === "preview" || session.phase === "done"
+        ? cartoonsForScene(scene.id).map((c) => <WatchScene key={c.id} cartoon={c} roman={st.roman} />)
+        : null}
       {session.phase === "preview" ? (
         <Preview words={words} index={session.index} roman={st.roman} onIndex={(i) => set({ ...session, index: i })} onStart={enterTalk} />
       ) : null}

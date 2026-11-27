@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.40.0 — Watch the scene
+
+- **A voiced cartoon on the café lessons.** *ที่ร้านกาแฟ / The café door* and *สั่งกาแฟ / Ordering* open with a "Watch the scene" card: a 33-second cartoon in Baan's style where you walk in, greet Nid, order an iced coffee, pay 55 baht and say thank you. Every bubble is spoken in Thai, Nid in a female voice and you in a male voice (ครับ forms), with the romanization and English on screen.
+- It plays inline on phones, loads only the small poster until you tap Play, and stops any Hear audio when it starts. "The 6 lines in it" lists each line; tap one to jump there.
+- New cartoons (taxi, market) are one entry in `src/data/cartoons.ts`; the kit to draw and voice them is in `scripts/cartoons/`.
+
 ## 0.39.0 — Word notifications
 
 - **Word notifications** in Settings. On the Home Screen app, the switch asks for permission and subscribes this phone. In a normal browser tab it only says to open Baan from the Home Screen icon.
