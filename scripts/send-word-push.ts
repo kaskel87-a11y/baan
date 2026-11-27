@@ -15,7 +15,7 @@ const webpush = require("web-push") as {
 };
 
 const STATE = ".push-state.json";
-const subject = process.env.VAPID_SUBJECT || "https://kaskel87-a11y.github.io/baan";
+const subject = process.env.VAPID_SUBJECT || "https://learnthaibaan.github.io";
 const privateKey = process.env.VAPID_PRIVATE_KEY || "";
 const test = process.env.PUSH_TEST === "true" || process.env.PUSH_TEST === "1";
 

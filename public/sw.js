@@ -44,8 +44,8 @@ self.addEventListener("push", (event) => {
   const title = data.title || "Baan";
   const options = {
     body: data.body || "",
-    icon: "/baan/apple-touch-icon.png",
-    badge: "/baan/apple-touch-icon.png",
+    icon: "/apple-touch-icon.png",
+    badge: "/apple-touch-icon.png",
     data: data.data || {},
     lang: "th",
   };

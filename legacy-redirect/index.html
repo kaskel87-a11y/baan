@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Baan has moved</title>
+<link rel="canonical" href="__NEW_HOME__" />
+<link rel="apple-touch-icon" href="/baan/apple-touch-icon.png" />
+<style>
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #f3f0ea; color: #1f2a2a;
+         font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; text-align: center; padding: 24px; box-sizing: border-box; }
+  a { color: #0f766e; font-weight: 600; }
+  .card { max-width: 340px; }
+  h1 { font-size: 22px; margin: 0 0 8px; }
+  p { margin: 0 0 12px; color: #4b5563; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Baan has a new home</h1>
+  <p id="msg">Bringing your progress over…</p>
+  <p><a id="go" href="__NEW_HOME__">Open learnthaibaan.github.io</a></p>
+</div>
+<script>
+/* Baan moved to __NEW_HOME__. Browsers keep progress per site, so this page packs this
+   browser's Baan keys (localStorage "baan.*") into the link. The new site imports them only if it has
+   no progress of its own yet. It also retires the old Baan service worker. Other apps on this
+   github.io address (their storage, caches and service workers) are left alone. */
+(function () {
+  var HOME = "__NEW_HOME__";
+  var SCOPE = location.origin + "/baan/";
+  var done = false;
+
+  function b64url(bytes) {
+    var bin = "";
+    for (var i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+
+  function collect() {
+    var ls = {};
+    try {
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (k && k.indexOf("baan.") === 0 && k !== "baan.pushSub") ls[k] = localStorage.getItem(k);
+      }
+    } catch (e) {}
+    return ls;
+  }
+
+  function route() {
+    var h = location.hash.replace(/^#/, "");
+    if (h.indexOf("migrate=") === 0) return "";
+    return h.charAt(0) === "/" ? h : "";
+  }
+
+  function pack(ls) {
+    var json = JSON.stringify({ app: "baan", v: 1, at: new Date().toISOString(), from: location.host + location.pathname, ls: ls });
+    var raw = new TextEncoder().encode(json);
+    if (typeof CompressionStream === "undefined") return Promise.resolve("j." + b64url(raw));
+    var stream = new Blob([raw]).stream().pipeThrough(new CompressionStream("deflate-raw"));
+    return new Response(stream).arrayBuffer().then(function (buf) { return "z." + b64url(new Uint8Array(buf)); },
+      function () { return "j." + b64url(raw); });
+  }
+
+  function retireOldWorker() {
+    if (!("serviceWorker" in navigator)) return Promise.resolve();
+    return navigator.serviceWorker.getRegistrations().then(function (regs) {
+      return Promise.all(regs.filter(function (r) { return r.scope.indexOf(SCOPE) === 0; })
+        .map(function (r) { return r.unregister(); }));
+    }).catch(function () {});
+  }
+
+  function go(url) {
+    if (done) return;
+    done = true;
+    document.getElementById("go").href = url;
+    location.replace(url);
+  }
+
+  var ls = collect();
+  var r = route();
+  var hasData = Object.keys(ls).length > 0;
+  var job = (hasData ? pack(ls) : Promise.resolve("")).then(function (data) {
+    var parts = [];
+    if (data) parts.push("migrate=" + data);
+    if (r) parts.push("to=" + encodeURIComponent(r));
+    var url = HOME + (data ? "#" + parts.join("&") : (r ? "#" + r : ""));
+    return retireOldWorker().then(function () { return url; });
+  });
+  var fallback = HOME + (r ? "#" + r : "");
+  // Never leave anyone stuck here: go after 2.5 s even if a step hangs.
+  var timer = setTimeout(function () { job.then(go); setTimeout(function () { go(fallback); }, 1500); }, 2500);
+  job.then(function (url) { clearTimeout(timer); go(url); }, function () { clearTimeout(timer); go(fallback); });
+})();
+</script>
+<noscript><meta http-equiv="refresh" content="0; url=__NEW_HOME__" /></noscript>
+</body>
+</html>
