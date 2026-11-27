@@ -816,6 +816,33 @@ export const TIPS: Tip[] = [
       { ...p("ไอ้ควาย", "âi khwaai"), en: "You idiot." },
     ],
   },
+  // The same what
+  {
+    id: "arai-endings",
+    sceneId: "arai",
+    afterLine: "ar4",
+    kind: "grammar",
+    title: "The ending on à-rai does the work",
+    body: "The word stays à-rai. The little word after it changes the feel. khá (high, a woman asking) or khráp (high, a man speaking) is the polite one, the same ending you already use. à (low, often written อ่ะ, sometimes อะ) is casual, for friends. ná (high) is for when the words went past you: à-rai ná, what did you say?",
+    examples: [
+      { ...p("อันนี้อะไร", "an-níi à-rai", "question"), en: "What's this? (polite)" },
+      { thai: "อะไรอ่ะ", roman: "à-rai à", en: "What? (casual, to a friend)" },
+      { ...p("อะไรนะ", "à-rai ná", "question"), en: "What did you say?" },
+    ],
+  },
+  {
+    id: "arai-wa",
+    sceneId: "arai",
+    afterLine: "ar7",
+    kind: "culture",
+    title: "wá is blunt",
+    body: "à-rai wá is the one you'll hear when someone is startled or annoyed. It is not a swear, but it is too blunt for a stranger or a shop. With people you don't know, stay with à-rai khá or à-rai khráp.",
+    examples: [
+      { thai: "อะไรวะ", roman: "à-rai wá", en: "What? (blunt — don't use this with a stranger)" },
+      { ...p("อะไร", "à-rai", "question"), en: "What? (the polite one)" },
+    ],
+  },
+
   // Goodbye
   {
     id: "leave-mai-pen-rai",

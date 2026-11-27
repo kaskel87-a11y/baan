@@ -1023,6 +1023,27 @@ export const VOCAB: Vocab[] = [
     "hint": "Low, mid, high. Use it when the words went past you and you want them once more. For “are you serious?” the word is จริงหรอ."
   },
   {
+    "id": "arai",
+    "thai": "อะไร",
+    "roman": "à-rai",
+    "en": "what",
+    "hint": "Low, mid. The question word. The little word after it changes the feel: polite, casual, I didn't catch that, or blunt."
+  },
+  {
+    "id": "arai-a",
+    "thai": "อะไรอ่ะ",
+    "roman": "à-rai à",
+    "en": "what? (casual)",
+    "hint": "Low, mid, low. อ่ะ (à, low) is the casual ending friends use. People often type it อะ, without the tone mark. Fine with a friend; not the one for a shop."
+  },
+  {
+    "id": "arai-wa",
+    "thai": "อะไรวะ",
+    "roman": "à-rai wá",
+    "en": "what? (blunt)",
+    "hint": "Low, mid, high. วะ (wá, high) is blunt, like you're startled or annoyed. Not a swear, but too rough with a stranger. Don't use it in a shop."
+  },
+  {
     "id": "chai-bpa",
     "thai": "ใช่ปะ",
     "roman": "châi bpà",

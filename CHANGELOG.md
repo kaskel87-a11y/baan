@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.48.0 — The same what
+
+- **A new scene, *อะไร / The same what*,** after Everyday words: the same อะไร with four endings. อะไรครับ / อะไรคะ is the polite one, อะไรอ่ะ (*à-rai à*, often typed อะไรอะ) is casual, อะไรนะ is for when the words went past you, and อะไรวะ is blunt — not a swear, but too rough with a stranger or a shop. Two tip cards and drills on the four endings. A small speech-bubble picture.
+- Baan is still 100% free, zero ads.
+
+
 ## 0.47.1 — Two more 18+ words
 
 - **ขี้เย็ด** (*khîi yét*) and **น่าเย็ด** (*nâa yét*) join the คำหยาบ deck (31 words). Both are marked 18+ · rude, with chili ratings and a “you'd hear it when…” line. ขี้เย็ด is a vulgar insult, often aimed at a woman, for being promiscuous. น่าเย็ด is a vulgar “fuckable / sexually desirable.” A new pick drill contrasts น่าเย็ด with หน้าเย็ด (face), which sounds the same but is not the attested spelling. Still recognize these, don't use them. Nothing from this deck goes into social posts.

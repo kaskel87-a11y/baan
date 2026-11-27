@@ -426,6 +426,17 @@ const DRAWINGS: Record<SceneArtId, ReactNode> = {
         <path d="M250 26 q8 8 0 18" fill="none" stroke={ink} strokeWidth="2.5" strokeLinecap="round" />
       </>
   ),
+  arai: (
+      <>
+        <Ground />
+        <rect x="34" y="28" width="32" height="20" rx="8" fill={sand} stroke={teal} strokeWidth="2" />
+        <rect x="86" y="10" width="148" height="58" rx="16" fill={cream} stroke={teal} strokeWidth="3" />
+        <path d="M148 68 l-10 16 l26 -16 z" fill={cream} stroke={teal} strokeWidth="3" strokeLinejoin="round" />
+        <path d="M148 28 C148 18 174 18 174 30 C174 40 158 42 158 52" fill="none" stroke={ink} strokeWidth="4.5" strokeLinecap="round" />
+        <circle cx="158" cy="61" r="3.4" fill={ink} />
+        <rect x="254" y="22" width="36" height="22" rx="8" fill={sky} stroke={clay} strokeWidth="2" />
+      </>
+  ),
   swears: (
       <>
         <Ground />

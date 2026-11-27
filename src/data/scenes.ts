@@ -5491,6 +5491,201 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "arai",
+    "title": "The same what",
+    "titleTh": "อะไร",
+    "blurb": "The same อะไร, four endings: polite, casual, I didn't catch that, and too blunt for a stranger.",
+    "vocab": [
+      "arai",
+      "an-nii",
+      "arai-a",
+      "arai-na",
+      "arai-wa"
+    ],
+    "lines": [
+      {
+        "id": "ar1",
+        "who": "joy",
+        "en": "What's this?",
+        "thai": "อันนี้อะไรอ่ะ",
+        "roman": "an-níi à-rai à",
+        "note": "อะไรอ่ะ (à-rai à) is the casual what, for a friend. อ่ะ is low. People often type it อะ, without the tone mark."
+      },
+      {
+        "id": "ar2",
+        "who": "you",
+        "en": "What did you say?",
+        "thai": {
+          "male": "อะไรนะครับ",
+          "female": "อะไรนะคะ"
+        },
+        "roman": {
+          "male": "à-rai ná khráp",
+          "female": "à-rai ná khá"
+        },
+        "note": "อะไรนะ (à-rai ná) is for when the words went past you. นะ is high. You already met this in Everyday words."
+      },
+      {
+        "id": "ar3",
+        "who": "joy",
+        "en": "This one. What's this?",
+        "thai": "อันนี้ อะไรอ่ะ",
+        "roman": "an-níi, à-rai à",
+        "note": "She says it again, still casual. อันนี้ (an-níi) is this one."
+      },
+      {
+        "id": "ar4",
+        "who": "you",
+        "en": "What's this?",
+        "thai": {
+          "male": "อันนี้อะไรครับ",
+          "female": "อันนี้อะไรคะ"
+        },
+        "roman": {
+          "male": "an-níi à-rai khráp",
+          "female": "an-níi à-rai khá"
+        },
+        "note": "The polite what: อะไรครับ (khráp, high) for a man, อะไรคะ (khá, high) for a woman asking. Use this with someone you don't know."
+      },
+      {
+        "id": "ar5",
+        "who": "joy",
+        "en": "Right. With someone you don't know, use that one.",
+        "thai": "ใช่ค่ะ กับคนที่ไม่รู้จัก ใช้แบบนี้ค่ะ",
+        "roman": "châi khâ, gàp khon thîi mâi rúu-jàk, chái bàaep níi khâ",
+        "note": "คนที่ไม่รู้จัก (khon thîi mâi rúu-jàk) is someone you don't know. ใช้แบบนี้ is use it this way."
+      },
+      {
+        "id": "ar6",
+        "who": "joy",
+        "en": "You'll hear à-rai wá too.",
+        "thai": "จะได้ยินอะไรวะด้วยนะคะ",
+        "roman": "jà dâai-yin à-rai wá dûay ná khá",
+        "note": "อะไรวะ (à-rai wá) is blunt, like you're startled or annoyed. วะ is high."
+      },
+      {
+        "id": "ar7",
+        "who": "joy",
+        "en": "Don't say it to someone you don't know.",
+        "thai": "อย่าพูดกับคนที่ไม่รู้จักนะคะ",
+        "roman": "yàa phûut gàp khon thîi mâi rúu-jàk ná khá",
+        "note": "Not a swear, but too rough with a stranger or a shop."
+      },
+      {
+        "id": "ar8",
+        "who": "you",
+        "en": "Got it.",
+        "thai": {
+          "male": "เข้าใจแล้วครับ",
+          "female": "เข้าใจแล้วค่ะ"
+        },
+        "roman": {
+          "male": "khâo-jai láew khráp",
+          "female": "khâo-jai láew khâ"
+        },
+        "note": "เข้าใจแล้ว (khâo-jai láew) is I understand now."
+      }
+    ],
+    "drills": [
+      {
+        "id": "ar-l",
+        "kind": "listen",
+        "thai": "อะไรนะ",
+        "roman": "à-rai ná",
+        "en": "What did you say?",
+        "options": [
+          "What did you say?",
+          "What's this? (casual)",
+          "What's this? (polite)",
+          "What? (blunt)"
+        ]
+      },
+      {
+        "id": "ar-r",
+        "kind": "read",
+        "thai": "อะไรอ่ะ",
+        "roman": "à-rai à",
+        "en": "What's this? (casual)",
+        "options": [
+          "What's this? (casual)",
+          "What did you say?",
+          "What's this? (polite)",
+          "What? (blunt)"
+        ]
+      },
+      {
+        "id": "ar-p1",
+        "kind": "pick",
+        "en": "“what's this? (polite, a woman asking)”",
+        "options": [
+          "อะไรคะ",
+          "อะไรอ่ะ",
+          "อะไรนะ",
+          "อะไรวะ"
+        ],
+        "answer": "อะไรคะ",
+        "roman": "à-rai khá"
+      },
+      {
+        "id": "ar-p2",
+        "kind": "pick",
+        "en": "“what? (blunt, like you're annoyed)”",
+        "options": [
+          "อะไรวะ",
+          "อะไรนะ",
+          "อะไรครับ",
+          "อะไรอ่ะ"
+        ],
+        "answer": "อะไรวะ",
+        "roman": "à-rai wá"
+      },
+      {
+        "id": "ar-p3",
+        "kind": "pick",
+        "en": "“what's this? (casual, to a friend)”",
+        "options": [
+          "อะไรอ่ะ",
+          "อะไรคะ",
+          "อะไรนะ",
+          "อะไรวะ"
+        ],
+        "answer": "อะไรอ่ะ",
+        "roman": "à-rai à"
+      },
+      {
+        "id": "ar-b",
+        "kind": "build",
+        "en": "What's this? (polite)",
+        "tiles": [
+          "อันนี้",
+          "อะไร",
+          "ครับ",
+          "ค่ะ",
+          "คะ",
+          "อ่ะ",
+          "วะ"
+        ],
+        "answer": {
+          "male": [
+            "อันนี้",
+            "อะไร",
+            "ครับ"
+          ],
+          "female": [
+            "อันนี้",
+            "อะไร",
+            "คะ"
+          ]
+        },
+        "roman": {
+          "male": "an-níi à-rai khráp",
+          "female": "an-níi à-rai khá"
+        }
+      }
+    ]
+  },
+
+  {
     "id": "likes",
     "title": "Likes and dislikes",
     "titleTh": "ชอบไม่ชอบ",
