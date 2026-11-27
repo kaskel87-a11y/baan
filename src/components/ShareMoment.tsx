@@ -10,7 +10,7 @@ import {
   type StreakMilestone,
 } from "../lib/share";
 import { renderShareCard } from "../lib/shareCard";
-import { getState, markShareShown, pendingStreakMilestone, shouldShowSceneShare, useStore } from "../lib/store";
+import { markShareShown, pendingStreakMilestone, shouldShowSceneShare, useStore } from "../lib/store";
 import { WatchScene } from "./WatchScene";
 import { STREAK_30_CARTOON } from "../data/streakCartoons";
 
@@ -29,7 +29,7 @@ export function ShareMoment(props: Props) {
   const [open] = useState(allowed);
   const key = props.kind === "scene" ? props.sceneId : props.days;
   const content = useMemo(() => {
-    if (props.kind === "streak") return streakShareContent(props.days, voice, getState());
+    if (props.kind === "streak") return streakShareContent(props.days);
     if (!scene || scene.adult) return null;
     return sceneShareContent(scene, voice);
   }, [props.kind, key, voice, scene]);

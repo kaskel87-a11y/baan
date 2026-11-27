@@ -1,7 +1,5 @@
 import type { Gendered, Scene, Voice } from "../data/types";
-import { SCENES } from "../data/scenes";
 import { pick } from "./thai";
-import type { BaanState } from "./store";
 
 export const SHARE_URL = "https://learnthaibaan.github.io/";
 export const STREAK_MILESTONES = [3, 7, 30] as const;
@@ -40,29 +38,31 @@ export function sceneShareContent(scene: Scene, voice: Voice) {
     kicker: "Baan",
     headline: scene.title,
     phrase,
-    caption: SHARE_URL.replace(/^https:\/\//, ""),
+    caption: `${SHARE_URL.replace(/^https:\/\//, "")} · 100% free, zero ads`,
     title: `Baan — ${scene.title}`,
-    text: `I finished ${scene.title} on Baan.\n${phrase.thai}\n${phrase.roman}`,
+    text: `I finished ${scene.title} on Baan.\n${phrase.thai}\n${phrase.roman}\nBaan is 100% free with zero ads.`,
     fileName: `baan-${scene.id}.png`,
     alt: `Share card: ${scene.title}, ${phrase.thai} ${phrase.roman}`,
   };
 }
 
-export function streakShareContent(days: StreakMilestone, voice: Voice, state: BaanState) {
-  const phrase =
-    phraseFromScene(
-      [...SCENES].reverse().find((sc) => !sc.adult && state.scenes[sc.id]?.completed) ??
-        SCENES.find((sc) => !sc.adult)!,
-      voice,
-    ) ?? FALLBACK;
+const STREAK_PHRASES: Record<StreakMilestone, SharePhrase> = {
+  3: { thai: "สามวันติดกัน", roman: "sǎam wan dtìt gan" },
+  7: { thai: "เจ็ดวันติดกัน", roman: "jèt wan dtìt gan" },
+  30: { thai: "สามสิบวันติดกัน", roman: "sǎam-sìp wan dtìt gan" },
+};
+
+export function streakShareContent(days: StreakMilestone) {
+  // A phrase that fits the milestone itself (no particle, so it reads the same for every voice).
+  const phrase: SharePhrase = STREAK_PHRASES[days];
   const headline = `${days}-day streak`;
   return {
     kicker: "Baan",
     headline,
     phrase,
-    caption: SHARE_URL.replace(/^https:\/\//, ""),
+    caption: `${SHARE_URL.replace(/^https:\/\//, "")} · 100% free, zero ads`,
     title: `Baan — ${headline}`,
-    text: `A ${headline} on Baan.\n${phrase.thai}\n${phrase.roman}`,
+    text: `A ${headline} on Baan.\n${phrase.thai}\n${phrase.roman}\nBaan is 100% free with zero ads.`,
     fileName: `baan-streak-${days}.png`,
     alt: `Share card: ${headline}, ${phrase.thai} ${phrase.roman}`,
   };

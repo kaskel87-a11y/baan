@@ -64,6 +64,7 @@ export function Settings() {
         </Button>
         <p className="text-sm text-muted">Keeps your particle and name. Words, scores, tone stats, and the streak go.</p>
       </div>
+      <p className="text-sm text-muted">Baan is 100% free, with zero ads.</p>
     </div>
   );
 }
