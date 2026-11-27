@@ -130,3 +130,19 @@ p,
     font-size: clamp(1.45rem, 6.6vw, 1.85rem);
   }
 }
+
+/* Badge celebration: a soft pop, and the sheet slides up. Both stand still for reduced motion. */
+@keyframes badge-pop {
+  0% { transform: scale(0.55) rotate(-8deg); opacity: 0; }
+  60% { transform: scale(1.08) rotate(2deg); opacity: 1; }
+  100% { transform: none; opacity: 1; }
+}
+@keyframes sheet-up {
+  from { transform: translateY(28px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.badge-pop { animation: badge-pop 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+.sheet-up { animation: sheet-up 0.28s ease-out both; }
+@media (prefers-reduced-motion: reduce) {
+  .badge-pop, .sheet-up { animation: none !important; }
+}

@@ -30,3 +30,14 @@ ffmpeg -ss 12.6 -i baan-cafe-reel-voiced.mp4 -frames:v 1 -vf scale=540:960 -q:v 
 3. Make the 720×1280 web copy and poster as above (`src/assets/cartoons/taxi.mp4`, `taxi-poster.webp`).
 4. Add an entry to `CARTOONS` in `src/data/cartoons.ts`: the lesson ids it shows on, and each line's start time (bubble start + 0.3 s).
    Vite hashes the file names, so a re-rendered video is never served stale.
+
+## Streak cartoons (7, 30, 100 days)
+`streak_30_reel.py` is the first; `streak_milestone.py` is the parametric version that `streak_7_reel.py` and `streak_100_reel.py` use (the count sits in the title row so bubbles never cover it).
+```
+.venv/bin/python make_voices.py streak_7_reel            # voices/s7a.wav ...
+.venv/bin/python render.py streak_7_voiced --frames 0.9,2.4,4.6   # stills for checking
+.venv/bin/python render.py streak_7_voiced               # baan-streak-7-reel-voiced.mp4
+ffmpeg -i baan-streak-7-reel-voiced.mp4 -vf scale=720:1280:flags=lanczos -c:v libx264 -preset slow -crf 28 -pix_fmt yuv420p -g 60 -c:a aac -b:a 96k -movflags +faststart ../../src/assets/cartoons/streak-7.mp4
+ffmpeg -ss 2.4 -i baan-streak-7-reel-voiced.mp4 -frames:v 1 -vf scale=540:960 -q:v 80 ../../src/assets/cartoons/streak-7-poster.webp
+```
+They are listed in `src/data/streakCartoons.ts` (each line's start time is its bubble start + 0.3 s), not in `cartoons.ts`.

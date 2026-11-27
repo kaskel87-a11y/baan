@@ -6,7 +6,7 @@ import { StreakDots } from "../components/StreakDots";
 import { navigate } from "../lib/router";
 import { SceneArt } from "../components/SceneArt";
 import { AdultMark, Button } from "../components/ui";
-import { StreakShare } from "../components/ShareMoment";
+import { NextBadge } from "../components/NextBadge";
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
@@ -47,7 +47,6 @@ export function Path() {
           {Math.min(rec.items, s.dailyGoal)} of {s.dailyGoal} graded today · the goal is a finished session or {s.dailyGoal} graded items
         </p>
         <StreakDots />
-        <StreakShare />
         <Button variant="primary" className="justify-self-start" onClick={() => navigate({ name: "today" })}>
           {inProgress ? "Resume today’s session" : sessionDone ? "Today’s session" : "Start today’s session"}
         </Button>
@@ -64,6 +63,7 @@ export function Path() {
         <Stat label="Due" value={String(due)} />
         <Stat label="Scenes" value={`${done}/${SCENES.length}`} />
       </dl>
+      <NextBadge />
       <article className="rounded-4xl border border-line bg-card p-5 grid gap-3">
         <p className="text-sm text-muted">Listening stories</p>
         <h2 className="font-display text-xl">Hear a short story, answer in English.</h2>

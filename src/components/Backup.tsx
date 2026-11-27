@@ -8,6 +8,7 @@ function describe(b: BackupSummary) {
     `${b.cards} review card${b.cards === 1 ? "" : "s"}`,
     `${b.learned} learned`,
     `${b.streak}-day streak`,
+    `${b.badges} badge${b.badges === 1 ? "" : "s"}`,
   ];
   return (b.name ? `${b.name}: ` : "") + parts.join(", ");
 }

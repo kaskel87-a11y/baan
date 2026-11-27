@@ -3,3 +3,4 @@ out_*/
 *.mp4
 *.wav
 .venv/
+__pycache__/
