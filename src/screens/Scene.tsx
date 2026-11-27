@@ -12,6 +12,7 @@ import { particle, particleNote, pick, shuffle } from "../lib/thai";
 import { navigate } from "../lib/router";
 import { SceneArt } from "../components/SceneArt";
 import { AdultMark, AnswerLine, Button, HearButton, NoVoiceNotice, RomanKey, SayIt, SwearFacts } from "../components/ui";
+import { ShareMoment } from "../components/ShareMoment";
 import { swearInThai } from "../lib/swear";
 import { gloss, meaningOf } from "../data/glossary";
 import { tipAfterLine, tipsForScene } from "../data/tips";
@@ -643,6 +644,7 @@ function Done({
         {typeof score === "number" ? <p className="text-muted tabular-nums">Last score {score}</p> : null}
         <p className="text-muted">The words are in Review. They’ll come back before you forget them.</p>
       </article>
+      {complete && !scene.adult ? <ShareMoment kind="scene" sceneId={scene.id} /> : null}
       {misses.length > 0 ? (
         <div className="grid gap-2">
           <p className="text-sm font-medium">Hear these again</p>

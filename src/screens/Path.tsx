@@ -6,6 +6,7 @@ import { StreakDots } from "../components/StreakDots";
 import { navigate } from "../lib/router";
 import { SceneArt } from "../components/SceneArt";
 import { AdultMark, Button } from "../components/ui";
+import { StreakShare } from "../components/ShareMoment";
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
@@ -46,6 +47,7 @@ export function Path() {
           {Math.min(rec.items, s.dailyGoal)} of {s.dailyGoal} graded today · the goal is a finished session or {s.dailyGoal} graded items
         </p>
         <StreakDots />
+        <StreakShare />
         <Button variant="primary" className="justify-self-start" onClick={() => navigate({ name: "today" })}>
           {inProgress ? "Resume today’s session" : sessionDone ? "Today’s session" : "Start today’s session"}
         </Button>

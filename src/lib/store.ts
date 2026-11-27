@@ -2,6 +2,7 @@ import { useSyncExternalStore } from "react";
 import type { Voice } from "../data/types";
 import { EMPTY_NUMBERS, rangeKey, type NumbersStats, type NumberRangeKey } from "./numbers";
 import { isLegacySrsKey, migrateSrsKey, sceneYouLineCardIds, vocabCardIds } from "./cards";
+import { STREAK_MILESTONES, type StreakMilestone } from "./share";
 
 /** localStorage key and shape kept identical to the Grok-hosted Baan so progress carries over. */
 export const STORE_KEY = "baan.v1";
@@ -60,6 +61,8 @@ export interface BaanState {
   readCards?: boolean;
   /** How many word notifications a day: 1, 3, or 5. New York time. */
   pushPerDay?: 1 | 3 | 5;
+  /** Share-moment prompts already shown: scene ids and 3/7/30-day streak milestones. */
+  shareShown?: { scenes?: string[]; streaks?: number[] };
 }
 
 export interface StoryRecord {
@@ -427,6 +430,41 @@ export function liveStreak(s: BaanState) {
   const y = new Date();
   y.setDate(y.getDate() - 1);
   return s.streak.last === dayKey(t) || s.streak.last === dayKey(y) ? s.streak.count : 0;
+}
+
+/** Whether this scene's share card has not been shown yet. */
+export function shouldShowSceneShare(s: BaanState, sceneId: string) {
+  return !(s.shareShown?.scenes ?? []).includes(sceneId);
+}
+
+/** A 3, 7, or 30-day streak that has not been prompted yet; otherwise null. */
+export function pendingStreakMilestone(s: BaanState): StreakMilestone | null {
+  const n = liveStreak(s);
+  if (!(STREAK_MILESTONES as readonly number[]).includes(n)) return null;
+  if ((s.shareShown?.streaks ?? []).includes(n)) return null;
+  return n as StreakMilestone;
+}
+
+/** Record that a share prompt was shown, so it does not appear again. */
+export function markShareShown(kind: "scene" | "streak", id: string | number) {
+  const s = getState();
+  const scenes = s.shareShown?.scenes ?? [];
+  const streaks = s.shareShown?.streaks ?? [];
+  if (kind === "scene") {
+    if (scenes.includes(id as string)) return;
+  } else if (streaks.includes(id as number)) {
+    return;
+  }
+  update((cur) => {
+    const nextScenes = cur.shareShown?.scenes ?? [];
+    const nextStreaks = cur.shareShown?.streaks ?? [];
+    if (kind === "scene") {
+      if (nextScenes.includes(id as string)) return cur;
+      return { ...cur, shareShown: { scenes: [...nextScenes, id as string], streaks: [...nextStreaks] } };
+    }
+    if (nextStreaks.includes(id as number)) return cur;
+    return { ...cur, shareShown: { scenes: [...nextScenes], streaks: [...nextStreaks, id as number] } };
+  });
 }
 
 export function recordPair(pairKey: string, right: boolean) {

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.42.0 — Share a moment
+
+- After you finish a scene, or hit a 3-, 7-, or 30-day streak, a share card can go out with the scene name or the streak, a short Thai line and its romanization, and learnthaibaan.github.io. Each prompt is shown once and saved in this browser.
+- It uses the phone's share sheet, with the picture when the browser allows files, or the text and link if not. If share isn't available at all, a copy-link button is shown instead. The 18+ scene is never offered.
+
 ## 0.40.0 — Watch the scene
 
 - **A voiced cartoon on the café lessons.** *ที่ร้านกาแฟ / The café door* and *สั่งกาแฟ / Ordering* open with a "Watch the scene" card: a 33-second cartoon in Baan's style where you walk in, greet Nid, order an iced coffee, pay 55 baht and say thank you. Every bubble is spoken in Thai, Nid in a female voice and you in a male voice (ครับ forms), with the romanization and English on screen.
