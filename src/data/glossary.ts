@@ -230,6 +230,16 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "ขี้เย็ด", roman: "khîi yét", en: "promiscuous (vulgar insult, often aimed at a woman)" },
   { thai: "อีขี้เย็ด", roman: "ii khîi yét", en: "promiscuous (vulgar insult aimed at a woman)" },
   { thai: "น่าเย็ด", roman: "nâa yét", en: "fuckable, sexually desirable (vulgar)" },
+  { thai: "อะไร", roman: "à-rai", en: "what" },
+  { thai: "อะไรอ่ะ", roman: "à-rai à", en: "what? (casual)" },
+  { thai: "อะไรอะ", roman: "à-rai à", en: "what? (casual, often typed this way)" },
+  { thai: "อะไรวะ", roman: "à-rai wá", en: "what? (blunt)" },
+  { thai: "อะไรคะ", roman: "à-rai khá", en: "what? (polite, woman asking)" },
+  { thai: "อะไรครับ", roman: "à-rai khráp", en: "what? (polite, man speaking)" },
+  { thai: "อันนี้อะไรอ่ะ", roman: "an-níi à-rai à", en: "what's this? (casual)" },
+  { thai: "อันนี้อะไรครับ", roman: "an-níi à-rai khráp", en: "what's this? (polite)" },
+  { thai: "อันนี้อะไรคะ", roman: "an-níi à-rai khá", en: "what's this? (polite)" },
+  { thai: "คนที่ไม่รู้จัก", roman: "khon thîi mâi rúu-jàk", en: "someone you don't know" },
 ];
 
 export interface Gloss {

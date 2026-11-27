@@ -33,6 +33,7 @@ export const SCENE_ART_ALT = {
   meat: "A cartoon pig face next to a cartoon steak with a bone",
   juice: "A cartoon glass of orange juice with a straw beside half an orange",
   "ao-yaak": "Two cartoon speech bubbles, one with a plate of food and one with a fork",
+  arai: "A cartoon speech bubble with a question mark",
   swears: "A tame cartoon of a smiling person waving away an empty comic burst",
   leave: "A cartoon of someone waving beside an open doorway",
 } as const;
