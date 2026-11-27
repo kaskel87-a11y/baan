@@ -11,6 +11,8 @@ import {
 } from "../lib/share";
 import { renderShareCard } from "../lib/shareCard";
 import { getState, markShareShown, pendingStreakMilestone, shouldShowSceneShare, useStore } from "../lib/store";
+import { WatchScene } from "./WatchScene";
+import { STREAK_30_CARTOON } from "../data/streakCartoons";
 
 type Props = { kind: "scene"; sceneId: string } | { kind: "streak"; days: StreakMilestone };
 
@@ -82,6 +84,9 @@ export function ShareMoment(props: Props) {
   return (
     <article className="grid gap-3 rounded-4xl border border-line bg-card p-5" data-share-moment={props.kind}>
       <p className="text-sm text-muted">{props.kind === "scene" ? "Share this scene" : "Share your streak"}</p>
+      {props.kind === "streak" && props.days === 30 ? (
+        <WatchScene cartoon={STREAK_30_CARTOON} roman={s.roman} autoPlay kicker="Congratulations" />
+      ) : null}
       {src ? (
         <img src={src} alt={content.alt} className="w-full rounded-2xl border border-line" width={1200} height={630} />
       ) : (
