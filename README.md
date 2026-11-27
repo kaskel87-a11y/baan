@@ -18,6 +18,16 @@ npm run smoke        # headless Chrome walk-through (needs ./serve.sh or a serve
 
 ## Hosting
 
+Live at **https://learnthaibaan.github.io/**. `./deploy.sh` builds and force-pushes `dist/` to the `main` branch of
+`learnthaibaan/learnthaibaan.github.io` (GitHub Pages, org site). Source stays in this repo.
+
+The old address `https://kaskel87-a11y.github.io/baan/` (this repo's `gh-pages` branch) is a small redirect from
+`legacy-redirect/`, published with `./deploy-legacy.sh`. It packs the browser's `baan.*` progress into the link, retires the
+old service worker, and forwards deep links (`#/scene/cafe`). The new site imports that progress only when it has none
+of its own (`src/lib/migrate.ts`). Test: `node scripts/test-migrate.mjs` (two local origins, see the file header).
+
+### Local tunnel
+
 `serve.sh` serves `dist/` on localhost:4321 and opens a Cloudflare quick tunnel (no account needed). Things to know:
 
 - Quick-tunnel URLs are random and **change every time the tunnel restarts**.
