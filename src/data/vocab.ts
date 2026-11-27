@@ -1302,6 +1302,90 @@ export const VOCAB: Vocab[] = [
     "en": "coconut ice cream",
     "hint": "ไอติม is ice cream, mid then mid: ต is an unpuffed dt. กะทิ is coconut cream, low then high, and ท is th. Often scooped into a slice of bread."
   },
+{
+    "id": "khlinik",
+    "thai": "คลินิก",
+    "roman": "khlí-nìk",
+    "en": "clinic",
+    "hint": "A loanword. High, then low. A small clinic, not a big hospital (โรงพยาบาล)."
+  },
+  {
+    "id": "maw",
+    "thai": "หมอ",
+    "roman": "mǎw",
+    "en": "doctor",
+    "hint": "Rising. Leading ห makes ม high-class, so the long live syllable rises."
+  },
+  {
+    "id": "mai-sabaai",
+    "thai": "ไม่สบาย",
+    "roman": "mâi sà-baai",
+    "en": "unwell, sick",
+    "hint": "Falling, then low, mid. ไม่ + the สบาย in สบายดี, without ดี. The everyday way to say you don't feel well."
+  },
+  {
+    "id": "khai",
+    "thai": "ไข้",
+    "roman": "khâi",
+    "en": "fever",
+    "hint": "Falling. High-class ข with mai tho. เป็นไข้ is 'I have a fever'."
+  },
+  {
+    "id": "ai-cough",
+    "thai": "ไอ",
+    "roman": "ai",
+    "en": "to cough, a cough",
+    "hint": "Mid. Not the falling ไอ้ you may see in rude words. Just ไอ for a cough."
+  },
+  {
+    "id": "jep-khaw",
+    "thai": "เจ็บคอ",
+    "roman": "jèp khaw",
+    "en": "sore throat",
+    "hint": "Low, then mid. เจ็บ is the sore pain you already have. คอ (khaw, mid) is the throat."
+  },
+  {
+    "id": "buat-thawng",
+    "thai": "ปวดท้อง",
+    "roman": "bpùat tháwng",
+    "en": "stomach ache",
+    "hint": "Low, then high. ท้อง is tháwng, high: low-class ท with mai tho gives a high tone."
+  },
+  {
+    "id": "nat",
+    "thai": "นัด",
+    "roman": "nát",
+    "en": "appointment",
+    "hint": "High. Low-class น on a short dead syllable is high. มีนัด is 'I have an appointment'."
+  },
+  {
+    "id": "phaae",
+    "thai": "แพ้",
+    "roman": "pháae",
+    "en": "to be allergic",
+    "hint": "High, long àae. Low-class พ with mai tho gives a high tone, unlike แก้ (gâae), which falls. แพ้ยา is a medicine allergy. ไม่แพ้ is 'no allergy'."
+  },
+  {
+    "id": "lang-aa-haan",
+    "thai": "หลังอาหาร",
+    "roman": "lǎng aa-hǎan",
+    "en": "after meals",
+    "hint": "Rising, mid, rising. หลัง is after, อาหาร is food. How clinic staff tell you to take a pill."
+  },
+  {
+    "id": "wan-la-sawng-khrang",
+    "thai": "วันละสองครั้ง",
+    "roman": "wan lá sǎawng khráng",
+    "en": "twice a day",
+    "hint": "Mid, high, rising, high. วันละ is 'per day', สองครั้ง is two times."
+  },
+  {
+    "id": "sawng-wan-laew",
+    "thai": "สองวันแล้ว",
+    "roman": "sǎawng wan láew",
+    "en": "two days already",
+    "hint": "Rising, mid, high. How long it's been. Swap the number: สามวันแล้ว is three days so far."
+  },
   {
     "id": "ai-baa",
     "thai": "ไอ้บ้า",

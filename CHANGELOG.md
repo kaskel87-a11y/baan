@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.44.0 — At the clinic
+
+- **A new scene, *ที่คลินิก / At the clinic*,** after Massage / pharmacy: check in without an appointment, say you feel unwell, name a fever, cough, sore throat, headache or stomach ache, say how many days it's been, answer an allergy question, and hear how to take the medicine (after meals, twice a day).
+- Two tip cards: *bpen* plus the symptom, and the dosing phrases *lǎng aa-hǎan* and *wan lá sǎawng khráng*. A small clinic picture in Baan's flat style.
+
 ## 0.43.0 — Share a moment
 
 - After you finish a scene, or hit a 3-, 7-, or 30-day streak, a share card can go out with the scene name or the streak, a short Thai line and its romanization, and learnthaibaan.github.io. Each prompt is shown once and saved in this browser.

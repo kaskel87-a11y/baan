@@ -137,6 +137,18 @@ const DRAWINGS: Record<SceneArtId, ReactNode> = {
         <Face x="250" y="28" shirt={clay} />
       </>
   ),
+  clinic: (
+      <>
+        <Ground />
+        <rect x="64" y="22" width="150" height="52" rx="4" fill={teal} />
+        <rect x="78" y="34" width="36" height="28" fill={sky} />
+        <rect x="128" y="34" width="36" height="40" fill="#f3e2c4" />
+        <rect x="178" y="30" width="22" height="22" rx="3" fill={cream} />
+        <path d="M189 34 v14 M182 41 h14" stroke={clay} strokeWidth="3" strokeLinecap="round" />
+        <rect x="244" y="40" width="22" height="30" rx="4" fill={cream} stroke={ink} strokeWidth="2" />
+        <rect x="248" y="34" width="14" height="8" rx="2" fill={teal} />
+      </>
+  ),
   meal: (
       <>
         <Ground />

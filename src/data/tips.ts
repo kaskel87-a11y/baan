@@ -235,6 +235,33 @@ export const TIPS: Tip[] = [
       { ...p("เจ็บ", "jèp"), en: "That hurts." },
     ],
   },
+
+  // At the clinic
+  {
+    id: "clinic-bpen",
+    sceneId: "clinic",
+    afterLine: "cl4",
+    kind: "grammar",
+    title: "bpen + what you've got",
+    body: "bpen (mid) in front of an illness is how you say what's wrong. bpen khâi is a fever. For pain, use bpùat or jèp plus the body part, like bpùat hǔa or jèp khaw.",
+    examples: [
+      { ...p("เป็นไข้", "bpen khâi"), en: "I have a fever." },
+      { ...p("เจ็บคอ", "jèp khaw"), en: "I have a sore throat." },
+      { ...p("ปวดท้อง", "bpùat tháwng"), en: "I have a stomach ache." },
+    ],
+  },
+  {
+    id: "clinic-dose",
+    sceneId: "clinic",
+    afterLine: "cl11",
+    kind: "culture",
+    title: "lǎng aa-hǎan, twice a day",
+    body: "Clinic staff tell you when and how often to take a pill. lǎng aa-hǎan is after meals. wan lá sǎawng khráng is twice a day. gin (กิน) is the everyday word for taking medicine; staff may also say thaan (ทาน), the politer \"eat\", or ráp-bprà-thaan (รับประทาน) on a label.",
+    examples: [
+      { ...p("กินหลังอาหาร", "gin lǎng aa-hǎan"), en: "Take it after meals." },
+      { ...p("วันละสองครั้ง", "wan lá sǎawng khráng"), en: "Twice a day." },
+    ],
+  },
   // A meal
   {
     id: "meal-people",
