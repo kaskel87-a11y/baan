@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.41.0 — Share previews and search
+
+- **Link previews and search.** The page has a speaking-first description (no mention of script), a canonical URL at the new address https://learnthaibaan.github.io/, Open Graph and Twitter `summary_large_image` tags, and WebApplication structured data marked free and educational.
+- A 1200×630 share image (`og.png`) in Baan's flat illustration style, plus `robots.txt` and a root-only `sitemap.xml` (the app uses hash routes).
+
 ## 0.40.0 — Watch the scene
 
 - **A voiced cartoon on the café lessons.** *ที่ร้านกาแฟ / The café door* and *สั่งกาแฟ / Ordering* open with a "Watch the scene" card: a 33-second cartoon in Baan's style where you walk in, greet Nid, order an iced coffee, pay 55 baht and say thank you. Every bubble is spoken in Thai, Nid in a female voice and you in a male voice (ครับ forms), with the romanization and English on screen.
