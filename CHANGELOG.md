@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.47.1 — Two more 18+ words
+
+- **ขี้เย็ด** (*khîi yét*) and **น่าเย็ด** (*nâa yét*) join the คำหยาบ deck (31 words). Both are marked 18+ · rude, with chili ratings and a “you'd hear it when…” line. ขี้เย็ด is a vulgar insult, often aimed at a woman, for being promiscuous. น่าเย็ด is a vulgar “fuckable / sexually desirable.” A new pick drill contrasts น่าเย็ด with หน้าเย็ด (face), which sounds the same but is not the attested spelling. Still recognize these, don't use them. Nothing from this deck goes into social posts.
+
 ## 0.47.0 — One pattern, many words
 
 Four new scenes, each built around one reusable pattern, with a word set, tip cards and drills.

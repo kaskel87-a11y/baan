@@ -227,6 +227,9 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "อยากกินมะม่วง", roman: "yàak gin má-mûang", en: "I want to eat a mango" },
   { thai: "เนื้อไก่", roman: "néua gài", en: "chicken (the meat)" },
   { thai: "ไม่หวาน", roman: "mâi wǎan", en: "not sweet" },
+  { thai: "ขี้เย็ด", roman: "khîi yét", en: "promiscuous (vulgar insult, often aimed at a woman)" },
+  { thai: "อีขี้เย็ด", roman: "ii khîi yét", en: "promiscuous (vulgar insult aimed at a woman)" },
+  { thai: "น่าเย็ด", roman: "nâa yét", en: "fuckable, sexually desirable (vulgar)" },
 ];
 
 export interface Gloss {

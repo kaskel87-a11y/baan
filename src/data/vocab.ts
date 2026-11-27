@@ -1719,6 +1719,26 @@ export const VOCAB: Vocab[] = [
     "hint": "Fighting words. Rising: high-class ห on a live syllable. The vulgar word for a vagina, also thrown as an insult. Almost never a joke. Do not say it."
   },
   {
+    "id": "khii-yet",
+    "thai": "ขี้เย็ด",
+    "roman": "khîi yét",
+    "en": "promiscuous (vulgar insult, often aimed at a woman)",
+    "adult": true,
+    "heat": 4,
+    "when": "You'd hear it as a slur about a woman being promiscuous.",
+    "hint": "Falling, then high. ขี้ (khîi) is a prefix for a bad or habitual trait, the same ขี้ as in ขี้เกียจ (lazy). Dictionaries list อีขี้เย็ด as a vulgar insult for a woman who is promiscuous. อี aims it at a woman. Do not say it."
+  },
+  {
+    "id": "naa-yet",
+    "thai": "น่าเย็ด",
+    "roman": "nâa yét",
+    "en": "fuckable, sexually desirable (vulgar)",
+    "adult": true,
+    "heat": 4,
+    "when": "You'd hear it when someone is crudely rating a person's looks.",
+    "hint": "Falling, then high. น่า (nâa) is 'worth, likely to', the same น่า as น่ารัก (cute). Very vulgar. It is not หน้า (face), which is also nâa, falling — a common mix-up. Do not say it."
+  },
+  {
     "id": "sii-dam",
     "thai": "สีดำ",
     "roman": "sǐi dam",

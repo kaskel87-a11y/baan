@@ -6451,7 +6451,7 @@ export const SCENES: Scene[] = [
     "id": "swears",
     "title": "Swear words (know them, don't say them)",
     "titleTh": "คำหยาบ",
-    "blurb": "Twenty-nine words, from a friend's joke up to a fight. Learn to recognize these. Don't use them.",
+    "blurb": "Thirty-one words, from a friend's joke up to a fight. Learn to recognize these. Don't use them.",
     "adult": true,
     "vocab": [
       "baa",
@@ -6482,7 +6482,9 @@ export const SCENES: Scene[] = [
       "khuay",
       "hii",
       "yet-maae",
-      "bpai-dtaai"
+      "bpai-dtaai",
+      "khii-yet",
+      "naa-yet"
     ],
     "lines": [
       {
@@ -6735,6 +6737,19 @@ export const SCENES: Scene[] = [
         "stem": "ไม่พูด",
         "stemRoman": "mâi phûut",
         "particleKind": "statement"
+      },
+      {
+        "id": "rd-p-naa-yet",
+        "kind": "pick",
+        "en": "“fuckable, sexually desirable (vulgar)”",
+        "options": [
+          "น่าเย็ด",
+          "หน้าเย็ด",
+          "ขี้เย็ด",
+          "น่ารัก"
+        ],
+        "answer": "น่าเย็ด",
+        "roman": "nâa yét"
       },
       {
         "id": "rd-heat-bat",
