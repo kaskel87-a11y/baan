@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.43.0 — Share a moment
+
+- After you finish a scene, or hit a 3-, 7-, or 30-day streak, a share card can go out with the scene name or the streak, a short Thai line and its romanization, and learnthaibaan.github.io. Each prompt is shown once and saved in this browser.
+- It uses the phone's share sheet, with the picture when the browser allows files, or the text and link if not. If share isn't available at all, a copy-link button is shown instead. The 18+ scene is never offered.
+- Hitting a 30-day streak also plays a short voiced congratulations cartoon once (ยินดีด้วยค่ะ, then สามสิบวันติดกันเลยค่ะ เก่งมากค่ะ, and ขอบคุณครับ), using the same player as Watch the scene. It lives in its own data file, not `cartoons.ts`.
+
 ## 0.42.0 — Share previews and search
 
 - **Link previews and search.** The page has a speaking-first description (no mention of script), a canonical URL at https://learnthaibaan.github.io/, Open Graph and Twitter `summary_large_image` tags, and WebApplication structured data marked free and educational.

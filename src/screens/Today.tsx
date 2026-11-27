@@ -9,6 +9,7 @@ import { PairTrainer } from "./Tones";
 import { HearDrill } from "./Numbers";
 import { primeSceneForToday } from "./Scene";
 import { StreakDots } from "../components/StreakDots";
+import { StreakShare } from "../components/ShareMoment";
 
 export function Today() {
   const s = useStore();
@@ -32,6 +33,7 @@ export function Today() {
           </p>
         </PageHeader>
         <StreakDots />
+        <StreakShare />
         <ol className="grid gap-2">
           {plan.map((st, i) => (
             <li key={i} className="flex items-center justify-between gap-3 rounded-xl border border-line bg-card px-4 py-3">
