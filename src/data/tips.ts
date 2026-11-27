@@ -247,7 +247,7 @@ export const TIPS: Tip[] = [
     examples: [
       { ...p("เป็นไข้", "bpen khâi"), en: "I have a fever." },
       { ...p("เจ็บคอ", "jèp khaw"), en: "I have a sore throat." },
-      { ...p("ปวดท้อง", "bpùat thâwng"), en: "I have a stomach ache." },
+      { ...p("ปวดท้อง", "bpùat tháwng"), en: "I have a stomach ache." },
     ],
   },
   {
@@ -256,7 +256,7 @@ export const TIPS: Tip[] = [
     afterLine: "cl11",
     kind: "culture",
     title: "lǎng aa-hǎan, twice a day",
-    body: "Clinic staff tell you when and how often to take a pill. lǎng aa-hǎan is after meals. wan lá sǎawng khráng is twice a day.",
+    body: "Clinic staff tell you when and how often to take a pill. lǎng aa-hǎan is after meals. wan lá sǎawng khráng is twice a day. gin (กิน) is the everyday word for taking medicine; staff may also say thaan (ทาน), the politer \"eat\", or ráp-bprà-thaan (รับประทาน) on a label.",
     examples: [
       { ...p("กินหลังอาหาร", "gin lǎng aa-hǎan"), en: "Take it after meals." },
       { ...p("วันละสองครั้ง", "wan lá sǎawng khráng"), en: "Twice a day." },

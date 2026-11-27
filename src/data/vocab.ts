@@ -1305,9 +1305,9 @@ export const VOCAB: Vocab[] = [
 {
     "id": "khlinik",
     "thai": "คลินิก",
-    "roman": "khlí-ník",
+    "roman": "khlí-nìk",
     "en": "clinic",
-    "hint": "A loanword. High, then high. A small clinic, not a big hospital (โรงพยาบาล)."
+    "hint": "A loanword. High, then low. A small clinic, not a big hospital (โรงพยาบาล)."
   },
   {
     "id": "maw",
@@ -1347,9 +1347,9 @@ export const VOCAB: Vocab[] = [
   {
     "id": "buat-thawng",
     "thai": "ปวดท้อง",
-    "roman": "bpùat thâwng",
+    "roman": "bpùat tháwng",
     "en": "stomach ache",
-    "hint": "Low, then falling. ท้อง is thâwng, falling: high-class ถ with mai tho on a live syllable."
+    "hint": "Low, then high. ท้อง is tháwng, high: low-class ท with mai tho gives a high tone."
   },
   {
     "id": "nat",
@@ -1363,14 +1363,14 @@ export const VOCAB: Vocab[] = [
     "thai": "แพ้",
     "roman": "pháae",
     "en": "to be allergic",
-    "hint": "Falling, long àae like แก้ (gâae). แพ้ยา is a medicine allergy. ไม่แพ้ is 'no allergy'."
+    "hint": "High, long àae. Low-class พ with mai tho gives a high tone, unlike แก้ (gâae), which falls. แพ้ยา is a medicine allergy. ไม่แพ้ is 'no allergy'."
   },
   {
     "id": "lang-aa-haan",
     "thai": "หลังอาหาร",
     "roman": "lǎng aa-hǎan",
     "en": "after meals",
-    "hint": "Falling, then mid, rising. หลัง is after, อาหาร is food. How clinic staff tell you to take a pill."
+    "hint": "Rising, mid, rising. หลัง is after, อาหาร is food. How clinic staff tell you to take a pill."
   },
   {
     "id": "wan-la-sawng-khrang",
@@ -1384,7 +1384,7 @@ export const VOCAB: Vocab[] = [
     "thai": "สองวันแล้ว",
     "roman": "sǎawng wan láew",
     "en": "two days already",
-    "hint": "Rising, mid, falling. How long it's been. Swap the number: สามวันแล้ว is three days so far."
+    "hint": "Rising, mid, high. How long it's been. Swap the number: สามวันแล้ว is three days so far."
   },
   {
     "id": "ai-baa",

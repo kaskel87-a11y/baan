@@ -1510,8 +1510,8 @@ export const SCENES: Scene[] = [
         "who": "pim",
         "en": "A headache or a stomach ache as well?",
         "thai": "ปวดหัวหรือปวดท้องด้วยไหมคะ",
-        "roman": "bpùat hǔa rǔue bpùat thâwng dûay mǎi khá",
-        "note": "หรือ (rǔue, rising) is 'or'. ปวดท้อง (bpùat thâwng) is a stomach ache. ด้วย (dûay) is 'as well'."
+        "roman": "bpùat hǔa rǔue bpùat tháwng dûay mǎi khá",
+        "note": "หรือ (rǔue, rising) is 'or'. ปวดท้อง (bpùat tháwng) is a stomach ache. ด้วย (dûay) is 'as well'."
       },
       {
         "id": "cl6",
@@ -1522,8 +1522,8 @@ export const SCENES: Scene[] = [
           "female": "ปวดหัวค่ะ ไม่ปวดท้องค่ะ"
         },
         "roman": {
-          "male": "bpùat hǔa khráp mâi bpùat thâwng khráp",
-          "female": "bpùat hǔa khâ mâi bpùat thâwng khâ"
+          "male": "bpùat hǔa khráp mâi bpùat tháwng khráp",
+          "female": "bpùat hǔa khâ mâi bpùat tháwng khâ"
         },
         "note": "ปวดหัว is the same headache as in the massage scene. ไม่ปวดท้อง rules the other one out."
       },
@@ -1555,7 +1555,7 @@ export const SCENES: Scene[] = [
         "en": "Are you allergic to any medicine?",
         "thai": "แพ้ยาอะไรไหมคะ",
         "roman": "pháae yaa à-rai mǎi khá",
-        "note": "แพ้ (pháae, falling) is to be allergic. แพ้ยาอะไรไหม is the standard allergy check before they give you a pill."
+        "note": "แพ้ (pháae, high) is to be allergic. แพ้ยาอะไรไหม is the standard allergy check before they give you a pill."
       },
       {
         "id": "cl10",
