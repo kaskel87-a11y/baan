@@ -16,6 +16,9 @@ L = [
 ]
 END = 10.5
 PIM_X, YOU_X = 300, 720
+# Sit the 30 badge in the title row, right of the heading, so speech bubbles
+# (which open over the scene) never cover it.
+BADGE_X, BADGE_Y, BADGE_R = 908, 302, 108
 
 def blink(t, off):
     return ((t + off) % 3.3) < 0.13
@@ -32,14 +35,15 @@ def events():
     ev += [(END + 0.1, "sparkle"), (END + 0.25, "chime")]
     return ev
 
+def draw_30_badge(cv, x, y, r=BADGE_R, a=1.0):
+    circle(cv, x, y, r, TEAL, a)
+    draw_text(cv, "30", x, y - int(r * 0.56), "serif_b", int(r * 1.27), ACCENT_INK, a, anchor="tc")
+
 def draw_scene(cv, t):
     cv.drawRect(skia.Rect.MakeWH(CW, CH), fill(CREAM))
     cv.drawRect(skia.Rect.MakeXYWH(0, GY, CW, CH - GY), fill(SAND))
     circle(cv, 860, 140, 48, GOLD)
     tree(cv, 120, GY + 4, 4.6, math.sin(t * 1.2) * 0.7)
-    # big 30 badge
-    circle(cv, 500, 280, 118, TEAL)
-    draw_text(cv, "30", 500, 214, "serif_b", 150, ACCENT_INK, anchor="tc")
     wave = ease(prog(t, 0.6, 1.3)) * (0.7 + 0.3 * abs(math.sin(t * 6)))
     person(cv, PIM_X, GY, S, shirt=TEAL, bun=True, look=1, wave=wave, talk=talking(t, "pim"), blink=blink(t, 0.2), happy=True)
     person(cv, YOU_X, GY, S, shirt=CLAY, look=-1, talk=talking(t, "you"), blink=blink(t, 1.1), happy=True)
@@ -79,3 +83,5 @@ def draw(cv, t):
             bubble(cv, ln, you_tip[0], you_tip[1], "left", s, t, end_t, mine=True, x_min=CX + 30, x_max=CX + CW - 30)
         else:
             bubble(cv, ln, pim_tip[0], pim_tip[1], "right", s, t, end_t, mine=False, x_min=CX + 30, x_max=CX + CW - 30)
+    # After the bubbles, so a tall line cannot hide the 30.
+    draw_30_badge(cv, BADGE_X, BADGE_Y)
