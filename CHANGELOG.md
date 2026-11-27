@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.44.0 — At the clinic
+
+- **A new scene, *ที่คลินิก / At the clinic*,** after Massage / pharmacy: check in without an appointment, say you feel unwell, name a fever, cough, sore throat, headache or stomach ache, say how many days it's been, answer an allergy question, and hear how to take the medicine (after meals, twice a day).
+- Two tip cards: *bpen* plus the symptom, and the dosing phrases *lǎng aa-hǎan* and *wan lá sǎawng khráng*. A small clinic picture in Baan's flat style.
+
+
 ## 0.41.0 — New home: learnthaibaan.github.io
 
 - **Baan now lives at https://learnthaibaan.github.io/** (GitHub org `learnthaibaan`). Icons, manifest (`id`, `scope`, `start_url`) and the service worker now use the site root instead of `/baan/`.

@@ -8,6 +8,7 @@ export const SCENE_ART_ALT = {
   bts: "A cartoon city train with three windows",
   lost: "A cartoon signpost and a folded map",
   massage: "A cartoon of someone resting on a massage mat",
+  clinic: "A cartoon clinic door with a medical cross and a medicine bottle",
   meal: "A cartoon plate of food with a spoon",
   chat: "Two cartoon friends talking, with speech bubbles",
   hotel: "A cartoon hotel bed and a key card",

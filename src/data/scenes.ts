@@ -1442,6 +1442,225 @@ export const SCENES: Scene[] = [
       }
     ]
   },
+
+  {
+    "id": "clinic",
+    "title": "At the clinic",
+    "titleTh": "ที่คลินิก",
+    "blurb": "Check in, say what's wrong — a fever, cough, sore throat, stomach ache, or headache — how many days, any allergy, and how to take the medicine.",
+    "vocab": [
+      "mai-sabaai",
+      "khai",
+      "ai-cough",
+      "jep-khaw",
+      "buat-thawng",
+      "nat",
+      "phaae",
+      "lang-aa-haan",
+      "wan-la-sawng-khrang",
+      "maw"
+    ],
+    "lines": [
+      {
+        "id": "cl1",
+        "who": "pim",
+        "en": "Hello. Do you have an appointment?",
+        "thai": "สวัสดีค่ะ มีนัดไหมคะ",
+        "roman": "sà-wàt-dii khâ mii nát mǎi khá",
+        "note": "นัด (nát, high) is an appointment. มี…ไหม is the same yes/no shape as at 7-Eleven."
+      },
+      {
+        "id": "cl2",
+        "who": "you",
+        "en": "I don't have an appointment. I'd like to see the doctor. I'm not well.",
+        "thai": {
+          "male": "ไม่มีนัดครับ อยากพบหมอครับ ผมไม่สบายครับ",
+          "female": "ไม่มีนัดค่ะ อยากพบหมอค่ะ ฉันไม่สบายค่ะ"
+        },
+        "roman": {
+          "male": "mâi mii nát khráp yàak phóp mǎw khráp phǒm mâi sà-baai khráp",
+          "female": "mâi mii nát khâ yàak phóp mǎw khâ chǎn mâi sà-baai khâ"
+        },
+        "note": "อยากพบหมอ (yàak phóp mǎw) is 'I'd like to see the doctor'. ไม่สบาย (mâi sà-baai) is the everyday way to say you feel unwell. A walk-in is just ไม่มีนัด."
+      },
+      {
+        "id": "cl3",
+        "who": "pim",
+        "en": "What's the matter?",
+        "thai": "เป็นอะไรคะ",
+        "roman": "bpen à-rai khá",
+        "note": "เป็นอะไร (bpen à-rai) is the usual clinic question for what's wrong. เป็น + the symptom is how you answer."
+      },
+      {
+        "id": "cl4",
+        "who": "you",
+        "en": "I have a fever, a cough, and a sore throat.",
+        "thai": {
+          "male": "เป็นไข้ ไอ แล้วก็เจ็บคอครับ",
+          "female": "เป็นไข้ ไอ แล้วก็เจ็บคอค่ะ"
+        },
+        "roman": {
+          "male": "bpen khâi ai láew gâw jèp khaw khráp",
+          "female": "bpen khâi ai láew gâw jèp khaw khâ"
+        },
+        "note": "เป็นไข้ (bpen khâi) is a fever. ไอ (ai, mid) is a cough. เจ็บคอ (jèp khaw) is a sore throat. แล้วก็ links the last one."
+      },
+      {
+        "id": "cl5",
+        "who": "pim",
+        "en": "A headache or a stomach ache as well?",
+        "thai": "ปวดหัวหรือปวดท้องด้วยไหมคะ",
+        "roman": "bpùat hǔa rǔue bpùat thâwng dûay mǎi khá",
+        "note": "หรือ (rǔue, rising) is 'or'. ปวดท้อง (bpùat thâwng) is a stomach ache. ด้วย (dûay) is 'as well'."
+      },
+      {
+        "id": "cl6",
+        "who": "you",
+        "en": "A headache. No stomach ache.",
+        "thai": {
+          "male": "ปวดหัวครับ ไม่ปวดท้องครับ",
+          "female": "ปวดหัวค่ะ ไม่ปวดท้องค่ะ"
+        },
+        "roman": {
+          "male": "bpùat hǔa khráp mâi bpùat thâwng khráp",
+          "female": "bpùat hǔa khâ mâi bpùat thâwng khâ"
+        },
+        "note": "ปวดหัว is the same headache as in the massage scene. ไม่ปวดท้อง rules the other one out."
+      },
+      {
+        "id": "cl7",
+        "who": "pim",
+        "en": "How many days has it been?",
+        "thai": "เป็นมากี่วันแล้วคะ",
+        "roman": "bpen maa gìi wan láew khá",
+        "note": "เป็นมา (bpen maa) is 'it's been going on'. กี่วันแล้ว (gìi wan láew) asks how many days so far."
+      },
+      {
+        "id": "cl8",
+        "who": "you",
+        "en": "Two days so far.",
+        "thai": {
+          "male": "สองวันแล้วครับ",
+          "female": "สองวันแล้วค่ะ"
+        },
+        "roman": {
+          "male": "sǎawng wan láew khráp",
+          "female": "sǎawng wan láew khâ"
+        },
+        "note": "สองวันแล้ว (sǎawng wan láew) is two days already. Swap the number: สามวันแล้ว is three."
+      },
+      {
+        "id": "cl9",
+        "who": "pim",
+        "en": "Are you allergic to any medicine?",
+        "thai": "แพ้ยาอะไรไหมคะ",
+        "roman": "pháae yaa à-rai mǎi khá",
+        "note": "แพ้ (pháae, falling) is to be allergic. แพ้ยาอะไรไหม is the standard allergy check before they give you a pill."
+      },
+      {
+        "id": "cl10",
+        "who": "you",
+        "en": "No allergies.",
+        "thai": {
+          "male": "ไม่แพ้ครับ",
+          "female": "ไม่แพ้ค่ะ"
+        },
+        "roman": {
+          "male": "mâi pháae khráp",
+          "female": "mâi pháae khâ"
+        },
+        "note": "ไม่แพ้ (mâi pháae) is 'no allergy'. Short and normal at a clinic."
+      },
+      {
+        "id": "cl11",
+        "who": "pim",
+        "en": "Take this medicine after meals, twice a day.",
+        "thai": "กินยานี้หลังอาหาร วันละสองครั้งค่ะ",
+        "roman": "gin yaa níi lǎng aa-hǎan wan lá sǎawng khráng khâ",
+        "note": "หลังอาหาร (lǎng aa-hǎan) is after meals, same as in the massage scene. วันละสองครั้ง (wan lá sǎawng khráng) is twice a day."
+      }
+    ],
+    "drills": [
+      {
+        "id": "cl-l",
+        "kind": "listen",
+        "thai": "กินยานี้หลังอาหาร วันละสองครั้งค่ะ",
+        "roman": "gin yaa níi lǎng aa-hǎan wan lá sǎawng khráng khâ",
+        "en": "Take this medicine after meals, twice a day.",
+        "options": [
+          "Take this medicine after meals, twice a day.",
+          "Are you allergic to any medicine?",
+          "How many days has it been?",
+          "I have a fever, a cough, and a sore throat."
+        ]
+      },
+      {
+        "id": "cl-r",
+        "kind": "read",
+        "thai": "เป็นมากี่วันแล้วคะ",
+        "roman": "bpen maa gìi wan láew khá",
+        "en": "How many days has it been?",
+        "options": [
+          "How many days has it been?",
+          "What's the matter?",
+          "Do you have an appointment?",
+          "Are you allergic to any medicine?"
+        ]
+      },
+      {
+        "id": "cl-p",
+        "kind": "pick",
+        "en": "“sore throat”",
+        "options": [
+          "เจ็บคอ",
+          "ปวดหัว",
+          "เป็นไข้",
+          "ปวดท้อง"
+        ],
+        "answer": "เจ็บคอ",
+        "roman": "jèp khaw"
+      },
+      {
+        "id": "cl-b",
+        "kind": "build",
+        "en": "Two days so far.",
+        "tiles": [
+          "สอง",
+          "วัน",
+          "แล้ว",
+          "ครับ",
+          "ค่ะ",
+          "ไข้"
+        ],
+        "answer": {
+          "male": [
+            "สอง",
+            "วัน",
+            "แล้ว",
+            "ครับ"
+          ],
+          "female": [
+            "สอง",
+            "วัน",
+            "แล้ว",
+            "ค่ะ"
+          ]
+        },
+        "roman": {
+          "male": "sǎawng wan láew khráp",
+          "female": "sǎawng wan láew khâ"
+        }
+      },
+      {
+        "id": "cl-part",
+        "kind": "particle",
+        "en": "You're asking if they're allergic to any medicine.",
+        "stem": "แพ้ยาอะไรไหม",
+        "stemRoman": "pháae yaa à-rai mǎi",
+        "particleKind": "question"
+      }
+    ]
+  },
   {
     "id": "meal",
     "title": "A meal",
