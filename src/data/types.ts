@@ -35,7 +35,7 @@ export interface Line {
 
 export type Drill =
   | { id: string; kind: "listen" | "read"; thai: Gendered; roman: Gendered; en: string; options: string[]; cue?: string }
-  | { id: string; kind: "pick"; en: string; options: string[]; answer: Gendered; roman: Gendered }
+  | { id: string; kind: "pick"; en: string; options: string[]; answer: Gendered; roman: Gendered; /** A flat color to show above the choices (the color lessons). `label` is its plain-English name for screen readers. */ swatch?: { color: string; label: string } }
   | { id: string; kind: "build"; en: string; tiles: string[]; answer: Gendered<string[]>; roman: Gendered }
   | { id: string; kind: "particle"; en: string; stem: string; stemRoman: string; particleKind: "statement" | "question" };
 

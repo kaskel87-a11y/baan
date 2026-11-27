@@ -222,7 +222,8 @@ export function thaiSyllables(text: string): ThaiSyllable[] {
 }
 
 function thaiWords(text: string): string[] {
-  const clean = text.replace(/[!?.,"“”'()]/g, " ").trim();
+  // ICU cuts สีชมพู (pink) as สีช + มพู; keep สี and ชมพู apart.
+  const clean = text.replace(/[!?.,"“”'()]/g, " ").replace(/สีชมพู/g, "สี ชมพู").trim();
   const words =
     typeof Intl !== "undefined" && "Segmenter" in Intl
       ? [...new Intl.Segmenter("th", { granularity: "word" }).segment(clean)].map((s) => s.segment).filter((s) => s.trim())

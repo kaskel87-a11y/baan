@@ -2679,6 +2679,285 @@ export const SCENES: Scene[] = [
       }
     ]
   },
+
+  {
+    "id": "colours",
+    "title": "Colors",
+    "titleTh": "สี",
+    "blurb": "Twelve colors, and one rule: สี comes first. Plus the two blues.",
+    "vocab": [
+      "sii",
+      "sii-dam",
+      "sii-khaaw",
+      "sii-daaeng",
+      "sii-nam-ngern",
+      "sii-faa",
+      "sii-khiaw",
+      "sii-lueang",
+      "sii-som",
+      "sii-chomphuu",
+      "sii-muang",
+      "sii-namtaan",
+      "sii-thao"
+    ],
+    "lines": [
+      {
+        "id": "co1",
+        "who": "kaew",
+        "en": "What color do you like?",
+        "thai": "ชอบสีอะไรคะ",
+        "roman": "châwp sǐi à-rai khá",
+        "note": "ชอบ (châwp, falling) is like. สีอะไร (sǐi à-rai) is what color, with สี first."
+      },
+      {
+        "id": "co2",
+        "who": "you",
+        "en": "I like light blue.",
+        "thai": {
+          "male": "ชอบสีฟ้าครับ",
+          "female": "ชอบสีฟ้าค่ะ"
+        },
+        "roman": {
+          "male": "châwp sǐi fáa khráp",
+          "female": "châwp sǐi fáa khâ"
+        },
+        "note": "สี (sǐi) + ฟ้า (fáa, high) = light blue. Say the particle at the end."
+      },
+      {
+        "id": "co3",
+        "who": "kaew",
+        "en": "Dark blue is pretty too.",
+        "thai": "สีน้ำเงินก็สวยนะคะ",
+        "roman": "sǐi náam-ngern gâaw sǔay ná khá",
+        "note": "สีน้ำเงิน is the deep blue. ก็ (gâaw, falling) is also or too. สวย (sǔay) is pretty and rising."
+      },
+      {
+        "id": "co4",
+        "who": "you",
+        "en": "I like black and white too.",
+        "thai": {
+          "male": "ผมชอบสีดำกับสีขาวด้วยครับ",
+          "female": "ฉันชอบสีดำกับสีขาวด้วยค่ะ"
+        },
+        "roman": {
+          "male": "phǒm châwp sǐi dam gàp sǐi khǎaw dûay khráp",
+          "female": "chǎn châwp sǐi dam gàp sǐi khǎaw dûay khâ"
+        },
+        "note": "กับ (gàp, low) is and. ด้วย (dûay, falling) at the end means too."
+      },
+      {
+        "id": "co5",
+        "who": "kaew",
+        "en": "We have red and yellow shirts too.",
+        "thai": "เสื้อสีแดงกับสีเหลืองก็มีค่ะ",
+        "roman": "sûea sǐi daaeng gàp sǐi lǔeang gâaw mii khâ",
+        "note": "เสื้อ (sûea) is a shirt. The color comes after the thing: เสื้อ + สีแดง."
+      },
+      {
+        "id": "co6",
+        "who": "you",
+        "en": "Do you have green?",
+        "thai": {
+          "male": "มีสีเขียวไหมครับ",
+          "female": "มีสีเขียวไหมคะ"
+        },
+        "roman": {
+          "male": "mii sǐi khǐaw mǎi khráp",
+          "female": "mii sǐi khǐaw mǎi khá"
+        },
+        "note": "มี…ไหม is do you have. เขียว is rising."
+      },
+      {
+        "id": "co7",
+        "who": "kaew",
+        "en": "Yes. Orange and pink are pretty too.",
+        "thai": "มีค่ะ สีส้มกับสีชมพูก็สวยค่ะ",
+        "roman": "mii khâ, sǐi sôm gàp sǐi chom-phuu gâaw sǔay khâ",
+        "note": "ส้ม (sôm) is falling. ชมพู is chom-phuu, flat then flat."
+      },
+      {
+        "id": "co8",
+        "who": "you",
+        "en": "Do you have purple?",
+        "thai": {
+          "male": "สีม่วงมีไหมครับ",
+          "female": "สีม่วงมีไหมคะ"
+        },
+        "roman": {
+          "male": "sǐi mûang mii mǎi khráp",
+          "female": "sǐi mûang mii mǎi khá"
+        },
+        "note": "Same question with the color first, which is also natural. ม่วง falls."
+      },
+      {
+        "id": "co9",
+        "who": "kaew",
+        "en": "Yes. And brown and grey too.",
+        "thai": "มีค่ะ สีน้ำตาลกับสีเทาด้วยค่ะ",
+        "roman": "mii khâ, sǐi náam-dtaan gàp sǐi thao dûay khâ",
+        "note": "น้ำตาล (náam-dtaan) is brown. It is also the word for sugar. เทา (thao) is grey."
+      },
+      {
+        "id": "co10",
+        "who": "you",
+        "en": "I'll take the light blue.",
+        "thai": {
+          "male": "เอาสีฟ้าครับ",
+          "female": "เอาสีฟ้าค่ะ"
+        },
+        "roman": {
+          "male": "ao sǐi fáa khráp",
+          "female": "ao sǐi fáa khâ"
+        },
+        "note": "เอา is I'll take it."
+      }
+    ],
+    "drills": [
+      {
+        "id": "co-l",
+        "kind": "listen",
+        "thai": "ชอบสีอะไรคะ",
+        "roman": "châwp sǐi à-rai khá",
+        "en": "What color do you like?",
+        "options": [
+          "What color do you like?",
+          "Do you have green?",
+          "I'll take the light blue.",
+          "Dark blue is pretty too."
+        ]
+      },
+      {
+        "id": "co-s1",
+        "kind": "pick",
+        "en": "What color is this swatch?",
+        "options": [
+          "สีน้ำเงิน",
+          "สีฟ้า",
+          "สีเขียว",
+          "สีม่วง"
+        ],
+        "answer": "สีน้ำเงิน",
+        "roman": "sǐi náam-ngern",
+        "swatch": {
+          "color": "#1e3a8a",
+          "label": "dark navy blue"
+        }
+      },
+      {
+        "id": "co-s2",
+        "kind": "pick",
+        "en": "What color is this swatch?",
+        "options": [
+          "สีฟ้า",
+          "สีน้ำเงิน",
+          "สีเทา",
+          "สีขาว"
+        ],
+        "answer": "สีฟ้า",
+        "roman": "sǐi fáa",
+        "swatch": {
+          "color": "#7dd3fc",
+          "label": "light sky blue"
+        }
+      },
+      {
+        "id": "co-s3",
+        "kind": "pick",
+        "en": "What color is this swatch?",
+        "options": [
+          "สีชมพู",
+          "สีแดง",
+          "สีส้ม",
+          "สีม่วง"
+        ],
+        "answer": "สีชมพู",
+        "roman": "sǐi chom-phuu",
+        "swatch": {
+          "color": "#f472b6",
+          "label": "pink"
+        }
+      },
+      {
+        "id": "co-s4",
+        "kind": "pick",
+        "en": "What color is this swatch?",
+        "options": [
+          "สีน้ำตาล",
+          "สีเทา",
+          "สีดำ",
+          "สีเหลือง"
+        ],
+        "answer": "สีน้ำตาล",
+        "roman": "sǐi náam-dtaan",
+        "swatch": {
+          "color": "#8b5a2b",
+          "label": "brown"
+        }
+      },
+      {
+        "id": "co-s5",
+        "kind": "pick",
+        "en": "What color is this swatch?",
+        "options": [
+          "สีเขียว",
+          "สีเหลือง",
+          "สีม่วง",
+          "สีส้ม"
+        ],
+        "answer": "สีเขียว",
+        "roman": "sǐi khǐaw",
+        "swatch": {
+          "color": "#22a05a",
+          "label": "green"
+        }
+      },
+      {
+        "id": "co-r",
+        "kind": "read",
+        "thai": "เอาสีฟ้า",
+        "roman": "ao sǐi fáa",
+        "en": "I'll take the light blue.",
+        "options": [
+          "I'll take the light blue.",
+          "I'll take the dark blue.",
+          "Do you have purple?",
+          "I like black and white."
+        ]
+      },
+      {
+        "id": "co-b",
+        "kind": "build",
+        "en": "I like pink.",
+        "tiles": [
+          "ชอบ",
+          "สี",
+          "ชมพู",
+          "แดง",
+          "ครับ",
+          "ค่ะ"
+        ],
+        "answer": {
+          "male": [
+            "ชอบ",
+            "สี",
+            "ชมพู",
+            "ครับ"
+          ],
+          "female": [
+            "ชอบ",
+            "สี",
+            "ชมพู",
+            "ค่ะ"
+          ]
+        },
+        "roman": {
+          "male": "châwp sǐi chom-phuu khráp",
+          "female": "châwp sǐi chom-phuu khâ"
+        }
+      }
+    ]
+  },
+
   {
     "id": "food",
     "title": "Street food stall",
@@ -2889,6 +3168,635 @@ export const SCENES: Scene[] = [
       }
     ]
   },
+
+  {
+    "id": "meat",
+    "title": "Animal or meat",
+    "titleTh": "เนื้อสัตว์",
+    "blurb": "ไก่ หมู วัว เป็ด ปลา กุ้ง: the animal word is also what you order. And what เนื้อ does.",
+    "vocab": [
+      "neua",
+      "gai",
+      "muu",
+      "wua",
+      "bpet",
+      "bplaa",
+      "gung",
+      "neua-wua",
+      "neua-muu",
+      "khaao-phat-muu"
+    ],
+    "lines": [
+      {
+        "id": "me1",
+        "who": "pim",
+        "en": "Pork, chicken, or beef?",
+        "thai": "เอาหมู ไก่ หรือเนื้อดีคะ",
+        "roman": "ao mǔu gài rǔue néua dii khá",
+        "note": "เนื้อ (néua, high) on its own, in a list of meats, means beef."
+      },
+      {
+        "id": "me2",
+        "who": "you",
+        "en": "Chicken, please.",
+        "thai": {
+          "male": "เอาไก่ครับ",
+          "female": "เอาไก่ค่ะ"
+        },
+        "roman": {
+          "male": "ao gài khráp",
+          "female": "ao gài khâ"
+        },
+        "note": "No need to say meat. The animal word is the order."
+      },
+      {
+        "id": "me3",
+        "who": "pim",
+        "en": "Chicken fried rice, right?",
+        "thai": "ข้าวผัดไก่ใช่ไหมคะ",
+        "roman": "khâaw-phàt gài châi mǎi khá",
+        "note": "ข้าวผัด + ไก่ is fried rice with chicken. ใช่ไหม (châi mǎi) is right?"
+      },
+      {
+        "id": "me4",
+        "who": "you",
+        "en": "Yes. I don't eat beef.",
+        "thai": {
+          "male": "ใช่ครับ ผมไม่กินเนื้อวัวครับ",
+          "female": "ใช่ค่ะ ฉันไม่กินเนื้อวัวค่ะ"
+        },
+        "roman": {
+          "male": "châi khráp, phǒm mâi gin néua wua khráp",
+          "female": "châi khâ, chǎn mâi gin néua wua khâ"
+        },
+        "note": "เนื้อวัว (néua wua) is the beef itself: เนื้อ + animal. วัว alone is the cow."
+      },
+      {
+        "id": "me5",
+        "who": "pim",
+        "en": "And fish and shrimp?",
+        "thai": "แล้วปลากับกุ้งล่ะคะ",
+        "roman": "láew bplaa gàp gûng lâ khá",
+        "note": "ล่ะ (lâ, falling) is and what about…?"
+      },
+      {
+        "id": "me6",
+        "who": "you",
+        "en": "Fish and shrimp are fine.",
+        "thai": {
+          "male": "ปลากับกุ้งกินได้ครับ",
+          "female": "ปลากับกุ้งกินได้ค่ะ"
+        },
+        "roman": {
+          "male": "bplaa gàp gûng gin dâai khráp",
+          "female": "bplaa gàp gûng gin dâai khâ"
+        },
+        "note": "กินได้ (gin dâai) is can eat, it's fine."
+      },
+      {
+        "id": "me7",
+        "who": "pim",
+        "en": "The duck is tasty too.",
+        "thai": "เป็ดก็อร่อยนะคะ",
+        "roman": "bpèt gâaw à-ròi ná khá",
+        "note": "เป็ด (bpèt, low) is duck."
+      },
+      {
+        "id": "me8",
+        "who": "you",
+        "en": "Then I'll have the duck.",
+        "thai": {
+          "male": "งั้นเอาเป็ดครับ",
+          "female": "งั้นเอาเป็ดค่ะ"
+        },
+        "roman": {
+          "male": "ngán ao bpèt khráp",
+          "female": "ngán ao bpèt khâ"
+        },
+        "note": "งั้น (ngán, high) is then, in that case."
+      }
+    ],
+    "drills": [
+      {
+        "id": "me-l",
+        "kind": "listen",
+        "thai": "ผมไม่กินเนื้อวัว",
+        "roman": "phǒm mâi gin néua wua",
+        "en": "I don't eat beef.",
+        "options": [
+          "I don't eat beef.",
+          "I'll have chicken.",
+          "Fish and shrimp are fine.",
+          "Then I'll have the duck."
+        ]
+      },
+      {
+        "id": "me-r",
+        "kind": "read",
+        "thai": "เอาไก่",
+        "roman": "ao gài",
+        "en": "Chicken, please.",
+        "options": [
+          "Chicken, please.",
+          "Pork, please.",
+          "The duck is tasty.",
+          "Fish and shrimp are fine."
+        ]
+      },
+      {
+        "id": "me-p1",
+        "kind": "pick",
+        "en": "“pork fried rice”",
+        "options": [
+          "ข้าวผัดหมู",
+          "ข้าวผัดไก่",
+          "ข้าวผัดกุ้ง",
+          "ข้าวผัดเป็ด"
+        ],
+        "answer": "ข้าวผัดหมู",
+        "roman": "khâaw-phàt mǔu"
+      },
+      {
+        "id": "me-p2",
+        "kind": "pick",
+        "en": "“beef (the meat)”",
+        "options": [
+          "เนื้อวัว",
+          "เนื้อหมู",
+          "วัว",
+          "ไก่"
+        ],
+        "answer": "เนื้อวัว",
+        "roman": "néua wua"
+      },
+      {
+        "id": "me-p3",
+        "kind": "pick",
+        "en": "“meat; on a menu, on its own, usually beef”",
+        "options": [
+          "เนื้อ",
+          "ปลา",
+          "กุ้ง",
+          "หมู"
+        ],
+        "answer": "เนื้อ",
+        "roman": "néua"
+      },
+      {
+        "id": "me-p4",
+        "kind": "pick",
+        "en": "“shrimp”",
+        "options": [
+          "กุ้ง",
+          "ปลา",
+          "เป็ด",
+          "ไก่"
+        ],
+        "answer": "กุ้ง",
+        "roman": "gûng"
+      },
+      {
+        "id": "me-b",
+        "kind": "build",
+        "en": "I don't eat beef.",
+        "tiles": [
+          "ผม",
+          "ฉัน",
+          "ไม่",
+          "กิน",
+          "เนื้อ",
+          "วัว",
+          "ครับ",
+          "ค่ะ"
+        ],
+        "answer": {
+          "male": [
+            "ผม",
+            "ไม่",
+            "กิน",
+            "เนื้อ",
+            "วัว",
+            "ครับ"
+          ],
+          "female": [
+            "ฉัน",
+            "ไม่",
+            "กิน",
+            "เนื้อ",
+            "วัว",
+            "ค่ะ"
+          ]
+        },
+        "roman": {
+          "male": "phǒm mâi gin néua wua khráp",
+          "female": "chǎn mâi gin néua wua khâ"
+        }
+      }
+    ]
+  },
+
+  {
+    "id": "juice",
+    "title": "Fruit and juice",
+    "titleTh": "ผลไม้และน้ำผลไม้",
+    "blurb": "น้ำ + fruit is juice. Six fruits, and how to say no sugar or less sweet.",
+    "vocab": [
+      "som",
+      "ma-muang",
+      "dtaeng-moo",
+      "ma-phrao",
+      "sapparot",
+      "ma-naaw",
+      "nam",
+      "nam-som",
+      "mai-sai-namtaan",
+      "waan-noi"
+    ],
+    "lines": [
+      {
+        "id": "ju1",
+        "who": "fon",
+        "en": "What would you like to drink?",
+        "thai": "รับน้ำอะไรดีคะ",
+        "roman": "ráp náam à-rai dii khá",
+        "note": "น้ำ (náam, high) is water, and the first word of every juice."
+      },
+      {
+        "id": "ju2",
+        "who": "you",
+        "en": "What juices do you have?",
+        "thai": {
+          "male": "มีน้ำอะไรบ้างครับ",
+          "female": "มีน้ำอะไรบ้างคะ"
+        },
+        "roman": {
+          "male": "mii náam à-rai bâang khráp",
+          "female": "mii náam à-rai bâang khá"
+        },
+        "note": "บ้าง (bâang, falling) is some, which: what kinds do you have?"
+      },
+      {
+        "id": "ju3",
+        "who": "fon",
+        "en": "We have orange, mango, watermelon, coconut, pineapple, lime.",
+        "thai": "มีน้ำส้ม น้ำมะม่วง น้ำแตงโม น้ำมะพร้าว น้ำสับปะรด น้ำมะนาวค่ะ",
+        "roman": "mii náam sôm, náam má-mûang, náam dtaaeng-moo, náam má-phráaw, náam sàp-bpà-rót, náam má-naaw khâ",
+        "note": "Each one is น้ำ + the fruit. ส้ม, มะม่วง, แตงโม, มะพร้าว, สับปะรด, มะนาว."
+      },
+      {
+        "id": "ju4",
+        "who": "you",
+        "en": "An orange juice and a lime juice, please.",
+        "thai": {
+          "male": "เอาน้ำส้มกับน้ำมะนาวครับ",
+          "female": "เอาน้ำส้มกับน้ำมะนาวค่ะ"
+        },
+        "roman": {
+          "male": "ao náam sôm gàp náam má-naaw khráp",
+          "female": "ao náam sôm gàp náam má-naaw khâ"
+        },
+        "note": "เอา + the thing. กับ (gàp) joins the two."
+      },
+      {
+        "id": "ju5",
+        "who": "fon",
+        "en": "Sugar in it?",
+        "thai": "ใส่น้ำตาลไหมคะ",
+        "roman": "sài náam-dtaan mǎi khá",
+        "note": "ใส่ (sài, low) is put in. น้ำตาล is sugar."
+      },
+      {
+        "id": "ju6",
+        "who": "you",
+        "en": "No sugar in the orange juice, and less sweet for the lime.",
+        "thai": {
+          "male": "น้ำส้มไม่ใส่น้ำตาล น้ำมะนาวหวานน้อยครับ",
+          "female": "น้ำส้มไม่ใส่น้ำตาล น้ำมะนาวหวานน้อยค่ะ"
+        },
+        "roman": {
+          "male": "náam sôm mâi sài náam-dtaan, náam má-naaw wǎan náwy khráp",
+          "female": "náam sôm mâi sài náam-dtaan, náam má-naaw wǎan náwy khâ"
+        },
+        "note": "ไม่ใส่น้ำตาล is no sugar. หวานน้อย (wǎan náwy) is less sweet, put right after the drink."
+      }
+    ],
+    "drills": [
+      {
+        "id": "ju-l",
+        "kind": "listen",
+        "thai": "มีน้ำอะไรบ้างคะ",
+        "roman": "mii náam à-rai bâang khá",
+        "en": "What juices do you have?",
+        "options": [
+          "What juices do you have?",
+          "Sugar in it?",
+          "What would you like to drink?",
+          "No sugar, please."
+        ]
+      },
+      {
+        "id": "ju-r",
+        "kind": "read",
+        "thai": "ไม่ใส่น้ำตาล",
+        "roman": "mâi sài náam-dtaan",
+        "en": "No sugar.",
+        "options": [
+          "No sugar.",
+          "Less sweet.",
+          "Sugar in it?",
+          "Plain water."
+        ]
+      },
+      {
+        "id": "ju-p1",
+        "kind": "pick",
+        "en": "“watermelon juice”",
+        "options": [
+          "น้ำแตงโม",
+          "น้ำมะพร้าว",
+          "น้ำสับปะรด",
+          "น้ำมะม่วง"
+        ],
+        "answer": "น้ำแตงโม",
+        "roman": "náam dtaaeng-moo"
+      },
+      {
+        "id": "ju-p2",
+        "kind": "pick",
+        "en": "“pineapple” (the fruit)",
+        "options": [
+          "สับปะรด",
+          "มะนาว",
+          "มะม่วง",
+          "ส้ม"
+        ],
+        "answer": "สับปะรด",
+        "roman": "sàp-bpà-rót"
+      },
+      {
+        "id": "ju-p3",
+        "kind": "pick",
+        "en": "“lime juice”",
+        "options": [
+          "น้ำมะนาว",
+          "มะนาว",
+          "น้ำส้ม",
+          "น้ำมะพร้าว"
+        ],
+        "answer": "น้ำมะนาว",
+        "roman": "náam má-naaw"
+      },
+      {
+        "id": "ju-p4",
+        "kind": "pick",
+        "en": "“less sweet”",
+        "options": [
+          "หวานน้อย",
+          "ไม่ใส่น้ำตาล",
+          "หวาน",
+          "ไม่หวาน"
+        ],
+        "answer": "หวานน้อย",
+        "roman": "wǎan náwy"
+      },
+      {
+        "id": "ju-b",
+        "kind": "build",
+        "en": "Orange juice, no sugar.",
+        "tiles": [
+          "น้ำ",
+          "ส้ม",
+          "ไม่",
+          "ใส่",
+          "น้ำตาล",
+          "ครับ",
+          "ค่ะ",
+          "มะนาว"
+        ],
+        "answer": {
+          "male": [
+            "น้ำ",
+            "ส้ม",
+            "ไม่",
+            "ใส่",
+            "น้ำตาล",
+            "ครับ"
+          ],
+          "female": [
+            "น้ำ",
+            "ส้ม",
+            "ไม่",
+            "ใส่",
+            "น้ำตาล",
+            "ค่ะ"
+          ]
+        },
+        "roman": {
+          "male": "náam sôm mâi sài náam-dtaan khráp",
+          "female": "náam sôm mâi sài náam-dtaan khâ"
+        }
+      }
+    ]
+  },
+
+  {
+    "id": "ao-yaak",
+    "title": "I'll have, I want to",
+    "titleTh": "เอา กับ อยาก",
+    "blurb": "เอา + thing is I'll have it. อยาก + verb is I want to. Same food, two different sentences.",
+    "vocab": [
+      "ao",
+      "yaak",
+      "gin",
+      "padthai",
+      "ma-muang",
+      "ma-naaw"
+    ],
+    "lines": [
+      {
+        "id": "ay1",
+        "who": "fon",
+        "en": "What can I get you?",
+        "thai": "รับอะไรดีคะ",
+        "roman": "ráp à-rai dii khá"
+      },
+      {
+        "id": "ay2",
+        "who": "you",
+        "en": "I'll have pad thai.",
+        "thai": {
+          "male": "เอาผัดไทยครับ",
+          "female": "เอาผัดไทยค่ะ"
+        },
+        "roman": {
+          "male": "ao phàt-thai khráp",
+          "female": "ao phàt-thai khâ"
+        },
+        "note": "เอา is I'll take it. Thing right after, no verb in between."
+      },
+      {
+        "id": "ay3",
+        "who": "fon",
+        "en": "And what drink will you have?",
+        "thai": "แล้วจะเอาน้ำอะไรคะ",
+        "roman": "láew jà ao náam à-rai khá",
+        "note": "จะ (jà, low) is will. เอาน้ำอะไร is what drink will you take?"
+      },
+      {
+        "id": "ay4",
+        "who": "you",
+        "en": "I'll have a lime juice.",
+        "thai": {
+          "male": "เอาน้ำมะนาวครับ",
+          "female": "เอาน้ำมะนาวค่ะ"
+        },
+        "roman": {
+          "male": "ao náam má-naaw khráp",
+          "female": "ao náam má-naaw khâ"
+        },
+        "note": "Same pattern: เอา + the drink."
+      },
+      {
+        "id": "ay5",
+        "who": "fon",
+        "en": "Do you want to eat anything else?",
+        "thai": "อยากกินอะไรอีกไหมคะ",
+        "roman": "yàak gin à-rai èek mǎi khá",
+        "note": "อยาก (yàak, low) is want to. It always has a verb after it, here กิน (to eat). อีก (èek, low) is more."
+      },
+      {
+        "id": "ay6",
+        "who": "you",
+        "en": "I want to eat a mango.",
+        "thai": {
+          "male": "อยากกินมะม่วงครับ",
+          "female": "อยากกินมะม่วงค่ะ"
+        },
+        "roman": {
+          "male": "yàak gin má-mûang khráp",
+          "female": "yàak gin má-mûang khâ"
+        },
+        "note": "อยาก + กิน + the food. Compare ay2: เอาผัดไทย is I'll have it, อยากกิน is I want to eat it."
+      }
+    ],
+    "drills": [
+      {
+        "id": "ay-l",
+        "kind": "listen",
+        "thai": "อยากกินผัดไทย",
+        "roman": "yàak gin phàt-thai",
+        "en": "I want to eat pad thai.",
+        "options": [
+          "I want to eat pad thai.",
+          "I'll have pad thai.",
+          "I want to eat a mango.",
+          "I'll have a lime juice."
+        ]
+      },
+      {
+        "id": "ay-p1",
+        "kind": "pick",
+        "en": "“I'll have pad thai.”",
+        "options": [
+          "เอาผัดไทย",
+          "อยากกินผัดไทย",
+          "เอากินผัดไทย",
+          "อยากไปผัดไทย"
+        ],
+        "answer": "เอาผัดไทย",
+        "roman": "ao phàt-thai"
+      },
+      {
+        "id": "ay-p2",
+        "kind": "pick",
+        "en": "“I want to eat pad thai.”",
+        "options": [
+          "อยากกินผัดไทย",
+          "เอาผัดไทย",
+          "เอากินผัดไทย",
+          "อยากไปผัดไทย"
+        ],
+        "answer": "อยากกินผัดไทย",
+        "roman": "yàak gin phàt-thai"
+      },
+      {
+        "id": "ay-w1",
+        "kind": "pick",
+        "en": "Choose the word for the gap: “___ náam má-naaw” (I'll have a lime juice).",
+        "options": [
+          "เอา",
+          "อยาก"
+        ],
+        "answer": "เอา",
+        "roman": "ao"
+      },
+      {
+        "id": "ay-w2",
+        "kind": "pick",
+        "en": "Choose the word for the gap: “___ gin má-mûang” (I want to eat a mango).",
+        "options": [
+          "เอา",
+          "อยาก"
+        ],
+        "answer": "อยาก",
+        "roman": "yàak"
+      },
+      {
+        "id": "ay-w3",
+        "kind": "pick",
+        "en": "Choose the word for the gap: “___ sǐi fáa” (I'll take the light blue).",
+        "options": [
+          "เอา",
+          "อยาก"
+        ],
+        "answer": "เอา",
+        "roman": "ao"
+      },
+      {
+        "id": "ay-w4",
+        "kind": "pick",
+        "en": "Choose the word for the gap: “___ bpai hâwng-náam” (I want to go to the toilet).",
+        "options": [
+          "เอา",
+          "อยาก"
+        ],
+        "answer": "อยาก",
+        "roman": "yàak"
+      },
+      {
+        "id": "ay-b",
+        "kind": "build",
+        "en": "I want to eat a mango.",
+        "tiles": [
+          "อยาก",
+          "เอา",
+          "กิน",
+          "มะม่วง",
+          "ครับ",
+          "ค่ะ"
+        ],
+        "answer": {
+          "male": [
+            "อยาก",
+            "กิน",
+            "มะม่วง",
+            "ครับ"
+          ],
+          "female": [
+            "อยาก",
+            "กิน",
+            "มะม่วง",
+            "ค่ะ"
+          ]
+        },
+        "roman": {
+          "male": "yàak gin má-mûang khráp",
+          "female": "yàak gin má-mûang khâ"
+        }
+      }
+    ]
+  },
+
   {
     "id": "laundry",
     "title": "Laundry",

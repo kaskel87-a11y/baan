@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.47.0 — One pattern, many words
+
+Four new scenes, each built around one reusable pattern, with a word set, tip cards and drills.
+
+- **Colors (สี),** after Shopping: สี comes first, then the color. Twelve colors (black, white, red, dark blue น้ำเงิน, light blue ฟ้า, green, yellow, orange, pink, purple, brown, grey), the two-blues tip, and a new swatch drill: a flat color appears and you pick its Thai name. Pink (สีชมพู) is also now read correctly by the tone-checking in practice.
+- **Animal or meat (เนื้อสัตว์),** after Street food: ไก่ หมู วัว เป็ด ปลา กุ้ง are what you order (ข้าวผัดหมู), เนื้อ alone usually means beef, and เนื้อ + animal is the meat itself (เนื้อวัว, เนื้อหมู).
+- **Fruit and juice (ผลไม้และน้ำผลไม้):** น้ำ + fruit is juice (น้ำส้ม, น้ำมะม่วง, น้ำแตงโม, น้ำมะพร้าว, น้ำสับปะรด, น้ำมะนาว), plus ordering lines ไม่ใส่น้ำตาล (no sugar) and หวานน้อย (less sweet).
+- **I'll have, I want to (เอา กับ อยาก):** เอา + thing is an order, อยาก + verb is a wish. Paired examples (เอาผัดไทย vs อยากกินผัดไทย) and choose-the-right-word drills.
+- A small picture for each scene. Baan is still 100% free, zero ads.
+
 ## 0.46.0 — Compliments
 
 - **A new scene, *คำชม / Compliments*,** after Small talk: say something nice (น่ารักจังเลย, สวยจังเลย, สวยมาก, หล่อมาก, ชุดเท่มาก, เก่งมาก, อร่อยมากๆ to the cook, พูดไทยเก่ง, ใจดีจังเลย) and take a compliment the Thai way (ไม่ขนาดนั้น, then ขอบคุณ). Each line has a word-by-word note. สวย is for a woman, a dress or a view; หล่อ is for a man.

@@ -842,6 +842,122 @@ export const TIPS: Tip[] = [
       { thai: "บ๊ายบาย", roman: "báai-baai", en: "Bye-bye." },
     ],
   },
+  // Colors
+  {
+    id: "colours-sii-first",
+    sceneId: "colours",
+    afterLine: "co2",
+    kind: "grammar",
+    title: "sǐi comes first",
+    body: "English puts the color first: red, black. Thai puts สี (sǐi, rising, “color”) first and the color second: sǐi daaeng, sǐi dam. The same recipe works for every color in this lesson. A thing comes before its color, too: sûea sǐi daaeng is a red shirt.",
+    examples: [
+      { thai: "สีแดง", roman: "sǐi daaeng", en: "red" },
+      { thai: "สีดำ", roman: "sǐi dam", en: "black" },
+      { thai: "เสื้อสีแดง", roman: "sûea sǐi daaeng", en: "a red shirt" },
+    ],
+  },
+  {
+    id: "colours-two-blues",
+    sceneId: "colours",
+    afterLine: "co3",
+    kind: "culture",
+    title: "Two blues: náam-ngern and fáa",
+    body: "Thai has two everyday blues. สีน้ำเงิน (sǐi náam-ngern) is deep blue, like navy. สีฟ้า (sǐi fáa) is light blue, and ฟ้า on its own also means the sky. Now you can tell a shop which blue you mean.",
+    examples: [
+      { thai: "สีน้ำเงิน", roman: "sǐi náam-ngern", en: "dark blue (navy)" },
+      { thai: "สีฟ้า", roman: "sǐi fáa", en: "light blue (sky blue)" },
+    ],
+  },
+
+  // Animal or meat
+  {
+    id: "meat-neua",
+    sceneId: "meat",
+    afterLine: "me1",
+    kind: "culture",
+    title: "néua on its own usually means beef",
+    body: "เนื้อ (néua, high) is meat. When it stands alone in a list of meats, on a menu or at a stall, it usually means beef. To be exact, add the animal: néua wua is beef, néua mǔu is pork. Chicken and the rest you just name.",
+    examples: [
+      { thai: "เนื้อ", roman: "néua", en: "beef (on its own, on a menu)" },
+      { thai: "เนื้อวัว", roman: "néua wua", en: "beef" },
+      { thai: "เนื้อหมู", roman: "néua mǔu", en: "pork (the meat)" },
+    ],
+  },
+  {
+    id: "meat-drop",
+    sceneId: "meat",
+    afterLine: "me3",
+    kind: "grammar",
+    title: "When you order, leave néua out",
+    body: "The animal word is also the meat on your plate. People say khâaw-phàt mǔu (pork fried rice), not khâaw-phàt néua mǔu. Use เนื้อ + animal when the meat itself is the point, like I don't eat beef. กุ้ง (shrimp) and ปลา (fish) are simply named on a menu.",
+    examples: [
+      { ...p("ข้าวผัดหมู", "khâaw-phàt mǔu"), en: "Pork fried rice. (the usual way)" },
+      { ...p("ไม่กินเนื้อวัว", "mâi gin néua wua"), en: "I don't eat beef. (the meat itself)" },
+      { thai: "หมู", roman: "mǔu", en: "pig, or pork on a plate" },
+      { thai: "เนื้อหมู", roman: "néua mǔu", en: "pork, the meat" },
+    ],
+  },
+
+  // Fruit and juice
+  {
+    id: "juice-nam",
+    sceneId: "juice",
+    afterLine: "ju3",
+    kind: "grammar",
+    title: "náam first, fruit second",
+    body: "Take a fruit, put น้ำ (náam, “water”) in front, and you have its juice: náam sôm is orange juice. Drop the náam and you're back to the fruit: sôm is an orange. The same label-first order as sǐi + color. น้ำมะพร้าว (náam má-phráaw) is usually coconut water.",
+    examples: [
+      { thai: "ส้ม", roman: "sôm", en: "orange (the fruit)" },
+      { thai: "น้ำส้ม", roman: "náam sôm", en: "orange juice" },
+      { thai: "มะม่วง", roman: "má-mûang", en: "mango" },
+      { thai: "น้ำมะม่วง", roman: "náam má-mûang", en: "mango juice" },
+      { thai: "มะนาว", roman: "má-naaw", en: "lime" },
+      { thai: "น้ำมะนาว", roman: "náam má-naaw", en: "lime juice" },
+    ],
+  },
+  {
+    id: "juice-sweet",
+    sceneId: "juice",
+    afterLine: "ju6",
+    kind: "culture",
+    title: "Say how sweet you want it",
+    body: "Many stands add sugar or syrup to juice, so it helps to say it when you order. mâi sài náam-dtaan is no sugar. wǎan náwy is less sweet. Both go right after the drink name. น้ำตาล (náam-dtaan) is sugar, and it is also the color brown: sǐi náam-dtaan.",
+    examples: [
+      { ...p("น้ำส้มไม่ใส่น้ำตาล", "náam sôm mâi sài náam-dtaan"), en: "Orange juice, no sugar." },
+      { ...p("น้ำมะนาวหวานน้อย", "náam má-naaw wǎan náwy"), en: "Lime juice, less sweet." },
+    ],
+  },
+
+  // I'll have vs I want to
+  {
+    id: "ao-yaak-ao",
+    sceneId: "ao-yaak",
+    afterLine: "ay2",
+    kind: "grammar",
+    title: "ao + thing: I'll have it",
+    body: "เอา (ao, mid) is for choosing and ordering: ao + the thing, nothing in between. ao phàt-thai, ao náam má-naaw, ao sǐi fáa. Don't put กิน (eat) after it.",
+    examples: [
+      { ...p("เอาผัดไทย", "ao phàt-thai"), en: "I'll have pad thai." },
+      { ...p("เอาน้ำมะนาว", "ao náam má-naaw"), en: "I'll have a lime juice." },
+      { ...p("เอาสีฟ้า", "ao sǐi fáa"), en: "I'll take the light blue." },
+    ],
+  },
+  {
+    id: "ao-yaak-yaak",
+    sceneId: "ao-yaak",
+    afterLine: "ay6",
+    kind: "grammar",
+    title: "yàak + verb: I want to",
+    body: "อยาก (yàak, low) says what you feel like doing, so a verb comes right after it: yàak gin (want to eat), yàak bpai (want to go). Same food, two sentences: ao phàt-thai is I'll have pad thai, an order. yàak gin phàt-thai is I want to eat pad thai, a wish. For a thing you'd like to get, use yàak dâai + thing.",
+    examples: [
+      { ...p("เอาผัดไทย", "ao phàt-thai"), en: "I'll have pad thai. (ordering)" },
+      { ...p("อยากกินผัดไทย", "yàak gin phàt-thai"), en: "I want to eat pad thai. (a wish)" },
+      { ...p("เอามะม่วง", "ao má-mûang"), en: "I'll have a mango. (ordering)" },
+      { ...p("อยากกินมะม่วง", "yàak gin má-mûang"), en: "I want to eat a mango. (a wish)" },
+      { ...p("อยากได้ซิม", "yàak dâai sim"), en: "I'd like a SIM card." },
+    ],
+  },
+
 ];
 
 export const tipsForScene = (sceneId: string) => TIPS.filter((t) => t.sceneId === sceneId);

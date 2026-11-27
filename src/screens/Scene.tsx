@@ -476,6 +476,15 @@ function Drills({
           </div>
         ) : null}
         {d.kind === "read" ? <p className="thai text-3xl" lang="th">{answerThai}</p> : null}
+        {d.kind === "pick" && d.swatch ? (
+          <div
+            role="img"
+            aria-label={`A ${d.swatch.label} color swatch`}
+            data-swatch
+            className="h-24 w-full rounded-2xl border border-line"
+            style={{ backgroundColor: d.swatch.color }}
+          />
+        ) : null}
         {d.kind === "particle" ? (
           <div className="grid gap-1">
             <p className="thai text-3xl" lang="th">{d.stem}</p>

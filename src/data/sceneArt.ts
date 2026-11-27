@@ -29,6 +29,10 @@ export const SCENE_ART_ALT = {
   body: "Three friendly cartoon figures standing side by side",
   looks: "A cartoon portrait with a small sparkle, for talking about looks",
   sweets: "A cartoon of Thai dessert cups and a scoop of ice cream",
+  colours: "Five cartoon paint dabs in red, blue, light blue, yellow and green",
+  meat: "A cartoon pig face next to a cartoon steak with a bone",
+  juice: "A cartoon glass of orange juice with a straw beside half an orange",
+  "ao-yaak": "Two cartoon speech bubbles, one with a plate of food and one with a fork",
   swears: "A tame cartoon of a smiling person waving away an empty comic burst",
   leave: "A cartoon of someone waving beside an open doorway",
 } as const;

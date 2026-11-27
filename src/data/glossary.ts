@@ -214,6 +214,19 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "ใจดีจังเลย", roman: "jai-dii jang loei", en: "so kind" },
   { thai: "ไม่ขนาดนั้น", roman: "mâi khà-nâat nán", en: "it's not all that" },
   { thai: "เท่", roman: "thêe", en: "cool, stylish" },
+  { thai: "น้ำมะม่วง", roman: "náam má-mûang", en: "mango juice" },
+  { thai: "น้ำแตงโม", roman: "náam dtaaeng-moo", en: "watermelon juice" },
+  { thai: "น้ำมะพร้าว", roman: "náam má-phráaw", en: "coconut water" },
+  { thai: "น้ำสับปะรด", roman: "náam sàp-bpà-rót", en: "pineapple juice" },
+  { thai: "น้ำมะนาว", roman: "náam má-naaw", en: "lime juice" },
+  { thai: "ข้าวผัดไก่", roman: "khâaw-phàt gài", en: "chicken fried rice" },
+  { thai: "ข้าวผัดกุ้ง", roman: "khâaw-phàt gûng", en: "shrimp fried rice" },
+  { thai: "ข้าวผัดเป็ด", roman: "khâaw-phàt bpèt", en: "duck fried rice" },
+  { thai: "เอาผัดไทย", roman: "ao phàt-thai", en: "I'll have pad thai" },
+  { thai: "อยากกินผัดไทย", roman: "yàak gin phàt-thai", en: "I want to eat pad thai" },
+  { thai: "อยากกินมะม่วง", roman: "yàak gin má-mûang", en: "I want to eat a mango" },
+  { thai: "เนื้อไก่", roman: "néua gài", en: "chicken (the meat)" },
+  { thai: "ไม่หวาน", roman: "mâi wǎan", en: "not sweet" },
 ];
 
 export interface Gloss {

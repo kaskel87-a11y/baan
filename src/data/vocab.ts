@@ -1717,6 +1717,230 @@ export const VOCAB: Vocab[] = [
     "heat": 5,
     "when": "You'd hear it when a fight is already on.",
     "hint": "Fighting words. Rising: high-class ห on a live syllable. The vulgar word for a vagina, also thrown as an insult. Almost never a joke. Do not say it."
+  },
+  {
+    "id": "sii-dam",
+    "thai": "สีดำ",
+    "roman": "sǐi dam",
+    "en": "black",
+    "hint": "Rising, mid. สี (sǐi) comes first, then the colour: สี + ดำ."
+  },
+  {
+    "id": "sii-khaaw",
+    "thai": "สีขาว",
+    "roman": "sǐi khǎaw",
+    "en": "white",
+    "hint": "Rising, rising. High-class ข on a live syllable with no mark is rising."
+  },
+  {
+    "id": "sii-daaeng",
+    "thai": "สีแดง",
+    "roman": "sǐi daaeng",
+    "en": "red",
+    "hint": "Rising, mid. แดง (daaeng) stays flat."
+  },
+  {
+    "id": "sii-nam-ngern",
+    "thai": "สีน้ำเงิน",
+    "roman": "sǐi náam-ngern",
+    "en": "dark blue (navy)",
+    "hint": "Rising, high, mid. น้ำเงิน is deep blue. For light blue use สีฟ้า."
+  },
+  {
+    "id": "sii-faa",
+    "thai": "สีฟ้า",
+    "roman": "sǐi fáa",
+    "en": "light blue, sky blue",
+    "hint": "Rising, high. ฟ้า (fáa) is also the word for sky, so this is sky blue."
+  },
+  {
+    "id": "sii-khiaw",
+    "thai": "สีเขียว",
+    "roman": "sǐi khǐaw",
+    "en": "green",
+    "hint": "Rising, rising."
+  },
+  {
+    "id": "sii-lueang",
+    "thai": "สีเหลือง",
+    "roman": "sǐi lǔeang",
+    "en": "yellow",
+    "hint": "Rising, rising. The silent ห lifts ล into the rising tone."
+  },
+  {
+    "id": "sii-som",
+    "thai": "สีส้ม",
+    "roman": "sǐi sôm",
+    "en": "orange (the color)",
+    "hint": "Rising, falling. ส้ม (sôm) is also the fruit, and น้ำส้ม is orange juice."
+  },
+  {
+    "id": "sii-chomphuu",
+    "thai": "สีชมพู",
+    "roman": "sǐi chom-phuu",
+    "en": "pink",
+    "hint": "Rising, mid, mid. ช is ch, พ is ph (puffed p)."
+  },
+  {
+    "id": "sii-muang",
+    "thai": "สีม่วง",
+    "roman": "sǐi mûang",
+    "en": "purple",
+    "hint": "Rising, falling."
+  },
+  {
+    "id": "sii-namtaan",
+    "thai": "สีน้ำตาล",
+    "roman": "sǐi náam-dtaan",
+    "en": "brown",
+    "hint": "Rising, high, mid. น้ำตาล (náam-dtaan) is also sugar. ต is an unpuffed dt."
+  },
+  {
+    "id": "sii-thao",
+    "thai": "สีเทา",
+    "roman": "sǐi thao",
+    "en": "grey",
+    "hint": "Rising, mid. ท is th (puffed t)."
+  },
+  {
+    "id": "neua",
+    "thai": "เนื้อ",
+    "roman": "néua",
+    "en": "meat; beef on its own",
+    "hint": "High. Low-class น with mai tho is high. On a menu, เนื้อ by itself usually means beef."
+  },
+  {
+    "id": "neua-wua",
+    "thai": "เนื้อวัว",
+    "roman": "néua wua",
+    "en": "beef",
+    "hint": "High, mid. เนื้อ + animal = the meat of that animal."
+  },
+  {
+    "id": "neua-muu",
+    "thai": "เนื้อหมู",
+    "roman": "néua mǔu",
+    "en": "pork (the meat)",
+    "hint": "High, rising. When ordering, people usually just say หมู."
+  },
+  {
+    "id": "gai",
+    "thai": "ไก่",
+    "roman": "gài",
+    "en": "chicken",
+    "hint": "Low. Mid-class ก with mai ek is low."
+  },
+  {
+    "id": "muu",
+    "thai": "หมู",
+    "roman": "mǔu",
+    "en": "pig; pork",
+    "hint": "Rising. The silent ห lifts ม into the rising tone."
+  },
+  {
+    "id": "wua",
+    "thai": "วัว",
+    "roman": "wua",
+    "en": "cow; beef",
+    "hint": "Mid. Flat, no mark."
+  },
+  {
+    "id": "bpet",
+    "thai": "เป็ด",
+    "roman": "bpèt",
+    "en": "duck",
+    "hint": "Low. ป is an unpuffed bp."
+  },
+  {
+    "id": "bplaa",
+    "thai": "ปลา",
+    "roman": "bplaa",
+    "en": "fish",
+    "hint": "Mid. ป is an unpuffed bp."
+  },
+  {
+    "id": "gung",
+    "thai": "กุ้ง",
+    "roman": "gûng",
+    "en": "shrimp",
+    "hint": "Falling. Mid-class ก with mai tho is falling. Just กุ้ง, no เนื้อ needed."
+  },
+  {
+    "id": "khaao-phat-muu",
+    "thai": "ข้าวผัดหมู",
+    "roman": "khâaw-phàt mǔu",
+    "en": "pork fried rice",
+    "hint": "Falling, low, rising. Animal word straight after the dish, no เนื้อ."
+  },
+  {
+    "id": "som",
+    "thai": "ส้ม",
+    "roman": "sôm",
+    "en": "orange (the fruit)",
+    "hint": "Falling. High-class ส with mai tho is falling. Also the color: สีส้ม."
+  },
+  {
+    "id": "ma-muang",
+    "thai": "มะม่วง",
+    "roman": "má-mûang",
+    "en": "mango",
+    "hint": "High, falling. มะ (má) starts many fruit names."
+  },
+  {
+    "id": "dtaeng-moo",
+    "thai": "แตงโม",
+    "roman": "dtaaeng-moo",
+    "en": "watermelon",
+    "hint": "Mid, mid. ต is an unpuffed dt."
+  },
+  {
+    "id": "ma-phrao",
+    "thai": "มะพร้าว",
+    "roman": "má-phráaw",
+    "en": "coconut",
+    "hint": "High, high. Low-class พร with mai tho is high."
+  },
+  {
+    "id": "sapparot",
+    "thai": "สับปะรด",
+    "roman": "sàp-bpà-rót",
+    "en": "pineapple",
+    "hint": "Low, low, high."
+  },
+  {
+    "id": "ma-naaw",
+    "thai": "มะนาว",
+    "roman": "má-naaw",
+    "en": "lime",
+    "hint": "High, mid. Thai limes are small and green."
+  },
+  {
+    "id": "nam-som",
+    "thai": "น้ำส้ม",
+    "roman": "náam sôm",
+    "en": "orange juice",
+    "hint": "High, falling. น้ำ + fruit = juice of that fruit."
+  },
+  {
+    "id": "mai-sai-namtaan",
+    "thai": "ไม่ใส่น้ำตาล",
+    "roman": "mâi sài náam-dtaan",
+    "en": "no sugar",
+    "hint": "Falling, low, high, mid. ใส่ (sài) is put in; ไม่ใส่ is don't put in."
+  },
+  {
+    "id": "waan-noi",
+    "thai": "หวานน้อย",
+    "roman": "wǎan náwy",
+    "en": "less sweet",
+    "hint": "Rising, high. Say it after the drink: น้ำมะนาวหวานน้อย."
+  },
+  {
+    "id": "yaak",
+    "thai": "อยาก",
+    "roman": "yàak",
+    "en": "to want to (+ verb)",
+    "hint": "Low. Always followed by a verb: อยากกิน (want to eat), อยากไป (want to go)."
   }
 ];
 

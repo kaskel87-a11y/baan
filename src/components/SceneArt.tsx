@@ -371,6 +371,61 @@ const DRAWINGS: Record<SceneArtId, ReactNode> = {
         <path d="M214 40 h32 l-6 22 h-20 z" fill={gold} />
       </>
   ),
+  colours: (
+      <>
+        <Ground />
+        <circle cx="62" cy="48" r="17" fill="#c0453a" />
+        <circle cx="112" cy="44" r="15" fill="#2f4c9a" />
+        <circle cx="160" cy="48" r="17" fill="#8ec5e8" />
+        <circle cx="208" cy="44" r="15" fill={gold} />
+        <circle cx="256" cy="48" r="17" fill="#3f9a5a" />
+        <path d="M44 74 h232" stroke={ink} strokeWidth="2" strokeLinecap="round" opacity="0.25" />
+      </>
+  ),
+  meat: (
+      <>
+        <Ground />
+        <circle cx="96" cy="46" r="24" fill="#f2b6a8" />
+        <path d="M78 28 l-8 -12 l18 6 z M114 28 l8 -12 l-18 6 z" fill="#e59a8a" />
+        <ellipse cx="96" cy="54" rx="11" ry="8" fill="#e59a8a" />
+        <circle cx="92" cy="54" r="1.6" fill={ink} />
+        <circle cx="100" cy="54" r="1.6" fill={ink} />
+        <circle cx="86" cy="40" r="2" fill={ink} />
+        <circle cx="106" cy="40" r="2" fill={ink} />
+        <path d="M190 40 q10 -16 36 -12 q18 4 16 24 q-4 18 -32 14 q-26 -4 -20 -26 z" fill={clay} />
+        <circle cx="222" cy="46" r="6" fill={cream} />
+        <rect x="236" y="42" width="22" height="7" rx="3" fill={cream} />
+        <circle cx="262" cy="42" r="5" fill={cream} />
+        <circle cx="262" cy="50" r="5" fill={cream} />
+      </>
+  ),
+  juice: (
+      <>
+        <Ground />
+        <path d="M118 26 h54 l-6 44 h-42 z" fill={cream} stroke={teal} strokeWidth="3" />
+        <path d="M121 40 h48 l-4 28 h-40 z" fill="#f0a030" />
+        <path d="M160 12 l6 30" stroke={clay} strokeWidth="4" strokeLinecap="round" />
+        <circle cx="214" cy="52" r="20" fill="#f0a030" />
+        <path d="M214 32 v40 M194 52 h40 M200 38 l28 28 M228 38 l-28 28" stroke={cream} strokeWidth="2" />
+        <circle cx="214" cy="52" r="20" fill="none" stroke="#d8801a" strokeWidth="3" />
+        <path d="M232 28 q8 -10 18 -6 q-4 10 -14 10 z" fill={leaf} />
+      </>
+  ),
+  "ao-yaak": (
+      <>
+        <Ground />
+        <rect x="40" y="16" width="100" height="52" rx="14" fill={cream} stroke={teal} strokeWidth="3" />
+        <path d="M60 68 l-6 14 l22 -14 z" fill={cream} stroke={teal} strokeWidth="3" strokeLinejoin="round" />
+        <ellipse cx="90" cy="48" rx="28" ry="9" fill={sand} stroke={teal} strokeWidth="2" />
+        <ellipse cx="90" cy="44" rx="18" ry="6" fill={gold} />
+        <circle cx="80" cy="43" r="4" fill={clay} />
+        <rect x="180" y="16" width="100" height="52" rx="14" fill={sky} stroke={clay} strokeWidth="3" />
+        <path d="M260 68 l6 14 l-22 -14 z" fill={sky} stroke={clay} strokeWidth="3" strokeLinejoin="round" />
+        <path d="M218 28 v26 M224 28 v10 M212 28 v10 M212 38 q6 6 12 0 M218 54 v8" stroke={ink} strokeWidth="2.5" strokeLinecap="round" fill="none" />
+        <path d="M250 26 v34" stroke={ink} strokeWidth="3" strokeLinecap="round" />
+        <path d="M250 26 q8 8 0 18" fill="none" stroke={ink} strokeWidth="2.5" strokeLinecap="round" />
+      </>
+  ),
   swears: (
       <>
         <Ground />
