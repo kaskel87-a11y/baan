@@ -48,6 +48,14 @@ def sfx(kind):
         out = np.zeros(int(2.5 * SR))
         for k, n in enumerate((72, 76, 79, 84)): add(out, k * 0.09, pl(n, 2.2, 0.5) + sine(midi(n), 2.2, 2.5, 0.1))
         return out
+    if kind == "beep":
+        return np.pad(sine(1760, 0.08, 30, 0.35), (0, int(0.12 * SR))) + np.pad(sine(2349, 0.1, 25, 0.3), (int(0.1 * SR), 0))[:int(0.2 * SR)]
+    if kind == "honk":
+        t = np.arange(int(0.28 * SR)) / SR
+        return (np.sign(np.sin(2 * np.pi * 330 * t)) * 0.12 + np.sign(np.sin(2 * np.pi * 415 * t)) * 0.1) * np.minimum(1, t / 0.01) * np.exp(-3 * np.maximum(0, t - 0.2) * 10)
+    if kind == "whoosh":
+        n = int(0.7 * SR); x = np.convolve(rng.uniform(-1, 1, n), np.ones(40) / 40, "same"); e = np.sin(np.linspace(0, np.pi, n)) ** 2
+        return x * e * 0.7
     raise KeyError(kind)
 def music(duration, bpm=100):
     beat = 60 / bpm; out = np.zeros(int(SR * (duration + 3)))

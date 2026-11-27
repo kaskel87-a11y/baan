@@ -16,7 +16,8 @@ def main():
     mod = importlib.import_module(sys.argv[1]); os.makedirs(os.path.join(HERE, "voices"), exist_ok=True)
     for s, e, ln, who in mod.L:
         mp3 = os.path.join(HERE, "voices", f"{ln['id']}.mp3"); wav = mp3[:-4] + ".wav"
-        used = tts(ln["thai"], VOICE["male" if who == "you" else "female"], mp3)
+        vmap = getattr(mod, "VOICES", None)
+        used = tts(ln["thai"], VOICE[vmap[who] if vmap else ("male" if who == "you" else "female")], mp3)
         trim = "silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse"
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", mp3, "-af", trim, "-ar", "44100", "-ac", "1", wav], check=True)
         print(ln["id"], who, used)

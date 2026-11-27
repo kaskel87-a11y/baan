@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.49.0 — Watch the scene: Taxi
+
+- **A second voiced cartoon, *Taking a taxi to Siam*,** on the Taxi lesson: say where you're going (ไปสยามค่ะ), ask for the meter (เปิดมิเตอร์ได้ไหมคะ), pay 180 baht and keep the change (นี่สองร้อย ไม่ต้องทอนค่ะ). The rider speaks in the ค่ะ forms with a female voice, the driver in ครับ with a male voice. Tap any line under the video to jump to it.
+- Baan is still 100% free, zero ads.
+
 ## 0.48.0 — The same what
 
 - **A new scene, *อะไร / The same what*,** after Everyday words: the same อะไร with four endings. อะไรครับ / อะไรคะ is the polite one, อะไรอ่ะ (*à-rai à*, often typed อะไรอะ) is casual, อะไรนะ is for when the words went past you, and อะไรวะ is blunt — not a swear, but too rough with a stranger or a shop. Two tip cards and drills on the four endings. A small speech-bubble picture.
