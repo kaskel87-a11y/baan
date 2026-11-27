@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.44.1 — 30-day cartoon badge
+
+- The teal 30 badge on the 30-day streak congratulations cartoon sits in the title row, so a speech bubble can no longer cover it.
+
 ## 0.44.0 — At the clinic
 
 - **A new scene, *ที่คลินิก / At the clinic*,** after Massage / pharmacy: check in without an appointment, say you feel unwell, name a fever, cough, sore throat, headache or stomach ache, say how many days it's been, answer an allergy question, and hear how to take the medicine (after meals, twice a day).
