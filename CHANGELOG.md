@@ -1,9 +1,17 @@
 # Changelog
 
-## 0.41.0 — Share previews and search
+## 0.42.0 — Share previews and search
 
-- **Link previews and search.** The page has a speaking-first description (no mention of script), a canonical URL at the new address https://learnthaibaan.github.io/, Open Graph and Twitter `summary_large_image` tags, and WebApplication structured data marked free and educational.
+- **Link previews and search.** The page has a speaking-first description (no mention of script), a canonical URL at https://learnthaibaan.github.io/, Open Graph and Twitter `summary_large_image` tags, and WebApplication structured data marked free and educational.
 - A 1200×630 share image (`og.png`) in Baan's flat illustration style, plus `robots.txt` and a root-only `sitemap.xml` (the app uses hash routes).
+
+## 0.41.0 — New home: learnthaibaan.github.io
+
+- **Baan now lives at https://learnthaibaan.github.io/** (GitHub org `learnthaibaan`). Icons, manifest (`id`, `scope`, `start_url`) and the service worker now use the site root instead of `/baan/`.
+- **The old address keeps working and brings your progress.** `kaskel87-a11y.github.io/baan/` is now a tiny page that packs this browser's Baan progress (`baan.v1` and other `baan.*` settings) into the link, compressed, and opens the new site on the same screen (`#/scene/cafe` stays `#/scene/cafe`). The new site imports it only when it has no progress yet, so newer progress is never replaced, then cleans the link. Old progress is not deleted from the old address.
+- The old service worker is replaced by one that clears Baan's caches and then is unregistered, so returning visitors don't get a stale copy. Other apps on the old github.io address are left alone.
+- Word notifications are tied to the old address's service worker, so they stop there. Turn them on again from the new Home Screen icon and save the new subscription as `PUSH_SUBS`.
+
 
 ## 0.40.0 — Watch the scene
 
