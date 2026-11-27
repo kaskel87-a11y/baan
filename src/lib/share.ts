@@ -2,7 +2,7 @@ import type { Gendered, Scene, Voice } from "../data/types";
 import { pick } from "./thai";
 
 export const SHARE_URL = "https://learnthaibaan.github.io/";
-export const STREAK_MILESTONES = [3, 7, 30] as const;
+export const STREAK_MILESTONES = [3, 7, 14, 30, 60, 100] as const;
 export type StreakMilestone = (typeof STREAK_MILESTONES)[number];
 
 export type SharePhrase = { thai: string; roman: string };
@@ -46,10 +46,13 @@ export function sceneShareContent(scene: Scene, voice: Voice) {
   };
 }
 
-const STREAK_PHRASES: Record<StreakMilestone, SharePhrase> = {
+export const STREAK_PHRASES: Record<StreakMilestone, SharePhrase> = {
   3: { thai: "สามวันติดกัน", roman: "sǎam wan dtìt gan" },
   7: { thai: "เจ็ดวันติดกัน", roman: "jèt wan dtìt gan" },
+  14: { thai: "สิบสี่วันติดกัน", roman: "sìp-sìi wan dtìt gan" },
   30: { thai: "สามสิบวันติดกัน", roman: "sǎam-sìp wan dtìt gan" },
+  60: { thai: "หกสิบวันติดกัน", roman: "hòk-sìp wan dtìt gan" },
+  100: { thai: "หนึ่งร้อยวันติดกัน", roman: "nùeng-ráwy wan dtìt gan" },
 };
 
 export function streakShareContent(days: StreakMilestone) {
@@ -65,6 +68,20 @@ export function streakShareContent(days: StreakMilestone) {
     text: `A ${headline} on Baan.\n${phrase.thai}\n${phrase.roman}\nBaan is 100% free with zero ads.`,
     fileName: `baan-streak-${days}.png`,
     alt: `Share card: ${headline}, ${phrase.thai} ${phrase.roman}`,
+  };
+}
+
+/** Share card for any other badge: its title and the Thai line you say for it. */
+export function badgeShareContent(id: string, title: string, phrase: SharePhrase) {
+  return {
+    kicker: "Baan",
+    headline: title,
+    phrase,
+    caption: `${SHARE_URL.replace(/^https:\/\//, "")} · 100% free, zero ads`,
+    title: `Baan — ${title}`,
+    text: `I earned the "${title}" badge on Baan.\n${phrase.thai}\n${phrase.roman}\nBaan is 100% free with zero ads.`,
+    fileName: `baan-${id}.png`,
+    alt: `Share card: ${title}, ${phrase.thai} ${phrase.roman}`,
   };
 }
 

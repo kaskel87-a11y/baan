@@ -1,7 +1,7 @@
 {
   "name": "baan-app",
   "private": true,
-  "version": "0.44.1",
+  "version": "0.45.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,6 +16,7 @@
     "test:roman": "tsx scripts/test-romanize.ts",
     "test:numbers": "tsx scripts/test-numbers.ts",
     "test:today": "tsx scripts/test-today.ts",
+    "test:rewards": "tsx scripts/test-rewards.ts",
     "test:review": "tsx scripts/test-review.ts",
     "test:backup": "tsx scripts/test-backup.ts",
     "test:push": "tsx scripts/test-push.ts"

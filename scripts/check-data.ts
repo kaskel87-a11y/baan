@@ -8,6 +8,8 @@ import { TONE_SETS } from "../src/data/toneSets";
 import { toneFromRoman } from "../src/lib/thai";
 import { AVAILABLE_PAIRS, makeTrial } from "../src/lib/toneTrainer";
 import { SCENE_ART_ALT } from "../src/data/sceneArt";
+import { CONGRATS, MILESTONES } from "../src/data/rewards";
+import { STREAK_MILESTONES } from "../src/lib/share";
 
 let fail = 0;
 const err = (m: string) => {
@@ -94,5 +96,25 @@ for (let i = 0; i < 500; i++) {
   } else if (t.same !== (t.first === t.second)) err("same flag mismatch");
 }
 
-console.log(fail ? `${fail} problem(s)` : `data OK: ${VOCAB.length} vocab, ${SCENES.length} scenes, ${TONE_SETS.length} minimal sets, ${EAR_POOL.length} ear words, ${TIPS.length} tips`);
+// Badges: unique ids, a Thai line with romanization (no Thai script in it, and a tone mark on every syllable but mid), a fact, and nothing from the 18+ section.
+{
+  const ids = new Set<string>();
+  for (const m of MILESTONES) {
+    if (ids.has(m.id)) err(`duplicate badge id ${m.id}`);
+    ids.add(m.id);
+    if (!m.say.thai || !m.say.roman || !m.say.en) err(`badge ${m.id} needs a Thai line, romanization and English`);
+    if (/[\u0E00-\u0E7F]/.test(m.say.roman) || (m.fact.roman && /[\u0E00-\u0E7F]/.test(m.fact.roman))) err(`badge ${m.id} romanization contains Thai script`);
+    if (!/[\u0E00-\u0E7F]/.test(m.say.thai)) err(`badge ${m.id} line is not Thai`);
+    if (m.say.thai.split(/\s+/).join("").length > 24) err(`badge ${m.id} line is too long to say`);
+    if (!m.fact.title || m.fact.body.length < 40) err(`badge ${m.id} needs a fact card`);
+    if (!!m.fact.thai !== !!m.fact.roman) err(`badge ${m.id} fact needs Thai and romanization together`);
+    if (!m.mark && !m.icon) err(`badge ${m.id} has nothing drawn on it`);
+    if (m.need <= 0) err(`badge ${m.id} has no target`);
+    if (/18\+|rude|swear/i.test(JSON.stringify(m))) err(`badge ${m.id} mentions the 18+ section`);
+  }
+  for (const d of STREAK_MILESTONES) if (!ids.has(`streak-${d}`)) err(`no badge for the ${d}-day streak`);
+  if (!CONGRATS.thai || !CONGRATS.roman) err("congratulations line missing");
+}
+
+console.log(fail ? `${fail} problem(s)` : `data OK: ${VOCAB.length} vocab, ${SCENES.length} scenes, ${TONE_SETS.length} minimal sets, ${EAR_POOL.length} ear words, ${TIPS.length} tips, ${MILESTONES.length} badges`);
 process.exit(fail ? 1 : 0);

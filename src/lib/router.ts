@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-/** Hash routes so the static build works on any host: #/path, #/scene/cafe, #/tones, #/letters, #/review, #/numbers, #/today, #/stories, #/settings */
+/** Hash routes so the static build works on any host: #/path, #/scene/cafe, #/tones, #/letters, #/review, #/numbers, #/today, #/stories, #/rewards, #/settings */
 export type Route =
   | { name: "path" }
   | { name: "scene"; id: string }
@@ -11,6 +11,7 @@ export type Route =
   | { name: "numbers" }
   | { name: "today" }
   | { name: "stories" }
+  | { name: "rewards" }
   | { name: "word"; id: string };
 
 export function parseHash(hash: string): Route {
@@ -27,6 +28,7 @@ export function parseHash(hash: string): Route {
     case "numbers":
     case "today":
     case "stories":
+    case "rewards":
       return { name: parts[0] };
     default:
       return { name: "path" };

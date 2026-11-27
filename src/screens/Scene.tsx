@@ -5,7 +5,7 @@ import { SCENES } from "../data/scenes";
 import { VOCAB_BY_ID } from "../data/vocab";
 import type { Verdict } from "../lib/thai";
 import type { Drill, Line, Scene as SceneT, Speaker, Vocab, Voice } from "../data/types";
-import { completeScene, dayKey, introduce, markDueNow, touchStreak, useStore } from "../lib/store";
+import { completeScene, dayKey, introduce, markDueNow, recordRolePlay, touchStreak, useStore } from "../lib/store";
 import { cardsForMiss } from "../lib/cards";
 import { NORMAL_RATE, SLOW_RATE, slowChunks, speak, speakSequence, stopSpeech } from "../lib/audio";
 import { particle, particleNote, pick, shuffle } from "../lib/thai";
@@ -13,6 +13,7 @@ import { navigate } from "../lib/router";
 import { SceneArt } from "../components/SceneArt";
 import { AdultMark, AnswerLine, Button, HearButton, NoVoiceNotice, RomanKey, SayIt, SwearFacts } from "../components/ui";
 import { ShareMoment } from "../components/ShareMoment";
+import { RewardSheet } from "../components/RewardSheet";
 import { swearInThai } from "../lib/swear";
 import { gloss, meaningOf } from "../data/glossary";
 import { tipAfterLine, tipsForScene } from "../data/tips";
@@ -644,7 +645,8 @@ function Done({
         {typeof score === "number" ? <p className="text-muted tabular-nums">Last score {score}</p> : null}
         <p className="text-muted">The words are in Review. They’ll come back before you forget them.</p>
       </article>
-      {complete && !scene.adult ? <ShareMoment kind="scene" sceneId={scene.id} /> : null}
+      {complete && !scene.adult ? <ShareMoment sceneId={scene.id} /> : null}
+      {!scene.adult ? <RewardSheet force /> : null}
       {misses.length > 0 ? (
         <div className="grid gap-2">
           <p className="text-sm font-medium">Hear these again</p>
@@ -687,6 +689,14 @@ function Done({
  * and on your turns you see the English and the romanization as a cue and say the line out loud.
  * Thai script for your line is optional ("Show Thai"). Layout stays fixed: the action row never moves.
  */
+/** Counts a finished role-play once (for the First role-play badge) and lets its celebration show here. */
+function RolePlayFinished({ sceneId }: { sceneId: string }) {
+  useEffect(() => {
+    recordRolePlay(sceneId);
+  }, [sceneId]);
+  return <RewardSheet force />;
+}
+
 function RolePlay({ scene, voice, name, onExit }: { scene: SceneT; voice: Voice; name: string; onExit: (to: Phase) => void }) {
   const [i, setI] = useState(0);
   const [showThai, setShowThai] = useState(false);
@@ -706,6 +716,7 @@ function RolePlay({ scene, voice, name, onExit }: { scene: SceneT; voice: Voice;
     const close = yours.filter((l) => results[l.id] === "close").length;
     return (
       <section className="grid gap-4" data-roleplay-done>
+        <RolePlayFinished sceneId={scene.id} />
         <article className="rounded-4xl border border-line bg-card p-5 grid gap-2">
           <p className="text-sm text-muted">Role-play finished</p>
           <p className="font-display text-3xl tabular-nums">

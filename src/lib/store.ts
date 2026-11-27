@@ -2,7 +2,8 @@ import { useSyncExternalStore } from "react";
 import type { Voice } from "../data/types";
 import { EMPTY_NUMBERS, rangeKey, type NumbersStats, type NumberRangeKey } from "./numbers";
 import { isLegacySrsKey, migrateSrsKey, sceneYouLineCardIds, vocabCardIds } from "./cards";
-import { STREAK_MILESTONES, type StreakMilestone } from "./share";
+import { SCENES } from "../data/scenes";
+import { awardRewards, cleanRewards, rewardsOf, type RewardsState } from "./rewards";
 
 /** localStorage key and shape kept identical to the Grok-hosted Baan so progress carries over. */
 export const STORE_KEY = "baan.v1";
@@ -61,8 +62,10 @@ export interface BaanState {
   readCards?: boolean;
   /** How many word notifications a day: 1, 3, or 5. New York time. */
   pushPerDay?: 1 | 3 | 5;
-  /** Share-moment prompts already shown: scene ids and 3/7/30-day streak milestones. */
+  /** Share-moment prompts already shown: scene ids and streak milestones. */
   shareShown?: { scenes?: string[]; streaks?: number[] };
+  /** Milestone badges: which are earned, which celebrations were shown, role-plays finished. */
+  rewards?: RewardsState;
 }
 
 export interface StoryRecord {
@@ -166,6 +169,7 @@ function migrateLoaded(t: Partial<BaanState>): BaanState {
     dailyGoal: t.dailyGoal && t.dailyGoal > 0 ? t.dailyGoal : 15,
     pushPerDay: t.pushPerDay === 1 || t.pushPerDay === 5 ? t.pushPerDay : 3,
     history: t.history ?? {},
+    rewards: cleanRewards(t.rewards),
   };
 }
 
@@ -175,7 +179,7 @@ function load() {
   try {
     const raw = localStorage.getItem(STORE_KEY);
     if (!raw) return;
-    state = migrateLoaded(JSON.parse(raw) as Partial<BaanState>);
+    state = withRewards(migrateLoaded(JSON.parse(raw) as Partial<BaanState>));
   } catch {
     state = DEFAULTS;
   }
@@ -190,9 +194,14 @@ function save() {
   listeners.forEach((l) => l());
 }
 
+/** Badges are earned by the state itself, so every change goes through here. */
+function withRewards(s: BaanState): BaanState {
+  return awardRewards(s, liveStreak(s), dayKey(new Date()));
+}
+
 function update(fn: (s: BaanState) => BaanState) {
   load();
-  state = fn(state);
+  state = withRewards(fn(state));
   save();
 }
 
@@ -437,14 +446,6 @@ export function shouldShowSceneShare(s: BaanState, sceneId: string) {
   return !(s.shareShown?.scenes ?? []).includes(sceneId);
 }
 
-/** A 3, 7, or 30-day streak that has not been prompted yet; otherwise null. */
-export function pendingStreakMilestone(s: BaanState): StreakMilestone | null {
-  const n = liveStreak(s);
-  if (!(STREAK_MILESTONES as readonly number[]).includes(n)) return null;
-  if ((s.shareShown?.streaks ?? []).includes(n)) return null;
-  return n as StreakMilestone;
-}
-
 /** Record that a share prompt was shown, so it does not appear again. */
 export function markShareShown(kind: "scene" | "streak", id: string | number) {
   const s = getState();
@@ -477,6 +478,27 @@ export function recordPair(pairKey: string, right: boolean) {
   });
 }
 
+
+/** A role-play was finished (the 18+ scene doesn't count). */
+export function recordRolePlay(sceneId: string) {
+  if (SCENES.find((sc) => sc.id === sceneId)?.adult) return;
+  update((s) => {
+    const cur = rewardsOf(s);
+    return { ...s, rewards: { ...cur, rolePlays: cur.rolePlays + 1 } };
+  });
+}
+
+/** The celebration for these badges has been shown, so it won't come up again. */
+export function markRewardsCelebrated(ids: string[]) {
+  const s = getState();
+  const cur = rewardsOf(s);
+  const fresh = ids.filter((id) => cur.earned[id] && !cur.celebrated.includes(id));
+  if (!fresh.length) return;
+  update((c) => {
+    const r = rewardsOf(c);
+    return { ...c, rewards: { ...r, celebrated: [...r.celebrated, ...fresh.filter((id) => !r.celebrated.includes(id))] } };
+  });
+}
 
 export function recordStory(id: string, right: number, total: number) {
   update((s) => {
@@ -564,6 +586,7 @@ export interface BackupSummary {
   learned: number;
   streak: number;
   days: number;
+  badges: number;
 }
 
 export function backupSummary(s: BaanState): BackupSummary {
@@ -574,6 +597,7 @@ export function backupSummary(s: BaanState): BackupSummary {
     learned: learnedCount(s),
     streak: s.streak?.count ?? 0,
     days: Object.keys(s.history ?? {}).length,
+    badges: Object.keys(rewardsOf(s).earned).length,
   };
 }
 

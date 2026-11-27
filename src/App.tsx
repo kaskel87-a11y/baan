@@ -12,6 +12,8 @@ import { Settings } from "./screens/Settings";
 import { Numbers } from "./screens/Numbers";
 import { Today } from "./screens/Today";
 import { Stories } from "./screens/Stories";
+import { Rewards } from "./screens/Rewards";
+import { RewardSheet } from "./components/RewardSheet";
 import { UpdateBanner } from "./components/UpdateBanner";
 import { WordScreen } from "./screens/Word";
 
@@ -36,12 +38,13 @@ export default function App() {
     return () => navigator.serviceWorker.removeEventListener("message", on);
   }, []);
   if (!s.voice) return <Onboarding />;
-  const active: Route["name"] = route.name === "scene" || route.name === "numbers" || route.name === "today" || route.name === "stories" || route.name === "word" ? "path" : route.name;
+  const active: Route["name"] = route.name === "scene" || route.name === "numbers" || route.name === "today" || route.name === "stories" || route.name === "rewards" || route.name === "word" ? "path" : route.name;
   const go = (id: Tab | "settings") => navigate({ name: id } as Route);
 
   return (
     <div className="app-shell">
       <UpdateBanner />
+      <RewardSheet />
       <aside className="hidden border-r border-line md:flex md:flex-col md:gap-6 md:p-5 md:sticky md:top-0 md:h-dvh">
         <div>
           <p className="thai text-3xl" lang="th">บ้าน</p>
@@ -88,6 +91,7 @@ export default function App() {
           {route.name === "numbers" ? <Numbers /> : null}
           {route.name === "today" ? <Today /> : null}
           {route.name === "stories" ? <Stories /> : null}
+          {route.name === "rewards" ? <Rewards /> : null}
           {route.name === "settings" ? <Settings /> : null}
           {route.name === "word" ? <WordScreen key={route.id} id={route.id} /> : null}
         </main>

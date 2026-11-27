@@ -3,6 +3,9 @@ import { clearProgress, setDailyGoal, setName, setReadCards, setRoman, setVoice,
 import { Button } from "../components/ui";
 import { Backup } from "../components/Backup";
 import { WordNotifications } from "../components/WordNotifications";
+import { navigate } from "../lib/router";
+import { earnedCount } from "../lib/rewards";
+import { MILESTONES } from "../data/rewards";
 
 export function Settings() {
   const s = useStore();
@@ -46,6 +49,13 @@ export function Settings() {
         </div>
         <p className="text-sm text-muted">The streak only grows on days you meet the goal.</p>
       </fieldset>
+      <div className="grid gap-1">
+        <p className="text-sm font-medium">Rewards</p>
+        <Button variant="primary" className="justify-self-start" onClick={() => navigate({ name: "rewards" })}>
+          Open your badges · {earnedCount(s)} of {MILESTONES.length}
+        </Button>
+        <p className="text-sm text-muted">Streaks, scenes, Review words, role-plays, stories and tone rounds each earn a sticker. They are saved in this browser and in your backup.</p>
+      </div>
       <WordNotifications />
       <Backup />
       <div className="grid gap-2">
@@ -62,7 +72,7 @@ export function Settings() {
         >
           {confirm ? "Tap again to clear progress" : "Clear progress"}
         </Button>
-        <p className="text-sm text-muted">Keeps your particle and name. Words, scores, tone stats, and the streak go.</p>
+        <p className="text-sm text-muted">Keeps your particle and name. Words, scores, tone stats, badges, and the streak go.</p>
       </div>
       <p className="text-sm text-muted">Baan is 100% free, with zero ads.</p>
     </div>

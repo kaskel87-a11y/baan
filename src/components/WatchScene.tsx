@@ -51,7 +51,9 @@ export function WatchScene({
   const [showLines, setShowLines] = useState(false);
   // Once it opens, bring the whole video on screen.
   useEffect(() => {
-    if (open) ref.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+    // A cartoon that starts by itself (a badge celebration) stays where it is, so the badge above it stays in view.
+    if (open && !autoPlay) ref.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
   const lines = cueLines(cartoon);
 
