@@ -3,9 +3,11 @@
 //   e.g. old live build in /tmp/mig/old/baan served on :5101, dist/ on :5102,
 //   ./deploy-legacy.sh --local /tmp/mig/stub http://127.0.0.1:5102/
 //   node scripts/test-migrate.mjs /tmp/mig/old/baan /tmp/mig/stub http://127.0.0.1:5101/baan/ http://127.0.0.1:5102/ /tmp/mig/shots
+//   Live: node scripts/test-migrate.mjs --live - https://kaskel87-a11y.github.io/baan/ https://learnthaibaan.github.io/ SHOTS_DIR
 //   OLD_DIR: folder served as OLD_URL (holds the old app first, then the redirect stub is copied in)
 import puppeteer from "puppeteer-core";
 import { cpSync, rmSync, mkdirSync } from "node:fs";
+import { execSync } from "node:child_process";
 
 const [oldDir, stubDir, oldUrl, newUrl, shots] = process.argv.slice(2);
 mkdirSync(shots, { recursive: true });
@@ -50,8 +52,18 @@ ok(regsBefore.some((s) => s.endsWith("/baan/")), `old Baan service worker regist
 await page.screenshot({ path: `${shots}/1-old-app.png` });
 
 // 2) Publish the redirect at the old address. A returning visit to a deep link.
-rmSync(oldDir, { recursive: true, force: true });
-cpSync(stubDir, oldDir, { recursive: true });
+if (oldDir === "--live") {
+  // Live: publish the redirect to the old address and wait until GitHub Pages serves it.
+  execSync("./deploy-legacy.sh", { stdio: "inherit" });
+  for (let i = 0; i < 90; i++) {
+    const html = await fetch(oldUrl + "?t=" + Date.now(), { cache: "no-store" }).then((r) => r.text()).catch(() => "");
+    if (html.includes("Baan has a new home")) break;
+    await sleep(5000);
+  }
+} else {
+  rmSync(oldDir, { recursive: true, force: true });
+  cpSync(stubDir, oldDir, { recursive: true });
+}
 await page.goto("about:blank");
 await page.goto(oldUrl + "#/scene/cafe", { waitUntil: "domcontentloaded" });
 await page.waitForFunction((n) => location.href.startsWith(n) && !location.hash.includes("migrate"), { timeout: 15000 }, newUrl);
