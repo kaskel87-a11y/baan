@@ -169,6 +169,17 @@ const DRAWINGS: Record<SceneArtId, ReactNode> = {
         <rect x="168" y="16" width="36" height="18" rx="8" fill={cream} stroke={clay} strokeWidth="2" />
       </>
   ),
+  compliments: (
+      <>
+        <Ground />
+        <Face x="78" y="42" />
+        <Face x="242" y="42" shirt={clay} />
+        <path d="M160 18 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 z" fill={gold} />
+        <rect x="148" y="50" width="24" height="20" rx="3" fill={teal} />
+        <path d="M148 54 L138 62 V50 Z" fill={teal} />
+        <path d="M172 54 L182 62 V50 Z" fill={teal} />
+      </>
+  ),
   hotel: (
       <>
         <Ground />

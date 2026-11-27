@@ -11,6 +11,7 @@ export const SCENE_ART_ALT = {
   clinic: "A cartoon clinic door with a medical cross and a medicine bottle",
   meal: "A cartoon plate of food with a spoon",
   chat: "Two cartoon friends talking, with speech bubbles",
+  compliments: "Two cartoon friends and a little sparkle, for giving a compliment",
   hotel: "A cartoon hotel bed and a key card",
   shop: "A cartoon shirt on a hanger",
   food: "A cartoon wok of fried rice at a street stall",

@@ -313,6 +313,33 @@ export const TIPS: Tip[] = [
       { ...p("ขอบคุณ", "khàwp-khun"), en: "Thank you." },
     ],
   },
+
+  // Compliments
+  {
+    id: "compliments-emph",
+    sceneId: "compliments",
+    afterLine: "cm7",
+    kind: "grammar",
+    title: "jang loei, mâak, and mâak-mâak",
+    body: "Three ways to turn up a compliment. jang loei (mid, mid) is the warm spoken one: so, really, as in nâa-rák jang loei. mâak (falling) is the everyday very: sǔay mâak, làw mâak, gèng mâak. mâak-mâak, มาก twice, is even stronger: à-ròi mâak-mâak.",
+    examples: [
+      { ...p("น่ารักจังเลย", "nâa-rák jang loei"), en: "So cute!" },
+      { ...p("สวยมาก", "sǔay mâak"), en: "Very pretty." },
+      { ...p("อร่อยมากๆ", "à-ròi mâak-mâak"), en: "Really delicious." },
+    ],
+  },
+  {
+    id: "compliments-modest",
+    sceneId: "compliments",
+    afterLine: "cm2",
+    kind: "culture",
+    title: "Take a compliment the Thai way",
+    body: "The natural first reply is modest: mâi khà-nâat nán (it's not all that). Then say khàwp-khun. Just thanking them is fine too, and you already have mâi gèng and phûut dâai nít-nàwy for “you speak Thai well.”",
+    examples: [
+      { ...p("ไม่ขนาดนั้น", "mâi khà-nâat nán"), en: "Oh, it's not all that." },
+      { ...p("ขอบคุณ", "khàwp-khun"), en: "Thank you." },
+    ],
+  },
   // Hotel check-in
   {
     id: "hotel-gii",

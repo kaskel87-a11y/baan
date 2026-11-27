@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.46.0 — Compliments
+
+- **A new scene, *คำชม / Compliments*,** after Small talk: say something nice (น่ารักจังเลย, สวยจังเลย, สวยมาก, หล่อมาก, ชุดเท่มาก, เก่งมาก, อร่อยมากๆ to the cook, พูดไทยเก่ง, ใจดีจังเลย) and take a compliment the Thai way (ไม่ขนาดนั้น, then ขอบคุณ). Each line has a word-by-word note. สวย is for a woman, a dress or a view; หล่อ is for a man.
+- Two tip cards: the emphasizers *jang loei*, *mâak* and *mâak-mâak*; and the modest reply *mâi khà-nâat nán*. A small picture of two friends and a sparkle.
+
+
 ## 0.45.0 — Badges and rewards
 
 - **A Rewards shelf** (open it from Path or Settings) with a flat sticker for each milestone and a quiet silhouette for the ones still ahead. 18 badges: 3, 7, 14, 30, 60 and 100-day streaks; your first scene, 5, 10 and every scene; 10 words started (met or practiced, so the first words badge can arrive on day one), then 25, 100 and 250 words learned in Review; your first role-play and first story; and two Tone ears badges for accuracy in the tone trainer.

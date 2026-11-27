@@ -1387,6 +1387,48 @@ export const VOCAB: Vocab[] = [
     "hint": "Rising, mid, high. How long it's been. Swap the number: สามวันแล้ว is three days so far."
   },
   {
+    "id": "jang-loei",
+    "thai": "จังเลย",
+    "roman": "jang loei",
+    "en": "so, really (emphasizer)",
+    "hint": "Mid, mid. A warm spoken emphasizer after a compliment: น่ารักจังเลย is so cute. จัง on its own does the same job, as in ใจดีจัง."
+  },
+  {
+    "id": "thee",
+    "thai": "เท่",
+    "roman": "thêe",
+    "en": "cool, stylish",
+    "hint": "Falling. Low-class ท with mai ek. ชุดเท่มาก is that outfit is so cool."
+  },
+  {
+    "id": "chut",
+    "thai": "ชุด",
+    "roman": "chút",
+    "en": "outfit, set of clothes",
+    "hint": "High. Low-class ช on a short dead syllable is high. ชุดนี้ is this outfit."
+  },
+  {
+    "id": "jai-dii",
+    "thai": "ใจดี",
+    "roman": "jai-dii",
+    "en": "kind, nice",
+    "hint": "Mid, mid. ใจ is the heart, ดี is good. ใจดีจัง is so kind."
+  },
+  {
+    "id": "maak-maak",
+    "thai": "มากๆ",
+    "roman": "mâak-mâak",
+    "en": "really very, so much",
+    "hint": "Falling, falling. มาก twice. Stronger than one มาก: อร่อยมากๆ is really delicious."
+  },
+  {
+    "id": "mai-khanaat-nan",
+    "thai": "ไม่ขนาดนั้น",
+    "roman": "mâi khà-nâat nán",
+    "en": "it's not all that, not that much",
+    "hint": "Falling, then low, falling, high. The usual modest reply to a compliment: ไม่ (not) + ขนาด (extent) + นั้น (that)."
+  },
+  {
     "id": "ai-baa",
     "thai": "ไอ้บ้า",
     "roman": "âi bâa",

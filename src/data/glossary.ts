@@ -201,6 +201,19 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "ที่นั่น", roman: "thîi-nân", en: "over there" },
   { thai: "เที่ยววัด", roman: "thîao wát", en: "visit a temple" },
   { thai: "ห้ามถ่ายรูป", roman: "hâam thàai rûup", en: "no photos" },
+  { thai: "น่ารักจังเลย", roman: "nâa-rák jang loei", en: "so cute" },
+  { thai: "สวยจังเลย", roman: "sǔay jang loei", en: "so pretty" },
+  { thai: "สวยมาก", roman: "sǔay mâak", en: "very pretty" },
+  { thai: "หล่อมาก", roman: "làw mâak", en: "very handsome" },
+  { thai: "ชุดเท่มาก", roman: "chút thêe mâak", en: "that outfit is so cool" },
+  { thai: "เก่งมาก", roman: "gèng mâak", en: "well done, so skilled" },
+  { thai: "อร่อยมาก", roman: "à-ròi mâak", en: "very delicious" },
+  { thai: "อร่อยมากๆ", roman: "à-ròi mâak-mâak", en: "really delicious" },
+  { thai: "พูดไทยเก่ง", roman: "phûut thai gèng", en: "you speak Thai well" },
+  { thai: "ใจดีจัง", roman: "jai-dii jang", en: "so kind" },
+  { thai: "ใจดีจังเลย", roman: "jai-dii jang loei", en: "so kind" },
+  { thai: "ไม่ขนาดนั้น", roman: "mâi khà-nâat nán", en: "it's not all that" },
+  { thai: "เท่", roman: "thêe", en: "cool, stylish" },
 ];
 
 export interface Gloss {

@@ -2034,6 +2034,228 @@ export const SCENES: Scene[] = [
       }
     ]
   },
+
+  {
+    "id": "compliments",
+    "title": "Compliments",
+    "titleTh": "คำชม",
+    "blurb": "Say something nice, and take a compliment the Thai way: so cute, so pretty, so handsome, a cool outfit, well done, delicious, kind, and you speak Thai well — plus the modest reply.",
+    "vocab": [
+      "naa-rak",
+      "suay",
+      "law",
+      "thee",
+      "chut",
+      "jang-loei",
+      "maak-maak",
+      "jai-dii",
+      "mai-khanaat-nan",
+      "aroi"
+    ],
+    "lines": [
+      {
+        "id": "cm1",
+        "who": "pim",
+        "en": "You're so cute!",
+        "thai": "น่ารักจังเลยค่ะ",
+        "roman": "nâa-rák jang loei khâ",
+        "note": "น่ารัก (nâa-rák) is cute, for someone you find sweet. จังเลย (jang loei) is the emphasizer: so, really."
+      },
+      {
+        "id": "cm2",
+        "who": "you",
+        "en": "Oh, it's not all that.",
+        "thai": {
+          "male": "ไม่ขนาดนั้นครับ",
+          "female": "ไม่ขนาดนั้นค่ะ"
+        },
+        "roman": {
+          "male": "mâi khà-nâat nán khráp",
+          "female": "mâi khà-nâat nán khâ"
+        },
+        "note": "ไม่ (mâi) is not, ขนาด (khà-nâat) is extent, นั้น (nán) is that. The usual modest reply: don't just take the compliment."
+      },
+      {
+        "id": "cm3",
+        "who": "you",
+        "en": "That outfit is so cool.",
+        "thai": {
+          "male": "ชุดเท่มากครับ",
+          "female": "ชุดเท่มากค่ะ"
+        },
+        "roman": {
+          "male": "chút thêe mâak khráp",
+          "female": "chút thêe mâak khâ"
+        },
+        "note": "ชุด (chút) is an outfit. เท่ (thêe, falling) is cool or stylish. มาก (mâak) is very."
+      },
+      {
+        "id": "cm4",
+        "who": "pim",
+        "en": "Thank you.",
+        "thai": "ขอบคุณค่ะ",
+        "roman": "khàwp-khun khâ",
+        "note": "ขอบคุณ (khàwp-khun) is thank you. After ไม่ขนาดนั้น, this is the other half of a polite reply."
+      },
+      {
+        "id": "cm5",
+        "who": "you",
+        "en": "You're so pretty.",
+        "thai": {
+          "male": "สวยจังเลยครับ",
+          "female": "สวยจังเลยค่ะ"
+        },
+        "roman": {
+          "male": "sǔay jang loei khráp",
+          "female": "sǔay jang loei khâ"
+        },
+        "note": "สวย (sǔay, rising) is pretty or beautiful: a woman, a dress, a photo, a view. จังเลย is the same emphasizer as in น่ารักจังเลย. For a man, use หล่อ (làw) instead."
+      },
+      {
+        "id": "cm6",
+        "who": "pim",
+        "en": "Oh, it's not all that.",
+        "thai": "ไม่ขนาดนั้นค่ะ",
+        "roman": "mâi khà-nâat nán khâ",
+        "note": "The same modest reply, coming back the other way. You will hear it as often as you say it."
+      },
+      {
+        "id": "cm7",
+        "who": "pim",
+        "en": "You look amazing.",
+        "thai": {
+          "male": "หล่อมากค่ะ",
+          "female": "สวยมากค่ะ"
+        },
+        "roman": {
+          "male": "làw mâak khâ",
+          "female": "sǔay mâak khâ"
+        },
+        "note": "มาก (mâak, falling) is the everyday very. หล่อมาก is very handsome, said to a man. สวยมาก is very pretty, said to a woman."
+      },
+      {
+        "id": "cm8",
+        "who": "you",
+        "en": "Thank you.",
+        "thai": {
+          "male": "ขอบคุณครับ",
+          "female": "ขอบคุณค่ะ"
+        },
+        "roman": {
+          "male": "khàwp-khun khráp",
+          "female": "khàwp-khun khâ"
+        },
+        "note": "A thank you after ไม่ขนาดนั้น is warm and complete. Men: khàwp-khun khráp. Women: khàwp-khun khâ."
+      },
+      {
+        "id": "cm9",
+        "who": "you",
+        "en": "This is really delicious.",
+        "thai": {
+          "male": "อร่อยมากๆครับ",
+          "female": "อร่อยมากๆค่ะ"
+        },
+        "roman": {
+          "male": "à-ròi mâak-mâak khráp",
+          "female": "à-ròi mâak-mâak khâ"
+        },
+        "note": "อร่อย (à-ròi) is delicious. มากๆ (mâak-mâak) is really very, a step up from one มาก. The right thing to say to the person who cooked."
+      },
+      {
+        "id": "cm10",
+        "who": "you",
+        "en": "You're so kind.",
+        "thai": {
+          "male": "ใจดีจังเลยครับ",
+          "female": "ใจดีจังเลยค่ะ"
+        },
+        "roman": {
+          "male": "jai-dii jang loei khráp",
+          "female": "jai-dii jang loei khâ"
+        },
+        "note": "ใจดี (jai-dii) is kind: ใจ is heart, ดี is good. จังเลย is the same emphasizer again. ใจดีจัง, without เลย, is just as common."
+      },
+      {
+        "id": "cm11",
+        "who": "pim",
+        "en": "You speak Thai well.",
+        "thai": "พูดไทยเก่งค่ะ",
+        "roman": "phûut thai gèng khâ",
+        "note": "พูด (phûut) is speak, ไทย (thai) is Thai, เก่ง (gèng) is skilled. You will hear this often. Reply with ไม่ขนาดนั้น."
+      }
+    ],
+    "drills": [
+      {
+        "id": "cm-l",
+        "kind": "listen",
+        "thai": "น่ารักจังเลยค่ะ",
+        "roman": "nâa-rák jang loei khâ",
+        "en": "You're so cute!",
+        "options": [
+          "You're so cute!",
+          "That outfit is so cool.",
+          "Oh, it's not all that.",
+          "You speak Thai well."
+        ]
+      },
+      {
+        "id": "cm-r",
+        "kind": "read",
+        "thai": "ไม่ขนาดนั้นค่ะ",
+        "roman": "mâi khà-nâat nán khâ",
+        "en": "Oh, it's not all that.",
+        "options": [
+          "Oh, it's not all that.",
+          "Thank you.",
+          "You're so kind.",
+          "This is really delicious."
+        ]
+      },
+      {
+        "id": "cm-p",
+        "kind": "pick",
+        "en": "“cool, stylish”",
+        "options": [
+          "เท่",
+          "สวย",
+          "หล่อ",
+          "น่ารัก"
+        ],
+        "answer": "เท่",
+        "roman": "thêe"
+      },
+      {
+        "id": "cm-b",
+        "kind": "build",
+        "en": "That outfit is so cool.",
+        "tiles": [
+          "ชุด",
+          "เท่",
+          "มาก",
+          "ครับ",
+          "ค่ะ",
+          "สวย"
+        ],
+        "answer": {
+          "male": ["ชุด", "เท่", "มาก", "ครับ"],
+          "female": ["ชุด", "เท่", "มาก", "ค่ะ"]
+        },
+        "roman": {
+          "male": "chút thêe mâak khráp",
+          "female": "chút thêe mâak khâ"
+        }
+      },
+      {
+        "id": "cm-part",
+        "kind": "particle",
+        "en": "You're thanking them for a compliment.",
+        "stem": "ขอบคุณ",
+        "stemRoman": "khàwp-khun",
+        "particleKind": "statement"
+      }
+    ]
+  },
+
   {
     "id": "hotel",
     "title": "Hotel check-in",
