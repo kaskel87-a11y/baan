@@ -2,11 +2,11 @@
 
 ## 0.45.0 — Badges and rewards
 
-- **A Rewards shelf** (open it from Path or Settings) with a flat sticker for each milestone and a quiet silhouette for the ones still ahead. 17 badges: 3, 7, 14, 30, 60 and 100-day streaks; your first scene, 5, 10 and every scene; 25, 100 and 250 words learned in Review; your first role-play and first story; and two Tone ears badges for accuracy in the tone trainer.
+- **A Rewards shelf** (open it from Path or Settings) with a flat sticker for each milestone and a quiet silhouette for the ones still ahead. 18 badges: 3, 7, 14, 30, 60 and 100-day streaks; your first scene, 5, 10 and every scene; 10 words started (met or practiced, so the first words badge can arrive on day one), then 25, 100 and 250 words learned in Review; your first role-play and first story; and two Tone ears badges for accuracy in the tone trainer.
 - **A celebration the first time you earn one:** a sheet with the sticker, ยินดีด้วย (*yin-dii dûay*), the Thai line to say for that badge with Hear, Slow and Say it, a short culture fact, and a share card. The old 3/7/30-day streak share card now lives inside that one celebration, and a finished scene that earns a badge shows one celebration, not two.
 - **Short voiced cartoons for the 7-day and 100-day streaks**, next to the 30-day one, in the same player as Watch the scene (in `src/data/streakCartoons.ts`, not `cartoons.ts`). The kit to make them is in `scripts/cartoons/`.
 - **Today shows your next badge** with a progress bar and how far is left.
-- Badges are saved in `baan.v1` and included in backup and restore. Nothing from the 18+ section counts toward a badge, and none of them is shareable from there. Words learned uses the same "learned" number Review shows.
+- Badges are saved in `baan.v1` and included in backup and restore. Nothing from the 18+ section counts toward a badge, and none of them is shareable from there. The 25, 100 and 250 word badges use the same "learned" number Review shows.
 
 ## 0.44.1 — 30-day cartoon badge
 

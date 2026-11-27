@@ -35,6 +35,8 @@ export interface Milestone {
   mark?: string;
   icon?: BadgeIcon;
   unit?: string;
+  /** For words badges: "started" is unique words introduced or practiced; "learned" is the Review mature count. */
+  count?: "started" | "learned";
   /** The Thai line you say for it. No particle, so it is the same for every voice. */
   say: { thai: string; roman: string; en: string };
   fact: Fact;
@@ -151,9 +153,9 @@ const OTHER_BADGES: Milestone[] = [
     say: { thai: "สุดยอด", roman: "sùt yâwt", en: "Awesome!" },
     fact: {
       title: "Pad thai",
-      body: "Stir-fried noodles with a sweet-sour-salty sauce became a national favourite in the 1940s, helped along by a government campaign to eat more noodles.",
+      body: "Pad thai is often said to have become a national favourite in the 1940s, when the government promoted noodle dishes during a rice shortage. A similar stir-fried noodle dish was already around; the name and the nationwide push date from then.",
       thai: "ผัดไทย",
-      roman: "phàt thai",
+      roman: "phàt-thai",
       en: "pad thai",
     },
   },
@@ -173,6 +175,25 @@ const OTHER_BADGES: Milestone[] = [
       thai: "กรุงเทพ",
       roman: "grung thêep",
       en: "Bangkok",
+    },
+  },
+  {
+    id: "words-10",
+    need: 10,
+    kind: "words",
+    count: "started",
+    title: "10 words",
+    ask: "Meet or practice 10 words",
+    color: "gold",
+    mark: "10",
+    unit: "words",
+    say: { thai: "สิบคำแล้ว", roman: "sìp kham láew", en: "Ten words already!" },
+    fact: {
+      title: "No plural ending",
+      body: "Thai nouns stay the same whether you mean one or many. วัน is a day or days; you add a number when you need to be exact.",
+      thai: "วัน",
+      roman: "wan",
+      en: "day, days",
     },
   },
   {
@@ -199,7 +220,7 @@ const OTHER_BADGES: Milestone[] = [
     color: "gold",
     mark: "100",
     unit: "words",
-    say: { thai: "จำได้เยอะเลย", roman: "jam dâai yé loei", en: "I remember so much!" },
+    say: { thai: "จำได้เยอะเลย", roman: "jam dâai yér loei", en: "I remember so much!" },
     fact: {
       title: "44 letters",
       body: "Thai has 44 consonant letters but only about 21 consonant sounds, because several letters sound the same. The letters sit in mid, high and low classes, and the class helps decide the tone.",

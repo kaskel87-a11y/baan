@@ -56,10 +56,17 @@ ok(rewardsOf(getState()) === before, "celebrating twice changes nothing");
 const real = VOCAB.filter((v) => !v.adult).slice(0, 25);
 const rude = VOCAB.filter((v) => v.adult).slice(0, 25);
 const srsOf = (list: typeof real) => Object.fromEntries(list.map((v) => [cardId("vocab", v.id, "listen"), { ease: 2.5, interval: 30, due: 0, reps: 4 }]));
+const startedOf = (list: typeof real) => Object.fromEntries(list.map((v) => [cardId("vocab", v.id, "listen"), { ease: 2.5, interval: 0, due: 0, reps: 0 }]));
+restoreProgress({ ...base(), srs: startedOf(VOCAB.filter((v) => !v.adult).slice(0, 9)) });
+ok(!earned().includes("words-10"), "9 started words is not yet 10 words");
+restoreProgress({ ...base(), srs: startedOf(VOCAB.filter((v) => v.adult).slice(0, 10)) });
+ok(!earned().includes("words-10"), "started 18+ words don't count");
+restoreProgress({ ...base(), srs: startedOf(VOCAB.filter((v) => !v.adult).slice(0, 10)) });
+ok(earned().includes("words-10") && !earned().includes("words-25"), "10 started words earns the first words badge, not 25 learned");
 restoreProgress({ ...base(), srs: srsOf(rude) });
 ok(!earned().includes("words-25"), "learned 18+ words don't count");
 restoreProgress({ ...base(), srs: srsOf(real) });
-ok(earned().includes("words-25") && !earned().includes("words-100"), "25 learned earns 25 words");
+ok(earned().includes("words-10") && earned().includes("words-25") && !earned().includes("words-100"), "25 learned also earns 10 started and 25 words");
 
 const code = exportProgress();
 const back = parseBackup(code);

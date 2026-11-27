@@ -11,7 +11,7 @@ import { Sheet } from "../components/RewardSheet";
 const GROUPS: { title: string; blurb: string; kinds: Milestone["kind"][] }[] = [
   { title: "Streaks", blurb: "Meet your daily goal, day after day.", kinds: ["streak"] },
   { title: "Scenes", blurb: "Finish the conversations.", kinds: ["scenes"] },
-  { title: "Review", blurb: "Words that have really stuck.", kinds: ["words"] },
+  { title: "Review", blurb: "Words you have started, then words that have really stuck.", kinds: ["words"] },
   { title: "Firsts", blurb: "Speak it, then hear a story.", kinds: ["rolePlay", "story"] },
   { title: "Tone ears", blurb: "Hear the difference in the Tones trainer.", kinds: ["tones"] },
 ];

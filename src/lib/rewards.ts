@@ -1,8 +1,8 @@
 import { MILESTONES, MILESTONE_BY_ID, type Milestone } from "../data/rewards";
 import { SCENES } from "../data/scenes";
-import { VOCAB } from "../data/vocab";
+import { VOCAB, VOCAB_BY_ID } from "../data/vocab";
 import type { BaanState } from "./store";
-import { parseCardId } from "./cards";
+import { isLegacySrsKey, parseCardId } from "./cards";
 
 /** What is saved in baan.v1 (and in a backup) under `rewards`. */
 export interface RewardsState {
@@ -20,6 +20,8 @@ export interface RewardMetrics {
   streak: number;
   scenes: number;
   words: number;
+  /** Unique non-18+ vocab words introduced or already in Review, including brand-new cards. */
+  started: number;
   rolePlays: number;
   stories: number;
   toneTrials: number;
@@ -34,6 +36,25 @@ const ADULT_SCENES = new Set(SCENES.filter((s) => s.adult).map((s) => s.id));
 
 export function rewardsOf(s: BaanState): RewardsState {
   return s.rewards ?? EMPTY_REWARDS;
+}
+
+/** Unique learnable vocab the learner has already met or practiced. Not the mature "learned" count. */
+export function startedWordCount(s: BaanState): number {
+  const ids = new Set<string>();
+  const add = (id: string) => {
+    if (id && VOCAB_BY_ID.has(id) && !ADULT_SOURCES.has(id)) ids.add(id);
+  };
+  for (const raw of s.introduced ?? []) {
+    const p = parseCardId(raw);
+    if (p?.source === "vocab") add(p.sourceId);
+    else if (!raw.includes(":")) add(raw);
+  }
+  for (const raw of Object.keys(s.srs ?? {})) {
+    const p = parseCardId(raw);
+    if (p?.source === "vocab") add(p.sourceId);
+    else if (isLegacySrsKey(raw)) add(raw);
+  }
+  return ids.size;
 }
 
 /** Everything a badge can ask for, in one place. `streak` is the live streak (see liveStreak in the store). */
@@ -53,6 +74,7 @@ export function rewardMetrics(s: BaanState, streak: number): RewardMetrics {
     streak,
     scenes: Object.entries(s.scenes).filter(([id, r]) => r.completed && !ADULT_SCENES.has(id)).length,
     words,
+    started: startedWordCount(s),
     rolePlays: rewardsOf(s).rolePlays,
     stories: Object.keys(s.stories ?? {}).length,
     toneTrials: right + wrong,
@@ -96,8 +118,15 @@ export function progressOf(m: Milestone, x: RewardMetrics): Progress {
       return { have, need: m.need, met: have >= m.need, ratio: have / m.need, text: `${have} of ${m.need} ${plural(m.need, "scene", "scenes")} finished` };
     }
     case "words": {
-      const have = Math.min(x.words, m.need);
-      return { have, need: m.need, met: have >= m.need, ratio: have / m.need, text: `${have} of ${m.need} learned in Review` };
+      const started = m.count === "started";
+      const have = Math.min(started ? x.started : x.words, m.need);
+      return {
+        have,
+        need: m.need,
+        met: have >= m.need,
+        ratio: have / m.need,
+        text: started ? `${have} of ${m.need} words started` : `${have} of ${m.need} learned in Review`,
+      };
     }
     case "rolePlay": {
       const have = Math.min(x.rolePlays, 1);
