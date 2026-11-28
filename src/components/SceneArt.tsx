@@ -191,6 +191,17 @@ const DRAWINGS: Record<SceneArtId, ReactNode> = {
         <rect x="232" y="50" width="24" height="4" rx="2" fill={cream} />
       </>
   ),
+  quiet: (
+      <>
+        <Ground />
+        <circle cx="150" cy="42" r="24" fill={blush} />
+        <circle cx="141" cy="36" r="2.3" fill={ink} />
+        <circle cx="159" cy="36" r="2.3" fill={ink} />
+        <circle cx="150" cy="50" r="3" fill={ink} />
+        <rect x="162" y="38" width="12" height="36" rx="6" fill={sand} transform="rotate(28 168 56)" />
+        <circle cx="175" cy="36" r="7" fill={sand} transform="rotate(28 168 56)" />
+      </>
+  ),
   shop: (
       <>
         <Ground />
@@ -291,6 +302,14 @@ const DRAWINGS: Record<SceneArtId, ReactNode> = {
         <rect x="220" y="40" width="28" height="32" fill={cream} stroke={gold} strokeWidth="3" />
         <path d="M214 40 H254 L234 22 Z" fill={gold} />
         <circle cx="234" cy="18" r="4" fill={clay} />
+      </>
+  ),
+  "mai-jing": (
+      <>
+        <Ground />
+        <circle cx="112" cy="42" r="22" fill={cream} stroke={teal} strokeWidth="3" />
+        <path d="M102 42 h20" stroke={teal} strokeWidth="4" strokeLinecap="round" />
+        <path d="M198 28 l28 28 M226 28 l-28 28" fill="none" stroke={clay} strokeWidth="6" strokeLinecap="round" />
       </>
   ),
   everyday: (
