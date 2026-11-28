@@ -249,6 +249,18 @@ const EXTRA: { thai: string; roman: string; en: string }[] = [
   { thai: "อันนี้อะไรครับ", roman: "an-níi à-rai khráp", en: "what's this? (polite)" },
   { thai: "อันนี้อะไรคะ", roman: "an-níi à-rai khá", en: "what's this? (polite)" },
   { thai: "คนที่ไม่รู้จัก", roman: "khon thîi mâi rúu-jàk", en: "someone you don't know" },
+  { thai: "ตรงไหน", roman: "dtrong nǎi", en: "which spot?" },
+  { thai: "ห้องน้ำอยู่ตรงไหน", roman: "hâwng-náam yùu dtrong nǎi", en: "where's the toilet? (a nearby spot)" },
+  { thai: "ธรรมดา", roman: "tham-má-daa", en: "regular (portion)" },
+  { thai: "พิเศษ", roman: "phí-sèet", en: "extra, large (portion)" },
+  { thai: "เอาผัดไทยธรรมดา", roman: "ao phàt-thai tham-má-daa", en: "I'll have a regular pad thai" },
+  { thai: "เอาผัดไทยพิเศษ", roman: "ao phàt-thai phí-sèet", en: "I'll have a large pad thai" },
+  { thai: "กินน้ำ", roman: "gin náam", en: "to drink water" },
+  { thai: "กินเบียร์", roman: "gin bia", en: "to drink beer" },
+  { thai: "หวัดดี", roman: "wàt-dii", en: "hi (casual)" },
+  { thai: "ขอบใจนะ", roman: "khàwp-jai ná", en: "thanks (casual)" },
+  { thai: "โทษนะ", roman: "thôot ná", en: "sorry (casual)" },
+  { thai: "ทำไร", roman: "tham rai", en: "what are you doing? (casual)" },
 ];
 
 export interface Gloss {

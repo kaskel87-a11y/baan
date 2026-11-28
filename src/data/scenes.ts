@@ -1090,7 +1090,8 @@ export const SCENES: Scene[] = [
       "dai",
       "khao-jai",
       "phuut",
-      "chaa"
+      "chaa",
+      "dtrong-nai"
     ],
     "lines": [
       {
@@ -3569,7 +3570,9 @@ export const SCENES: Scene[] = [
       "nam",
       "nam-som",
       "mai-sai-namtaan",
-      "waan-noi"
+      "waan-noi",
+      "gin-naam",
+      "gin-bia"
     ],
     "lines": [
       {
@@ -3769,7 +3772,9 @@ export const SCENES: Scene[] = [
       "gin",
       "padthai",
       "ma-muang",
-      "ma-naaw"
+      "ma-naaw",
+      "tham-mada",
+      "phi-set"
     ],
     "lines": [
       {
@@ -5439,7 +5444,11 @@ export const SCENES: Scene[] = [
       "dai-dai",
       "bpaep-neung",
       "mai-pen-rai",
-      "suu-suu"
+      "suu-suu",
+      "wat-dii",
+      "khawp-jai-na",
+      "thoot-na",
+      "tham-rai"
     ],
     "lines": [
       {
