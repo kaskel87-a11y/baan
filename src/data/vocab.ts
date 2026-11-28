@@ -621,7 +621,7 @@ export const VOCAB: Vocab[] = [
     "thai": "กิน",
     "roman": "gin",
     "en": "to eat",
-    "hint": "Mid. Mid-class ก on a live syllable with no mark is mid. กินที่นี่ (gin thîi-nîi) = eat here."
+    "hint": "Mid. Mid-class ก on a live syllable with no mark is mid. กินที่นี่ (gin thîi-nîi) = eat here. In everyday Thai, gin is also how you drink: gin náam, gin bia."
   },
   {
     "id": "glap-baan",
@@ -2028,6 +2028,69 @@ export const VOCAB: Vocab[] = [
     "roman": "yàak",
     "en": "to want to (+ verb)",
     "hint": "Low. Always followed by a verb: อยากกิน (want to eat), อยากไป (want to go)."
+  },
+  {
+    "id": "tham-mada",
+    "thai": "ธรรมดา",
+    "roman": "tham-má-daa",
+    "en": "regular (portion)",
+    "hint": "Mid, high, mid. The ordinary size at a stall. Say it after the dish."
+  },
+  {
+    "id": "phi-set",
+    "thai": "พิเศษ",
+    "roman": "phí-sèet",
+    "en": "extra, large (portion)",
+    "hint": "High, low. A little bigger than the regular size, often a few baht more. Say it after the dish."
+  },
+  {
+    "id": "dtrong-nai",
+    "thai": "ตรงไหน",
+    "roman": "dtrong nǎi",
+    "en": "which spot?",
+    "hint": "Mid, rising. For a precise place nearby. A general place, like a temple, uses ที่ไหน (thîi nǎi)."
+  },
+  {
+    "id": "gin-naam",
+    "thai": "กินน้ำ",
+    "roman": "gin náam",
+    "en": "to drink water",
+    "hint": "Mid, high. Everyday Thai uses กิน for drinks as well as food."
+  },
+  {
+    "id": "gin-bia",
+    "thai": "กินเบียร์",
+    "roman": "gin bia",
+    "en": "to drink beer",
+    "hint": "Mid, mid. กิน is also how you drink in everyday speech. เบียร์ is a loanword."
+  },
+  {
+    "id": "wat-dii",
+    "thai": "หวัดดี",
+    "roman": "wàt-dii",
+    "en": "hi (casual)",
+    "hint": "Low, mid. The short hello for a friend. สวัสดี is the polite one."
+  },
+  {
+    "id": "khawp-jai-na",
+    "thai": "ขอบใจนะ",
+    "roman": "khàwp-jai ná",
+    "en": "thanks (casual)",
+    "hint": "Low, mid, high. A shorter thank-you for a friend. ขอบคุณ is the polite one."
+  },
+  {
+    "id": "thoot-na",
+    "thai": "โทษนะ",
+    "roman": "thôot ná",
+    "en": "sorry (casual)",
+    "hint": "Falling, high. A short sorry for a friend. ขอโทษ is the polite one."
+  },
+  {
+    "id": "tham-rai",
+    "thai": "ทำไร",
+    "roman": "tham rai",
+    "en": "what are you doing? (casual)",
+    "hint": "Mid, mid. Casual ทำอะไร: the à drops off. With someone you don't know, say คุณทำอะไร."
   }
 ];
 

@@ -189,11 +189,11 @@ export const TIPS: Tip[] = [
     sceneId: "lost",
     afterLine: "l1",
     kind: "grammar",
-    title: "Place first, then yùu thîi nǎi",
-    body: "Name the place, then say yùu thîi nǎi (is located where?). Swap in any place you need.",
+    title: "thîi nǎi for a place, dtrong nǎi for a spot",
+    body: "Name the place, then say yùu thîi nǎi (is located where?) for a general place, like a temple or a neighbourhood. For a precise spot nearby, like the toilet in this building, use yùu dtrong nǎi (is located which spot?).",
     examples: [
       { ...p("วัดโพธิ์อยู่ที่ไหน", "wát pho yùu thîi nǎi", "question"), en: "Where is Wat Pho?" },
-      { ...p("ห้องน้ำอยู่ที่ไหน", "hâwng-náam yùu thîi nǎi", "question"), en: "Where is the toilet?" },
+      { ...p("ห้องน้ำอยู่ตรงไหน", "hâwng-náam yùu dtrong nǎi", "question"), en: "Where's the toilet? (a nearby spot)" },
     ],
   },
   {
@@ -1014,11 +1014,13 @@ export const TIPS: Tip[] = [
     afterLine: "ay2",
     kind: "grammar",
     title: "ao + thing: I'll have it",
-    body: "เอา (ao, mid) is for choosing and ordering: ao + the thing, nothing in between. ao phàt-thai, ao náam má-naaw, ao sǐi fáa. Don't put กิน (eat) after it.",
+    body: "เอา (ao, mid) is for choosing and ordering: ao + the thing, nothing in between. ao phàt-thai, ao náam má-naaw, ao sǐi fáa. Don't put กิน (eat) after it. At a stall you can also say the portion after the dish: tham-má-daa is the regular size, phí-sèet is a little bigger, often a few baht more. If you don't say either, you'll usually get the regular one.",
     examples: [
       { ...p("เอาผัดไทย", "ao phàt-thai"), en: "I'll have pad thai." },
       { ...p("เอาน้ำมะนาว", "ao náam má-naaw"), en: "I'll have a lime juice." },
       { ...p("เอาสีฟ้า", "ao sǐi fáa"), en: "I'll take the light blue." },
+      { ...p("เอาผัดไทยธรรมดา", "ao phàt-thai tham-má-daa"), en: "I'll have a regular pad thai." },
+      { ...p("เอาผัดไทยพิเศษ", "ao phàt-thai phí-sèet"), en: "I'll have a large pad thai." },
     ],
   },
   {

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.50.1 — Regular or large, which spot, and a shorter hello
+
+- **Street-food portions:** after the dish, ธรรมดา (tham-má-daa) is the regular size and พิเศษ (phí-sèet) is a little bigger, often a few baht more. If you don't say either, you'll usually get the regular one. New words, and two new examples on the I'll-have tip: เอาผัดไทยธรรมดา, เอาผัดไทยพิเศษ.
+- **ที่ไหน and ตรงไหน:** ที่ไหน is for a general place (วัดโพธิ์อยู่ที่ไหน). For a precise spot nearby, like the toilet in this building, use ตรงไหน (ห้องน้ำอยู่ตรงไหน). The Lost tip now draws that line. ตรงไหน is also a new word.
+- **กิน for drinks too:** in everyday Thai, กิน is how you drink as well as eat — กินน้ำ, กินเบียร์. You'll hear ดื่ม in more careful speech.
+- **Shorter forms for a friend:** หวัดดี is the casual hello (สวัสดี is the polite one), ขอบใจนะ is a shorter thank-you, โทษนะ a shorter sorry, and ทำไร is casual ทำอะไร. New words on Everyday words.
+- Baan is still 100% free, zero ads.
+
+
 ## 0.50.0 — A little quieter, and that's not true
 
 - **A new scene, *เงียบหน่อย / A little quieter*,** after Hotel check-in: กรุณาเงียบหน่อย is the polite way to ask someone to keep it down, and เงียบหน่อย is enough with a friend. A tip on กรุณา in front of a request, and a warning: the rough “shut your mouth” lives in the 18+ words — recognize it, don't use it.
