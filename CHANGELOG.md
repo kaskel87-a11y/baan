@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.50.0 — A little quieter, and that's not true
+
+- **A new scene, *เงียบหน่อย / A little quieter*,** after Hotel check-in: กรุณาเงียบหน่อย is the polite way to ask someone to keep it down, and เงียบหน่อย is enough with a friend. A tip on กรุณา in front of a request, and a warning: the rough “shut your mouth” lives in the 18+ words — recognize it, don't use it.
+- **A new scene, *ไม่จริง / That's not true*,** after Everyday words: ไม่จริง is the polite way to disagree. โกหก is the casual “that's a lie.” The crude word stays in the 18+ deck.
+- **หุบปาก** (*hùp bpâak*) joins the คำหยาบ deck (32 words), marked 18+, with a chili rating and a “you'd hear it when…” line. Still recognize it, don't use it. Nothing from this deck goes into social posts.
+- A small picture for each new scene. Baan is still 100% free, zero ads.
+
+
 ## 0.49.0 — Watch the scene: Taxi
 
 - **A second voiced cartoon, *Taking a taxi to Siam*,** on the Taxi lesson: say where you're going (ไปสยามค่ะ), ask for the meter (เปิดมิเตอร์ได้ไหมคะ), pay 180 baht and keep the change (นี่สองร้อย ไม่ต้องทอนค่ะ). The rider speaks in the ค่ะ forms with a female voice, the driver in ครับ with a male voice. Tap any line under the video to jump to it.

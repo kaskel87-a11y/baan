@@ -367,6 +367,58 @@ export const TIPS: Tip[] = [
       { ...p("เที่ยง", "thîang"), en: "Noon." },
     ],
   },
+  // A little quieter
+  {
+    id: "quiet-karuna",
+    sceneId: "quiet",
+    afterLine: "q2",
+    kind: "grammar",
+    title: "karuna in front makes a request more polite",
+    body: "gà-rú-naa is please, kindly. Put it in front of what you're asking. ngîap nàwy on its own is the short, casual request, fine with a friend. With someone you don't know, start with gà-rú-naa.",
+    examples: [
+      { ...p("กรุณาเงียบหน่อย", "gà-rú-naa ngîap nàwy"), en: "Please keep it down a little." },
+      { thai: "เงียบหน่อย", roman: "ngîap nàwy", en: "Keep it down a little. (casual, to a friend)" },
+    ],
+  },
+  {
+    id: "quiet-rough",
+    sceneId: "quiet",
+    afterLine: "q5",
+    kind: "culture",
+    title: "Don't tell someone to shut their mouth",
+    body: "You'll hear a rougher phrase, like 'shut your mouth'. It is in the 18+ words. Recognize it, don't use it. Stay with gà-rú-naa ngîap nàwy, or ngîap nàwy with a friend.",
+    examples: [
+      { ...p("กรุณาเงียบหน่อย", "gà-rú-naa ngîap nàwy"), en: "Please keep it down a little." },
+      { thai: "เงียบหน่อย", roman: "ngîap nàwy", en: "Keep it down a little. (to a friend)" },
+    ],
+  },
+
+  // That's not true
+  {
+    id: "mai-jing-polite",
+    sceneId: "mai-jing",
+    afterLine: "mj2",
+    kind: "grammar",
+    title: "mâi jing is the polite way to disagree",
+    body: "mâi jing is that's not true. jing (mid) is true — you already met it in jing rěr, are you serious? This is the one to use with someone you don't know.",
+    examples: [
+      { ...p("ไม่จริง", "mâi jing"), en: "That's not true." },
+      { ...p("จริงหรอ", "jing rěr", "question"), en: "Are you serious?" },
+    ],
+  },
+  {
+    id: "mai-jing-gohok",
+    sceneId: "mai-jing",
+    afterLine: "mj4",
+    kind: "culture",
+    title: "goo-hòk means that's a lie",
+    body: "goo-hòk is that's a lie, or to lie. It is casual. The crude word for this lives in the 18+ words. Recognize that one, don't use it. With someone you don't know, stay with mâi jing.",
+    examples: [
+      { ...p("ไม่จริง", "mâi jing"), en: "That's not true." },
+      { thai: "โกหก", roman: "goo-hòk", en: "That's a lie. (casual)" },
+    ],
+  },
+
   // Clothes shop
   {
     id: "shop-gwaa",

@@ -1044,6 +1044,41 @@ export const VOCAB: Vocab[] = [
     "hint": "Low, mid, high. วะ (wá, high) is blunt, like you're startled or annoyed. Not a swear, but too rough with a stranger. Don't use it in a shop."
   },
   {
+    "id": "karuna",
+    "thai": "กรุณา",
+    "roman": "gà-rú-naa",
+    "en": "please, kindly",
+    "hint": "Low, high, mid. Put it in front of a request to make it more polite."
+  },
+  {
+    "id": "ngiap",
+    "thai": "เงียบ",
+    "roman": "ngîap",
+    "en": "quiet, silent",
+    "hint": "Falling. ง is low-class, and a long dead syllable with no mark falls."
+  },
+  {
+    "id": "ngiap-noi",
+    "thai": "เงียบหน่อย",
+    "roman": "ngîap nàwy",
+    "en": "keep it down a little",
+    "hint": "Falling, then low. The casual way to ask someone to keep it down, fine with a friend. หน่อย (nàwy, low) softens it."
+  },
+  {
+    "id": "mai-jing",
+    "thai": "ไม่จริง",
+    "roman": "mâi jing",
+    "en": "that's not true",
+    "hint": "Falling, then mid. The polite way to disagree. จริง (jing, mid) is true. You already met จริงหรอ, are you serious?"
+  },
+  {
+    "id": "go-hok",
+    "thai": "โกหก",
+    "roman": "goo-hòk",
+    "en": "to lie, that's a lie",
+    "hint": "Mid, then low. Casual: that's a lie. โก is mid. หก is low (high-class ห, short and dead). Not for someone you don't know."
+  },
+  {
     "id": "chai-bpa",
     "thai": "ใช่ปะ",
     "roman": "châi bpà",
@@ -1758,6 +1793,17 @@ export const VOCAB: Vocab[] = [
     "heat": 4,
     "when": "You'd hear it when someone is crudely rating a person's looks.",
     "hint": "Falling, then high. น่า (nâa) is 'worth, likely to', the same น่า as น่ารัก (cute). Very vulgar. It is not หน้า (face), which is also nâa, falling — a common mix-up. Do not say it."
+  },
+
+  {
+    "id": "hup-paak",
+    "thai": "หุบปาก",
+    "roman": "hùp bpâak",
+    "en": "shut your mouth",
+    "adult": true,
+    "heat": 2,
+    "when": "You'd hear it when someone is fed up with the noise.",
+    "hint": "Low, then falling. Literally 'close the mouth'. Blunt and rude. Don't use it. Stay with เงียบหน่อย or กรุณาเงียบหน่อย."
   },
   {
     "id": "sii-dam",

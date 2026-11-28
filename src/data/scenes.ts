@@ -2470,6 +2470,165 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "quiet",
+    "title": "A little quieter",
+    "titleTh": "เงียบหน่อย",
+    "blurb": "Ask someone to keep it down: the polite request with กรุณา, the short one for a friend, and a rough phrase to recognize but not use.",
+    "vocab": [
+      "karuna",
+      "ngiap",
+      "ngiap-noi"
+    ],
+    "lines": [
+      {
+        "id": "q1",
+        "who": "joy",
+        "en": "Please keep it down a little.",
+        "thai": "กรุณาเงียบหน่อยค่ะ",
+        "roman": "gà-rú-naa ngîap nàwy khâ",
+        "note": "กรุณา (gà-rú-naa) is please, kindly. Put it in front of a request. เงียบหน่อย is keep it down a little. Joy uses ค่ะ, the polite ending on a statement."
+      },
+      {
+        "id": "q2",
+        "who": "you",
+        "en": "Please keep it down a little.",
+        "thai": {
+          "male": "กรุณาเงียบหน่อยครับ",
+          "female": "กรุณาเงียบหน่อยค่ะ"
+        },
+        "roman": {
+          "male": "gà-rú-naa ngîap nàwy khráp",
+          "female": "gà-rú-naa ngîap nàwy khâ"
+        },
+        "note": "The polite request, for someone you don't know, or when you want to be careful. Men end with ครับ, women with ค่ะ."
+      },
+      {
+        "id": "q3",
+        "who": "joy",
+        "en": "With a friend, this is enough.",
+        "thai": "กับเพื่อน เงียบหน่อย ก็พอค่ะ",
+        "roman": "gàp phûean, ngîap nàwy, gâw phaw khâ",
+        "note": "เพื่อน (phûean, falling) is a friend. ก็พอ (gâw phaw) is that's enough, that's all you need."
+      },
+      {
+        "id": "q4",
+        "who": "you",
+        "en": "Keep it down a little.",
+        "thai": "เงียบหน่อย",
+        "roman": "ngîap nàwy",
+        "note": "The casual request. Fine with a friend. หน่อย (nàwy, low) softens it, the same softener as in พูดช้าๆหน่อย."
+      },
+      {
+        "id": "q5",
+        "who": "joy",
+        "en": "You'll hear a rougher one too. Don't use it.",
+        "thai": "จะได้ยินแบบหยาบกว่านี้ด้วยนะคะ อย่าพูดนะคะ",
+        "roman": "jà dâai-yin bàaep yàap gwàa níi dûay ná khá, yàa phûut ná khá",
+        "note": "The rough phrase is หุบปาก (hùp bpâak), like 'shut your mouth'. It lives in the 18+ deck. Recognize it, don't say it."
+      },
+      {
+        "id": "q6",
+        "who": "you",
+        "en": "Got it.",
+        "thai": {
+          "male": "เข้าใจแล้วครับ",
+          "female": "เข้าใจแล้วค่ะ"
+        },
+        "roman": {
+          "male": "khâo-jai láew khráp",
+          "female": "khâo-jai láew khâ"
+        },
+        "note": "เข้าใจแล้ว (khâo-jai láew) is I understand now."
+      }
+    ],
+    "drills": [
+      {
+        "id": "q-l",
+        "kind": "listen",
+        "thai": "เงียบหน่อย",
+        "roman": "ngîap nàwy",
+        "en": "Keep it down a little.",
+        "options": [
+          "Keep it down a little.",
+          "Please keep it down a little.",
+          "That's not true.",
+          "That's a lie."
+        ]
+      },
+      {
+        "id": "q-r",
+        "kind": "read",
+        "thai": "กรุณาเงียบหน่อยค่ะ",
+        "roman": "gà-rú-naa ngîap nàwy khâ",
+        "en": "Please keep it down a little.",
+        "options": [
+          "Please keep it down a little.",
+          "Keep it down a little.",
+          "That's not true.",
+          "That's a lie."
+        ]
+      },
+      {
+        "id": "q-p1",
+        "kind": "pick",
+        "en": "“please keep it down a little” (polite)",
+        "options": [
+          "กรุณาเงียบหน่อย",
+          "เงียบหน่อย",
+          "ไม่จริง",
+          "โกหก"
+        ],
+        "answer": "กรุณาเงียบหน่อย",
+        "roman": "gà-rú-naa ngîap nàwy"
+      },
+      {
+        "id": "q-p2",
+        "kind": "pick",
+        "en": "“keep it down a little” (casual, to a friend)",
+        "options": [
+          "เงียบหน่อย",
+          "กรุณาเงียบหน่อย",
+          "ไม่จริง",
+          "โกหก"
+        ],
+        "answer": "เงียบหน่อย",
+        "roman": "ngîap nàwy"
+      },
+      {
+        "id": "q-b",
+        "kind": "build",
+        "en": "Please keep it down a little.",
+        "tiles": [
+          "กรุณา",
+          "เงียบ",
+          "หน่อย",
+          "ครับ",
+          "ค่ะ",
+          "คะ"
+        ],
+        "answer": {
+          "male": [
+            "กรุณา",
+            "เงียบ",
+            "หน่อย",
+            "ครับ"
+          ],
+          "female": [
+            "กรุณา",
+            "เงียบ",
+            "หน่อย",
+            "ค่ะ"
+          ]
+        },
+        "roman": {
+          "male": "gà-rú-naa ngîap nàwy khráp",
+          "female": "gà-rú-naa ngîap nàwy khâ"
+        }
+      }
+    ]
+  },
+
+  {
     "id": "shop",
     "title": "Clothes shop",
     "titleTh": "ร้านเสื้อผ้า",
@@ -5491,6 +5650,154 @@ export const SCENES: Scene[] = [
     ]
   },
   {
+    "id": "mai-jing",
+    "title": "That's not true",
+    "titleTh": "ไม่จริง",
+    "blurb": "Disagree politely with ไม่จริง, hear the casual โกหก for 'that's a lie', and leave the crude word in the 18+ deck.",
+    "vocab": [
+      "mai-jing",
+      "go-hok"
+    ],
+    "lines": [
+      {
+        "id": "mj1",
+        "who": "joy",
+        "en": "That's not true.",
+        "thai": "ไม่จริงค่ะ",
+        "roman": "mâi jing khâ",
+        "note": "ไม่จริง (mâi jing) is that's not true. The polite way to disagree. จริง (jing, mid) is true. You already met จริงหรอ, are you serious?"
+      },
+      {
+        "id": "mj2",
+        "who": "you",
+        "en": "That's not true.",
+        "thai": {
+          "male": "ไม่จริงครับ",
+          "female": "ไม่จริงค่ะ"
+        },
+        "roman": {
+          "male": "mâi jing khráp",
+          "female": "mâi jing khâ"
+        },
+        "note": "The polite disagreement, fine with someone you don't know."
+      },
+      {
+        "id": "mj3",
+        "who": "joy",
+        "en": "You'll also hear goo-hòk. That means that's a lie.",
+        "thai": "จะได้ยินโกหกด้วยนะคะ แปลว่าไม่จริงค่ะ",
+        "roman": "jà dâai-yin goo-hòk dûay ná khá, bplae wâa mâi jing khâ",
+        "note": "โกหก (goo-hòk) is that's a lie, or to lie. Casual. Mid, then low. Not the first thing to say to someone you don't know."
+      },
+      {
+        "id": "mj4",
+        "who": "joy",
+        "en": "The crude word for this is in the 18+ words. Don't use it.",
+        "thai": "คำนั้นอยู่ในคำหยาบนะคะ อย่าพูดนะคะ",
+        "roman": "kham nán yùu nai kham yàap ná khá, yàa phûut ná khá",
+        "note": "The crude word is ตอแหล. You can meet it in คำหยาบ. Recognize it, don't say it."
+      },
+      {
+        "id": "mj5",
+        "who": "you",
+        "en": "Got it.",
+        "thai": {
+          "male": "เข้าใจแล้วครับ",
+          "female": "เข้าใจแล้วค่ะ"
+        },
+        "roman": {
+          "male": "khâo-jai láew khráp",
+          "female": "khâo-jai láew khâ"
+        },
+        "note": "เข้าใจแล้ว (khâo-jai láew) is I understand now."
+      }
+    ],
+    "drills": [
+      {
+        "id": "mj-l",
+        "kind": "listen",
+        "thai": "ไม่จริง",
+        "roman": "mâi jing",
+        "en": "That's not true.",
+        "options": [
+          "That's not true.",
+          "That's a lie.",
+          "Keep it down a little.",
+          "Are you serious?"
+        ]
+      },
+      {
+        "id": "mj-r",
+        "kind": "read",
+        "thai": "โกหก",
+        "roman": "goo-hòk",
+        "en": "That's a lie.",
+        "options": [
+          "That's a lie.",
+          "That's not true.",
+          "Keep it down a little.",
+          "Are you serious?"
+        ]
+      },
+      {
+        "id": "mj-p1",
+        "kind": "pick",
+        "en": "“that's not true” (polite)",
+        "options": [
+          "ไม่จริง",
+          "โกหก",
+          "เงียบหน่อย",
+          "จริงหรอ"
+        ],
+        "answer": "ไม่จริง",
+        "roman": "mâi jing"
+      },
+      {
+        "id": "mj-p2",
+        "kind": "pick",
+        "en": "“that's a lie” (casual)",
+        "options": [
+          "โกหก",
+          "ไม่จริง",
+          "เงียบหน่อย",
+          "จริงหรอ"
+        ],
+        "answer": "โกหก",
+        "roman": "goo-hòk"
+      },
+      {
+        "id": "mj-b",
+        "kind": "build",
+        "en": "That's not true.",
+        "tiles": [
+          "ไม่",
+          "จริง",
+          "ครับ",
+          "ค่ะ",
+          "คะ",
+          "โกหก"
+        ],
+        "answer": {
+          "male": [
+            "ไม่",
+            "จริง",
+            "ครับ"
+          ],
+          "female": [
+            "ไม่",
+            "จริง",
+            "ค่ะ"
+          ]
+        },
+        "roman": {
+          "male": "mâi jing khráp",
+          "female": "mâi jing khâ"
+        }
+      }
+    ]
+  },
+
+  {
     "id": "arai",
     "title": "The same what",
     "titleTh": "อะไร",
@@ -6646,7 +6953,7 @@ export const SCENES: Scene[] = [
     "id": "swears",
     "title": "Swear words (know them, don't say them)",
     "titleTh": "คำหยาบ",
-    "blurb": "Thirty-one words, from a friend's joke up to a fight. Learn to recognize these. Don't use them.",
+    "blurb": "Thirty-two words, from a friend's joke up to a fight. Learn to recognize these. Don't use them.",
     "adult": true,
     "vocab": [
       "baa",
@@ -6679,7 +6986,8 @@ export const SCENES: Scene[] = [
       "yet-maae",
       "bpai-dtaai",
       "khii-yet",
-      "naa-yet"
+      "naa-yet",
+      "hup-paak"
     ],
     "lines": [
       {
@@ -6932,6 +7240,19 @@ export const SCENES: Scene[] = [
         "stem": "ไม่พูด",
         "stemRoman": "mâi phûut",
         "particleKind": "statement"
+      },
+      {
+        "id": "rd-p-hup-paak",
+        "kind": "pick",
+        "en": "“shut your mouth (rude — don't use it)”",
+        "options": [
+          "หุบปาก",
+          "เงียบหน่อย",
+          "ตอแหล",
+          "โง่"
+        ],
+        "answer": "หุบปาก",
+        "roman": "hùp bpâak"
       },
       {
         "id": "rd-p-naa-yet",
