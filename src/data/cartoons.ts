@@ -2,6 +2,8 @@ import cafeVideo from "../assets/cartoons/cafe.mp4";
 import cafePoster from "../assets/cartoons/cafe-poster.webp";
 import taxiVideo from "../assets/cartoons/taxi.mp4";
 import taxiPoster from "../assets/cartoons/taxi-poster.webp";
+import chimVideo from "../assets/cartoons/chim.mp4";
+import chimPoster from "../assets/cartoons/chim-poster.webp";
 
 /**
  * Short voiced cartoons ("Watch the scene"). Each one acts out real lines from the lessons.
@@ -69,6 +71,23 @@ export const CARTOONS: Cartoon[] = [
       { scene: "taxi", line: "tx8", at: 22.8 },
       { scene: "taxi", line: "tx9", at: 26.0, who: "you", thai: "นี่สองร้อย ไม่ต้องทอนค่ะ", roman: "nîi sǎwng-ráwy, mâi dtâwng thawn khâ", en: "Here's two hundred. Keep the change." },
       { scene: "taxi", line: "tx10", at: 29.2 },
+    ],
+  },
+  {
+    id: "chim",
+    title: "Taste it first",
+    titleTh: "ชิมก่อน",
+    blurb: "Your noodles land, the four jars are on the table, and you taste first. A 44-second cartoon, every line spoken in Thai.",
+    video: chimVideo,
+    poster: chimPoster,
+    scenes: ["chim"],
+    cues: [
+      { scene: "chim", line: "tf1", at: 4.3 },
+      { scene: "chim", line: "tf2", at: 7.7 },
+      { scene: "chim", line: "tf3", at: 11.5 },
+      { scene: "chim", line: "tf4", at: 14.9 },
+      { scene: "chim", line: "tf5", at: 23.1 },
+      { scene: "chim", line: "tf6", at: 27.6 },
     ],
   },
 ];

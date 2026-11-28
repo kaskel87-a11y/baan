@@ -473,6 +473,33 @@ export const TIPS: Tip[] = [
       { ...p("ใส่ไข่ดาวด้วย", "sài khài daaw dûay"), en: "Add a fried egg too." },
     ],
   },
+  {
+    id: "chim-jars",
+    sceneId: "chim",
+    afterLine: "tf4",
+    kind: "culture",
+    title: "Four jars, four tastes",
+    body: "Many noodle stalls put jars on the table so you can season the bowl yourself. náam-dtaan is sugar (sweet, wǎan), náam-bplaa is fish sauce (salty, khem), phrík bpòn is chili flakes (spicy, phèt), and phrík dawng is chilies in vinegar (sour, bprîaw). If you don't add anything, you'll get the bowl as the stall made it. Jars vary by shop and region.",
+    examples: [
+      { thai: "น้ำตาล", roman: "náam-dtaan", en: "sugar (sweet)" },
+      { thai: "น้ำปลา", roman: "náam-bplaa", en: "fish sauce (salty)" },
+      { thai: "พริกป่น", roman: "phrík bpòn", en: "chili flakes (spicy)" },
+      { thai: "พริกดอง", roman: "phrík dawng", en: "chilies in vinegar (sour)" },
+    ],
+  },
+  {
+    id: "chim-taste",
+    sceneId: "chim",
+    afterLine: "tf6",
+    kind: "culture",
+    title: "Taste first, then add a little",
+    body: "Taste the soup first, then add a little at a time with the spoon that lives in the jar, not yours. chim gàwn is taste first. sài thii-lá nít is add a little at a time. In some places, like Lampang, you may see phrík náam daaeng, red chili water: sour and spicy in one jar.",
+    examples: [
+      { ...p("ชิมก่อน", "chim gàwn"), en: "Taste first." },
+      { ...p("ใส่ทีละนิด", "sài thii-lá nít"), en: "Add a little at a time." },
+      { thai: "พริกน้ำแดง", roman: "phrík náam daaeng", en: "red chili water (regional)" },
+    ],
+  },
   // Laundry
   {
     id: "laundry-la",

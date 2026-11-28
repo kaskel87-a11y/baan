@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.51.0 — Taste it first
+
+- **A new scene, *ชิมก่อน / Taste it first*,** after Street food stall: the jars on a noodle table. น้ำตาล is sugar, น้ำปลา is fish sauce, พริกป่น is chili flakes, and พริกดอง is chilies in vinegar. ชิมก่อน is taste first; ใส่ทีละนิด is add a little at a time, with the jar's own spoon. หยิบผิดหรือเปล่า asks if you picked the wrong one. A tip on the four tastes, and a note that some places (like Lampang) have พริกน้ำแดง, red chili water.
+- A small picture of a bowl and four jars. A short voiced cartoon of the scene. Baan is still 100% free, zero ads.
+
+
 ## 0.50.1 — Regular or large, which spot, and a shorter hello
 
 - **Street-food portions:** after the dish, ธรรมดา (tham-má-daa) is the regular size and พิเศษ (phí-sèet) is a little bigger, often a few baht more. If you don't say either, you'll usually get the regular one. New words, and two new examples on the I'll-have tip: เอาผัดไทยธรรมดา, เอาผัดไทยพิเศษ.

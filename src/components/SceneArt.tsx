@@ -223,6 +223,20 @@ const DRAWINGS: Record<SceneArtId, ReactNode> = {
         <rect x="70" y="24" width="180" height="8" fill={clay} />
       </>
   ),
+  chim: (
+      <>
+        <Ground />
+        <ellipse cx="118" cy="64" rx="52" ry="16" fill={ink} />
+        <ellipse cx="118" cy="58" rx="48" ry="14" fill={cream} />
+        <ellipse cx="118" cy="52" rx="36" ry="10" fill={gold} />
+        <circle cx="108" cy="50" r="4" fill={leaf} />
+        <circle cx="130" cy="51" r="3.5" fill={clay} />
+        <rect x="186" y="38" width="16" height="26" rx="4" fill={cream} />
+        <rect x="208" y="34" width="16" height="30" rx="4" fill={sand} />
+        <rect x="230" y="40" width="16" height="24" rx="4" fill={clay} />
+        <rect x="252" y="36" width="16" height="28" rx="4" fill={leaf} />
+      </>
+  ),
   laundry: (
       <>
         <Ground />
