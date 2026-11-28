@@ -16,6 +16,7 @@ export const SCENE_ART_ALT = {
   quiet: "A cartoon face with a finger to the lips",
   shop: "A cartoon shirt on a hanger",
   food: "A cartoon wok of fried rice at a street stall",
+  chim: "A cartoon noodle bowl and four little seasoning jars",
   laundry: "A cartoon laundry basket of folded clothes",
   haircut: "A cartoon barber chair and a pair of scissors",
   phone: "A cartoon phone and a small SIM card",

@@ -43,4 +43,4 @@ ffmpeg -ss 2.4 -i baan-streak-7-reel-voiced.mp4 -frames:v 1 -vf scale=540:960 -q
 They are listed in `src/data/streakCartoons.ts` (each line's start time is its bubble start + 0.3 s), not in `cartoons.ts`.
 
 ## Taxi reel (Baan 0.49.0)
-`taxi_reel.py` / `taxi_voiced.py` (rider = female voice, ค่ะ forms; driver = male voice). `make_voices.py` reads an optional `VOICES` map from the reel module. Render: `.venv/bin/python make_voices.py taxi_reel && .venv/bin/python render.py taxi_voiced`.
+`taxi_reel.py` / `taxi_voiced.py` (rider = female voice, ค่ะ forms; driver = male voice). `noodle_reel.py` / `noodle_voiced.py` is the *Taste it first* stall (Pim female, you and Ton male, ครับ forms). `make_voices.py` reads an optional `VOICES` map from the reel module. Render: `.venv/bin/python make_voices.py taxi_reel && .venv/bin/python render.py taxi_voiced`.

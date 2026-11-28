@@ -2091,6 +2091,62 @@ export const VOCAB: Vocab[] = [
     "roman": "tham rai",
     "en": "what are you doing? (casual)",
     "hint": "Mid, mid. Casual ทำอะไร: the à drops off. With someone you don't know, say คุณทำอะไร."
+  },
+  {
+    "id": "kuay-tiao",
+    "thai": "ก๋วยเตี๋ยว",
+    "roman": "gǔay-dtìaw",
+    "en": "noodles (in soup)",
+    "hint": "Rising, low. The everyday word for a bowl of noodles at a stall."
+  },
+  {
+    "id": "nam-dtaan",
+    "thai": "น้ำตาล",
+    "roman": "náam-dtaan",
+    "en": "sugar",
+    "hint": "High, mid. The same word as the color brown, สีน้ำตาล. At a noodle stall it's the sugar jar."
+  },
+  {
+    "id": "nam-plaa",
+    "thai": "น้ำปลา",
+    "roman": "náam-bplaa",
+    "en": "fish sauce",
+    "hint": "High, mid. ปลา (bplaa, mid) is fish. The salty jar on the table."
+  },
+  {
+    "id": "phrik-pon",
+    "thai": "พริกป่น",
+    "roman": "phrík bpòn",
+    "en": "chili flakes",
+    "hint": "High, low. ป่น (bpòn, low) is ground up. The spicy jar of dried chili."
+  },
+  {
+    "id": "phrik-dong",
+    "thai": "พริกดอง",
+    "roman": "phrík dawng",
+    "en": "chilies in vinegar",
+    "hint": "High, mid. ดอง (dawng, mid) is pickled. The sour jar: chilies sitting in vinegar."
+  },
+  {
+    "id": "chim",
+    "thai": "ชิม",
+    "roman": "chim",
+    "en": "to taste",
+    "hint": "Mid. ชิมก่อน (chim gàwn) is taste first, before you add anything."
+  },
+  {
+    "id": "yip-phit",
+    "thai": "หยิบผิดหรือเปล่า",
+    "roman": "yìp phìt rǔue bplào",
+    "en": "did I pick the wrong one?",
+    "hint": "Low, low, rising, falling. หยิบ (yìp) is to pick up. ผิด (phìt) is wrong. หรือเปล่า turns it into a yes-or-no."
+  },
+  {
+    "id": "phrik-nam-daeng",
+    "thai": "พริกน้ำแดง",
+    "roman": "phrík náam daaeng",
+    "en": "red chili water",
+    "hint": "High, high, mid. A regional jar, common in Lampang: sour and spicy in one. Not at every stall."
   }
 ];
 

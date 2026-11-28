@@ -3330,6 +3330,175 @@ export const SCENES: Scene[] = [
   },
 
   {
+    "id": "chim",
+    "title": "Taste it first",
+    "titleTh": "ชิมก่อน",
+    "blurb": "The jars on a noodle table: sugar, fish sauce, chili flakes, chilies in vinegar. Taste first, then add a little.",
+    "vocab": [
+      "kuay-tiao",
+      "nam-dtaan",
+      "nam-plaa",
+      "phrik-pon",
+      "phrik-dong",
+      "chim",
+      "yip-phit",
+      "phrik-nam-daeng"
+    ],
+    "lines": [
+      {
+        "id": "tf1",
+        "who": "pim",
+        "en": "Your noodles are ready.",
+        "thai": "ก๋วยเตี๋ยวได้แล้วค่ะ",
+        "roman": "gǔay-dtìaw dâai láew khâ",
+        "note": "ก๋วยเตี๋ยว (gǔay-dtìaw) is a bowl of noodles. ได้แล้ว (dâai láew) is it's ready, here you go."
+      },
+      {
+        "id": "tf2",
+        "who": "you",
+        "en": "Is that sugar?",
+        "thai": {
+          "male": "นั่นน้ำตาลเหรอครับ",
+          "female": "นั่นน้ำตาลเหรอคะ"
+        },
+        "roman": {
+          "male": "nân náam-dtaan rěr khráp",
+          "female": "nân náam-dtaan rěr khá"
+        },
+        "note": "นั่น (nân, falling) is that. น้ำตาล (náam-dtaan) is sugar, the same word as the color brown. เหรอ (rěr) turns it into 'is it?'"
+      },
+      {
+        "id": "tf3",
+        "who": "ton",
+        "en": "Yes!",
+        "thai": "ใช่ครับ",
+        "roman": "châi khráp",
+        "note": "ใช่ (châi, falling) is yes, that's right. A man ends with ครับ. A woman would say ใช่ค่ะ."
+      },
+      {
+        "id": "tf4",
+        "who": "pim",
+        "en": "On the table: sugar, fish sauce, chili flakes, chilies in vinegar.",
+        "thai": "บนโต๊ะมีน้ำตาล น้ำปลา พริกป่น พริกดองค่ะ",
+        "roman": "bon dtó mii náam-dtaan, náam-bplaa, phrík bpòn, phrík dawng khâ",
+        "note": "Many noodle stalls put these four jars on the table so you can season the bowl yourself. น้ำตาล is sweet, น้ำปลา is salty, พริกป่น is spicy, พริกดอง is sour."
+      },
+      {
+        "id": "tf5",
+        "who": "you",
+        "en": "Did I pick the wrong jar?",
+        "thai": {
+          "male": "หยิบผิดหรือเปล่าครับ",
+          "female": "หยิบผิดหรือเปล่าคะ"
+        },
+        "roman": {
+          "male": "yìp phìt rǔue bplào khráp",
+          "female": "yìp phìt rǔue bplào khá"
+        },
+        "note": "หยิบ (yìp, low) is to pick up. ผิด (phìt, low) is wrong. หรือเปล่า (rǔue bplào) turns it into a yes-or-no: did I, or not?"
+      },
+      {
+        "id": "tf6",
+        "who": "pim",
+        "en": "No. Taste first, then add a little.",
+        "thai": "ไม่ค่ะ ชิมก่อน แล้วใส่ทีละนิดค่ะ",
+        "roman": "mâi khâ, chim gàwn, láew sài thii-lá nít khâ",
+        "note": "ชิมก่อน (chim gàwn) is taste first. ใส่ทีละนิด (sài thii-lá nít) is add a little at a time. Use the spoon that lives in the jar, not yours."
+      }
+    ],
+    "drills": [
+      {
+        "id": "tf-l",
+        "kind": "listen",
+        "thai": "ชิมก่อน",
+        "roman": "chim gàwn",
+        "en": "Taste first.",
+        "options": [
+          "Taste first.",
+          "Add a little at a time.",
+          "Is that sugar?",
+          "Did I pick the wrong jar?"
+        ]
+      },
+      {
+        "id": "tf-r",
+        "kind": "read",
+        "thai": "ใช่ครับ",
+        "roman": "châi khráp",
+        "en": "Yes!",
+        "options": [
+          "Yes!",
+          "Taste first.",
+          "Is that sugar?",
+          "Your noodles are ready."
+        ]
+      },
+      {
+        "id": "tf-p1",
+        "kind": "pick",
+        "en": "fish sauce",
+        "options": [
+          "น้ำปลา",
+          "น้ำตาล",
+          "พริกป่น",
+          "พริกดอง"
+        ],
+        "answer": "น้ำปลา",
+        "roman": "náam-bplaa"
+      },
+      {
+        "id": "tf-p2",
+        "kind": "pick",
+        "en": "“did I pick the wrong one?”",
+        "options": [
+          "หยิบผิดหรือเปล่า",
+          "ชิมก่อน",
+          "ใช่ครับ",
+          "นั่นน้ำตาลเหรอ"
+        ],
+        "answer": "หยิบผิดหรือเปล่า",
+        "roman": "yìp phìt rǔue bplào"
+      },
+      {
+        "id": "tf-b",
+        "kind": "build",
+        "en": "Taste first, then add a little.",
+        "tiles": [
+          "ชิม",
+          "ก่อน",
+          "แล้ว",
+          "ใส่",
+          "ทีละนิด",
+          "ครับ",
+          "ค่ะ"
+        ],
+        "answer": {
+          "male": [
+            "ชิม",
+            "ก่อน",
+            "แล้ว",
+            "ใส่",
+            "ทีละนิด",
+            "ครับ"
+          ],
+          "female": [
+            "ชิม",
+            "ก่อน",
+            "แล้ว",
+            "ใส่",
+            "ทีละนิด",
+            "ค่ะ"
+          ]
+        },
+        "roman": {
+          "male": "chim gàwn láew sài thii-lá nít khráp",
+          "female": "chim gàwn láew sài thii-lá nít khâ"
+        }
+      }
+    ]
+  },
+
+  {
     "id": "meat",
     "title": "Animal or meat",
     "titleTh": "เนื้อสัตว์",
